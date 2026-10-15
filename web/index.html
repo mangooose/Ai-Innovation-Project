@@ -59,13 +59,13 @@ ul{margin:0}
 .src-general{background:var(--act-bg);color:var(--act)}
 
 /* App bar */
-.appbar{position:sticky;top:0;z-index:25;background:var(--surface);border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.appbar .in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:.6rem;min-height:3.6rem;padding-block:.35rem}
-.brand{display:flex;align-items:center;gap:.55rem;font-family:var(--f-display);font-weight:700;font-size:1.15rem}
-.brand .logo{width:2.2rem;height:2.2rem;flex:none;display:block}.mk{width:100%;height:100%;display:block;overflow:visible}.wm{letter-spacing:-.01em;white-space:nowrap}.upmark .wm{display:none}.wm b{color:var(--accent);font-weight:700}.upmark{display:flex;flex-direction:column;align-items:center;gap:.5rem;margin:.25rem 0 .5rem;font-family:var(--f-display);font-weight:700;font-size:1.6rem}.upmark .mk{width:3.75rem;height:3.75rem;filter:drop-shadow(0 6px 14px rgba(47,106,99,.22))}.upmark .tag{font-family:var(--f-body,inherit);font-weight:400;font-size:1rem;color:var(--ink-2)}
-.backbtn{display:inline-flex;align-items:center;gap:.4rem;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;min-height:var(--tap);min-width:var(--tap);padding:.3rem .8rem;cursor:pointer;font-weight:700}
-.apptitle{font-family:var(--f-display);font-weight:700;font-size:1.15rem;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.aabtn{margin-left:auto;min-height:var(--tap);min-width:var(--tap);border:1.5px solid var(--line);background:var(--surface);border-radius:12px;font-family:var(--f-display);font-weight:800;font-size:1.05rem;cursor:pointer}
+.appbar{font-size:min(1rem,22px);--tap:2.6em;position:sticky;top:0;z-index:25;background:var(--surface);border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.appbar .in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:.6em;min-height:3.6em;padding-block:.35em}
+.brand{display:flex;align-items:center;gap:.55em;font-family:var(--f-display);font-weight:700;font-size:1.15em}
+.brand .logo{width:2.2em;height:2.2em;flex:none;display:block}.mk{width:100%;height:100%;display:block;overflow:visible}.wm{letter-spacing:-.01em;white-space:nowrap}.upmark .wm{display:none}.wm b{color:var(--accent);font-weight:700}.upmark{display:flex;flex-direction:column;align-items:center;gap:.5rem;margin:.25rem 0 .5rem;font-family:var(--f-display);font-weight:700;font-size:1.6rem}.upmark .mk{width:3.75rem;height:3.75rem;filter:drop-shadow(0 6px 14px rgba(47,106,99,.22))}.upmark .tag{font-family:var(--f-body,inherit);font-weight:400;font-size:1rem;color:var(--ink-2)}
+.backbtn{display:inline-flex;align-items:center;gap:.4em;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;min-height:var(--tap);min-width:var(--tap);padding:.3em .8em;cursor:pointer;font-weight:700}
+.apptitle{font-family:var(--f-display);font-weight:700;font-size:1.15em;flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aabtn{flex:none;min-height:var(--tap);min-width:var(--tap);border:1.5px solid var(--line);background:var(--surface);border-radius:12px;font-family:var(--f-display);font-weight:800;font-size:1.05em;cursor:pointer}
 .brand .apptitle{margin-left:0}
 
 /* Layout */
@@ -145,7 +145,7 @@ ul{margin:0}
 .numrow{font-family:var(--f-mono);font-size:1.45rem;font-weight:700;user-select:all;letter-spacing:.02em;overflow-wrap:anywhere}
 .copy{display:inline-flex;align-items:center;gap:.3rem;border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:.15rem .7rem;cursor:pointer;font-size:.78rem;font-weight:700;min-height:2.6rem}
 .actions{display:flex;flex-wrap:wrap;gap:.6rem}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:12px;padding:.55rem 1rem;min-height:var(--tap);cursor:pointer;font-weight:700;flex:1;min-width:10rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:12px;padding:.55rem 1rem;min-height:var(--tap);cursor:pointer;font-weight:700;flex:1;min-width:min(10rem,100%);text-align:center}
 .btn.ghost{background:var(--surface);color:var(--accent)}
 .btn.done{background:var(--calm);border-color:var(--calm)}
 
@@ -249,25 +249,28 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 .toast{position:fixed;left:50%;bottom:calc(5.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:.65rem 1.1rem;border-radius:12px;z-index:60;font-weight:600;max-width:calc(100% - 32px);text-align:center;box-shadow:var(--shadow)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .todorow .chev{transform:rotate(-90deg)}
-.newbtn{margin-left:auto;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;flex:none;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);min-height:var(--tap);padding:.3rem .85rem;font-weight:800;font-size:.85rem;cursor:pointer}
-.newbtn:not([hidden])+.langsw{margin-left:0}
-@media (max-width:420px){body.on-overview .brand{display:none!important}.newbtn{padding:.3rem .65rem}.langsw button{min-width:2.6rem}.appbar .in{gap:.4rem}}
+.newbtn{display:inline-flex;align-items:center;gap:.4em;white-space:nowrap;flex:none;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);min-height:var(--tap);padding:.3em .85em;font-weight:800;font-size:.85em;cursor:pointer}
+.readbtn{display:grid;place-items:center;color:var(--accent)}.readbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}.readbtn .ico{width:1.35em;height:1.35em}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}body.simple-route .readbtn{display:none}.barend{display:flex;align-items:center;gap:6px;flex:none}.barspace{flex:1 1 0;min-width:0}.apptitle:empty{display:none}
+@media (max-width:420px){body.on-overview .brand{display:none!important}.newbtn{padding:.3em .65em}.langsw button{min-width:2.6em}.appbar .in{gap:.4em}}
 .langsw{flex:none}
 .ovsay{align-self:flex-start}
-.langsw{margin-left:auto;display:flex;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;min-height:var(--tap)}
-.langsw button{border:0;background:var(--surface);min-width:var(--tap);font-weight:800;font-size:.9rem;cursor:pointer;color:var(--ink-2)}
+.langsw{display:flex;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;min-height:var(--tap)}
+.langsw button{border:0;background:var(--surface);min-width:var(--tap);font-weight:800;font-size:.9em;cursor:pointer;color:var(--ink-2)}
 .langsw button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
-.langsw+.aabtn{margin-left:0}
+
 .langdd{display:none;position:relative;flex:none}
-.langdd>button{display:flex;align-items:center;gap:.2rem;min-height:var(--tap);padding:0 .6rem;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font-weight:800;font-size:.95rem;cursor:pointer}
-.langmenu{position:absolute;right:0;top:calc(100% + .4rem);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(30,50,45,.16);padding:.35rem;min-width:10rem;z-index:60;display:flex;flex-direction:column;gap:.2rem}
+.langdd>button{display:flex;align-items:center;gap:.2em;min-height:var(--tap);padding:0 .6em;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font-weight:800;font-size:.95em;cursor:pointer}
+.langmenu{position:absolute;right:0;top:calc(100% + .4em);background:var(--surface);border:1.5px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(30,50,45,.16);padding:.35em;min-width:10em;z-index:60;display:flex;flex-direction:column;gap:.2em}
 .langmenu[hidden]{display:none}
-.langmenu button{border:0;background:none;text-align:left;font:inherit;font-weight:600;font-size:1.05rem;color:var(--ink);min-height:var(--tap);padding:0 .8rem;border-radius:10px;cursor:pointer}
+.langmenu button{border:0;background:none;text-align:left;font:inherit;font-weight:600;font-size:1.05em;color:var(--ink);min-height:var(--tap);padding:0 .8em;border-radius:10px;cursor:pointer}
 .langmenu button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
 .langmenu button[aria-pressed="true"]::after{content:" ✓"}
-@media (max-width:600px){.langsw{display:none}.langdd{display:block;margin-left:auto}.newbtn:not([hidden])+.langsw+.langdd{margin-left:0}}
+@media (max-width:600px){.langsw{display:none}.langdd{display:block}.newbtn:not([hidden])+.langsw+.langdd{margin-left:0}}
 .backbtn{white-space:nowrap;flex:none}
 @media (max-width:400px){.apptitle{display:none}}
+@media (max-width:640px){body.on-overview .brand{display:none!important}}
+@media (max-width:440px){.appbar{font-size:min(1rem,19px)}}
+@media (max-width:380px){.newbtn span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.newbtn{padding:0;width:var(--tap);justify-content:center}.brand .wm{display:none}.backbtn span{display:none}.backbtn{padding:0;justify-content:center}}
 .anotherbtn{align-self:center;display:inline-flex;align-items:center;gap:.5rem;border:0;background:transparent;color:var(--accent);font-weight:700;text-decoration:underline;min-height:var(--tap);padding:.3rem .8rem;cursor:pointer}
 #readThumb{width:8rem;height:10rem;object-fit:cover;border-radius:12px;border:1.5px solid var(--line);box-shadow:var(--shadow);animation:breathe 1.6s ease-in-out infinite}
 .hero-btn{box-shadow:0 8px 24px color-mix(in srgb,var(--accent) 25%,transparent)!important}
@@ -314,7 +317,10 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     <button class="backbtn" type="button" id="backBtn" hidden><svg class="ico"><use href="#i-back"/></svg><span data-i18n="back">Back</span></button>
     <div class="brand" id="brandHome" role="heading" aria-level="1" style="cursor:pointer"><span class="logo"><svg class="mk" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="mkg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5FA39A"/><stop offset="1" stop-color="#2F6A63"/></linearGradient></defs><rect width="48" height="48" rx="14" fill="url(#mkg)"/><path d="M13 10h15l8 8v16a3 3 0 0 1-3 3H20l-6 5v-5h-1a3 3 0 0 1-3-3V13a3 3 0 0 1 3-3z" fill="#FFFFFF"/><path d="M28 10v6a2 2 0 0 0 2 2h6" fill="#D6EAE6"/><path d="M19.5 18.5v8M15.5 22.5h8" stroke="#3F7D76" stroke-width="3" stroke-linecap="round"/><path d="M27 25h5M15.5 31h16.5" stroke="#9CC4BD" stroke-width="2.4" stroke-linecap="round"/><path d="M40 4.5l1.3 3.2 3.2 1.3-3.2 1.3L40 13.5l-1.3-3.2-3.2-1.3 3.2-1.3z" fill="#F2C46D"/></svg></span><span class="wm">Medi<b>Klar</b></span></div>
     <span class="apptitle" id="appTitle" aria-hidden="true"></span>
+    <span class="barspace" aria-hidden="true"></span>
     <button class="newbtn" type="button" id="newLetter"><svg class="ico"><use href="#i-upload"/></svg><span data-i18n="newLetter">New letter</span></button>
+    <div class="barend">
+    <button class="aabtn readbtn" type="button" id="readBtn" data-readpage="" aria-pressed="false" title="Read this page aloud"><svg class="ico"><use href="#i-vol"/></svg><span class="sr" data-i18n="readPage">Read this page aloud</span></button>
     <div class="langsw" role="group" aria-label="Language / Sprache">
       <button type="button" data-lang="en" aria-pressed="true" lang="en" aria-label="English">EN</button>
       <button type="button" data-lang="de" aria-pressed="false" lang="de" aria-label="Deutsch">DE</button>
@@ -327,6 +333,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
       </div>
     </div>
     <button class="aabtn" type="button" id="aaBtn" aria-label="Settings">Aa</button>
+    </div>
   </div>
 </header>
 
@@ -335,19 +342,18 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 
 <!-- ============ OVERVIEW ============ -->
 <section class="screen" id="screen-overview">
-  <button class="say ovsay" type="button" data-readpage="screen-overview" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
   <article class="card verdict" data-read>
     <div class="verdict-top">
       <span class="verdict-badge" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
       <div style="min-width:0">
-        <p class="eyebrow" style="color:var(--calm)" data-i18n="worryQ">Do I need to worry?</p>
-        <h1 data-i18n="goodNews">No. This is good news.</h1>
-        <p style="margin-top:.3rem" data-i18n="verdictReason">The treatment went well. You went home with no complaints.</p>
+        <p class="eyebrow" style="color:var(--calm)" data-i18n="worryQ">In short</p>
+        <h1 data-i18n="goodNews">The treatment was successful.</h1>
+        <p style="margin-top:.3rem" data-i18n="verdictReason">Your letter says: no complications, and no complaints when you went home.</p>
       </div>
     </div>
   </article>
 
-  <p class="aboutline" data-read data-i18n="aboutLine">About this letter: your heart blood vessel was widened with a stent on 23 June 2022, and you went home well.</p>
+  <p class="aboutline" data-read data-i18n="aboutLine">About this letter: on 23 June 2022 a narrow heart artery was widened and a stent was placed.</p>
 
   <div>
     <p class="eyebrow" style="margin-bottom:.5rem" data-i18n="yourTodos" data-read>Your 3 to-dos</p>
@@ -364,7 +370,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
       </button>
       <button class="todorow" data-read type="button" data-nav="todo3" id="rowTodo3">
         <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-cal"/></svg></span>
-        <span><span class="act" data-i18n="todo3Short">Book a heart check-up</span><br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="in6mo">In about 6 months</span></span></span>
+        <span><span class="act" data-i18n="todo3Short">Heart check-up</span><br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="in6mo">In about 6 months</span></span></span>
         <svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg>
       </button>
     </div>
@@ -377,7 +383,6 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     <button class="tile" type="button" data-nav="help" id="tileHelp"><span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-phone"/></svg></span><span data-i18n="help">Help</span></button>
   </div>
 
-  <p class="quiet112" data-read><svg class="ico"><use href="#i-alert"/></svg><span data-i18n="quiet112">Chest pain or trouble breathing? Call 112.</span></p>
 </section>
   </div>
 
@@ -412,7 +417,6 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 <section class="screen" id="screen-todo1" hidden>
   <div class="pagetop">
     <h2><svg class="ico"><use href="#i-pill"/></svg><span data-i18n="todo1Short">Take both blood thinners</span></h2>
-    <button class="say" type="button" data-readpage="screen-todo1" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
   </div>
   <article class="card" data-read>
     <div class="todohead">
@@ -424,17 +428,8 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
       </div>
     </div>
     <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo1Why">After May 2023, stop only Clopidogrel. Keep taking ASS for the rest of your life.</span></p>
-    <p class="warn" style="display:flex;gap:.4rem;align-items:flex-start;color:var(--act);font-weight:600;font-size:.88rem;margin-top:.5rem"><svg class="ico" style="margin-top:.15rem"><use href="#i-alert"/></svg><span data-i18n="todo1Warn">Never stop or change a medicine on your own. Ask your doctor first.</span></p>
-  </article>
-  <article class="card" data-read>
-    <p class="notinletter"><svg class="ico"><use href="#i-info"/></svg><span><span data-i18n="generalInfo">General information, not in your letter.</span></span></p>
-    <p style="font-weight:700;margin-top:.5rem" data-i18n="ifYouDont">If you don’t:</p>
-    <ul class="iflist">
-      <li data-i18n="todo1If">If the blood thinners are stopped too early, a blood clot can form in the new stent. That can cause a heart attack.</li>
-    </ul>
   </article>
   <div class="actions">
-    <button class="btn" type="button" data-done="1"><svg class="ico"><use href="#i-check"/></svg><span data-i18n="done">Done</span></button>
     <button class="btn ghost" type="button" data-remind><svg class="ico"><use href="#i-bell"/></svg><span data-i18n="addReminder">Add reminder</span></button>
   </div>
 </section>
@@ -443,28 +438,18 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 <section class="screen" id="screen-todo2" hidden>
   <div class="pagetop">
     <h2><svg class="ico"><use href="#i-drop"/></svg><span data-i18n="todo2Short">Drink 1.5 to 2 litres daily</span></h2>
-    <button class="say" type="button" data-readpage="screen-todo2" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
   </div>
   <article class="card" data-read>
     <div class="todohead">
       <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-drop"/></svg></span>
       <div style="min-width:0">
         <h1 data-i18n="todo2Long">Drink 1.5 to 2 litres every day</h1>
-        <p class="muted" style="font-size:.9rem" data-i18n="todo2Sub">About 6 to 8 glasses of water</p>
         <p style="margin-top:.4rem"><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="everyDay">Every day</span></span></p>
       </div>
     </div>
-    <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo2Why">This protects your kidneys after the contrast dye used in the heart check.</span></p>
-  </article>
-  <article class="card" data-read>
-    <p class="notinletter"><svg class="ico"><use href="#i-info"/></svg><span><span data-i18n="generalInfo">General information, not in your letter.</span></span></p>
-    <p style="font-weight:700;margin-top:.5rem" data-i18n="ifYouDont">If you don’t:</p>
-    <ul class="iflist">
-      <li data-i18n="todo2If">Drinking too little can put extra strain on your kidneys.</li>
-    </ul>
+    <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo2Why">Because of the contrast dye from the heart check and because your kidneys work less well.</span></p>
   </article>
   <div class="actions">
-    <button class="btn" type="button" data-done="2"><svg class="ico"><use href="#i-check"/></svg><span data-i18n="done">Done</span></button>
     <button class="btn ghost" type="button" data-remind><svg class="ico"><use href="#i-bell"/></svg><span data-i18n="addReminder">Add reminder</span></button>
   </div>
 </section>
@@ -472,33 +457,24 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 <!-- ============ TODO 3 ============ -->
 <section class="screen" id="screen-todo3" hidden>
   <div class="pagetop">
-    <h2><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="todo3Short">Book a heart check-up</span></h2>
-    <button class="say" type="button" data-readpage="screen-todo3" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
+    <h2><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="todo3Short">Heart check-up</span></h2>
   </div>
   <article class="card" data-read>
     <div class="todohead">
       <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-cal"/></svg></span>
       <div style="min-width:0">
-        <h1 data-i18n="todo3Long">Book a check-up with your heart doctor</h1>
+        <h1 data-i18n="todo3Long">Next check-up with your heart doctor</h1>
         <p class="muted" style="font-size:.9rem">Dr. Martina Mustermann, <span data-i18n="heartSpec">heart specialist</span></p>
         <p style="margin-top:.4rem"><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="in6mo">In about 6 months</span></span></p>
       </div>
     </div>
-    <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo3Why">The letter gives no exact date. Please call the practice to book it. They will also check your blood pressure and other heart risk factors.</span></p>
+    <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo3Why">In about 6 months. The letter gives no exact date. It also asks for your heart risk factors to be checked.</span></p>
     <div style="display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.8rem">
       <span class="numrow">030 0987654321</span>
       <button class="copy" type="button" data-copy="030 0987654321"><svg class="ico"><use href="#i-copy"/></svg><span data-i18n="copy">Copy</span></button>
     </div>
   </article>
-  <article class="card" data-read>
-    <p class="notinletter"><svg class="ico"><use href="#i-info"/></svg><span><span data-i18n="generalInfo">General information, not in your letter.</span></span></p>
-    <p style="font-weight:700;margin-top:.5rem" data-i18n="ifYouDont">If you don’t:</p>
-    <ul class="iflist">
-      <li data-i18n="todo3If">Without check-ups, changes in your heart may be found too late.</li>
-    </ul>
-  </article>
   <div class="actions">
-    <button class="btn" type="button" data-done="3"><svg class="ico"><use href="#i-check"/></svg><span data-i18n="done">Done</span></button>
     <button class="btn ghost" type="button" data-remind><svg class="ico"><use href="#i-bell"/></svg><span data-i18n="addReminder">Add reminder</span></button>
   </div>
 </section>
@@ -507,7 +483,6 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 <section class="screen" id="screen-meds" hidden>
   <div class="pagetop">
     <h2><svg class="ico"><use href="#i-pill"/></svg><span data-i18n="medicines">Medicines</span></h2>
-    <button class="say" type="button" data-readpage="screen-meds" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
   </div>
   <div class="tabs" role="tablist" aria-label="Times of day" id="medTabs">
     <button type="button" role="tab" id="tab-morning" aria-controls="panel-morning" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-sunrise"/></svg><span data-i18n="morning">Morning</span></button>
@@ -517,13 +492,13 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   </div>
   <div role="tabpanel" id="panel-morning" aria-labelledby="tab-morning" tabindex="0" hidden>
     <ul>
-      <li><span class="dose">1</span><div><b>ASS 100 mg</b><span class="for">tablet · <span data-i18n="forThin">blood thinner</span></span></div></li>
-      <li><span class="dose">1</span><div><b>Clopidogrel 75 mg</b><span class="for">tablet · <span data-i18n="forThin">blood thinner</span></span><br><span class="flag" data-i18n="untilMay">Until end of May 2023</span></div></li>
-      <li><span class="dose">1</span><div><b>Candesartan 16 mg</b><span class="for">tablet · <span data-i18n="forBp">blood pressure</span></span></div></li>
-      <li><span class="dose">1</span><div><b>Torasemid 10 mg</b><span class="for">tablet · <span data-i18n="forWater">water tablet</span></span></div></li>
-      <li><span class="dose">1</span><div><b>Pantoprazol 20 mg</b><span class="for">tablet · <span data-i18n="forStomach">protects the stomach</span></span><br><span class="flag" data-i18n="beforeEat">Before eating</span></div></li>
-      <li><span class="dose">2</span><div><b>Relvar Ellipta</b><span class="for">inhaler · 2 <button class="term" data-term="hub">puffs</button> · <span data-i18n="forLungs">lungs</span></span></div></li>
-      <li><span class="dose">2</span><div><b>SPIROLTO Respimat</b><span class="for">inhaler · 2 puffs · <span data-i18n="forLungs">lungs</span></span></div></li>
+      <li><span class="dose">1</span><div><b>ASS 100 mg</b><span class="for">tablet</span></div></li>
+      <li><span class="dose">1</span><div><b>Clopidogrel 75 mg</b><span class="for">tablet</span><br><span class="flag" data-i18n="untilMay">Until end of May 2023</span></div></li>
+      <li><span class="dose">1</span><div><b>Candesartan 16 mg</b><span class="for">tablet</span></div></li>
+      <li><span class="dose">1</span><div><b>Torasemid 10 mg</b><span class="for">tablet</span></div></li>
+      <li><span class="dose">1</span><div><b>Pantoprazol 20 mg</b><span class="for">tablet</span><br><span class="flag" data-i18n="beforeEat">Before eating</span></div></li>
+      <li><span class="dose">2</span><div><b>Relvar Ellipta</b><span class="for">inhaler · 2 <button class="term" data-term="hub">puffs</button></span></div></li>
+      <li><span class="dose">2</span><div><b>SPIROLTO Respimat</b><span class="for">inhaler · 2 puffs</span></div></li>
     </ul>
   </div>
   <div role="tabpanel" id="panel-midday" aria-labelledby="tab-midday" tabindex="0" hidden>
@@ -531,8 +506,8 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   </div>
   <div role="tabpanel" id="panel-evening" aria-labelledby="tab-evening" tabindex="0" hidden>
     <ul>
-      <li><span class="dose">1</span><div><b>Atorvastatin 40 mg</b><span class="for">tablet · <span data-i18n="forChol">cholesterol</span></span></div></li>
-      <li><span class="dose">1</span><div><b>Ezetimib 10 mg</b><span class="for">tablet · <span data-i18n="forChol">cholesterol</span></span></div></li>
+      <li><span class="dose">1</span><div><b>Atorvastatin 40 mg</b><span class="for">tablet</span></div></li>
+      <li><span class="dose">1</span><div><b>Ezetimib 10 mg</b><span class="for">tablet</span></div></li>
     </ul>
   </div>
   <div role="tabpanel" id="panel-night" aria-labelledby="tab-night" tabindex="0" hidden>
@@ -542,7 +517,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     <summary><svg class="ico"><use href="#i-info"/></svg><span data-i18n="schemaQ">What does 1 – 0 – 1 – 0 mean?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
     <div class="dbody">
       <p data-i18n="schemaA">The four numbers are morning – midday – evening – night. “1 – 0 – 1 – 0” means one in the morning and one in the evening. “2 – 0 – 0 – 0” means two in the morning.</p>
-      <p class="muted" style="font-size:.82rem" data-i18n="medsNote">Medicine names and amounts are copied from your letter. What each one is for is general information.</p>
+      <p class="muted" style="font-size:.82rem" data-i18n="medsNote">Names, amounts and times are copied from your letter.</p>
     </div>
   </details>
 </section>
@@ -551,12 +526,11 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 <section class="screen" id="screen-explain" hidden>
   <div class="pagetop">
     <h2><svg class="ico"><use href="#i-book"/></svg><span data-i18n="explain">Explain</span></h2>
-    <button class="say" type="button" data-readpage="screen-explain" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
   </div>
   <article class="card summary" data-read>
     <p>You were in the heart department of Krankenhaus XYZ in Berlin from <strong>22 to 24 June 2022</strong>, for a heart check. Some blood vessels of your heart are narrow (<button class="term" data-term="khk">KHK</button>).</p>
-    <p>On 23 June the doctors opened a narrow spot in the <button class="term" data-term="rca">right heart artery</button> and placed one <button class="term" data-term="stent">stent</button>. There were no problems. You went home well.</p>
-    <p>Your other illnesses are unchanged: high blood pressure, a lung illness (<button class="term" data-term="copd">COPD</button>) and <button class="term" data-term="kidney">kidneys that work less well</button>. You had a heart attack in May 2022.</p>
+    <p>On 23 June the doctors opened a narrow spot in the <button class="term" data-term="rca">right heart artery</button> and placed one <button class="term" data-term="stent">stent</button>. There were no complications. When you went home you had no complaints.</p>
+    <p>Your letter also lists: high blood pressure, a lung illness (<button class="term" data-term="copd">COPD</button>) and <button class="term" data-term="kidney">kidneys that work less well</button>. You had a heart attack in May 2022.</p>
     <p class="hint"><svg class="ico"><use href="#i-info"/></svg><span data-i18n="tapYellow">Tap a yellow word to see what it means.</span></p>
   </article>
   <p class="eyebrow" data-i18n="sideBySide">Every part, side by side</p>
@@ -583,7 +557,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   <details>
     <summary><span data-i18n="d3">What the doctors did</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
     <div class="dbody">
-      <p data-read>On 23 June 2022 the doctors widened the end of your <button class="term" data-term="rca">right heart artery</button> through a thin tube (<button class="term" data-term="pci">PCI</button>) and placed one <button class="term" data-term="des">coated stent</button>, 2.75 mm wide and 12 mm long. You had treatments like this before: in May 2022, July 2019, February 2019 and January 2019. After the treatment there were no problems.</p>
+      <p data-read>On 23 June 2022 the doctors widened the end of your <button class="term" data-term="rca">right heart artery</button> through a thin tube (<button class="term" data-term="pci">PCI</button>) and placed one <button class="term" data-term="des">coated stent</button>, 2.75 mm wide and 12 mm long. You had treatments like this before: in May 2022, July 2019, February 2019 and January 2019. After the treatment there were no complications.</p>
       <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
       <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>PCI der distalen RCA mit 1 DES-Implantation · 23.06.2022 · Promus ELITE 2,75 x 12mm. Vorherige Prozeduren: 05/2022, 07/2019, 02/2019, 01/2019 (PCI). Der postinterventionelle Verlauf gestaltete sich komplikationslos.</div>
     </div>
@@ -603,7 +577,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   <details>
     <summary><span data-i18n="d5">What happens next</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
     <div class="dbody">
-      <p data-read>Take both blood thinners (ASS and Clopidogrel) up to and including May 2023. After that, take only ASS, for life. Drink 1.5 to 2 litres a day, because you had contrast dye and your kidneys are weaker. Your heart doctor’s practice looks after you from now on. Next check-up in about 6 months.</p>
+      <p data-read>Take both blood thinners (ASS and Clopidogrel) up to and including May 2023. After that, take only ASS, for life. Drink 1.5 to 2 litres a day, because you had contrast dye and your kidneys are weaker. Your heart doctor’s practice continues your care. Next check-up in about 6 months. Your heart risk factors should be checked.</p>
       <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
       <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>Fortführung der dualen Plättchenaggregationshemmung mit ASS und Clopidogrel bis einschließlich 05/2023, anschließend ASS-Mono-Therapie lebenslang. Einhaltung einer ausreichenden Trinkmenge (1,5-2 Liter/d) bei Z.n. KM-Exposition und bekannter chronischer Niereninsuffizienz. Ambulant kardiologische Weiterbetreuung, nächste Verlaufskontrolle in ca. 6 Monaten.</div>
     </div>
@@ -614,12 +588,11 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 <section class="screen" id="screen-questions" hidden>
   <div class="pagetop">
     <h2><svg class="ico"><use href="#i-help"/></svg><span data-i18n="questions">Questions</span></h2>
-    <button class="say" type="button" data-readpage="screen-questions" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
   </div>
   <article class="card faq">
     <details>
       <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q1">Can I stop Clopidogrel if I feel fine?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-      <div class="dbody" data-read><p>Your letter says to take it <strong>until the end of May 2023</strong>, even if you feel well. Please do not stop earlier on your own. If you have side effects, talk to your doctor first.</p><p><span class="pill src-letter"><svg class="ico"><use href="#i-file"/></svg><span data-i18n="fromLetter">From your letter</span></span></p></div>
+      <div class="dbody" data-read><p>Your letter says to take it <strong>until the end of May 2023</strong>. After that, take only ASS, for life.</p><p><span class="pill src-letter"><svg class="ico"><use href="#i-file"/></svg><span data-i18n="fromLetter">From your letter</span></span></p></div>
     </details>
     <details>
       <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q2">What does “1 – 0 – 1 – 0” mean?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
@@ -627,11 +600,11 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     </details>
     <details>
       <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q3">Why should I drink so much?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-      <div class="dbody" data-read><p>During the heart check you got a contrast dye so the doctors could see your blood vessels. Your kidneys need to wash it out, and they already work less well. Drinking enough helps them.</p><p class="muted" style="font-size:.85rem">If another doctor has told you to drink <em>less</em> (for example because of your heart), ask which advice to follow.</p></div>
+      <div class="dbody" data-read><p>During the heart check you got a contrast dye so the doctors could see your blood vessels. Your letter asks you to drink 1.5 to 2 litres a day because of this dye and because your kidneys work less well.</p></div>
     </details>
     <details>
       <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q4">Is my heart now healed?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-      <div class="dbody" data-read><p>The narrow spot that was treated is open again. But the letter says that all three main heart arteries are affected, so your heart still needs care: the medicines, regular check-ups and a healthy daily routine.</p></div>
+      <div class="dbody" data-read><p>The narrow spot that was treated is open again. But the letter says that all three main heart arteries are affected, and asks for regular heart check-ups, the next one in about 6 months.</p></div>
     </details>
     <details>
       <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q5">Who can I call with questions?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
@@ -645,12 +618,6 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 <section class="screen" id="screen-help" hidden>
   <div class="pagetop">
     <h2><svg class="ico"><use href="#i-phone"/></svg><span data-i18n="help">Help</span></h2>
-    <button class="say" type="button" data-readpage="screen-help" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
-  </div>
-  <div class="emergency" role="note" data-read>
-    <svg class="ico"><use href="#i-phone"/></svg>
-    <div style="min-width:0"><strong data-i18n="emergQ">Chest pain or trouble breathing?</strong><br><span class="muted" data-i18n="emergA">Do not wait. Call the emergency number.</span></div>
-    <span class="big" style="margin-left:auto">112</span>
   </div>
   <article class="card" data-read>
     <p class="eyebrow" style="margin-bottom:.6rem" data-i18n="whoToCall">Who to call</p>
@@ -777,8 +744,8 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 
   /* ---------- i18n ---------- */
   const I18N={
-    en:{tagline:'Your letter, in plain words',back:'Back',settings:'Settings',textSize:'Text size',smaller:'Smaller text',bigger:'Bigger text',previewText:'This is how big your text will be.',contrast:'High contrast',on:'On',off:'Off',speed:'Read-aloud speed',slow:'Slow',normal:'Normal',language:'Language',newLetter:'New letter',readPage:'Read this page aloud',stop:'Stop',askQ:'Ask Klara',yourLetter:'Your doctor’s letter',takePhoto:'Take a photo',chooseFile:'Choose a file instead',reading:'One moment…',readingSub:'We’re reading your letter for you.',worryQ:'Do I need to worry?',goodNews:'No. This is good news.',verdictReason:'The treatment went well. You went home with no complaints.',mCalm:'Calm',mAct:'Act soon',mUrgent:'Urgent',aboutLine:'About this letter: your heart blood vessel was widened with a stent on 23 June 2022, and you went home well.',yourTodos:'Your 3 to-dos',todo1Short:'Take both blood thinners',todo2Short:'Drink 1.5 to 2 litres daily',todo3Short:'Book a heart check-up',untilMay:'Until end of May 2023',everyDay:'Every day',in6mo:'In about 6 months',medicines:'Medicines',explain:'Report',questions:'Questions',help:'Help',quiet112:'Chest pain or trouble breathing? Call 112.',todo1Long:'Take both blood thinners every morning',todo1Why:'After May 2023, stop only Clopidogrel. Keep taking ASS for the rest of your life.',todo1Warn:'Never stop or change a medicine on your own. Ask your doctor first.',generalInfo:'General information, not in your letter.',ifYouDont:'If you don’t:',todo1If:'If the blood thinners are stopped too early, a blood clot can form in the new stent. That can cause a heart attack.',done:'Done',addReminder:'Add reminder',todo2Long:'Drink 1.5 to 2 litres every day',todo2Sub:'About 6 to 8 glasses of water',todo2Why:'This protects your kidneys after the contrast dye used in the heart check.',todo2If:'Drinking too little can put extra strain on your kidneys.',todo3Long:'Book a check-up with your heart doctor',heartSpec:'heart specialist',todo3Why:'The letter gives no exact date. Please call the practice to book it. They will also check your blood pressure and other heart risk factors.',todo3If:'Without check-ups, changes in your heart may be found too late.',copy:'Copy',morning:'Morning',midday:'Midday',evening:'Evening',night:'Night',forThin:'blood thinner',forBp:'blood pressure',forWater:'water tablet',forStomach:'protects the stomach',beforeEat:'Before eating',forLungs:'lungs',forChol:'cholesterol',nothingNow:'Nothing at this time.',schemaQ:'What does 1 – 0 – 1 – 0 mean?',schemaA:'The four numbers are morning – midday – evening – night. “1 – 0 – 1 – 0” means one in the morning and one in the evening. “2 – 0 – 0 – 0” means two in the morning.',medsNote:'Medicine names and amounts are copied from your letter. What each one is for is general information.',tapYellow:'Tap a yellow word to see what it means.',sideBySide:'Every part, side by side',d1:'Why you went to hospital',d2:'Your illnesses (diagnoses)',d3:'What the doctors did',d4:'Tests and results',d5:'What happens next',showOrig:'Show original German',hideOrig:'Hide original German',letterSays:'Letter says',q1:'Can I stop Clopidogrel if I feel fine?',q2:'What does “1 – 0 – 1 – 0” mean?',q3:'Why should I drink so much?',q4:'Is my heart now healed?',q5:'Who can I call with questions?',fromLetter:'From your letter',askOwnQ:'Ask Klara your own question',emergQ:'Chest pain or trouble breathing?',emergA:'Do not wait. Call the emergency number.',whoToCall:'Who to call',c1:'Your heart doctor',c2:'Hospital discharge team',c3:'Treating doctor at the hospital',seniorDoc:'senior doctor',notAdvice:'This is an explanation, not medical advice.',notAdvice2:'It only repeats what your letter says, in simpler words. Always talk to your doctor before you change anything. Where the letter says nothing, we tell you so and do not guess.',termTitle:'What does this word mean?',readAloud:'Read aloud',askMore:'Ask Klara about this',chatTitle:'Ask Klara',chatSub:'Klara only answers from your letter. She doesn’t give medical advice.',chatHello:'Hello Mr Königsstein, I’m Klara. What would you like to know about your letter? You can type, or tap one of the questions below.',chip1:'When can I stop Clopidogrel?',chip2:'When is my next appointment?',chip3:'Is it serious?',chip4:'Can I drive a car?',typeQ:'Type your question…',speakQ:'Speak your question',close:'Close',whyLabel:'Why (from your letter):',tOverview:'Overview',tTodo:'To-do',tMeds:'Medicines',tExplain:'Report',tQuestions:'Questions',tHelp:'Help',tUpload:'Your doctor’s letter',tReading:'Reading…',reminderSet:'Reminder set. (In the app this goes to your calendar.)',doneMsg:'Marked as done.',undoneMsg:'Marked as not done.',copied:'Copied: ',noVoice:'Read aloud is not available on this device.',micMock:'In the app you can speak your question instead of typing.',sizeNames:['Normal','Large','Larger','Very large','Huge']},
-    de:{tagline:'Ihr Brief, in einfachen Worten',back:'Zurück',settings:'Einstellungen',textSize:'Schriftgröße',smaller:'Kleinere Schrift',bigger:'Größere Schrift',previewText:'So groß wird Ihr Text erscheinen.',contrast:'Hoher Kontrast',on:'Ein',off:'Aus',speed:'Vorlese-Tempo',slow:'Langsam',normal:'Normal',language:'Sprache',newLetter:'Neuer Brief',readPage:'Diese Seite vorlesen',stop:'Stopp',askQ:'Klara fragen',yourLetter:'Ihr Arztbrief',takePhoto:'Foto machen',chooseFile:'Stattdessen Datei wählen',reading:'Einen Moment…',readingSub:'Wir lesen Ihren Brief für Sie.',worryQ:'Muss ich mir Sorgen machen?',goodNews:'Nein. Das ist eine gute Nachricht.',verdictReason:'Die Behandlung verlief gut. Sie sind ohne Beschwerden nach Hause gegangen.',mCalm:'Ruhig',mAct:'Bald handeln',mUrgent:'Dringend',aboutLine:'Um diesen Brief geht es: Ihr Herzkranzgefäß wurde am 23. Juni 2022 mit einem Stent erweitert, und Sie konnten gesund nach Hause gehen.',yourTodos:'Ihre 3 Aufgaben',todo1Short:'Beide Blutverdünner nehmen',todo2Short:'1,5 bis 2 Liter täglich trinken',todo3Short:'Herz-Kontrolle vereinbaren',untilMay:'Bis Ende Mai 2023',everyDay:'Jeden Tag',in6mo:'In etwa 6 Monaten',medicines:'Medikamente',explain:'Bericht',questions:'Fragen',help:'Hilfe',quiet112:'Brustschmerzen oder Atemnot? Rufen Sie die 112 an.',todo1Long:'Beide Blutverdünner jeden Morgen nehmen',todo1Why:'Nach Mai 2023 nur Clopidogrel absetzen. ASS nehmen Sie lebenslang weiter.',todo1Warn:'Setzen Sie niemals von selbst ein Medikament ab oder ändern es. Fragen Sie zuerst Ihre Ärztin oder Ihren Arzt.',generalInfo:'Allgemeine Information, nicht aus Ihrem Brief.',ifYouDont:'Wenn Sie es nicht tun:',todo1If:'Werden die Blutverdünner zu früh abgesetzt, kann sich im neuen Stent ein Blutgerinnsel bilden. Das kann einen Herzinfarkt verursachen.',done:'Erledigt',addReminder:'Erinnerung setzen',todo2Long:'Trinken Sie täglich 1,5 bis 2 Liter',todo2Sub:'Etwa 6 bis 8 Gläser Wasser',todo2Why:'Das schützt Ihre Nieren nach dem Kontrastmittel aus der Herzuntersuchung.',todo2If:'Zu wenig Trinken kann Ihre Nieren zusätzlich belasten.',todo3Long:'Kontrolltermin bei Ihrer Kardiologin vereinbaren',heartSpec:'Kardiologin',todo3Why:'Der Brief nennt kein genaues Datum. Bitte rufen Sie in der Praxis an. Dort werden auch Ihr Blutdruck und weitere Herz-Risikofaktoren geprüft.',todo3If:'Ohne Kontrollen können Veränderungen am Herzen zu spät erkannt werden.',copy:'Kopieren',morning:'Morgens',midday:'Mittags',evening:'Abends',night:'Nachts',forThin:'Blutverdünner',forBp:'Blutdruck',forWater:'Wassertablette',forStomach:'schützt den Magen',beforeEat:'Vor dem Essen',forLungs:'Lunge',forChol:'Cholesterin',nothingNow:'Um diese Zeit nichts.',schemaQ:'Was bedeutet 1 – 0 – 1 – 0?',schemaA:'Die vier Zahlen stehen für morgens – mittags – abends – nachts. „1 – 0 – 1 – 0“ heißt: eine morgens und eine abends. „2 – 0 – 0 – 0“ heißt: zwei morgens.',medsNote:'Medikamentennamen und Mengen stammen aus Ihrem Brief. Wofür jedes ist, ist allgemeine Information.',tapYellow:'Tippen Sie auf ein gelbes Wort, um seine Bedeutung zu sehen.',sideBySide:'Jeder Teil, nebeneinander',d1:'Warum Sie ins Krankenhaus kamen',d2:'Ihre Erkrankungen (Diagnosen)',d3:'Was die Ärztinnen und Ärzte taten',d4:'Untersuchungen und Ergebnisse',d5:'Wie es weitergeht',showOrig:'Original auf Deutsch zeigen',hideOrig:'Original ausblenden',letterSays:'Im Brief steht',q1:'Kann ich Clopidogrel absetzen, wenn ich mich gut fühle?',q2:'Was bedeutet „1 – 0 – 1 – 0“?',q3:'Warum soll ich so viel trinken?',q4:'Ist mein Herz jetzt geheilt?',q5:'Wen kann ich bei Fragen anrufen?',fromLetter:'Aus Ihrem Brief',askOwnQ:'Klara eine eigene Frage stellen',emergQ:'Brustschmerzen oder Atemnot?',emergA:'Nicht warten. Rufen Sie den Notruf an.',whoToCall:'Wen Sie anrufen können',c1:'Ihre Kardiologin',c2:'Entlassungsteam des Krankenhauses',c3:'Behandelnder Arzt im Krankenhaus',seniorDoc:'Oberarzt',notAdvice:'Dies ist eine Erklärung, kein medizinischer Rat.',notAdvice2:'Sie wiederholt nur, was in Ihrem Brief steht, in einfacheren Worten. Sprechen Sie immer mit Ihrer Ärztin oder Ihrem Arzt, bevor Sie etwas ändern. Wo der Brief nichts sagt, sagen wir das und raten nicht.',termTitle:'Was bedeutet dieses Wort?',readAloud:'Vorlesen',askMore:'Klara dazu fragen',chatTitle:'Klara fragen',chatSub:'Klara antwortet nur aus Ihrem Brief. Sie gibt keinen medizinischen Rat.',chatHello:'Hallo Herr Königsstein, ich bin Klara. Was möchten Sie über Ihren Brief wissen? Sie können tippen oder eine der Fragen unten antippen.',chip1:'Wann kann ich Clopidogrel absetzen?',chip2:'Wann ist mein nächster Termin?',chip3:'Ist es ernst?',chip4:'Darf ich Auto fahren?',typeQ:'Ihre Frage eingeben…',speakQ:'Frage sprechen',close:'Schließen',whyLabel:'Warum (aus Ihrem Brief):',tOverview:'Überblick',tTodo:'Aufgabe',tMeds:'Medikamente',tExplain:'Bericht',tQuestions:'Fragen',tHelp:'Hilfe',tUpload:'Ihr Arztbrief',tReading:'Lesevorgang…',reminderSet:'Erinnerung gesetzt. (In der App geht das in Ihren Kalender.)',doneMsg:'Als erledigt markiert.',undoneMsg:'Als nicht erledigt markiert.',copied:'Kopiert: ',noVoice:'Das Vorlesen ist auf diesem Gerät nicht verfügbar.',micMock:'In der App können Sie Ihre Frage sprechen statt tippen.',sizeNames:['Normal','Groß','Größer','Sehr groß','Riesig']}
+    en:{tagline:'Your letter, in plain words',back:'Back',settings:'Settings',textSize:'Text size',smaller:'Smaller text',bigger:'Bigger text',previewText:'This is how big your text will be.',contrast:'High contrast',on:'On',off:'Off',speed:'Read-aloud speed',slow:'Slow',normal:'Normal',language:'Language',newLetter:'New letter',readPage:'Read this page aloud',stop:'Stop',askQ:'Ask Klara',yourLetter:'Your doctor’s letter',takePhoto:'Take a photo',chooseFile:'Choose a file instead',reading:'One moment…',readingSub:'We’re reading your letter for you.',worryQ:'In short',goodNews:'The treatment was successful.',verdictReason:'Your letter says: no complications, and no complaints when you went home.',aboutLine:'About this letter: on 23 June 2022 a narrow heart artery was widened and a stent was placed.',yourTodos:'Your 3 to-dos',todo1Short:'Take both blood thinners',todo2Short:'Drink 1.5 to 2 litres daily',todo3Short:'Heart check-up',untilMay:'Until end of May 2023',everyDay:'Every day',in6mo:'In about 6 months',medicines:'Medicines',explain:'Report',questions:'Questions',help:'Help',todo1Long:'Take both blood thinners every morning',todo1Why:'After May 2023, stop only Clopidogrel. Keep taking ASS for the rest of your life.',addReminder:'Add reminder',todo2Long:'Drink 1.5 to 2 litres every day',todo2Why:'Because of the contrast dye from the heart check and because your kidneys work less well.',todo3Long:'Next check-up with your heart doctor',heartSpec:'heart specialist',todo3Why:'In about 6 months. The letter gives no exact date. It also asks for your heart risk factors to be checked.',copy:'Copy',morning:'Morning',midday:'Midday',evening:'Evening',night:'Night',beforeEat:'Before eating',nothingNow:'Nothing at this time.',schemaQ:'What does 1 – 0 – 1 – 0 mean?',schemaA:'The four numbers are morning – midday – evening – night. “1 – 0 – 1 – 0” means one in the morning and one in the evening. “2 – 0 – 0 – 0” means two in the morning.',medsNote:'Names, amounts and times are copied from your letter.',tapYellow:'Tap a yellow word to see what it means.',sideBySide:'Every part, side by side',d1:'Why you went to hospital',d2:'Your illnesses (diagnoses)',d3:'What the doctors did',d4:'Tests and results',d5:'What happens next',showOrig:'Show original German',hideOrig:'Hide original German',letterSays:'Letter says',q1:'Can I stop Clopidogrel if I feel fine?',q2:'What does “1 – 0 – 1 – 0” mean?',q3:'Why should I drink so much?',q4:'Is my heart now healed?',q5:'Who can I call with questions?',fromLetter:'From your letter',askOwnQ:'Ask Klara your own question',whoToCall:'Who to call',c1:'Your heart doctor',c2:'Hospital discharge team',c3:'Treating doctor at the hospital',seniorDoc:'senior doctor',notAdvice:'This is an explanation, not medical advice.',notAdvice2:'It only repeats what your letter says, in simpler words. Always talk to your doctor before you change anything. Where the letter says nothing, we tell you so and do not guess.',termTitle:'What does this word mean?',readAloud:'Read aloud',askMore:'Ask Klara about this',chatTitle:'Ask Klara',chatSub:'Klara only answers from your letter. She doesn’t give medical advice.',chatHello:'Hello Mr Königsstein, I’m Klara. What would you like to know about your letter? You can type, or tap one of the questions below.',chip1:'When can I stop Clopidogrel?',chip2:'When is my next appointment?',chip3:'Is it serious?',chip4:'Can I drive a car?',typeQ:'Type your question…',speakQ:'Speak your question',close:'Close',whyLabel:'Why (from your letter):',tOverview:'Overview',tTodo:'To-do',tMeds:'Medicines',tExplain:'Report',tQuestions:'Questions',tHelp:'Help',tUpload:'Your doctor’s letter',tReading:'Reading…',reminderSet:'Reminder set. (In the app this goes to your calendar.)',copied:'Copied: ',noVoice:'Read aloud is not available on this device.',micMock:'In the app you can speak your question instead of typing.',sizeNames:['Normal','Large','Larger','Very large','Huge']},
+    de:{tagline:'Ihr Brief, in einfachen Worten',back:'Zurück',settings:'Einstellungen',textSize:'Schriftgröße',smaller:'Kleinere Schrift',bigger:'Größere Schrift',previewText:'So groß wird Ihr Text erscheinen.',contrast:'Hoher Kontrast',on:'Ein',off:'Aus',speed:'Vorlese-Tempo',slow:'Langsam',normal:'Normal',language:'Sprache',newLetter:'Neuer Brief',readPage:'Diese Seite vorlesen',stop:'Stopp',askQ:'Klara fragen',yourLetter:'Ihr Arztbrief',takePhoto:'Foto machen',chooseFile:'Stattdessen Datei wählen',reading:'Einen Moment…',readingSub:'Wir lesen Ihren Brief für Sie.',worryQ:'Kurz gesagt',goodNews:'Die Behandlung war erfolgreich.',verdictReason:'Ihr Brief sagt: keine Komplikationen und keine Beschwerden bei der Entlassung.',aboutLine:'Um diesen Brief geht es: Am 23. Juni 2022 wurde eine verengte Herzarterie erweitert und ein Stent eingesetzt.',yourTodos:'Ihre 3 Aufgaben',todo1Short:'Beide Blutverdünner nehmen',todo2Short:'1,5 bis 2 Liter täglich trinken',todo3Short:'Herz-Kontrolle',untilMay:'Bis Ende Mai 2023',everyDay:'Jeden Tag',in6mo:'In etwa 6 Monaten',medicines:'Medikamente',explain:'Bericht',questions:'Fragen',help:'Hilfe',todo1Long:'Beide Blutverdünner jeden Morgen nehmen',todo1Why:'Nach Mai 2023 nur Clopidogrel absetzen. ASS nehmen Sie lebenslang weiter.',addReminder:'Erinnerung setzen',todo2Long:'Trinken Sie täglich 1,5 bis 2 Liter',todo2Why:'Wegen des Kontrastmittels aus der Herzuntersuchung und weil Ihre Nieren schwächer arbeiten.',todo3Long:'Nächste Kontrolle bei Ihrer Kardiologin',heartSpec:'Kardiologin',todo3Why:'In etwa 6 Monaten. Der Brief nennt kein genaues Datum. Er bittet auch um Kontrolle Ihrer Herz-Risikofaktoren.',copy:'Kopieren',morning:'Morgens',midday:'Mittags',evening:'Abends',night:'Nachts',beforeEat:'Vor dem Essen',nothingNow:'Um diese Zeit nichts.',schemaQ:'Was bedeutet 1 – 0 – 1 – 0?',schemaA:'Die vier Zahlen stehen für morgens – mittags – abends – nachts. „1 – 0 – 1 – 0“ heißt: eine morgens und eine abends. „2 – 0 – 0 – 0“ heißt: zwei morgens.',medsNote:'Namen, Mengen und Zeiten stammen aus Ihrem Brief.',tapYellow:'Tippen Sie auf ein gelbes Wort, um seine Bedeutung zu sehen.',sideBySide:'Jeder Teil, nebeneinander',d1:'Warum Sie ins Krankenhaus kamen',d2:'Ihre Erkrankungen (Diagnosen)',d3:'Was die Ärztinnen und Ärzte taten',d4:'Untersuchungen und Ergebnisse',d5:'Wie es weitergeht',showOrig:'Original auf Deutsch zeigen',hideOrig:'Original ausblenden',letterSays:'Im Brief steht',q1:'Kann ich Clopidogrel absetzen, wenn ich mich gut fühle?',q2:'Was bedeutet „1 – 0 – 1 – 0“?',q3:'Warum soll ich so viel trinken?',q4:'Ist mein Herz jetzt geheilt?',q5:'Wen kann ich bei Fragen anrufen?',fromLetter:'Aus Ihrem Brief',askOwnQ:'Klara eine eigene Frage stellen',whoToCall:'Wen Sie anrufen können',c1:'Ihre Kardiologin',c2:'Entlassungsteam des Krankenhauses',c3:'Behandelnder Arzt im Krankenhaus',seniorDoc:'Oberarzt',notAdvice:'Dies ist eine Erklärung, kein medizinischer Rat.',notAdvice2:'Sie wiederholt nur, was in Ihrem Brief steht, in einfacheren Worten. Sprechen Sie immer mit Ihrer Ärztin oder Ihrem Arzt, bevor Sie etwas ändern. Wo der Brief nichts sagt, sagen wir das und raten nicht.',termTitle:'Was bedeutet dieses Wort?',readAloud:'Vorlesen',askMore:'Klara dazu fragen',chatTitle:'Klara fragen',chatSub:'Klara antwortet nur aus Ihrem Brief. Sie gibt keinen medizinischen Rat.',chatHello:'Hallo Herr Königsstein, ich bin Klara. Was möchten Sie über Ihren Brief wissen? Sie können tippen oder eine der Fragen unten antippen.',chip1:'Wann kann ich Clopidogrel absetzen?',chip2:'Wann ist mein nächster Termin?',chip3:'Ist es ernst?',chip4:'Darf ich Auto fahren?',typeQ:'Ihre Frage eingeben…',speakQ:'Frage sprechen',close:'Schließen',whyLabel:'Warum (aus Ihrem Brief):',tOverview:'Überblick',tTodo:'Aufgabe',tMeds:'Medikamente',tExplain:'Bericht',tQuestions:'Fragen',tHelp:'Hilfe',tUpload:'Ihr Arztbrief',tReading:'Lesevorgang…',reminderSet:'Erinnerung gesetzt. (In der App geht das in Ihren Kalender.)',copied:'Kopiert: ',noVoice:'Das Vorlesen ist auf diesem Gerät nicht verfügbar.',micMock:'In der App können Sie Ihre Frage sprechen statt tippen.',sizeNames:['Normal','Groß','Größer','Sehr groß','Riesig']}
   };
   let lang = store.get('k-lang')==='de' ? 'de' : 'en';
   const t=k=>I18N[lang][k]||I18N.en[k]||k;
@@ -838,6 +805,9 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     if(!['upload','reading'].includes(r)) letterDone=true;
     const desk=deskMQ.matches;
     const simple=['upload','reading'].includes(r);
+    document.body.classList.toggle('simple-route',simple);
+    if(typeof stopSpeaking==='function' && render._last && render._last!==r) try{stopSpeaking()}catch(e){}
+    render._last=r;
     const showOv = letterDone && !simple && (r==='overview'||desk);
     $('#paneOverview').hidden=!showOv;
     $('#layout').classList.toggle('two', showOv && desk);
@@ -899,17 +869,9 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   const origRender=render;
   render=function(){ const h=(location.hash||'').slice(1); if(h==='reading') runReading(); origRender(); };
 
-  /* ---------- done / reminder / copy ---------- */
-  function doneKey(n){return 'k-done'+n}
-  function refreshDone(){
-    [1,2,3].forEach(n=>{
-      const on=store.get(doneKey(n))==='1';
-      const row=$('#rowTodo'+n); if(row) row.classList.toggle('done',on);
-      const btn=$('[data-done="'+n+'"]'); if(btn){ btn.classList.toggle('done',on); btn.querySelector('span').textContent = on? t('done')+' ✓' : t('done'); }
-    });
-  }
+  /* ---------- reminder / copy ---------- */
+  function refreshDone(){}
   document.addEventListener('click',e=>{
-    const d=e.target.closest('[data-done]'); if(d){ const n=d.dataset.done; const on=store.get(doneKey(n))==='1'; store.set(doneKey(n),on?'0':'1'); refreshDone(); toast(on?t('undoneMsg'):t('doneMsg')); return; }
     if(e.target.closest('[data-remind]')){ toast(t('reminderSet')); return; }
     const c=e.target.closest('[data-copy]'); if(c){ const v=c.dataset.copy; const ok=()=>toast(t('copied')+v); try{ navigator.clipboard.writeText(v).then(ok,()=>toast(t('copied')+v)); }catch(err){ toast(t('copied')+v); } }
   });
@@ -920,7 +882,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   function textOf(el){ if(el.closest('[hidden]')) return ''; const c=el.cloneNode(true); $$('[hidden]',c).forEach(n=>n.remove()); $$('details:not([open]) > :not(summary)',c).forEach(n=>n.remove()); $$('.no-read, svg, .chev, .say, .copy, .origtoggle',c).forEach(n=>n.remove()); return c.innerText.replace(/\s+/g,' ').trim(); }
   function clearMarks(){ $$('.reading-now').forEach(n=>n.classList.remove('reading-now')); }
   function stopSpeaking(){ try{synth&&synth.cancel();}catch(e){} if(typeof endSpeaking==='function') endSpeaking(); }
-  function setReadBtn(btn,on){ btn.setAttribute('aria-pressed',on); btn.querySelector('use').setAttribute('href',on?'#i-stop':'#i-vol'); btn.querySelector('span').textContent = on? t('stop') : t('readPage'); }
+  function setReadBtn(btn,on){ btn.setAttribute('aria-pressed',on); if(btn.title!==undefined&&btn.id==='readBtn') btn.title=on?t('stop'):t('readPage'); btn.querySelector('use').setAttribute('href',on?'#i-stop':'#i-vol'); btn.querySelector('span').textContent = on? t('stop') : t('readPage'); }
   let keepAlive=null, startCheck=null;
   function pickVoice(code){
     try{ const vs=synth.getVoices()||[]; const base=code.slice(0,2);
@@ -955,7 +917,8 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   document.addEventListener('click',e=>{
     const b=e.target.closest('[data-readpage]'); if(!b) return;
     if(speaking&&curBtn===b){ stopSpeaking(); return; }
-    const scr=document.getElementById(b.dataset.readpage);
+    const cur=(location.hash||'').slice(1);
+    const scr=document.getElementById(b.dataset.readpage||('screen-'+(routes.includes(cur)&&!['upload','reading'].includes(cur)?cur:'overview')));
     const blocks=$$('[data-read]',scr);
     const parts=(blocks.length?blocks:[scr]).map(el=>({text:textOf(el),el}));
     speakParts(parts,b);
@@ -1015,17 +978,17 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 
   /* ---------- jargon ---------- */
   const T={
-    stent:{w:'Stent',a:'German: Stent',p:'A tiny tube made of fine metal mesh. It holds a narrow blood vessel open so blood can flow freely again.',m:'It stays in your body for good. You cannot feel it.'},
+    stent:{w:'Stent',a:'German: Stent',p:'A tiny tube made of fine metal mesh. It holds a narrow blood vessel open so blood can flow freely again.',m:''},
     des:{w:'DES (Drug-Eluting Stent)',a:'German: medikamentenbeschichteter Stent',p:'A stent with a thin coating of medicine. The medicine stops the vessel from getting narrow again.',m:'Your letter names the model: Promus ELITE, 2.75 × 12 mm.'},
-    pci:{w:'PCI',a:'Perkutane Koronarintervention',p:'A treatment where a doctor guides a thin tube through a blood vessel in the wrist or groin up to the heart, and widens the narrow spot from the inside.',m:'No open surgery is needed.'},
+    pci:{w:'PCI',a:'Perkutane Koronarintervention',p:'A treatment where a doctor guides a thin tube through a blood vessel in the wrist or groin up to the heart, and widens the narrow spot from the inside.',m:''},
     khk:{w:'KHK',a:'Koronare Herzkrankheit · coronary heart disease',p:'The blood vessels that feed your heart muscle have become narrow. The heart then gets less blood and oxygen.',m:''},
     rca:{w:'RCA',a:'Right coronary artery · rechte Herzkranzarterie',p:'One of the main blood vessels that supply the heart muscle with blood. "Distal" means the far end of it.',m:''},
     dreigefaess:{w:'Drei-Gefäß-Erkrankung',a:'Three-vessel disease',p:'The heart has three main arteries. In your case, all three have narrow spots.',m:''},
     kidney:{w:'Chronische Niereninsuffizienz',a:'Chronic kidney disease, stage III',p:'Your kidneys clean the blood less well than normal. Stage III is the middle of five stages.',m:''},
     maligne:{w:'Maligne essentielle Hypertonie',a:'"Maligne" = severe',p:'Here "maligne" does NOT mean cancer. It means the high blood pressure is a severe form.',m:'Your letter adds: no blood pressure crisis was noted ("ohne Angabe einer hypertensiven Krise").'},
-    copd:{w:'COPD',a:'Chronisch obstruktive Lungenerkrankung',p:'A long-term lung illness. The airways are narrowed, so breathing out is harder.',m:'Your two inhalers are for this.'},
+    copd:{w:'COPD',a:'Chronisch obstruktive Lungenerkrankung',p:'A long-term lung illness. The airways are narrowed, so breathing out is harder.',m:''},
     nyha:{w:'Belastungsdyspnoe NYHA II',a:'Shortness of breath on exertion, level 2 of 4',p:'You get out of breath with more effort, such as climbing stairs, but not when resting.',m:'NYHA is a scale from I (no complaints) to IV (complaints even at rest).'},
-    gfr:{w:'GFR',a:'Glomeruläre Filtrationsrate',p:'A number that shows how much blood your kidneys clean per minute. Higher is better.',m:'Your value was 36 ml/min. As general information: values above about 90 count as normal. Ask your doctor what yours means for you.'},
+    gfr:{w:'GFR',a:'Glomeruläre Filtrationsrate',p:'A number that shows how much blood your kidneys clean per minute. Higher is better.',m:'Your value was 36 ml/min on 22 June 2022.'},
     sinus:{w:'Sinusrhythmus',a:'Sinus rhythm',p:'The normal, regular heartbeat, started by the heart’s own natural pacemaker.',m:''},
     timi:{w:'TIMI III Fluss',a:'TIMI flow grade 3',p:'A score for blood flow in a heart artery. Grade III is the best: blood flows fully again.',m:''},
     hub:{w:'Hub',a:'Puff',p:'One press of the inhaler. "2 Hub" means two puffs.',m:''}
@@ -1045,12 +1008,12 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   const FROM='<span class="pill src-letter"><svg class="ico"><use href="#i-file"/></svg>'+t('fromLetter')+'</span>';
   const NOT='<span class="pill src-general"><svg class="ico"><use href="#i-info"/></svg>Not in your letter</span>';
   const A=[
-    {k:/clopidogrel|stop|blood thin|blutverd/i,a:'Your letter says: take Clopidogrel <strong>until the end of May 2023</strong>. After that, keep taking only ASS, for life. Please talk to your doctor before you stop anything.',s:FROM},
-    {k:/appoint|check.?up|termin|next|doctor visit/i,a:'Your letter says the next check-up is <strong>in about 6 months</strong>. It gives no exact date. Please call Dr. Mustermann’s practice to book it: <strong>030 0987654321</strong>.',s:FROM},
-    {k:/serious|worry|bad|dangerous|schlimm/i,a:'The letter says the treatment worked and there were no problems afterwards. When you went home you had no complaints. Your heart still needs care, so keep taking your medicines and go to the check-ups.',s:FROM},
+    {k:/clopidogrel|stop|blood thin|blutverd/i,a:'Your letter says: take Clopidogrel <strong>until the end of May 2023</strong>. After that, only ASS, for life.',s:FROM},
+    {k:/appoint|check.?up|termin|next|doctor visit/i,a:'Your letter says the next check-up is <strong>in about 6 months</strong>. It gives no exact date. Your heart doctor, Dr. Mustermann: <strong>030 0987654321</strong>.',s:FROM},
+    {k:/serious|worry|bad|dangerous|schlimm/i,a:'The letter says the treatment was successful and there were no complications afterwards. When you went home you had no complaints.',s:FROM},
     {k:/drink|water|litre|liter|trink/i,a:'Your letter says to drink <strong>1.5 to 2 litres a day</strong>, because of the contrast dye and your weaker kidneys.',s:FROM},
     {k:/stent/i,a:'A stent is a tiny mesh tube that holds a blood vessel open. You got one coated stent (Promus ELITE, 2.75 × 12 mm) on 23 June 2022.',s:FROM},
-    {k:/kidney|niere|gfr/i,a:'Your letter says your kidneys work less well (stage III) and the kidney value GFR was 36 ml/min on 22 June 2022. That is why drinking enough matters.',s:FROM},
+    {k:/kidney|niere|gfr/i,a:'Your letter says your kidneys work less well (stage III) and the kidney value GFR was 36 ml/min on 22 June 2022.',s:FROM},
     {k:/medic|pill|tablet|morning|evening/i,a:'In the morning: ASS, Clopidogrel, Candesartan, Torasemid, Pantoprazol and 2 puffs of each inhaler. In the evening: Atorvastatin and Ezetimib. Nothing at midday or night.',s:FROM}
   ];
   function openChat(){ openSheet('#chatScrim'); setTimeout(()=>$('#chatInput').focus(),50); }
@@ -1066,7 +1029,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
       const tm=q.match(/what does (.+) mean/i);
       if(tm){ const key=Object.keys(T).find(k=>T[k].w.toLowerCase()===tm[1].toLowerCase()); if(key) ans={a:T[key].p+(T[key].m?' '+T[key].m:''),s:FROM}; }
       if(!ans) ans=A.find(x=>x.k.test(q));
-      if(!ans) ans={a:'Your letter does not say anything about this, so I don’t want to guess. Please ask your heart doctor, Dr. Mustermann, at <strong>030 0987654321</strong>, or the hospital discharge team at <strong>1234566</strong>.',s:NOT};
+      if(!ans) ans={a:'Your letter does not say anything about this, so I can’t answer it. Contacts in your letter: Dr. Mustermann <strong>030 0987654321</strong>, hospital discharge team <strong>1234566</strong>.',s:NOT};
       const m=add(ans.a+'<br>'+ans.s+'<br><button class="say" type="button"><svg class="ico"><use href="#i-vol"/></svg>'+t('readAloud')+'</button>','ai');
       m.querySelector('.say').onclick=()=>{ const c=m.cloneNode(true); $$('.say,.pill',c).forEach(n=>n.remove()); speakParts([{text:c.innerText}]); };
     },900);
