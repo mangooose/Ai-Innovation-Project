@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>[hidden]{display:none!important}body{margin:0}</style>
+</head>
+<body>
+<title>Klartext Arztbrief</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
+<style>
+:root{
+  --bg:#F3F5F2; --surface:#FFFFFF; --sunk:#F7F9F6; --ink:#26332F; --ink-2:#5E6D68; --line:#DDE4DF;
+  --accent:#3F7D76; --accent-ink:#FFFFFF; --accent-soft:#E4F0ED;
+  --calm:#3F7D5C; --calm-bg:#EAF4EC; --act:#8A5D24; --act-bg:#FBF2E3; --alert:#B0524A; --alert-bg:#FBEDEA;
+  --mark:#FBF0C9; --mark-ink:#26332F; --paper:#FBFBF8; --shadow:0 1px 2px rgba(38,51,47,.05),0 8px 24px rgba(38,51,47,.06);
+  --f-display:"Literata",Georgia,"Times New Roman",serif;
+  --f-body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",Verdana,"Segoe UI",sans-serif;
+  --f-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --fs:20px; --r:14px; --tap:3rem;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141B19; --surface:#1B2522; --sunk:#17201E; --ink:#E5ECE9; --ink-2:#A8B6B1; --line:#2D3A36;
+  --accent:#8CC4BC; --accent-ink:#0F1F1C; --accent-soft:#1F3430;
+  --calm:#93CFA9; --calm-bg:#1A2D22; --act:#E5C08A; --act-bg:#32291B; --alert:#EEA39A; --alert-bg:#3A2422;
+  --mark:#47411F; --mark-ink:#FFF4D2; --paper:#1A2421; --shadow:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.2); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141B19; --surface:#1B2522; --sunk:#17201E; --ink:#E5ECE9; --ink-2:#A8B6B1; --line:#2D3A36;
+  --accent:#8CC4BC; --accent-ink:#0F1F1C; --accent-soft:#1F3430;
+  --calm:#93CFA9; --calm-bg:#1A2D22; --act:#E5C08A; --act-bg:#32291B; --alert:#EEA39A; --alert-bg:#3A2422;
+  --mark:#47411F; --mark-ink:#FFF4D2; --paper:#1A2421; --shadow:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.2); color-scheme:dark}
+:root[data-contrast="high"]{
+  --bg:#FFFFFF; --surface:#FFFFFF; --sunk:#FFFFFF; --ink:#000000; --ink-2:#000000; --line:#000000;
+  --accent:#0030A0; --accent-ink:#FFFFFF; --accent-soft:#FFFFFF;
+  --calm:#005A1E; --calm-bg:#FFFFFF; --act:#6B3200; --act-bg:#FFFFFF; --alert:#A00000; --alert-bg:#FFFFFF;
+  --mark:#FFE500; --mark-ink:#000000; --paper:#FFFFFF; --shadow:none; color-scheme:light}
+:root[data-contrast="high"] .card,:root[data-contrast="high"] .todo-row,:root[data-contrast="high"] details,:root[data-contrast="high"] .tile{border-width:3px}
+
+html{font-size:var(--fs)}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1rem;line-height:1.55;-webkit-font-smoothing:antialiased;margin:0;overflow-wrap:anywhere}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.ico{width:1.2em;height:1.2em;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.2;font-weight:700}
+h2{font-size:1.35rem}
+p{margin:0}
+ul{margin:0}
+.muted{color:var(--ink-2)}
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.pill{display:inline-flex;align-items:center;gap:.3rem;border-radius:999px;padding:.12rem .6rem;font-size:.7rem;font-weight:700;line-height:1.5}
+.pill .ico{width:1em;height:1em}
+.src-letter{background:var(--accent-soft);color:var(--accent)}
+.src-general{background:var(--act-bg);color:var(--act)}
+
+/* App bar */
+.appbar{position:sticky;top:0;z-index:25;background:var(--surface);border-bottom:1px solid var(--line);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.appbar .in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:.6rem;min-height:3.6rem;padding-block:.35rem}
+.brand{display:flex;align-items:center;gap:.55rem;font-family:var(--f-display);font-weight:700;font-size:1.15rem}
+.brand .logo{width:2.1rem;height:2.1rem;border-radius:9px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;flex:none}
+.backbtn{display:inline-flex;align-items:center;gap:.4rem;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;min-height:var(--tap);min-width:var(--tap);padding:.3rem .8rem;cursor:pointer;font-weight:700}
+.apptitle{font-family:var(--f-display);font-weight:700;font-size:1.15rem;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aabtn{margin-left:auto;min-height:var(--tap);min-width:var(--tap);border:1.5px solid var(--line);background:var(--surface);border-radius:12px;font-family:var(--f-display);font-weight:800;font-size:1.05rem;cursor:pointer}
+.brand .apptitle{margin-left:0}
+
+/* Layout */
+.layout{max-width:640px;margin:0 auto;padding:1rem 16px 7rem}
+@media (min-width:1024px){
+  .layout{max-width:1180px;padding:1.5rem 24px 3rem}
+  .layout.two{display:grid;grid-template-columns:420px minmax(0,1fr);gap:2rem;align-items:start}
+  #paneOverview{position:sticky;top:5rem;max-height:calc(100vh - 6rem);overflow:auto;padding-right:.5rem}
+}
+.screen{display:flex;flex-direction:column;gap:1rem}
+.screen.enter{animation:slidein .25s ease-out}
+@keyframes slidein{from{transform:translateX(26px);opacity:.3}to{transform:none;opacity:1}}
+.pagetop{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap}
+.pagetop h2{display:flex;align-items:center;gap:.5rem}
+.pagetop h2 .ico{color:var(--accent)}
+.say{display:inline-flex;align-items:center;gap:.35rem;border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:.3rem .8rem;min-height:2.6rem;cursor:pointer;font-size:.78rem;font-weight:700;color:var(--ink-2);flex:none}
+.say:hover{border-color:var(--accent);color:var(--accent)}
+.say[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.reading-now{outline:4px solid var(--accent);outline-offset:4px}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:1.05rem 1.1rem;box-shadow:var(--shadow)}
+
+/* Upload / reading */
+.screen.simple{align-items:center;text-align:center;gap:1.25rem;padding-top:8vh}
+.screen.simple h1{font-size:1.9rem}
+.hero-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;width:100%;max-width:20rem;aspect-ratio:5/4;border:0;border-radius:28px;background:var(--accent);color:var(--accent-ink);font-size:1.5rem;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(16,36,46,.25)}
+.hero-ic{width:5rem;height:5rem;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.hero-ic .ico{width:3.2rem;height:3.2rem}
+.plain-btn{display:inline-flex;align-items:center;gap:.6rem;border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:.8rem 1.4rem;min-height:3.4rem;font-size:1.05rem;font-weight:700;cursor:pointer;color:var(--ink)}
+.calm-doc{width:5.5rem;height:5.5rem;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;animation:breathe 1.6s ease-in-out infinite}
+.calm-doc .ico{width:2.6rem;height:2.6rem}
+@keyframes breathe{50%{transform:scale(1.08)}}
+.big-spin{width:5.5rem;height:5.5rem;border-radius:50%;border:.6rem solid var(--accent-soft);border-top-color:var(--accent);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.bar{height:.6rem;border-radius:999px;background:var(--sunk);overflow:hidden;border:1px solid var(--line);width:100%;max-width:20rem}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .5s}
+
+/* Overview */
+.verdict{border:1.5px solid color-mix(in srgb,var(--calm) 35%,transparent);background:var(--calm-bg)}
+.verdict-top{display:flex;gap:.9rem;align-items:flex-start}
+.verdict-badge{width:3.4rem;height:3.4rem;border-radius:50%;background:var(--calm);color:var(--surface);display:grid;place-items:center;flex:none}
+.verdict-badge .ico{width:1.9rem;height:1.9rem;stroke-width:2.6}
+.verdict h1{font-size:1.45rem}
+.meter{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.35rem;margin-top:.8rem}
+.meter div{border-radius:8px;padding:.35rem .4rem;font-size:.7rem;font-weight:700;text-align:center;border:2px solid transparent;color:var(--ink-2);background:var(--surface)}
+.meter .on{border-color:var(--calm);color:var(--calm)}
+.meter .on::before{content:"▲ ";font-size:.6rem}
+.aboutline{font-size:.95rem}
+.todorow{display:grid;grid-template-columns:2.6rem minmax(0,1fr) auto;gap:.7rem;align-items:center;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:.7rem .8rem;min-height:3.4rem;cursor:pointer;font-weight:700}
+.todorow .ti{width:2.6rem;height:2.6rem;border-radius:10px;background:var(--sunk);border:1.5px solid var(--line);display:grid;place-items:center;color:var(--accent)}
+.todorow .ti .ico{width:1.4rem;height:1.4rem}
+.todorow .act{font-size:1rem;line-height:1.25}
+.todorow .when{display:inline-flex;align-items:center;gap:.3rem;background:var(--accent-soft);color:var(--accent);border-radius:8px;padding:.12rem .5rem;font-weight:700;font-size:.75rem;margin-top:.25rem}
+.todorow .when .ico{width:1em;height:1em}
+.todorow .chev{color:var(--ink-2)}
+.todorow.sel{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.todorow.done .ti{background:var(--calm);border-color:var(--calm);color:var(--surface)}
+.tilegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.tile{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:.4rem;min-height:96px;border:1.5px solid var(--line);background:var(--surface);border-radius:var(--r);padding:.9rem;cursor:pointer;font-weight:800;font-size:1.05rem;box-shadow:var(--shadow)}
+.tile .ti{width:2.4rem;height:2.4rem;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.tile .ti .ico{width:1.4rem;height:1.4rem}
+.tile.sel{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.quiet112{display:flex;gap:.5rem;align-items:center;justify-content:center;font-size:.9rem;color:var(--ink-2);text-align:center}
+.quiet112 .ico{color:var(--alert);width:1.3rem;height:1.3rem}
+@media (max-width:360px){.tilegrid{grid-template-columns:1fr}}
+
+/* To-do detail */
+.todohead{display:flex;gap:.9rem;align-items:flex-start}
+.todohead .ti{width:3rem;height:3rem;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none}
+.todohead .ti .ico{width:1.7rem;height:1.7rem}
+.todohead h1{font-size:1.4rem}
+.when{display:inline-flex;align-items:center;gap:.35rem;background:var(--accent-soft);color:var(--accent);border-radius:8px;padding:.2rem .6rem;font-weight:700;font-size:.85rem}
+.when .ico{width:1em;height:1em}
+.why{font-size:1rem}
+.notinletter{display:flex;gap:.5rem;align-items:flex-start;background:var(--act-bg);color:var(--act);border-radius:10px;padding:.55rem .75rem;font-size:.85rem;font-weight:600}
+.notinletter .ico{margin-top:.15rem;flex:none}
+.iflist{margin:.5rem 0 0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.35rem}
+.numrow{font-family:var(--f-mono);font-size:1.45rem;font-weight:700;user-select:all;letter-spacing:.02em;overflow-wrap:anywhere}
+.copy{display:inline-flex;align-items:center;gap:.3rem;border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:.15rem .7rem;cursor:pointer;font-size:.78rem;font-weight:700;min-height:2.6rem}
+.actions{display:flex;flex-wrap:wrap;gap:.6rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;border:2px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:12px;padding:.55rem 1rem;min-height:var(--tap);cursor:pointer;font-weight:700;flex:1;min-width:10rem}
+.btn.ghost{background:var(--surface);color:var(--accent)}
+.btn.done{background:var(--calm);border-color:var(--calm)}
+
+/* Terms */
+.term{all:unset;cursor:pointer;background:var(--mark);color:var(--mark-ink);border-radius:4px;padding:.15em .25em;border-bottom:2px dotted currentColor;font-weight:600;box-decoration-break:clone;-webkit-box-decoration-break:clone;display:inline}
+.term:hover{filter:brightness(.95)}
+.term:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.hint{display:flex;align-items:center;gap:.45rem;font-size:.82rem;color:var(--ink-2)}
+.summary p+p{margin-top:.7rem}
+
+/* Meds tabs */
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.tabs button{border:0;background:transparent;min-height:var(--tap);cursor:pointer;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;font-size:.72rem;padding:.3rem .2rem}
+.tabs button .ico{width:1.4rem;height:1.4rem;color:var(--act)}
+.tabs button[aria-selected="true"]{background:var(--accent-soft);color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent)}
+.tabs button[aria-selected="true"] .ico{color:var(--surface)}
+[role="tabpanel"] ul{list-style:none;padding:.4rem 0 0;display:flex;flex-direction:column;gap:.55rem}
+[role="tabpanel"] li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.6rem;align-items:start;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);padding:.6rem .7rem}
+.dose{min-width:2.2rem;height:2.2rem;border-radius:999px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:800;font-size:.85rem;padding:0 .4rem}
+[role="tabpanel"] b{display:block;line-height:1.25}
+[role="tabpanel"] .for{font-size:.78rem;color:var(--ink-2)}
+[role="tabpanel"] .flag{display:inline-block;margin-top:.15rem;font-size:.72rem;font-weight:700;color:var(--act);background:var(--act-bg);padding:0 .4rem;border-radius:6px}
+.emptytab{color:var(--ink-2);font-size:.95rem;padding:.6rem 0}
+.code-explain code{font-family:var(--f-mono);font-size:.9rem;background:var(--sunk);border:1.5px solid var(--line);border-radius:6px;padding:.1rem .45rem}
+
+/* Accordions */
+details{border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
+details+details{margin-top:.6rem}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:.7rem;padding:.8rem 1rem;min-height:var(--tap);font-weight:700}
+summary::-webkit-details-marker{display:none}
+summary .chev{margin-left:auto;transition:transform .2s}
+details[open] summary .chev{transform:rotate(180deg)}
+details[open] summary{border-bottom:1.5px solid var(--line)}
+.dbody{padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.7rem}
+.origtoggle{align-self:flex-start}
+.orig{background:var(--paper);border:1.5px dashed var(--line);border-radius:10px;padding:.7rem .8rem;font-size:.85rem;font-family:var(--f-mono);line-height:1.5;color:var(--ink-2)}
+.orig .lab{font-family:var(--f-body);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.3rem}
+.dxrow{display:grid;grid-template-columns:minmax(0,1fr);gap:.3rem;padding:.55rem 0;border-bottom:1px dashed var(--line)}
+.dxrow:last-child{border-bottom:0}
+.dxrow .o{font-family:var(--f-mono);font-size:.82rem;color:var(--ink-2)}
+.faq summary .ico{color:var(--accent)}
+.faq .dbody p+p{margin-top:.6rem}
+
+/* Help */
+.emergency{display:flex;gap:.8rem;align-items:center;background:var(--alert-bg);border:2px solid var(--alert);color:var(--ink);border-radius:var(--r);padding:.85rem 1rem}
+.emergency .big{font-family:var(--f-display);font-size:1.9rem;font-weight:700;color:var(--alert);line-height:1}
+.emergency .ico{color:var(--alert);width:1.8rem;height:1.8rem}
+.contacts{display:grid;gap:.7rem}
+.contact{display:grid;grid-template-columns:2.8rem minmax(0,1fr);gap:.75rem;align-items:start;padding:.75rem;border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
+.contact .ci{width:2.8rem;height:2.8rem;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.contact .num{font-family:var(--f-mono);font-size:1.2rem;font-weight:700;user-select:all;letter-spacing:.02em;overflow-wrap:anywhere}
+.disclaimer{display:flex;gap:.7rem;align-items:flex-start;border:1.5px solid var(--line);border-radius:var(--r);padding:.9rem 1rem;background:var(--sunk);font-size:.9rem}
+.disclaimer .ico{color:var(--accent);width:1.5rem;height:1.5rem;margin-top:.1rem;flex:none}
+
+/* FAB */
+.fab{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:.55rem;background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:.85rem 1.3rem;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 8px 24px rgba(16,36,46,.3);min-height:3.4rem}
+.fab .ico{width:1.5em;height:1.5em}
+
+/* Sheets */
+.scrim{position:fixed;inset:0;background:rgba(5,15,20,.5);z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--surface);color:var(--ink);width:100%;max-width:46rem;max-height:88vh;max-height:88dvh;border-radius:20px 20px 0 0;display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -10px 40px rgba(0,0,0,.25);animation:up .25s ease-out}
+@keyframes up{from{transform:translateY(30px);opacity:.4}to{transform:none;opacity:1}}
+.sheet-head{display:flex;align-items:center;gap:.7rem;padding:1rem 16px .8rem;border-bottom:1.5px solid var(--line)}
+.sheet-head h2{font-size:1.25rem}
+.x{margin-left:auto;width:var(--tap);height:var(--tap);border-radius:50%;border:1.5px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;flex:none}
+.sheet-body{overflow:auto;padding:1rem 16px 1.2rem;display:flex;flex-direction:column;gap:.9rem}
+.termword{font-family:var(--f-display);font-size:1.5rem;font-weight:700}
+.termsay{font-size:.85rem;color:var(--ink-2)}
+.termplain{font-size:1.15rem;font-weight:600;background:var(--calm-bg);border-radius:10px;padding:.7rem .9rem}
+
+/* Settings */
+.setrow{display:flex;flex-direction:column;gap:.5rem}
+.setrow>label,.setrow>.setlab{font-weight:700}
+.sizer{display:flex;align-items:stretch;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;align-self:flex-start}
+.sizer button{border:0;background:var(--surface);min-width:var(--tap);min-height:var(--tap);cursor:pointer;font-weight:800;font-family:var(--f-display)}
+.sizer button:disabled{opacity:.35;cursor:default}
+.sizer .lvl{display:flex;align-items:center;justify-content:center;padding:0 .6rem;border-inline:2px solid var(--line);font-size:.75rem;font-weight:700;color:var(--ink-2);min-width:5rem;text-align:center}
+.preview{background:var(--sunk);border:1.5px solid var(--line);border-radius:10px;padding:.6rem .8rem;font-size:.95rem}
+.optrow{display:flex;flex-wrap:wrap;gap:.5rem}
+.opt{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;min-height:var(--tap);padding:.4rem 1rem;cursor:pointer;font-weight:700}
+.opt[aria-pressed="true"],.opt[aria-checked="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.newletter{border-color:var(--alert);color:var(--alert);background:var(--surface)}
+
+/* Chat */
+.chatlog{display:flex;flex-direction:column;gap:.7rem}
+.msg{max-width:85%;padding:.7rem .9rem;border-radius:16px;line-height:1.45}
+.msg.me{align-self:flex-end;background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:4px}
+.msg.ai{align-self:flex-start;background:var(--sunk);border:1.5px solid var(--line);border-bottom-left-radius:4px}
+.msg.ai .pill{margin-top:.45rem}
+.msg .say{margin-top:.45rem;min-height:2.4rem;padding:.15rem .6rem}
+.typing span{display:inline-block;width:.45rem;height:.45rem;border-radius:50%;background:var(--ink-2);margin-right:.2rem;animation:blink 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes blink{50%{opacity:.25}}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chip{border:2px solid var(--accent);color:var(--accent);background:var(--surface);border-radius:999px;padding:.35rem .85rem;cursor:pointer;font-weight:700;font-size:.85rem;min-height:2.6rem;text-align:left}
+.chatform{display:flex;gap:.5rem;padding:.75rem 16px .9rem;border-top:1.5px solid var(--line)}
+.chatform input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:12px;padding:.6rem .8rem;background:var(--sunk);min-height:var(--tap)}
+.chatform button{border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);min-width:var(--tap);display:grid;place-items:center;cursor:pointer}
+.mic{background:var(--surface)!important;color:var(--accent)!important;border:1.5px solid var(--line)!important}
+
+.toast{position:fixed;left:50%;bottom:calc(5.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:.65rem 1.1rem;border-radius:12px;z-index:60;font-weight:600;max-width:calc(100% - 32px);text-align:center;box-shadow:var(--shadow)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.todorow .chev{transform:rotate(-90deg)}
+.newbtn{margin-left:auto;display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;flex:none;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);min-height:var(--tap);padding:.3rem .85rem;font-weight:800;font-size:.85rem;cursor:pointer}
+.newbtn:not([hidden])+.langsw{margin-left:0}
+@media (max-width:420px){body.on-overview .brand{display:none!important}.newbtn{padding:.3rem .65rem}.langsw button{min-width:2.6rem}.appbar .in{gap:.4rem}}
+.langsw{flex:none}
+.ovsay{align-self:flex-start}
+.langsw{margin-left:auto;display:flex;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;min-height:var(--tap)}
+.langsw button{border:0;background:var(--surface);min-width:var(--tap);font-weight:800;font-size:.9rem;cursor:pointer;color:var(--ink-2)}
+.langsw button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.langsw+.aabtn{margin-left:0}
+.backbtn{white-space:nowrap;flex:none}
+@media (max-width:400px){.apptitle{display:none}}
+.anotherbtn{align-self:center;display:inline-flex;align-items:center;gap:.5rem;border:0;background:transparent;color:var(--accent);font-weight:700;text-decoration:underline;min-height:var(--tap);padding:.3rem .8rem;cursor:pointer}
+#readThumb{width:8rem;height:10rem;object-fit:cover;border-radius:12px;border:1.5px solid var(--line);box-shadow:var(--shadow);animation:breathe 1.6s ease-in-out infinite}
+.hero-btn{box-shadow:0 8px 24px color-mix(in srgb,var(--accent) 25%,transparent)!important}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-checkc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M10 6h11M10 12h11M10 18h11"/><path d="m3 6 1.5 1.5L7 5M3 12l1.5 1.5L7 11M3 18l1.5 1.5L7 17"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></symbol>
+  <symbol id="i-sunrise" viewBox="0 0 24 24"><path d="M12 2v6M4.9 10.9l1.4 1.4M2 18h2M20 18h2M19.1 10.9l-1.4 1.4M22 22H2M8 6l4-4 4 4M16 18a4 4 0 0 0-8 0"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></symbol>
+  <symbol id="i-sunset" viewBox="0 0 24 24"><path d="M12 10V2M4.9 10.9l1.4 1.4M2 18h2M20 18h2M19.1 10.9l-1.4 1.4M22 22H2M16 6l-4 4-4-4M16 18a4 4 0 0 0-8 0"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-vol" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5"/></symbol>
+  <symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/><path d="M3.5 12h4l1.5-3 3 6 1.5-3h7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5z"/><path d="M6.5 17A2.5 2.5 0 0 0 4 19.5 2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z"/><path d="M19 17v4M17 19h4"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></symbol>
+</svg>
+
+<header class="appbar">
+  <div class="in">
+    <button class="backbtn" type="button" id="backBtn" hidden><svg class="ico"><use href="#i-back"/></svg><span data-i18n="back">Back</span></button>
+    <div class="brand" id="brandHome" role="heading" aria-level="1" style="cursor:pointer"><span class="logo"><svg class="ico"><use href="#i-heart"/></svg></span>Klartext</div>
+    <span class="apptitle" id="appTitle" aria-hidden="true"></span>
+    <button class="newbtn" type="button" id="newLetter"><svg class="ico"><use href="#i-upload"/></svg><span data-i18n="newLetter">New letter</span></button>
+    <div class="langsw" role="group" aria-label="Language / Sprache">
+      <button type="button" data-lang="en" aria-pressed="true" lang="en" aria-label="English">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false" lang="de" aria-label="Deutsch">DE</button>
+    </div>
+    <button class="aabtn" type="button" id="aaBtn" aria-label="Settings">Aa</button>
+  </div>
+</header>
+
+<div class="layout" id="layout">
+  <div id="paneOverview">
+
+<!-- ============ OVERVIEW ============ -->
+<section class="screen" id="screen-overview">
+  <button class="say ovsay" type="button" data-readpage="screen-overview" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
+  <article class="card verdict" data-read>
+    <div class="verdict-top">
+      <span class="verdict-badge" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
+      <div style="min-width:0">
+        <p class="eyebrow" style="color:var(--calm)" data-i18n="worryQ">Do I need to worry?</p>
+        <h1 data-i18n="goodNews">No. This is good news.</h1>
+        <p style="margin-top:.3rem" data-i18n="verdictReason">The treatment went well. You went home with no complaints.</p>
+      </div>
+    </div>
+  </article>
+
+  <p class="aboutline" data-read data-i18n="aboutLine">About this letter: your heart blood vessel was widened with a stent on 23 June 2022, and you went home well.</p>
+
+  <div>
+    <p class="eyebrow" style="margin-bottom:.5rem" data-i18n="yourTodos" data-read>Your 3 to-dos</p>
+    <div style="display:flex;flex-direction:column;gap:.6rem">
+      <button class="todorow" data-read type="button" data-nav="todo1" id="rowTodo1">
+        <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-pill"/></svg></span>
+        <span><span class="act" data-i18n="todo1Short">Take both blood thinners</span><br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="untilMay">Until end of May 2023</span></span></span>
+        <svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg>
+      </button>
+      <button class="todorow" data-read type="button" data-nav="todo2" id="rowTodo2">
+        <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-drop"/></svg></span>
+        <span><span class="act" data-i18n="todo2Short">Drink 1.5 to 2 litres daily</span><br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="everyDay">Every day</span></span></span>
+        <svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg>
+      </button>
+      <button class="todorow" data-read type="button" data-nav="todo3" id="rowTodo3">
+        <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-cal"/></svg></span>
+        <span><span class="act" data-i18n="todo3Short">Book a heart check-up</span><br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="in6mo">In about 6 months</span></span></span>
+        <svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="tilegrid" data-read>
+    <button class="tile" type="button" data-nav="meds" id="tileMeds"><span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-pill"/></svg></span><span data-i18n="medicines">Medicines</span></button>
+    <button class="tile" type="button" data-nav="explain" id="tileExplain"><span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-book"/></svg></span><span data-i18n="explain">Explain</span></button>
+    <button class="tile" type="button" data-nav="questions" id="tileQuestions"><span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-help"/></svg></span><span data-i18n="questions">Questions</span></button>
+    <button class="tile" type="button" data-nav="help" id="tileHelp"><span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-phone"/></svg></span><span data-i18n="help">Help</span></button>
+  </div>
+
+  <p class="quiet112" data-read><svg class="ico"><use href="#i-alert"/></svg><span data-i18n="quiet112">Chest pain or trouble breathing? Call 112.</span></p>
+</section>
+  </div>
+
+  <div id="paneMain">
+
+<!-- ============ UPLOAD ============ -->
+<section class="screen simple" id="screen-upload" hidden>
+  <h1 data-i18n="yourLetter">Your doctor’s letter</h1>
+  <input type="file" id="camInput" accept="image/*" capture="environment" hidden>
+  <input type="file" id="fileInput" accept="image/*,application/pdf" hidden>
+  <button class="hero-btn" type="button" id="camBtn">
+    <span class="hero-ic"><svg class="ico"><use href="#i-camera"/></svg></span>
+    <span data-i18n="takePhoto">Take a photo</span>
+  </button>
+  <button class="plain-btn" type="button" id="fileBtn">
+    <svg class="ico"><use href="#i-upload"/></svg><span data-i18n="chooseFile">Choose a file instead</span>
+  </button>
+</section>
+
+<!-- ============ READING ============ -->
+<section class="screen simple" id="screen-reading" hidden>
+  <img id="readThumb" alt="" hidden>
+  <span class="calm-doc" id="readIcon" aria-hidden="true"><svg class="ico"><use href="#i-file"/></svg></span>
+  <p class="muted" id="readName" hidden></p>
+  <h1 data-i18n="reading">One moment…</h1>
+  <p class="muted" data-i18n="readingSub">We’re reading your letter for you.</p>
+  <div class="bar" aria-hidden="true" style="width:100%;max-width:16rem"><i id="progress"></i></div>
+</section>
+
+<!-- ============ TODO 1 ============ -->
+<section class="screen" id="screen-todo1" hidden>
+  <div class="pagetop">
+    <h2><svg class="ico"><use href="#i-pill"/></svg><span data-i18n="todo1Short">Take both blood thinners</span></h2>
+    <button class="say" type="button" data-readpage="screen-todo1" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
+  </div>
+  <article class="card" data-read>
+    <div class="todohead">
+      <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-pill"/></svg></span>
+      <div style="min-width:0">
+        <h1 data-i18n="todo1Long">Take both blood thinners every morning</h1>
+        <p class="muted" style="font-size:.9rem">ASS 100 mg and Clopidogrel 75 mg</p>
+        <p style="margin-top:.4rem"><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="untilMay">Until end of May 2023</span></span></p>
+      </div>
+    </div>
+    <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo1Why">After May 2023, stop only Clopidogrel. Keep taking ASS for the rest of your life.</span></p>
+    <p class="warn" style="display:flex;gap:.4rem;align-items:flex-start;color:var(--act);font-weight:600;font-size:.88rem;margin-top:.5rem"><svg class="ico" style="margin-top:.15rem"><use href="#i-alert"/></svg><span data-i18n="todo1Warn">Never stop or change a medicine on your own. Ask your doctor first.</span></p>
+  </article>
+  <article class="card" data-read>
+    <p class="notinletter"><svg class="ico"><use href="#i-info"/></svg><span><span data-i18n="generalInfo">General information, not in your letter.</span></span></p>
+    <p style="font-weight:700;margin-top:.5rem" data-i18n="ifYouDont">If you don’t:</p>
+    <ul class="iflist">
+      <li data-i18n="todo1If">If the blood thinners are stopped too early, a blood clot can form in the new stent. That can cause a heart attack.</li>
+    </ul>
+  </article>
+  <div class="actions">
+    <button class="btn" type="button" data-done="1"><svg class="ico"><use href="#i-check"/></svg><span data-i18n="done">Done</span></button>
+    <button class="btn ghost" type="button" data-remind><svg class="ico"><use href="#i-bell"/></svg><span data-i18n="addReminder">Add reminder</span></button>
+  </div>
+</section>
+
+<!-- ============ TODO 2 ============ -->
+<section class="screen" id="screen-todo2" hidden>
+  <div class="pagetop">
+    <h2><svg class="ico"><use href="#i-drop"/></svg><span data-i18n="todo2Short">Drink 1.5 to 2 litres daily</span></h2>
+    <button class="say" type="button" data-readpage="screen-todo2" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
+  </div>
+  <article class="card" data-read>
+    <div class="todohead">
+      <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-drop"/></svg></span>
+      <div style="min-width:0">
+        <h1 data-i18n="todo2Long">Drink 1.5 to 2 litres every day</h1>
+        <p class="muted" style="font-size:.9rem" data-i18n="todo2Sub">About 6 to 8 glasses of water</p>
+        <p style="margin-top:.4rem"><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="everyDay">Every day</span></span></p>
+      </div>
+    </div>
+    <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo2Why">This protects your kidneys after the contrast dye used in the heart check.</span></p>
+  </article>
+  <article class="card" data-read>
+    <p class="notinletter"><svg class="ico"><use href="#i-info"/></svg><span><span data-i18n="generalInfo">General information, not in your letter.</span></span></p>
+    <p style="font-weight:700;margin-top:.5rem" data-i18n="ifYouDont">If you don’t:</p>
+    <ul class="iflist">
+      <li data-i18n="todo2If">Drinking too little can put extra strain on your kidneys.</li>
+    </ul>
+  </article>
+  <div class="actions">
+    <button class="btn" type="button" data-done="2"><svg class="ico"><use href="#i-check"/></svg><span data-i18n="done">Done</span></button>
+    <button class="btn ghost" type="button" data-remind><svg class="ico"><use href="#i-bell"/></svg><span data-i18n="addReminder">Add reminder</span></button>
+  </div>
+</section>
+
+<!-- ============ TODO 3 ============ -->
+<section class="screen" id="screen-todo3" hidden>
+  <div class="pagetop">
+    <h2><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="todo3Short">Book a heart check-up</span></h2>
+    <button class="say" type="button" data-readpage="screen-todo3" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
+  </div>
+  <article class="card" data-read>
+    <div class="todohead">
+      <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-cal"/></svg></span>
+      <div style="min-width:0">
+        <h1 data-i18n="todo3Long">Book a check-up with your heart doctor</h1>
+        <p class="muted" style="font-size:.9rem">Dr. Martina Mustermann, <span data-i18n="heartSpec">heart specialist</span></p>
+        <p style="margin-top:.4rem"><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="in6mo">In about 6 months</span></span></p>
+      </div>
+    </div>
+    <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo3Why">The letter gives no exact date. Please call the practice to book it. They will also check your blood pressure and other heart risk factors.</span></p>
+    <div style="display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.8rem">
+      <span class="numrow">030 0987654321</span>
+      <button class="copy" type="button" data-copy="030 0987654321"><svg class="ico"><use href="#i-copy"/></svg><span data-i18n="copy">Copy</span></button>
+    </div>
+  </article>
+  <article class="card" data-read>
+    <p class="notinletter"><svg class="ico"><use href="#i-info"/></svg><span><span data-i18n="generalInfo">General information, not in your letter.</span></span></p>
+    <p style="font-weight:700;margin-top:.5rem" data-i18n="ifYouDont">If you don’t:</p>
+    <ul class="iflist">
+      <li data-i18n="todo3If">Without check-ups, changes in your heart may be found too late.</li>
+    </ul>
+  </article>
+  <div class="actions">
+    <button class="btn" type="button" data-done="3"><svg class="ico"><use href="#i-check"/></svg><span data-i18n="done">Done</span></button>
+    <button class="btn ghost" type="button" data-remind><svg class="ico"><use href="#i-bell"/></svg><span data-i18n="addReminder">Add reminder</span></button>
+  </div>
+</section>
+
+<!-- ============ MEDICINES ============ -->
+<section class="screen" id="screen-meds" hidden>
+  <div class="pagetop">
+    <h2><svg class="ico"><use href="#i-pill"/></svg><span data-i18n="medicines">Medicines</span></h2>
+    <button class="say" type="button" data-readpage="screen-meds" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Times of day" id="medTabs">
+    <button type="button" role="tab" id="tab-morning" aria-controls="panel-morning" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-sunrise"/></svg><span data-i18n="morning">Morning</span></button>
+    <button type="button" role="tab" id="tab-midday" aria-controls="panel-midday" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-sun"/></svg><span data-i18n="midday">Midday</span></button>
+    <button type="button" role="tab" id="tab-evening" aria-controls="panel-evening" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-sunset"/></svg><span data-i18n="evening">Evening</span></button>
+    <button type="button" role="tab" id="tab-night" aria-controls="panel-night" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-moon"/></svg><span data-i18n="night">Night</span></button>
+  </div>
+  <div role="tabpanel" id="panel-morning" aria-labelledby="tab-morning" tabindex="0" hidden>
+    <ul>
+      <li><span class="dose">1</span><div><b>ASS 100 mg</b><span class="for">tablet · <span data-i18n="forThin">blood thinner</span></span></div></li>
+      <li><span class="dose">1</span><div><b>Clopidogrel 75 mg</b><span class="for">tablet · <span data-i18n="forThin">blood thinner</span></span><br><span class="flag" data-i18n="untilMay">Until end of May 2023</span></div></li>
+      <li><span class="dose">1</span><div><b>Candesartan 16 mg</b><span class="for">tablet · <span data-i18n="forBp">blood pressure</span></span></div></li>
+      <li><span class="dose">1</span><div><b>Torasemid 10 mg</b><span class="for">tablet · <span data-i18n="forWater">water tablet</span></span></div></li>
+      <li><span class="dose">1</span><div><b>Pantoprazol 20 mg</b><span class="for">tablet · <span data-i18n="forStomach">protects the stomach</span></span><br><span class="flag" data-i18n="beforeEat">Before eating</span></div></li>
+      <li><span class="dose">2</span><div><b>Relvar Ellipta</b><span class="for">inhaler · 2 <button class="term" data-term="hub">puffs</button> · <span data-i18n="forLungs">lungs</span></span></div></li>
+      <li><span class="dose">2</span><div><b>SPIROLTO Respimat</b><span class="for">inhaler · 2 puffs · <span data-i18n="forLungs">lungs</span></span></div></li>
+    </ul>
+  </div>
+  <div role="tabpanel" id="panel-midday" aria-labelledby="tab-midday" tabindex="0" hidden>
+    <p class="emptytab" data-i18n="nothingNow">Nothing at this time.</p>
+  </div>
+  <div role="tabpanel" id="panel-evening" aria-labelledby="tab-evening" tabindex="0" hidden>
+    <ul>
+      <li><span class="dose">1</span><div><b>Atorvastatin 40 mg</b><span class="for">tablet · <span data-i18n="forChol">cholesterol</span></span></div></li>
+      <li><span class="dose">1</span><div><b>Ezetimib 10 mg</b><span class="for">tablet · <span data-i18n="forChol">cholesterol</span></span></div></li>
+    </ul>
+  </div>
+  <div role="tabpanel" id="panel-night" aria-labelledby="tab-night" tabindex="0" hidden>
+    <p class="emptytab" data-i18n="nothingNow">Nothing at this time.</p>
+  </div>
+  <details>
+    <summary><svg class="ico"><use href="#i-info"/></svg><span data-i18n="schemaQ">What does 1 – 0 – 1 – 0 mean?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+    <div class="dbody">
+      <p data-i18n="schemaA">The four numbers are morning – midday – evening – night. “1 – 0 – 1 – 0” means one in the morning and one in the evening. “2 – 0 – 0 – 0” means two in the morning.</p>
+      <p class="muted" style="font-size:.82rem" data-i18n="medsNote">Medicine names and amounts are copied from your letter. What each one is for is general information.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ============ EXPLAIN ============ -->
+<section class="screen" id="screen-explain" hidden>
+  <div class="pagetop">
+    <h2><svg class="ico"><use href="#i-book"/></svg><span data-i18n="explain">Explain</span></h2>
+    <button class="say" type="button" data-readpage="screen-explain" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
+  </div>
+  <article class="card summary" data-read>
+    <p>You were in the heart department of Krankenhaus XYZ in Berlin from <strong>22 to 24 June 2022</strong>, for a heart check. Some blood vessels of your heart are narrow (<button class="term" data-term="khk">KHK</button>).</p>
+    <p>On 23 June the doctors opened a narrow spot in the <button class="term" data-term="rca">right heart artery</button> and placed one <button class="term" data-term="stent">stent</button>. There were no problems. You went home well.</p>
+    <p>Your other illnesses are unchanged: high blood pressure, a lung illness (<button class="term" data-term="copd">COPD</button>) and <button class="term" data-term="kidney">kidneys that work less well</button>. You had a heart attack in May 2022.</p>
+    <p class="hint"><svg class="ico"><use href="#i-info"/></svg><span data-i18n="tapYellow">Tap a yellow word to see what it means.</span></p>
+  </article>
+  <p class="eyebrow" data-i18n="sideBySide">Every part, side by side</p>
+  <details>
+    <summary><span data-i18n="d1">Why you went to hospital</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+    <div class="dbody">
+      <p data-read>Your heart doctor sent you to hospital because some blood vessels of your heart are narrow. The stay was planned for a heart catheter check. You already knew that you get <button class="term" data-term="nyha">short of breath when you exert yourself</button>.</p>
+      <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
+      <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>Grund der Einweisung: koronare Herzerkrankung (KHK). Die stationäre Aufnahme des Patienten erfolgte geplant zur Herzkatheteruntersuchung. […] es bestände eine vorbekannte Belastungsdyspnoe NYHA II.</div>
+    </div>
+  </details>
+  <details>
+    <summary><span data-i18n="d2">Your illnesses (diagnoses)</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+    <div class="dbody">
+      <div class="dxrow" data-read><span class="o">I25.20 Alter Myokardinfarkt 05/2022</span><span>A heart attack you had in May 2022.</span></div>
+      <div class="dxrow" data-read><span class="o">I25.13 Drei-Gefäß-Erkrankung</span><span>All <button class="term" data-term="dreigefaess">three main heart arteries</button> have narrow spots.</span></div>
+      <div class="dxrow" data-read><span class="o">I10.00 Maligne essentielle Hypertonie</span><span>A severe form of high blood pressure. <button class="term" data-term="maligne">“Maligne” does not mean cancer here.</button></span></div>
+      <div class="dxrow" data-read><span class="o">J44.89 Chronische obstruktive Lungenkrankheit</span><span>A long-term lung illness that makes breathing harder (<button class="term" data-term="copd">COPD</button>).</span></div>
+      <div class="dxrow" data-read><span class="o">N18.3 Chronische Niereninsuffizienz Stadium III</span><span>Your <button class="term" data-term="kidney">kidneys work less well</button> than normal (middle stage).</span></div>
+      <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
+      <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>I25.20 Alter Myokardinfarkt 05/2022 · I25.13 Drei-Gefäß-Erkrankung · I10.00 Maligne essentielle Hypertonie: Ohne Angabe einer hypertensiven Krise · J44.89 Sonstige näher bezeichnete chronische obstruktive Lungenkrankheit · N18.3 chronische Niereninsuffizienz Stadium III</div>
+    </div>
+  </details>
+  <details>
+    <summary><span data-i18n="d3">What the doctors did</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+    <div class="dbody">
+      <p data-read>On 23 June 2022 the doctors widened the end of your <button class="term" data-term="rca">right heart artery</button> through a thin tube (<button class="term" data-term="pci">PCI</button>) and placed one <button class="term" data-term="des">coated stent</button>, 2.75 mm wide and 12 mm long. You had treatments like this before: in May 2022, July 2019, February 2019 and January 2019. After the treatment there were no problems.</p>
+      <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
+      <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>PCI der distalen RCA mit 1 DES-Implantation · 23.06.2022 · Promus ELITE 2,75 x 12mm. Vorherige Prozeduren: 05/2022, 07/2019, 02/2019, 01/2019 (PCI). Der postinterventionelle Verlauf gestaltete sich komplikationslos.</div>
+    </div>
+  </details>
+  <details>
+    <summary><span data-i18n="d4">Tests and results</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+    <div class="dbody">
+      <div class="dxrow" data-read><span class="o">Labor: GFR 36 ml/min (22.06.2022)</span><span>A kidney value. It shows how well your kidneys clean the blood. <button class="term" data-term="gfr">What is GFR?</button></span></div>
+      <div class="dxrow" data-read><span class="o">EKG: Sinusrhythmus, 71/min</span><span>Your heart beats in a <button class="term" data-term="sinus">normal rhythm</button>, 71 times a minute.</span></div>
+      <div class="dxrow" data-read><span class="o">Herzkatheter 23.06.2022: TIMI III Fluss</span><span>After the stent, <button class="term" data-term="timi">blood flows fully</button> through the artery again.</span></div>
+      <div class="dxrow" data-read><span class="o">Entlassungsbefund: Der Patient ist beschwerdefrei.</span><span>When you went home you had no complaints.</span></div>
+      <div class="dxrow" data-read><span class="o">Multiresistente Erreger: Nein</span><span>No hospital germs that are hard to treat were found.</span></div>
+      <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
+      <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>Labor: GFR 36 ml/min (22.06.2022) · EKG: Sinusrhythmus, 71/min · Herzkatheter 23.06.2022: Promus ELITE 2,75 x 12 mm; TIMI III Fluss · Entlassungsbefund: Der Patient ist beschwerdefrei. · Multiresistente Erreger: Nein</div>
+    </div>
+  </details>
+  <details>
+    <summary><span data-i18n="d5">What happens next</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+    <div class="dbody">
+      <p data-read>Take both blood thinners (ASS and Clopidogrel) up to and including May 2023. After that, take only ASS, for life. Drink 1.5 to 2 litres a day, because you had contrast dye and your kidneys are weaker. Your heart doctor’s practice looks after you from now on. Next check-up in about 6 months.</p>
+      <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
+      <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>Fortführung der dualen Plättchenaggregationshemmung mit ASS und Clopidogrel bis einschließlich 05/2023, anschließend ASS-Mono-Therapie lebenslang. Einhaltung einer ausreichenden Trinkmenge (1,5-2 Liter/d) bei Z.n. KM-Exposition und bekannter chronischer Niereninsuffizienz. Ambulant kardiologische Weiterbetreuung, nächste Verlaufskontrolle in ca. 6 Monaten.</div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section class="screen" id="screen-questions" hidden>
+  <div class="pagetop">
+    <h2><svg class="ico"><use href="#i-help"/></svg><span data-i18n="questions">Questions</span></h2>
+    <button class="say" type="button" data-readpage="screen-questions" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
+  </div>
+  <article class="card faq">
+    <details>
+      <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q1">Can I stop Clopidogrel if I feel fine?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+      <div class="dbody" data-read><p>Your letter says to take it <strong>until the end of May 2023</strong>, even if you feel well. Please do not stop earlier on your own. If you have side effects, talk to your doctor first.</p><p><span class="pill src-letter"><svg class="ico"><use href="#i-file"/></svg><span data-i18n="fromLetter">From your letter</span></span></p></div>
+    </details>
+    <details>
+      <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q2">What does “1 – 0 – 1 – 0” mean?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+      <div class="dbody" data-read><p>The four numbers are <strong>morning – midday – evening – night</strong>. “1 – 0 – 1 – 0” means one in the morning and one in the evening. “2 – 0 – 0 – 0” means two in the morning.</p></div>
+    </details>
+    <details>
+      <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q3">Why should I drink so much?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+      <div class="dbody" data-read><p>During the heart check you got a contrast dye so the doctors could see your blood vessels. Your kidneys need to wash it out, and they already work less well. Drinking enough helps them.</p><p class="muted" style="font-size:.85rem">If another doctor has told you to drink <em>less</em> (for example because of your heart), ask which advice to follow.</p></div>
+    </details>
+    <details>
+      <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q4">Is my heart now healed?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+      <div class="dbody" data-read><p>The narrow spot that was treated is open again. But the letter says that all three main heart arteries are affected, so your heart still needs care: the medicines, regular check-ups and a healthy daily routine.</p></div>
+    </details>
+    <details>
+      <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q5">Who can I call with questions?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+      <div class="dbody" data-read><p>Your heart doctor’s practice, or the hospital’s discharge team. You find the numbers under Help.</p></div>
+    </details>
+  </article>
+  <button class="btn" type="button" id="askOwn" style="min-height:3.4rem"><svg class="ico"><use href="#i-chat"/></svg><span data-i18n="askOwnQ">Ask your own question</span></button>
+</section>
+
+<!-- ============ HELP ============ -->
+<section class="screen" id="screen-help" hidden>
+  <div class="pagetop">
+    <h2><svg class="ico"><use href="#i-phone"/></svg><span data-i18n="help">Help</span></h2>
+    <button class="say" type="button" data-readpage="screen-help" aria-pressed="false"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readPage">Read this page aloud</span></button>
+  </div>
+  <div class="emergency" role="note" data-read>
+    <svg class="ico"><use href="#i-phone"/></svg>
+    <div style="min-width:0"><strong data-i18n="emergQ">Chest pain or trouble breathing?</strong><br><span class="muted" data-i18n="emergA">Do not wait. Call the emergency number.</span></div>
+    <span class="big" style="margin-left:auto">112</span>
+  </div>
+  <article class="card" data-read>
+    <p class="eyebrow" style="margin-bottom:.6rem" data-i18n="whoToCall">Who to call</p>
+    <div class="contacts">
+      <div class="contact">
+        <span class="ci"><svg class="ico"><use href="#i-heart"/></svg></span>
+        <div style="min-width:0"><strong data-i18n="c1">Your heart doctor</strong><br><span class="muted">Dr. Martina Mustermann · Straße 3, 10103 Berlin</span><br>
+          <span class="num">030 0987654321</span> <button class="copy" type="button" data-copy="030 0987654321"><svg class="ico"><use href="#i-copy"/></svg><span data-i18n="copy">Copy</span></button></div>
+      </div>
+      <div class="contact">
+        <span class="ci"><svg class="ico"><use href="#i-file"/></svg></span>
+        <div style="min-width:0"><strong data-i18n="c2">Hospital discharge team</strong><br><span class="muted">Mon–Fri 9:00–19:00 · Sat and Sun 10:00–14:00</span><br>
+          <span class="num">1234566</span> <button class="copy" type="button" data-copy="1234566"><svg class="ico"><use href="#i-copy"/></svg><span data-i18n="copy">Copy</span></button></div>
+      </div>
+      <div class="contact">
+        <span class="ci"><svg class="ico"><use href="#i-heart"/></svg></span>
+        <div style="min-width:0"><strong data-i18n="c3">Treating doctor at the hospital</strong><br><span class="muted">Dr. Ludger Ober, <span data-i18n="seniorDoc">senior doctor</span></span><br>
+          <span class="num">654321434</span> <button class="copy" type="button" data-copy="654321434"><svg class="ico"><use href="#i-copy"/></svg><span data-i18n="copy">Copy</span></button></div>
+      </div>
+    </div>
+  </article>
+  <div class="disclaimer" role="note" data-read>
+    <svg class="ico"><use href="#i-shield"/></svg>
+    <p><strong data-i18n="notAdvice">This is an explanation, not medical advice.</strong> <span data-i18n="notAdvice2">It only repeats what your letter says, in simpler words. Always talk to your doctor before you change anything. Where the letter says nothing, we tell you so and do not guess.</span></p>
+  </div>
+</section>
+
+  </div>
+</div>
+
+<button class="fab" type="button" id="fab" hidden><svg class="ico"><use href="#i-chat"/></svg><span data-i18n="askQ">Ask a question</span></button>
+
+<!-- Term sheet -->
+<div class="scrim" id="termScrim" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="termTitle">
+    <div class="sheet-head">
+      <svg class="ico" style="color:var(--accent);width:1.6rem;height:1.6rem"><use href="#i-book"/></svg>
+      <h2 id="termTitle" data-i18n="termTitle">What does this word mean?</h2>
+      <button class="x" type="button" data-close data-i18n-aria="close" aria-label="Close"><svg class="ico"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="sheet-body">
+      <div><div class="termword" id="termWord"></div><div class="termsay" id="termAlso"></div></div>
+      <p class="termplain" id="termPlain"></p>
+      <p id="termMore"></p>
+      <div class="actions">
+        <button class="btn" type="button" id="termListen"><svg class="ico"><use href="#i-vol"/></svg><span data-i18n="readAloud">Read aloud</span></button>
+        <button class="btn ghost" type="button" id="termAsk"><svg class="ico"><use href="#i-chat"/></svg><span data-i18n="askMore">Ask more about this</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chat sheet -->
+<div class="scrim" id="chatScrim" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="chatTitle" style="height:88vh;height:88dvh">
+    <div class="sheet-head">
+      <svg class="ico" style="color:var(--accent);width:1.6rem;height:1.6rem"><use href="#i-spark"/></svg>
+      <div style="min-width:0"><h2 id="chatTitle" data-i18n="chatTitle">Ask about your letter</h2><p class="muted" style="font-size:.78rem" data-i18n="chatSub">I only answer from your letter. I don’t give medical advice.</p></div>
+      <button class="x" type="button" data-close data-i18n-aria="close" aria-label="Close"><svg class="ico"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="sheet-body" id="chatBody" style="flex:1">
+      <div class="chatlog" id="chatlog" aria-live="polite">
+        <div class="msg ai" data-i18n="chatHello">Hello Mr Königsstein. What would you like to know about your letter? You can type, or tap one of the questions below.</div>
+      </div>
+      <div class="chips" id="chips">
+        <button class="chip" type="button" data-i18n="chip1">When can I stop Clopidogrel?</button>
+        <button class="chip" type="button" data-i18n="chip2">When is my next appointment?</button>
+        <button class="chip" type="button" data-i18n="chip3">Is it serious?</button>
+        <button class="chip" type="button" data-i18n="chip4">Can I drive a car?</button>
+      </div>
+    </div>
+    <form class="chatform" id="chatForm" autocomplete="off">
+      <button class="mic" type="button" id="micBtn" data-i18n-aria="speakQ" aria-label="Speak your question"><svg class="ico"><use href="#i-mic"/></svg></button>
+      <input id="chatInput" type="text" data-i18n-ph="typeQ" placeholder="Type your question…" aria-label="Your question">
+      <button type="submit" aria-label="Send"><svg class="ico"><use href="#i-send"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<!-- Settings sheet -->
+<div class="scrim" id="setScrim" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="setTitle" style="max-width:36rem">
+    <div class="sheet-head">
+      <svg class="ico" style="color:var(--accent);width:1.6rem;height:1.6rem"><use href="#i-text"/></svg>
+      <h2 id="setTitle" data-i18n="settings">Settings</h2>
+      <button class="x" type="button" data-close data-i18n-aria="close" aria-label="Close"><svg class="ico"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="sheet-body">
+      <div class="setrow">
+        <span class="setlab" id="sizeLab" data-i18n="textSize">Text size</span>
+        <div class="sizer" role="group" aria-labelledby="sizeLab">
+          <button type="button" id="smaller" data-i18n-aria="smaller" aria-label="Smaller text">A−</button>
+          <span class="lvl" id="sizeLabel">Large</span>
+          <button type="button" id="bigger" style="font-size:1.25rem" data-i18n-aria="bigger" aria-label="Bigger text">A+</button>
+        </div>
+        <p class="preview" id="sizePreview" data-i18n="previewText">This is how big your text will be.</p>
+      </div>
+      <div class="setrow">
+        <span class="setlab" data-i18n="contrast">High contrast</span>
+        <div class="optrow">
+          <button class="opt" type="button" id="contrastBtn" aria-pressed="false"><span data-i18n="on">On</span></button>
+          <button class="opt" type="button" id="contrastOff" aria-pressed="true"><span data-i18n="off">Off</span></button>
+        </div>
+      </div>
+      <div class="setrow">
+        <span class="setlab" data-i18n="speed">Read-aloud speed</span>
+        <div class="optrow" role="group" aria-label="Read-aloud speed">
+          <button class="opt" type="button" data-speed="slow" aria-pressed="false"><span data-i18n="slow">Slow</span></button>
+          <button class="opt" type="button" data-speed="normal" aria-pressed="true"><span data-i18n="normal">Normal</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function(){
+  const root=document.documentElement;
+  const $=(s,el=document)=>el.querySelector(s);
+  const $$=(s,el=document)=>Array.from(el.querySelectorAll(s));
+  const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+  /* ---------- i18n ---------- */
+  const I18N={
+    en:{back:'Back',settings:'Settings',textSize:'Text size',smaller:'Smaller text',bigger:'Bigger text',previewText:'This is how big your text will be.',contrast:'High contrast',on:'On',off:'Off',speed:'Read-aloud speed',slow:'Slow',normal:'Normal',language:'Language',newLetter:'New letter',readPage:'Read this page aloud',stop:'Stop',askQ:'Ask a question',yourLetter:'Your doctor’s letter',takePhoto:'Take a photo',chooseFile:'Choose a file instead',reading:'One moment…',readingSub:'We’re reading your letter for you.',worryQ:'Do I need to worry?',goodNews:'No. This is good news.',verdictReason:'The treatment went well. You went home with no complaints.',mCalm:'Calm',mAct:'Act soon',mUrgent:'Urgent',aboutLine:'About this letter: your heart blood vessel was widened with a stent on 23 June 2022, and you went home well.',yourTodos:'Your 3 to-dos',todo1Short:'Take both blood thinners',todo2Short:'Drink 1.5 to 2 litres daily',todo3Short:'Book a heart check-up',untilMay:'Until end of May 2023',everyDay:'Every day',in6mo:'In about 6 months',medicines:'Medicines',explain:'Report',questions:'Questions',help:'Help',quiet112:'Chest pain or trouble breathing? Call 112.',todo1Long:'Take both blood thinners every morning',todo1Why:'After May 2023, stop only Clopidogrel. Keep taking ASS for the rest of your life.',todo1Warn:'Never stop or change a medicine on your own. Ask your doctor first.',generalInfo:'General information, not in your letter.',ifYouDont:'If you don’t:',todo1If:'If the blood thinners are stopped too early, a blood clot can form in the new stent. That can cause a heart attack.',done:'Done',addReminder:'Add reminder',todo2Long:'Drink 1.5 to 2 litres every day',todo2Sub:'About 6 to 8 glasses of water',todo2Why:'This protects your kidneys after the contrast dye used in the heart check.',todo2If:'Drinking too little can put extra strain on your kidneys.',todo3Long:'Book a check-up with your heart doctor',heartSpec:'heart specialist',todo3Why:'The letter gives no exact date. Please call the practice to book it. They will also check your blood pressure and other heart risk factors.',todo3If:'Without check-ups, changes in your heart may be found too late.',copy:'Copy',morning:'Morning',midday:'Midday',evening:'Evening',night:'Night',forThin:'blood thinner',forBp:'blood pressure',forWater:'water tablet',forStomach:'protects the stomach',beforeEat:'Before eating',forLungs:'lungs',forChol:'cholesterol',nothingNow:'Nothing at this time.',schemaQ:'What does 1 – 0 – 1 – 0 mean?',schemaA:'The four numbers are morning – midday – evening – night. “1 – 0 – 1 – 0” means one in the morning and one in the evening. “2 – 0 – 0 – 0” means two in the morning.',medsNote:'Medicine names and amounts are copied from your letter. What each one is for is general information.',tapYellow:'Tap a yellow word to see what it means.',sideBySide:'Every part, side by side',d1:'Why you went to hospital',d2:'Your illnesses (diagnoses)',d3:'What the doctors did',d4:'Tests and results',d5:'What happens next',showOrig:'Show original German',hideOrig:'Hide original German',letterSays:'Letter says',q1:'Can I stop Clopidogrel if I feel fine?',q2:'What does “1 – 0 – 1 – 0” mean?',q3:'Why should I drink so much?',q4:'Is my heart now healed?',q5:'Who can I call with questions?',fromLetter:'From your letter',askOwnQ:'Ask your own question',emergQ:'Chest pain or trouble breathing?',emergA:'Do not wait. Call the emergency number.',whoToCall:'Who to call',c1:'Your heart doctor',c2:'Hospital discharge team',c3:'Treating doctor at the hospital',seniorDoc:'senior doctor',notAdvice:'This is an explanation, not medical advice.',notAdvice2:'It only repeats what your letter says, in simpler words. Always talk to your doctor before you change anything. Where the letter says nothing, we tell you so and do not guess.',termTitle:'What does this word mean?',readAloud:'Read aloud',askMore:'Ask more about this',chatTitle:'Ask about your letter',chatSub:'I only answer from your letter. I don’t give medical advice.',chatHello:'Hello Mr Königsstein. What would you like to know about your letter? You can type, or tap one of the questions below.',chip1:'When can I stop Clopidogrel?',chip2:'When is my next appointment?',chip3:'Is it serious?',chip4:'Can I drive a car?',typeQ:'Type your question…',speakQ:'Speak your question',close:'Close',whyLabel:'Why (from your letter):',tOverview:'Overview',tTodo:'To-do',tMeds:'Medicines',tExplain:'Report',tQuestions:'Questions',tHelp:'Help',tUpload:'Your doctor’s letter',tReading:'Reading…',reminderSet:'Reminder set. (In the app this goes to your calendar.)',doneMsg:'Marked as done.',undoneMsg:'Marked as not done.',copied:'Copied: ',noVoice:'Read aloud is not available on this device.',micMock:'In the app you can speak your question instead of typing.',sizeNames:['Normal','Large','Larger','Very large','Huge']},
+    de:{back:'Zurück',settings:'Einstellungen',textSize:'Schriftgröße',smaller:'Kleinere Schrift',bigger:'Größere Schrift',previewText:'So groß wird Ihr Text erscheinen.',contrast:'Hoher Kontrast',on:'Ein',off:'Aus',speed:'Vorlese-Tempo',slow:'Langsam',normal:'Normal',language:'Sprache',newLetter:'Neuer Brief',readPage:'Diese Seite vorlesen',stop:'Stopp',askQ:'Frage stellen',yourLetter:'Ihr Arztbrief',takePhoto:'Foto machen',chooseFile:'Stattdessen Datei wählen',reading:'Einen Moment…',readingSub:'Wir lesen Ihren Brief für Sie.',worryQ:'Muss ich mir Sorgen machen?',goodNews:'Nein. Das ist eine gute Nachricht.',verdictReason:'Die Behandlung verlief gut. Sie sind ohne Beschwerden nach Hause gegangen.',mCalm:'Ruhig',mAct:'Bald handeln',mUrgent:'Dringend',aboutLine:'Um diesen Brief geht es: Ihr Herzkranzgefäß wurde am 23. Juni 2022 mit einem Stent erweitert, und Sie konnten gesund nach Hause gehen.',yourTodos:'Ihre 3 Aufgaben',todo1Short:'Beide Blutverdünner nehmen',todo2Short:'1,5 bis 2 Liter täglich trinken',todo3Short:'Herz-Kontrolle vereinbaren',untilMay:'Bis Ende Mai 2023',everyDay:'Jeden Tag',in6mo:'In etwa 6 Monaten',medicines:'Medikamente',explain:'Bericht',questions:'Fragen',help:'Hilfe',quiet112:'Brustschmerzen oder Atemnot? Rufen Sie die 112 an.',todo1Long:'Beide Blutverdünner jeden Morgen nehmen',todo1Why:'Nach Mai 2023 nur Clopidogrel absetzen. ASS nehmen Sie lebenslang weiter.',todo1Warn:'Setzen Sie niemals von selbst ein Medikament ab oder ändern es. Fragen Sie zuerst Ihre Ärztin oder Ihren Arzt.',generalInfo:'Allgemeine Information, nicht aus Ihrem Brief.',ifYouDont:'Wenn Sie es nicht tun:',todo1If:'Werden die Blutverdünner zu früh abgesetzt, kann sich im neuen Stent ein Blutgerinnsel bilden. Das kann einen Herzinfarkt verursachen.',done:'Erledigt',addReminder:'Erinnerung setzen',todo2Long:'Trinken Sie täglich 1,5 bis 2 Liter',todo2Sub:'Etwa 6 bis 8 Gläser Wasser',todo2Why:'Das schützt Ihre Nieren nach dem Kontrastmittel aus der Herzuntersuchung.',todo2If:'Zu wenig Trinken kann Ihre Nieren zusätzlich belasten.',todo3Long:'Kontrolltermin bei Ihrer Kardiologin vereinbaren',heartSpec:'Kardiologin',todo3Why:'Der Brief nennt kein genaues Datum. Bitte rufen Sie in der Praxis an. Dort werden auch Ihr Blutdruck und weitere Herz-Risikofaktoren geprüft.',todo3If:'Ohne Kontrollen können Veränderungen am Herzen zu spät erkannt werden.',copy:'Kopieren',morning:'Morgens',midday:'Mittags',evening:'Abends',night:'Nachts',forThin:'Blutverdünner',forBp:'Blutdruck',forWater:'Wassertablette',forStomach:'schützt den Magen',beforeEat:'Vor dem Essen',forLungs:'Lunge',forChol:'Cholesterin',nothingNow:'Um diese Zeit nichts.',schemaQ:'Was bedeutet 1 – 0 – 1 – 0?',schemaA:'Die vier Zahlen stehen für morgens – mittags – abends – nachts. „1 – 0 – 1 – 0“ heißt: eine morgens und eine abends. „2 – 0 – 0 – 0“ heißt: zwei morgens.',medsNote:'Medikamentennamen und Mengen stammen aus Ihrem Brief. Wofür jedes ist, ist allgemeine Information.',tapYellow:'Tippen Sie auf ein gelbes Wort, um seine Bedeutung zu sehen.',sideBySide:'Jeder Teil, nebeneinander',d1:'Warum Sie ins Krankenhaus kamen',d2:'Ihre Erkrankungen (Diagnosen)',d3:'Was die Ärztinnen und Ärzte taten',d4:'Untersuchungen und Ergebnisse',d5:'Wie es weitergeht',showOrig:'Original auf Deutsch zeigen',hideOrig:'Original ausblenden',letterSays:'Im Brief steht',q1:'Kann ich Clopidogrel absetzen, wenn ich mich gut fühle?',q2:'Was bedeutet „1 – 0 – 1 – 0“?',q3:'Warum soll ich so viel trinken?',q4:'Ist mein Herz jetzt geheilt?',q5:'Wen kann ich bei Fragen anrufen?',fromLetter:'Aus Ihrem Brief',askOwnQ:'Eigene Frage stellen',emergQ:'Brustschmerzen oder Atemnot?',emergA:'Nicht warten. Rufen Sie den Notruf an.',whoToCall:'Wen Sie anrufen können',c1:'Ihre Kardiologin',c2:'Entlassungsteam des Krankenhauses',c3:'Behandelnder Arzt im Krankenhaus',seniorDoc:'Oberarzt',notAdvice:'Dies ist eine Erklärung, kein medizinischer Rat.',notAdvice2:'Sie wiederholt nur, was in Ihrem Brief steht, in einfacheren Worten. Sprechen Sie immer mit Ihrer Ärztin oder Ihrem Arzt, bevor Sie etwas ändern. Wo der Brief nichts sagt, sagen wir das und raten nicht.',termTitle:'Was bedeutet dieses Wort?',readAloud:'Vorlesen',askMore:'Mehr dazu fragen',chatTitle:'Fragen Sie zu Ihrem Brief',chatSub:'Ich antworte nur aus Ihrem Brief. Ich gebe keinen medizinischen Rat.',chatHello:'Hallo Herr Königsstein. Was möchten Sie über Ihren Brief wissen? Sie können tippen oder eine der Fragen unten antippen.',chip1:'Wann kann ich Clopidogrel absetzen?',chip2:'Wann ist mein nächster Termin?',chip3:'Ist es ernst?',chip4:'Darf ich Auto fahren?',typeQ:'Ihre Frage eingeben…',speakQ:'Frage sprechen',close:'Schließen',whyLabel:'Warum (aus Ihrem Brief):',tOverview:'Überblick',tTodo:'Aufgabe',tMeds:'Medikamente',tExplain:'Bericht',tQuestions:'Fragen',tHelp:'Hilfe',tUpload:'Ihr Arztbrief',tReading:'Lesevorgang…',reminderSet:'Erinnerung gesetzt. (In der App geht das in Ihren Kalender.)',doneMsg:'Als erledigt markiert.',undoneMsg:'Als nicht erledigt markiert.',copied:'Kopiert: ',noVoice:'Das Vorlesen ist auf diesem Gerät nicht verfügbar.',micMock:'In der App können Sie Ihre Frage sprechen statt tippen.',sizeNames:['Normal','Groß','Größer','Sehr groß','Riesig']}
+  };
+  let lang = store.get('k-lang')==='de' ? 'de' : 'en';
+  const t=k=>I18N[lang][k]||I18N.en[k]||k;
+  function applyLang(){
+    document.documentElement.lang = lang==='de'?'de':'en';
+    $$('[data-i18n]').forEach(el=>{ const k=el.dataset.i18n; if(I18N[lang][k]!==undefined) el.textContent=I18N[lang][k]; });
+    $$('[data-i18n-aria]').forEach(el=>{ const k=el.dataset.i18nAria; if(I18N[lang][k]!==undefined) el.setAttribute('aria-label',I18N[lang][k]); });
+    $$('[data-i18n-ph]').forEach(el=>{ const k=el.dataset.i18nPh; if(I18N[lang][k]!==undefined) el.setAttribute('placeholder',I18N[lang][k]); });
+    $$('[data-lang]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.lang===lang));
+    applySize(); render();
+  }
+
+  /* ---------- toast ---------- */
+  let tT;
+  function toast(msg){const el=$('#toast');el.textContent=msg;el.hidden=false;clearTimeout(tT);tT=setTimeout(()=>el.hidden=true,3200)}
+
+  /* ---------- text size ---------- */
+  const sizes=[{px:17},{px:20},{px:23},{px:27},{px:31}];
+  let si=parseInt(store.get('k-size')||'1',10); if(!(si>=0&&si<sizes.length)) si=1;
+  function applySize(){ root.style.setProperty('--fs',sizes[si].px+'px'); $('#sizeLabel').textContent=t('sizeNames')[si]; $('#smaller').disabled=si===0; $('#bigger').disabled=si===sizes.length-1; store.set('k-size',si); }
+  $('#smaller').onclick=()=>{ if(si>0){si--;applySize();} };
+  $('#bigger').onclick=()=>{ if(si<sizes.length-1){si++;applySize();} };
+
+  /* ---------- contrast ---------- */
+  function applyContrast(on){
+    if(on) root.dataset.contrast='high'; else delete root.dataset.contrast;
+    $('#contrastBtn').setAttribute('aria-pressed',on); $('#contrastOff').setAttribute('aria-pressed',!on);
+    store.set('k-contrast',on?'1':'0');
+  }
+  $('#contrastBtn').onclick=()=>applyContrast(true);
+  $('#contrastOff').onclick=()=>applyContrast(false);
+  applyContrast(store.get('k-contrast')==='1');
+
+  /* ---------- speed ---------- */
+  let rate = store.get('k-rate')==='slow' ? .72 : .92;
+  $$('[data-speed]').forEach(b=>{ b.setAttribute('aria-pressed',(b.dataset.speed==='slow')===(rate===.72)); b.onclick=()=>{ rate = b.dataset.speed==='slow'?.72:.92; store.set('k-rate',b.dataset.speed); $$('[data-speed]').forEach(x=>x.setAttribute('aria-pressed',x===b)); }; });
+
+  /* ---------- language buttons ---------- */
+  $$('[data-lang]').forEach(b=>{ b.onclick=()=>{ lang=b.dataset.lang; store.set('k-lang',lang); applyLang(); }; });
+
+  /* ---------- router ---------- */
+  const routes=['upload','reading','overview','todo1','todo2','todo3','meds','explain','questions','help'];
+  let letterDone=false, readingTimer=[];
+  const deskMQ=matchMedia('(min-width:1024px)');
+  function titleFor(r){
+    return {overview:t('tOverview'),todo1:t('tTodo'),todo2:t('tTodo'),todo3:t('tTodo'),meds:t('tMeds'),explain:t('tExplain'),questions:t('tQuestions'),help:t('tHelp'),upload:t('tUpload'),reading:t('tReading')}[r]||'';
+  }
+  function render(){
+    let r=(location.hash||'').slice(1);
+    if(!routes.includes(r)) r = letterDone?'overview':'upload';
+    if(!['upload','reading'].includes(r)) letterDone=true;
+    const desk=deskMQ.matches;
+    const simple=['upload','reading'].includes(r);
+    const showOv = letterDone && !simple && (r==='overview'||desk);
+    $('#paneOverview').hidden=!showOv;
+    $('#layout').classList.toggle('two', showOv && desk);
+    routes.forEach(n=>{
+      const el=$('#screen-'+n); let show=false;
+      if(n==='overview') show=showOv;
+      else if(n==='upload'||n==='reading') show=(r===n);
+      else show=(r===n)||(desk && r==='overview' && n==='todo1');
+      if(show && !el.hidden && n===r){ el.classList.remove('enter'); void el.offsetWidth; el.classList.add('enter'); }
+      el.hidden=!show;
+    });
+    // app bar
+    $('#brandHome').hidden = r!=='overview' && !simple;
+    $('#newLetter').hidden = !(letterDone && !simple && (r==='overview'||desk));
+    document.body.classList.toggle('on-overview', r==='overview');
+    $('#backBtn').hidden = r==='overview' || simple;
+    $('#appTitle').textContent = (r==='overview'||simple)?'':titleFor(r);
+    $('#appTitle').hidden = !$('#appTitle').textContent;
+    // fab
+    $('#fab').hidden = simple || !letterDone;
+    // left-pane highlight
+    [['todo1','#rowTodo1'],['todo2','#rowTodo2'],['todo3','#rowTodo3'],['meds','#tileMeds'],['explain','#tileExplain'],['questions','#tileQuestions'],['help','#tileHelp']].forEach(([n,sel])=>{
+      const active = (r===n)||(desk&&r==='overview'&&n==='todo1');
+      $(sel).classList.toggle('sel',active);
+    });
+    stopSpeaking();
+    window.scrollTo({top:0});
+  }
+  function go(r){ if('#'+r!==location.hash) location.hash=r; else render(); }
+  window.addEventListener('hashchange',()=>render());
+  document.addEventListener('click',e=>{
+    const n=e.target.closest('[data-nav]'); if(n){ go(n.dataset.nav); return; }
+    if(e.target.closest('#camBtn')) $('#camInput').click();
+    if(e.target.closest('#fileBtn')) $('#fileInput').click();
+  });
+  let thumbURL=null;
+  function gotFile(input){
+    const f=input.files && input.files[0]; if(!f) return;
+    if(thumbURL){ try{URL.revokeObjectURL(thumbURL);}catch(e){} thumbURL=null; }
+    const isImg=/^image\//.test(f.type);
+    if(isImg){ thumbURL=URL.createObjectURL(f); $('#readThumb').src=thumbURL; }
+    $('#readThumb').hidden=!isImg; $('#readIcon').hidden=isImg;
+    $('#readName').textContent=isImg?'':f.name; $('#readName').hidden=isImg;
+    input.value=''; letterDone=false; go('reading');
+  }
+  $('#camInput').addEventListener('change',e=>gotFile(e.target));
+  $('#fileInput').addEventListener('change',e=>gotFile(e.target));
+  $('#backBtn').onclick=()=>go(letterDone?'overview':'upload');
+  $('#brandHome').onclick=()=>go('overview');
+  $('#newLetter').onclick=()=>{ letterDone=false; go('upload'); };
+
+  /* ---------- reading ---------- */
+  function runReading(){
+    readingTimer.forEach(clearTimeout); readingTimer=[];
+    $('#progress').style.width='0';
+    [40,75,100].forEach((w,i)=>readingTimer.push(setTimeout(()=>$('#progress').style.width=w+'%',150+i*550)));
+    readingTimer.push(setTimeout(()=>{ letterDone=true; go('overview'); },2000));
+  }
+  const origRender=render;
+  render=function(){ const h=(location.hash||'').slice(1); if(h==='reading') runReading(); origRender(); };
+
+  /* ---------- done / reminder / copy ---------- */
+  function doneKey(n){return 'k-done'+n}
+  function refreshDone(){
+    [1,2,3].forEach(n=>{
+      const on=store.get(doneKey(n))==='1';
+      const row=$('#rowTodo'+n); if(row) row.classList.toggle('done',on);
+      const btn=$('[data-done="'+n+'"]'); if(btn){ btn.classList.toggle('done',on); btn.querySelector('span').textContent = on? t('done')+' ✓' : t('done'); }
+    });
+  }
+  document.addEventListener('click',e=>{
+    const d=e.target.closest('[data-done]'); if(d){ const n=d.dataset.done; const on=store.get(doneKey(n))==='1'; store.set(doneKey(n),on?'0':'1'); refreshDone(); toast(on?t('undoneMsg'):t('doneMsg')); return; }
+    if(e.target.closest('[data-remind]')){ toast(t('reminderSet')); return; }
+    const c=e.target.closest('[data-copy]'); if(c){ const v=c.dataset.copy; const ok=()=>toast(t('copied')+v); try{ navigator.clipboard.writeText(v).then(ok,()=>toast(t('copied')+v)); }catch(err){ toast(t('copied')+v); } }
+  });
+
+  /* ---------- read aloud (per screen) ---------- */
+  const synth=window.speechSynthesis;
+  let speaking=false, curBtn=null;
+  function textOf(el){ if(el.closest('[hidden]')) return ''; const c=el.cloneNode(true); $$('[hidden]',c).forEach(n=>n.remove()); $$('details:not([open]) > :not(summary)',c).forEach(n=>n.remove()); $$('.no-read, svg, .chev, .say, .copy, .origtoggle',c).forEach(n=>n.remove()); return c.innerText.replace(/\s+/g,' ').trim(); }
+  function clearMarks(){ $$('.reading-now').forEach(n=>n.classList.remove('reading-now')); }
+  function stopSpeaking(){ try{synth&&synth.cancel();}catch(e){} if(typeof endSpeaking==='function') endSpeaking(); }
+  function setReadBtn(btn,on){ btn.setAttribute('aria-pressed',on); btn.querySelector('use').setAttribute('href',on?'#i-stop':'#i-vol'); btn.querySelector('span').textContent = on? t('stop') : t('readPage'); }
+  let keepAlive=null, startCheck=null;
+  function pickVoice(code){
+    try{ const vs=synth.getVoices()||[]; const base=code.slice(0,2);
+      return vs.find(v=>v.lang===code)||vs.find(v=>(v.lang||'').toLowerCase().startsWith(base))||null; }catch(e){ return null; }
+  }
+  function chunks(text){
+    const out=[]; (text.match(/[^.!?…]+[.!?…]*\s*/g)||[text]).forEach(sn=>{ sn=sn.trim(); if(!sn) return;
+      while(sn.length>180){ let k=sn.lastIndexOf(' ',180); if(k<60) k=180; out.push(sn.slice(0,k)); sn=sn.slice(k).trim(); }
+      if(sn) out.push(sn); });
+    return out;
+  }
+  function endSpeaking(){ speaking=false; clearInterval(keepAlive); clearTimeout(startCheck); clearMarks(); if(curBtn){ setReadBtn(curBtn,false); curBtn=null; } }
+  function speakParts(parts,btn){
+    if(!synth||typeof SpeechSynthesisUtterance==='undefined'){ toast(t('noVoice')); return; }
+    try{ if(synth.speaking||synth.pending) synth.cancel(); synth.resume(); }catch(e){}
+    clearMarks(); if(curBtn&&curBtn!==btn) setReadBtn(curBtn,false);
+    speaking=true; curBtn=btn; setReadBtn(btn,true);
+    const code=lang==='de'?'de-DE':'en-GB'; let started=false;
+    const queue=[]; parts.forEach(p=>chunks(p.text).forEach(c=>queue.push({text:c,el:p.el,lang:p.lang})));
+    if(!queue.length){ endSpeaking(); return; }
+    queue.forEach((q,i)=>{
+      const u=new SpeechSynthesisUtterance(q.text); const lc=q.lang||code; u.lang=lc; const v=pickVoice(lc); if(v){ try{ u.voice=v; }catch(e){} } u.rate=rate;
+      u.onstart=()=>{ started=true; if(q.el&&!q.el.classList.contains('reading-now')){ clearMarks(); q.el.classList.add('reading-now'); q.el.scrollIntoView({behavior:'smooth',block:'center'}); } };
+      u.onerror=ev=>{ if(ev&&ev.error!=='interrupted'&&ev.error!=='canceled'){ endSpeaking(); toast(t('noVoice')); } };
+      if(i===queue.length-1) u.onend=()=>{ if(curBtn===btn) endSpeaking(); };
+      synth.speak(u);
+    });
+    clearInterval(keepAlive); keepAlive=setInterval(()=>{ try{ if(synth.speaking&&!synth.paused){ synth.pause(); synth.resume(); } }catch(e){} },12000);
+    clearTimeout(startCheck); startCheck=setTimeout(()=>{ if(!started&&!synth.speaking){ endSpeaking(); toast(t('noVoice')); } },2500);
+  }
+  try{ synth&&synth.getVoices(); if(synth&&'onvoiceschanged' in synth) synth.onvoiceschanged=()=>{}; }catch(e){}
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('[data-readpage]'); if(!b) return;
+    if(speaking&&curBtn===b){ stopSpeaking(); return; }
+    const scr=document.getElementById(b.dataset.readpage);
+    const blocks=$$('[data-read]',scr);
+    const parts=(blocks.length?blocks:[scr]).map(el=>({text:textOf(el),el}));
+    speakParts(parts,b);
+  });
+
+  /* ---------- original toggles ---------- */
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('[data-orig]'); if(!b) return;
+    const o=b.parentElement.querySelector('.orig');
+    const show=o.hidden; o.hidden=!show;
+    b.setAttribute('aria-pressed',show);
+    b.querySelector('span').textContent = show? t('hideOrig') : t('showOrig');
+  });
+
+  /* ---------- sheets (dialog, focus trap) ---------- */
+  let lastFocus=null, openEl=null;
+  function openSheet(sel){
+    lastFocus=document.activeElement; openEl=$(sel); openEl.hidden=false;
+    const f=openEl.querySelector('.x, button, input'); f&&f.focus();
+  }
+  function closeSheets(){
+    if(!openEl) return; openEl.hidden=true; openEl=null;
+    stopSpeaking();
+    if(lastFocus&&lastFocus.focus) lastFocus.focus(); lastFocus=null;
+  }
+  $$('.scrim').forEach(s=>s.addEventListener('click',e=>{ if(e.target===s||e.target.closest('[data-close]')) closeSheets(); }));
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){ closeSheets(); return; }
+    if(e.key==='Tab'&&openEl){
+      const f=$$('button, input, [href], [tabindex]:not([tabindex="-1"])',openEl).filter(el=>!el.disabled&&el.offsetParent!==null);
+      if(!f.length) return;
+      const first=f[0], last=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey&&document.activeElement===last){ e.preventDefault(); first.focus(); }
+    }
+  });
+  $('#aaBtn').onclick=()=>openSheet('#setScrim');
+
+  /* ---------- meds tabs ---------- */
+  const tabs=$$('#medTabs [role="tab"]');
+  const panels={morning:'#panel-morning',midday:'#panel-midday',evening:'#panel-evening',night:'#panel-night'};
+  function selectTab(tab){
+    tabs.forEach(x=>{ const on=x===tab; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1; });
+    Object.keys(panels).forEach(k=>{ $(panels[k]).hidden = tabs.findIndex(x=>x.id==='tab-'+k)!==tabs.indexOf(tab); });
+  }
+  tabs.forEach((tab,i)=>{
+    tab.addEventListener('click',()=>selectTab(tab));
+    tab.addEventListener('keydown',e=>{
+      let j=null;
+      if(e.key==='ArrowRight') j=(i+1)%tabs.length;
+      if(e.key==='ArrowLeft') j=(i-1+tabs.length)%tabs.length;
+      if(e.key==='Home') j=0; if(e.key==='End') j=tabs.length-1;
+      if(j!==null){ e.preventDefault(); selectTab(tabs[j]); tabs[j].focus(); }
+    });
+  });
+  (function(){ const h=new Date().getHours(); const k=(h>=4&&h<11)?'morning':h<20&&h>=4?'evening':'morning'; /* skip empty midday/night: show the next time with medicines */ selectTab($('#tab-'+k)); })();
+
+  /* ---------- jargon ---------- */
+  const T={
+    stent:{w:'Stent',a:'German: Stent',p:'A tiny tube made of fine metal mesh. It holds a narrow blood vessel open so blood can flow freely again.',m:'It stays in your body for good. You cannot feel it.'},
+    des:{w:'DES (Drug-Eluting Stent)',a:'German: medikamentenbeschichteter Stent',p:'A stent with a thin coating of medicine. The medicine stops the vessel from getting narrow again.',m:'Your letter names the model: Promus ELITE, 2.75 × 12 mm.'},
+    pci:{w:'PCI',a:'Perkutane Koronarintervention',p:'A treatment where a doctor guides a thin tube through a blood vessel in the wrist or groin up to the heart, and widens the narrow spot from the inside.',m:'No open surgery is needed.'},
+    khk:{w:'KHK',a:'Koronare Herzkrankheit · coronary heart disease',p:'The blood vessels that feed your heart muscle have become narrow. The heart then gets less blood and oxygen.',m:''},
+    rca:{w:'RCA',a:'Right coronary artery · rechte Herzkranzarterie',p:'One of the main blood vessels that supply the heart muscle with blood. "Distal" means the far end of it.',m:''},
+    dreigefaess:{w:'Drei-Gefäß-Erkrankung',a:'Three-vessel disease',p:'The heart has three main arteries. In your case, all three have narrow spots.',m:''},
+    kidney:{w:'Chronische Niereninsuffizienz',a:'Chronic kidney disease, stage III',p:'Your kidneys clean the blood less well than normal. Stage III is the middle of five stages.',m:''},
+    maligne:{w:'Maligne essentielle Hypertonie',a:'"Maligne" = severe',p:'Here "maligne" does NOT mean cancer. It means the high blood pressure is a severe form.',m:'Your letter adds: no blood pressure crisis was noted ("ohne Angabe einer hypertensiven Krise").'},
+    copd:{w:'COPD',a:'Chronisch obstruktive Lungenerkrankung',p:'A long-term lung illness. The airways are narrowed, so breathing out is harder.',m:'Your two inhalers are for this.'},
+    nyha:{w:'Belastungsdyspnoe NYHA II',a:'Shortness of breath on exertion, level 2 of 4',p:'You get out of breath with more effort, such as climbing stairs, but not when resting.',m:'NYHA is a scale from I (no complaints) to IV (complaints even at rest).'},
+    gfr:{w:'GFR',a:'Glomeruläre Filtrationsrate',p:'A number that shows how much blood your kidneys clean per minute. Higher is better.',m:'Your value was 36 ml/min. As general information: values above about 90 count as normal. Ask your doctor what yours means for you.'},
+    sinus:{w:'Sinusrhythmus',a:'Sinus rhythm',p:'The normal, regular heartbeat, started by the heart’s own natural pacemaker.',m:''},
+    timi:{w:'TIMI III Fluss',a:'TIMI flow grade 3',p:'A score for blood flow in a heart artery. Grade III is the best: blood flows fully again.',m:''},
+    hub:{w:'Hub',a:'Puff',p:'One press of the inhaler. "2 Hub" means two puffs.',m:''}
+  };
+  let curTerm=null;
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button.term'); if(!b) return;
+    const d=T[b.dataset.term]; if(!d) return; curTerm=d;
+    $('#termWord').textContent=d.w; $('#termAlso').textContent=d.a; $('#termPlain').textContent=d.p;
+    $('#termMore').textContent=d.m; $('#termMore').hidden=!d.m;
+    openSheet('#termScrim');
+  });
+  $('#termListen').onclick=()=>curTerm&&speakParts([{text:curTerm.w+'. '+curTerm.p+' '+curTerm.m}]);
+  $('#termAsk').onclick=()=>{ closeSheets(); openChat(); setTimeout(()=>ask('What does '+curTerm.w+' mean?'),250); };
+
+  /* ---------- chat (mock) ---------- */
+  const FROM='<span class="pill src-letter"><svg class="ico"><use href="#i-file"/></svg>'+t('fromLetter')+'</span>';
+  const NOT='<span class="pill src-general"><svg class="ico"><use href="#i-info"/></svg>Not in your letter</span>';
+  const A=[
+    {k:/clopidogrel|stop|blood thin|blutverd/i,a:'Your letter says: take Clopidogrel <strong>until the end of May 2023</strong>. After that, keep taking only ASS, for life. Please talk to your doctor before you stop anything.',s:FROM},
+    {k:/appoint|check.?up|termin|next|doctor visit/i,a:'Your letter says the next check-up is <strong>in about 6 months</strong>. It gives no exact date. Please call Dr. Mustermann’s practice to book it: <strong>030 0987654321</strong>.',s:FROM},
+    {k:/serious|worry|bad|dangerous|schlimm/i,a:'The letter says the treatment worked and there were no problems afterwards. When you went home you had no complaints. Your heart still needs care, so keep taking your medicines and go to the check-ups.',s:FROM},
+    {k:/drink|water|litre|liter|trink/i,a:'Your letter says to drink <strong>1.5 to 2 litres a day</strong>, because of the contrast dye and your weaker kidneys.',s:FROM},
+    {k:/stent/i,a:'A stent is a tiny mesh tube that holds a blood vessel open. You got one coated stent (Promus ELITE, 2.75 × 12 mm) on 23 June 2022.',s:FROM},
+    {k:/kidney|niere|gfr/i,a:'Your letter says your kidneys work less well (stage III) and the kidney value GFR was 36 ml/min on 22 June 2022. That is why drinking enough matters.',s:FROM},
+    {k:/medic|pill|tablet|morning|evening/i,a:'In the morning: ASS, Clopidogrel, Candesartan, Torasemid, Pantoprazol and 2 puffs of each inhaler. In the evening: Atorvastatin and Ezetimib. Nothing at midday or night.',s:FROM}
+  ];
+  function openChat(){ openSheet('#chatScrim'); setTimeout(()=>$('#chatInput').focus(),50); }
+  $('#fab').onclick=openChat; $('#askOwn').onclick=openChat;
+  function add(html,who){ const m=document.createElement('div'); m.className='msg '+who; m.innerHTML=html; $('#chatlog').appendChild(m); $('#chatBody').scrollTop=1e6; return m; }
+  function ask(q){
+    q=q.trim(); if(!q) return;
+    add(q.replace(/</g,'&lt;'),'me'); $('#chips').hidden=true;
+    const typing=add('<span class="typing"><span></span><span></span><span></span></span>','ai');
+    setTimeout(()=>{
+      typing.remove();
+      let ans=null;
+      const tm=q.match(/what does (.+) mean/i);
+      if(tm){ const key=Object.keys(T).find(k=>T[k].w.toLowerCase()===tm[1].toLowerCase()); if(key) ans={a:T[key].p+(T[key].m?' '+T[key].m:''),s:FROM}; }
+      if(!ans) ans=A.find(x=>x.k.test(q));
+      if(!ans) ans={a:'Your letter does not say anything about this, so I don’t want to guess. Please ask your heart doctor, Dr. Mustermann, at <strong>030 0987654321</strong>, or the hospital discharge team at <strong>1234566</strong>.',s:NOT};
+      const m=add(ans.a+'<br>'+ans.s+'<br><button class="say" type="button"><svg class="ico"><use href="#i-vol"/></svg>'+t('readAloud')+'</button>','ai');
+      m.querySelector('.say').onclick=()=>{ const c=m.cloneNode(true); $$('.say,.pill',c).forEach(n=>n.remove()); speakParts([{text:c.innerText}]); };
+    },900);
+  }
+  $('#chips').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(c) ask(c.textContent); });
+  $('#chatForm').addEventListener('submit',e=>{ e.preventDefault(); const i=$('#chatInput'); ask(i.value); i.value=''; });
+  $('#micBtn').onclick=()=>toast(t('micMock'));
+
+  /* ---------- init ---------- */
+  applyLang(); refreshDone(); render();
+  deskMQ.addEventListener && deskMQ.addEventListener('change',()=>render());
+})();
+</script>
+</body>
+</html>
