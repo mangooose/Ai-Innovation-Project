@@ -1,6 +1,6 @@
 # Letter explainer pipeline (Trusted Tokens)
 
-Turns a German doctor's letter into the JSON the Klartext mockup shows.
+Turns a German doctor's letter into the JSON the MediKlar app shows.
 
 - `run.py` sends the letter to Trusted Tokens (`zai-org/GLM-5.3`, OpenAI-compatible, streaming, `reasoning_effort: low`) with a strict "only facts from the letter" prompt, and saves JSON.
 - `check.py` flags any number or date in the output that is not in the letter.
