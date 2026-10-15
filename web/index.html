@@ -669,7 +669,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
       aiFail:'The AI explanation did not work: {e}. Below is what we read from your letter.',redoLang:'This explanation is in English. Explain again in German?',redoBtn:'Explain again',
       chatHello:'Hello, I’m Klara. What would you like to know about your letter? You can type, or tap a question below.',chatSays:'Your letter says (in German):',chatNotFound:'I could not find this in your letter. Please ask your doctor or the practice.',chatContacts:'Phone numbers in your letter:',chatMedsIntro:'Medicines in your letter:',chatAiFail:'Sorry, the AI answer did not work. ',
       chipMeds:'Which medicines do I take?',chipNext:'When is my next appointment?',chipCall:'Who can I call?',chipSerious:'Is it serious?',
-      unitTablet:'tablet',unitPuff:'puff',until:'until',beforeEat:'Before eating'},
+      unitTablet:'tablet',machineTr:'Translated on this device by your browser.',noTrYet:'This is the original German sentence from your letter. For an English explanation, turn on the AI explanation in settings (Aa).',unitPuff:'puff',until:'until',beforeEat:'Before eating'},
     de:{tagline:'Ihr Brief, in einfachen Worten',back:'Zurück',settings:'Einstellungen',textSize:'Schriftgröße',smaller:'Kleinere Schrift',bigger:'Größere Schrift',previewText:'So groß wird Ihr Text erscheinen.',contrast:'Hoher Kontrast',on:'Ein',off:'Aus',speed:'Vorlese-Tempo',slow:'Langsam',normal:'Normal',language:'Sprache',newLetter:'Neuer Brief',readPage:'Diese Seite vorlesen',stop:'Stopp',askQ:'Klara fragen',yourLetter:'Ihr Arztbrief',takePhoto:'Foto machen',chooseFile:'Stattdessen Datei wählen',reading:'Einen Moment…',readingSub:'Wir lesen Ihren Brief für Sie.',worryQ:'Kurz gesagt',medicines:'Medikamente',explain:'Bericht',questions:'Fragen',help:'Hilfe',addReminder:'Erinnerung setzen',copy:'Kopieren',morning:'Morgens',midday:'Mittags',evening:'Abends',night:'Nachts',nothingNow:'Um diese Zeit nichts.',schemaQ:'Was bedeutet 1 – 0 – 1 – 0?',schemaA:'Die vier Zahlen stehen für morgens – mittags – abends – nachts. „1 – 0 – 1 – 0“ heißt: eine morgens und eine abends. „2 – 0 – 0 – 0“ heißt: zwei morgens.',medsNote:'Namen, Mengen und Zeiten stammen aus Ihrem Brief.',tapYellow:'Tippen Sie auf ein gelbes Wort, um seine Bedeutung zu sehen.',sideBySide:'Jeder Teil, nebeneinander',showOrig:'Original auf Deutsch zeigen',hideOrig:'Original ausblenden',letterSays:'Im Brief steht',fromLetter:'Aus Ihrem Brief',general:'Allgemeine Information',notInLetter:'Steht nicht im Brief',askOwnQ:'Klara eine eigene Frage stellen',whoToCall:'Wen Sie anrufen können',notAdvice:'Dies ist eine Erklärung, kein medizinischer Rat.',notAdvice2:'Sie wiederholt nur, was in Ihrem Brief steht, in einfacheren Worten. Sprechen Sie immer mit Ihrer Ärztin oder Ihrem Arzt, bevor Sie etwas ändern. Wo der Brief nichts sagt, sagen wir das und raten nicht.',termTitle:'Was bedeutet dieses Wort?',readAloud:'Vorlesen',askMore:'Klara dazu fragen',chatTitle:'Klara fragen',chatSub:'Klara antwortet nur aus Ihrem Brief. Sie gibt keinen medizinischen Rat.',typeQ:'Ihre Frage eingeben…',speakQ:'Frage sprechen',close:'Schließen',whyLabel:'Warum (aus Ihrem Brief):',tOverview:'Überblick',tTodo:'Aufgabe',tMeds:'Medikamente',tExplain:'Bericht',tQuestions:'Fragen',tHelp:'Hilfe',tUpload:'Ihr Arztbrief',tReading:'Lesevorgang…',reminderSet:'Erinnerung notiert. (Kalender-Erinnerungen gibt es noch nicht.)',copied:'Kopiert: ',noVoice:'Das Vorlesen ist auf diesem Gerät nicht verfügbar.',micMock:'Bitte tippen Sie Ihre Frage. Sprechen geht noch nicht.',sizeNames:['Normal','Groß','Größer','Sehr groß','Riesig'],
       tryExample:'Mit einem Beispielbrief ausprobieren',exampleBadge:'Beispielbrief',cancel:'Abbrechen',tryAgain:'Noch einmal versuchen',
       privacyOff:'Ihr Brief wird nur auf diesem Gerät gelesen. Nichts wird hochgeladen.',privacyOn:'Ihr Brief wird auf diesem Gerät gelesen. Für die Erklärung wird sein Text an den eingestellten KI-Dienst gesendet.',
@@ -686,7 +686,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
       aiFail:'Die KI-Erklärung hat nicht funktioniert: {e}. Unten steht, was wir aus Ihrem Brief gelesen haben.',redoLang:'Diese Erklärung ist auf Englisch. Noch einmal auf Deutsch erklären?',redoBtn:'Neu erklären',
       chatHello:'Hallo, ich bin Klara. Was möchten Sie über Ihren Brief wissen? Sie können tippen oder unten eine Frage antippen.',chatSays:'In Ihrem Brief steht:',chatNotFound:'Das habe ich in Ihrem Brief nicht gefunden. Bitte fragen Sie Ihre Ärztin, Ihren Arzt oder die Praxis.',chatContacts:'Telefonnummern in Ihrem Brief:',chatMedsIntro:'Medikamente in Ihrem Brief:',chatAiFail:'Entschuldigung, die KI-Antwort hat nicht funktioniert. ',
       chipMeds:'Welche Medikamente nehme ich?',chipNext:'Wann ist mein nächster Termin?',chipCall:'Wen kann ich anrufen?',chipSerious:'Ist es ernst?',
-      unitTablet:'Tablette',unitPuff:'Hub',until:'bis',beforeEat:'Vor dem Essen'}
+      unitTablet:'Tablette',machineTr:'Vom Browser auf diesem Gerät übersetzt.',noTrYet:'Das ist der Originalsatz aus Ihrem Brief.',unitPuff:'Hub',until:'bis',beforeEat:'Vor dem Essen'}
   };
   I18N.de.redoLang='Diese Erklärung ist auf Deutsch. Noch einmal auf Englisch erklären?';
   I18N.en.redoLang='This explanation is in German. Explain again in English?';
@@ -1007,7 +1007,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 
   function findStay(text){
     const D='(\\d{1,2}\\.\\d{1,2}\\.\\d{4})'; let m;
-    if((m=text.match(new RegExp('Aufnahme(?:datum)?\\s*\\n\\s*Entlass(?:ungs)?datum\\s*\\n\\s*'+D+'\\s*\\n\\s*'+D,'i')))) return [m[1],m[2]];
+    if((m=text.match(new RegExp('Aufnahme(?:datum)?\\s+Entlass(?:ungs)?datum\\s+'+D+'\\s+'+D,'i')))) return [m[1],m[2]];
     if((m=text.match(new RegExp('vom\\s+'+D+'\\s+bis\\s+(?:zum\\s+)?'+D,'i')))) return [m[1],m[2]];
     const a=text.match(new RegExp('Aufnahme(?:datum|\\s+am)?:?\\s*'+D,'i')), b=text.match(new RegExp('Entlass(?:ungs)?(?:datum|\\s+am)?:?\\s*'+D,'i'));
     return (a&&b)?[a[1],b[1]]:null;
@@ -1022,9 +1022,64 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
       let when='';
       const m=s.match(/bis (?:einschließlich |zum |Ende )?(?:\d{1,2}\/\d{4}|\d{1,2}\.\d{1,2}\.\d{4}|(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember) \d{4})|in (?:ca\.|etwa)?\s*\d+\s*(?:Tagen|Wochen|Monaten|Jahren)|lebenslang|täglich|dauerhaft|am \d{1,2}\.\d{1,2}\.\d{4}/i);
       if(m) when=m[0];
-      out.push({action:s, detail:'', when, then:null, source:'letter', german:true});
+      const tr=translateTodo(s);
+      out.push(Object.assign({action:s, orig:s, detail:'', when, then:null, source:'letter', german:true}, tr||{}));
     });
     return out;
+  }
+
+  /* ---- common doctor's instructions in plain English and simple German (numbers copied from the letter) ---- */
+  const MON_DE=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  const MON_EN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const enNum=x=>String(x).replace(',','.');
+  function whenTr(w){
+    if(!w) return {en:'',de:''}; let m;
+    if(/lebenslang|dauerhaft/i.test(w)) return {en:'For life',de:'Lebenslang'};
+    if(/täglich/i.test(w)) return {en:'Every day',de:'Jeden Tag'};
+    if((m=w.match(/in (?:ca\.|etwa)?\s*(\d+)\s*(Tagen|Wochen|Monaten|Jahren)/i))){ const u={tagen:['days','Tagen'],wochen:['weeks','Wochen'],monaten:['months','Monaten'],jahren:['years','Jahren']}[m[2].toLowerCase()]; return {en:'In about '+m[1]+' '+u[0],de:'In etwa '+m[1]+' '+u[1]}; }
+    if((m=w.match(/am (\d{1,2}\.\d{1,2}\.\d{4})/i))) return {en:'On '+m[1],de:'Am '+m[1]};
+    if((m=w.match(/bis (?:einschließlich |zum |Ende )?(.+)/i))){ let x=m[1]; const mm=x.match(/^(\d{1,2})\/(\d{4})$/); const xe=mm?MON_EN[+mm[1]-1]+' '+mm[2]:x.replace(new RegExp(MON_DE.join('|')),z=>MON_EN[MON_DE.indexOf(z)]); const xd=mm?MON_DE[+mm[1]-1]+' '+mm[2]:x;
+      return /einschließlich|Ende/i.test(w)?{en:'Until the end of '+xe,de:'Bis Ende '+xd}:{en:'Until '+xe,de:'Bis '+xd}; }
+    return {en:'',de:''};
+  }
+  function translateTodo(s){
+    const en=[], de=[]; let then=null, m;
+    const medNames=[...new Set((s.match(/\b(ASS|[A-ZÄÖÜ][a-zäöü]{4,}(?:in|ol|at|an|el|id|en|ib|on|ax|ban|il))\b/g)||[]).filter(n=>!/^(Kontrolle|Fortführung|Einhaltung|Blutzucker|Praxis|Wiedervorstellung|Verlaufskontrolle|Weiterbetreuung|Exposition|Therapie|Mahlzeiten|Monaten|Wochen|Risikofaktoren)$/.test(n)))];
+    const ml=medNames.join(lang==='de'?' und ':' and ');
+    const untilM=s.match(/bis (?:einschließlich |zum |Ende )?(?:\d{1,2}\/\d{4}|\d{1,2}\.\d{1,2}\.\d{4}|(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember) \d{4})/i);
+    if(/fortführung|fortsetzen|weiter(?:hin)? (?:einnehmen|nehmen)|plättchenaggregation|thrombozytenaggregation/i.test(s) && medNames.length){
+      const u=whenTr(untilM?untilM[0]:'');
+      const lc=x=>x.charAt(0).toLowerCase()+x.slice(1);
+      en.push('Keep taking '+medNames.join(' and ')+(u.en?' '+lc(u.en):'')+'.'); de.push('Nehmen Sie '+medNames.join(' und ')+' weiter'+(u.de?', '+lc(u.de):'')+'.');
+      if((m=s.match(/anschließend\s+([A-ZÄÖÜ][\wäöü]*)-?\s?Mono/i))){ const life=/lebenslang/i.test(s); then={en:'After that: '+m[1]+' alone'+(life?', for life.':'.'), de:'Danach: nur noch '+m[1]+(life?', lebenslang.':'.')}; }
+    }
+    if((m=s.match(/(\d+(?:,\d+)?)\s*[-–]\s*(\d+(?:,\d+)?)\s*(?:Liter|l\b)/i)) && /trink|flüssigkeit/i.test(s)){ en.push('Drink '+enNum(m[1])+' to '+enNum(m[2])+' litres a day.'); de.push('Trinken Sie '+m[1]+' bis '+m[2]+' Liter am Tag.'); }
+    if(/risikofaktoren/i.test(s)){ en.push('Have your '+(/kardiovaskul|herz/i.test(s)?'heart ':'')+'risk factors checked.'); de.push('Lassen Sie Ihre '+(/kardiovaskul|herz/i.test(s)?'Herz-':'')+'Risikofaktoren kontrollieren.'); }
+    if(/weiterbetreuung|weiterbehandlung|weitere betreuung/i.test(s)){ const k=/kardiolog/i.test(s); en.push(k?'Keep seeing a heart specialist (cardiologist).':'Keep seeing your doctor for further care.'); de.push(k?'Gehen Sie weiter zu Ihrer Herzärztin oder Ihrem Herzarzt.':'Gehen Sie weiter zu Ihrer Ärztin oder Ihrem Arzt.'); }
+    if((m=s.match(/HbA1c[^.]*?in (?:ca\.|etwa)?\s*(\d+)\s*(Wochen|Monaten)/i))){ en.push('Have your HbA1c (long-term blood sugar) checked in '+m[1]+(/woch/i.test(m[2])?' weeks.':' months.')); de.push('Lassen Sie Ihren HbA1c-Wert (Langzeit-Blutzucker) in '+m[1]+' '+m[2]+' kontrollieren.'); }
+    else if((m=s.match(/(?:kontrolle|verlaufskontrolle|wiedervorstellung|vorstellung)[^.]*?in (?:ca\.|etwa)?\s*(\d+)\s*(Tagen|Wochen|Monaten)/i))){ const u={tagen:['days','Tagen'],wochen:['weeks','Wochen'],monaten:['months','Monaten']}[m[2].toLowerCase()]; en.push('Next check-up in about '+m[1]+' '+u[0]+'.'); de.push('Nächste Kontrolle in etwa '+m[1]+' '+u[1]+'.'); }
+    if((m=s.match(/(?:wiedervorstellung|termin|kontrolle|vorstellung)[^.]*?am (\d{1,2}\.\d{1,2}\.\d{4})(?:\s*um (\d{1,2}[:.]\d{2}))?/i))){ const pr=/praxis/i.test(s); en.push('Appointment'+(pr?' at the practice':'')+' on '+m[1]+(m[2]?' at '+m[2].replace('.',':'):'')+'.'); de.push('Termin'+(pr?' in der Praxis':'')+' am '+m[1]+(m[2]?' um '+m[2]+' Uhr':'')+'.'); }
+    if(/blutzucker/i.test(s) && /mess/i.test(s)){ const mo=/morgens/i.test(s), d=/täglich/i.test(s); en.push('Measure your blood sugar '+(d&&mo?'every morning':d?'every day':'regularly')+(/notier|dokument|aufschreib/i.test(s)?' and write it down.':'.')); de.push('Messen Sie Ihren Blutzucker '+(d&&mo?'jeden Morgen':d?'jeden Tag':'regelmäßig')+(/notier|dokument|aufschreib/i.test(s)?' und schreiben Sie ihn auf.':'.')); }
+    if(/blutdruck/i.test(s) && /mess/i.test(s)){ en.push('Measure your blood pressure regularly'+(/notier|dokument|aufschreib|protokoll/i.test(s)?' and write it down.':'.')); de.push('Messen Sie regelmäßig Ihren Blutdruck'+(/notier|dokument|aufschreib|protokoll/i.test(s)?' und schreiben Sie ihn auf.':'.')); }
+    if(/gewicht/i.test(s) && /täglich|kontroll|wieg/i.test(s)){ en.push('Weigh yourself '+(/täglich/i.test(s)?'every day.':'regularly.')); de.push('Wiegen Sie sich '+(/täglich/i.test(s)?'jeden Tag.':'regelmäßig.')); }
+    if(/nicht[^.]*(absetzen|abzusetzen|weglassen|pausieren)/i.test(s)){ en.push('Do not stop '+(ml||'your medicine')+' on your own.'); de.push('Setzen Sie '+(medNames.join(' und ')||'Ihre Medikamente')+' nicht selbst ab.'); }
+    if(/(laborkontrolle|blutabnahme|blutbild|nierenwert|kreatinin|kalium)[^.]*kontroll|kontrolle (?:der|des) (?:nierenwerte|elektrolyte|kalium|blutbild)/i.test(s) && !en.length){ en.push('Have your blood tested again'+((m=s.match(/in (?:ca\.|etwa)?\s*(\d+)\s*(Tagen|Wochen)/i))?' in about '+m[1]+(/woch/i.test(m[2])?' weeks':' days'):'')+'.'); de.push('Lassen Sie Ihr Blut erneut untersuchen'+(m?' in etwa '+m[1]+' '+m[2]:'')+'.'); }
+    if(!en.length) return null;
+    const w=whenTr((s.match(/bis (?:einschließlich |zum |Ende )?(?:\d{1,2}\/\d{4}|\d{1,2}\.\d{1,2}\.\d{4}|(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember) \d{4})|in (?:ca\.|etwa)?\s*\d+\s*(?:Tagen|Wochen|Monaten|Jahren)|lebenslang|täglich|dauerhaft|am \d{1,2}\.\d{1,2}\.\d{4}/i)||[''])[0]);
+    return {tr:{en:en.join(' '), de:de.join(' ')}, whenTr:w, thenTr:then};
+  }
+  const DICT_EN=[[/Filmtabletten?|Tabletten?|Tabl\./gi,'tablet'],[/magensaftresist(?:ent)?e?\.?/gi,'gastro-resistant'],[/Kapseln?/gi,'capsule'],[/Hübe|Hub/g,'puff(s)'],[/Tropfen/gi,'drops'],[/vor den Mahlzeiten|vor dem Essen/gi,'before meals'],[/zu den Mahlzeiten|zum Essen/gi,'with meals'],[/nach den Mahlzeiten|nach dem Essen/gi,'after meals'],[/nüchtern/gi,'on an empty stomach'],[/bei Bedarf/gi,'when needed'],[/\bbis\b/g,'until'],[/lebenslang/gi,'for life'],[/Montag/g,'Monday'],[/Dienstag/g,'Tuesday'],[/Mittwoch/g,'Wednesday'],[/Donnerstag/g,'Thursday'],[/Freitag/g,'Friday'],[/Samstag/g,'Saturday'],[/Sonntag/g,'Sunday'],[/in der Zeit von/gi,'from'],[/\s*Uhr\b/g,''],[/\bund\b/g,'and']];
+  const toEn=x=>{ if(!x||lang!=='en') return x; let y=String(x); DICT_EN.forEach(([r,v])=>y=y.replace(r,v)); return y.replace(/(\d{1,2})\/(\d{4})/g,(z,a,b)=>+a>=1&&+a<=12?MON_EN[+a-1]+' '+b:z); };
+  const HEAD_EN={'diagnose':'Diagnosis','diagnosen':'Diagnoses','aufnahmediagnose':'Diagnoses at admission','aufnahmediagnosen':'Diagnoses at admission','entlassungsdiagnosen':'Diagnoses at discharge','hauptdiagnose':'Main diagnosis','nebendiagnosen':'Other diagnoses','anamnese':'Medical history','aufnahmebefund':'Examination at admission','befund':'Findings','befunde':'Findings','untersuchungsbefunde':'Test results','labor':'Lab tests','verlauf':'Course in hospital','therapie':'Treatment','prozeduren':'Procedures','vorherige prozeduren':'Earlier procedures','epikrise':'Summary','beurteilung':'Assessment','zusammenfassung':'Summary','entlassungsbefund':'Condition at discharge','procedere':'Next steps','prozedere':'Next steps','weiteres prozedere':'Next steps','weiteres prozedere und empfehlungen':'Next steps and advice','weiteres procedere':'Next steps','empfehlung':'Advice','empfehlungen':'Advice','therapieempfehlung':'Treatment advice','therapieempfehlungen':'Treatment advice','grund der einweisung':'Reason for admission','kontrolltermin':'Check-up','kontrolltermine':'Check-ups','wiedervorstellung':'Follow-up visit'};
+  const headTr=h=>lang==='en'?(HEAD_EN[h.toLowerCase()]||h):h;
+
+  // optional: the browser's built-in, on-device translator (Chrome) for sentences without a rule
+  let _tr=null;
+  async function deviceTranslator(){
+    if(_tr!==null) return _tr;
+    _tr=false;
+    try{ if('Translator' in self){ const a=await self.Translator.availability({sourceLanguage:'de',targetLanguage:'en'}); if(a!=='unavailable') _tr=await self.Translator.create({sourceLanguage:'de',targetLanguage:'en'}); } }catch(e){ _tr=false; }
+    return _tr;
   }
 
   function analyzeOffline(letter, source, conf){
@@ -1032,7 +1087,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     const secs=letterSections(text);
     const meds=letterMedicines(text).map(m=>({name:m.name, dose:'', form:m.unit, morning:m.schedule[0], midday:m.schedule[1], evening:m.schedule[2], night:m.schedule[3], note:m.notes.join('; ')||null}));
     const stay=findStay(text);
-    const dateM=text.match(/(?:Datum|Erstellungszeitpunkt|den)\s*:?\s*\n?\s*(\d{1,2}\.\d{1,2}\.\d{4})/i);
+    const dateM=text.match(/(?:Erstellungszeitpunkt|Briefdatum|Datum des Briefes|,\s*den)\s*:?\s*(?:\n\s*\S+\s*)?\n?\s*(\d{1,2}\.\d{1,2}\.\d{4})/i);
     const fromM=text.match(/^(?:Name:\s*)?((?:Klinik|Krankenhaus|Klinikum|Praxis|Universitätsklinikum|MVZ|Gemeinschaftspraxis)(?=[\s,])[^\n]{3,80})$/im);
     const words=[]; GLOSS.forEach(g=>{ if(g.re.test(text)) words.push({term:g.w, plain:g[lang]||g.en, g}); });
     const dx=[]; text.split('\n').forEach(l=>{ if(/^(?:[A-Z]\d{2}(?:\.\d{1,2})?[A-Z]?|Diagnose:)\s+\S/.test(l) && dx.length<15) dx.push(l); });
@@ -1312,8 +1367,24 @@ Return ONLY one JSON object, no other text, with exactly this shape:
     const todos=d.todos||[];
     $('#todoBlock').hidden=!todos.length;
     $('#todoEyebrow').textContent = todos.length===1?t('yourTodo1'):t('yourTodosN',{n:todos.length});
-    $('#todoList').innerHTML=todos.map((td,i)=>'<button class="todorow" data-read type="button" data-nav="todo-'+i+'"><span class="ti" aria-hidden="true"><svg class="ico"><use href="'+todoIcon(td)+'"/></svg></span><span><span class="act"'+(td.german?' lang="de"':'')+'>'+esc(td.german?clip(td.action,110):td.action)+'</span>'+(td.when?'<br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span>'+esc(td.when)+'</span></span>':'')+'</span><svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg></button>').join('');
+    $('#todoList').innerHTML=todos.map((td,i)=>{ const v=tdView(td); return '<button class="todorow" data-read type="button" data-nav="todo-'+i+'"><span class="ti" aria-hidden="true"><svg class="ico"><use href="'+todoIcon(td)+'"/></svg></span><span><span class="act"'+(v.isDe?' lang="de"':'')+'>'+esc(clip(v.text,140))+'</span>'+(v.when?'<br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span>'+esc(v.when)+'</span></span>':'')+'</span><svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg></button>'; }).join('');
+    translateRest(d);
     renderMeds(d); renderExplain(d); renderFaq(d); renderHelp(d); resetChat();
+  }
+  // what to show for a to-do in the current language
+  function tdView(td){
+    if(!td.german) return {text:td.action, when:td.when, then:td.then, isDe:false, translated:false};
+    const tr=td.tr||(lang==='en'&&td.mt?{en:td.mt}:null);
+    const text=tr&&tr[lang]?tr[lang]:td.orig;
+    const w=td.whenTr&&td.whenTr[lang]?td.whenTr[lang]:(lang==='en'?'':td.when);
+    return {text, when:w, then:td.thenTr?td.thenTr[lang]:null, isDe:text===td.orig&&lang!=='de', translated:text!==td.orig, machine:!td.tr&&!!td.mt};
+  }
+  let trRunning=false;
+  async function translateRest(d){
+    if(lang!=='en'||d.mode!=='letter'||trRunning) return;
+    const need=(d.todos||[]).filter(td=>td.german&&!td.tr&&!td.mt); if(!need.length) return;
+    trRunning=true;
+    try{ const tr=await deviceTranslator(); if(tr){ for(const td of need){ try{ td.mt=await tr.translate(td.orig); }catch(e){} } if(DATA===d) { renderData(); render(); } } } finally { trRunning=false; }
   }
   const clip=(s,n)=>s.length>n?s.slice(0,n-1).replace(/\s+\S*$/,'')+' …':s;
 
@@ -1323,11 +1394,14 @@ Return ONLY one JSON object, no other text, with exactly this shape:
     const td=todos[todoIdx];
     $$('.todoIcoUse').forEach(u=>u.setAttribute('href',todoIcon(td)));
     $('#todoTitle').textContent=t('todoOf',{n:todoIdx+1,m:todos.length});
-    $('#todoAction').innerHTML = td.german ? highlight(td.action) : esc(td.action);
-    $('#todoAction').lang = td.german?'de':'';
-    $('#todoWhenWrap').hidden=!td.when; $('#todoWhen').textContent=td.when||'';
-    $('#todoDetail').innerHTML = td.detail ? '<strong>'+esc(t('whyLabel'))+'</strong> '+esc(td.detail) : (td.german?'<span class="muted">'+esc(t('fromLetterDe'))+'</span>':'');
-    $('#todoThen').hidden=!td.then; $('#todoThen').innerHTML = td.then?'<strong>'+esc(t('thenLabel'))+'</strong> '+esc(td.then):'';
+    const v=tdView(td);
+    $('#todoAction').innerHTML = v.isDe ? highlight(v.text) : esc(v.text);
+    $('#todoAction').lang = v.isDe?'de':'';
+    $('#todoWhenWrap').hidden=!v.when; $('#todoWhen').textContent=v.when||'';
+    $('#todoDetail').innerHTML = td.detail ? '<strong>'+esc(t('whyLabel'))+'</strong> '+esc(td.detail)
+      : (td.german && (v.translated || lang==='de')) ? '<span class="orig lettertext" lang="de" style="display:block"><span class="lab">'+esc(t('letterSays'))+'</span>'+highlight(td.orig)+'</span>'+(v.machine?'<span class="muted" style="font-size:.8rem">'+esc(t('machineTr'))+'</span>':'')
+      : (td.german?'<span class="muted">'+esc(t('noTrYet'))+'</span>':'');
+    $('#todoThen').hidden=!v.then; $('#todoThen').innerHTML = v.then?'<strong>'+esc(t('thenLabel'))+'</strong> '+esc(v.then):'';
     $('#todoSrc').innerHTML=srcPill(td.source||'letter');
     const nav=[];
     if(todoIdx>0) nav.push('<button class="btn ghost" type="button" data-nav="todo-'+(todoIdx-1)+'"><svg class="ico" style="transform:rotate(90deg)"><use href="#i-chev"/></svg>'+esc(t('prev'))+'</button>');
@@ -1342,7 +1416,7 @@ Return ONLY one JSON object, no other text, with exactly this shape:
     $('#medsBody').hidden=!timed.length; $('#medsEmpty').hidden=!!meds.length; $('#medsEmpty').textContent=t('noMeds');
     SLOTS.forEach(s=>{
       const list=timed.filter(m=>m[s]>0);
-      $('#panel-'+s).innerHTML = list.length ? '<ul>'+list.map(m=>'<li><span class="dose">'+esc(fmtN(m[s]))+'</span><div><b>'+esc(m.name)+'</b>'+(m.form?'<span class="for">'+esc(m.form)+'</span>':'')+(m.note?'<br><span class="flag">'+esc(m.note)+'</span>':'')+'</div></li>').join('')+'</ul>' : '<p class="emptytab">'+esc(t('nothingNow'))+'</p>';
+      $('#panel-'+s).innerHTML = list.length ? '<ul>'+list.map(m=>'<li><span class="dose">'+esc(fmtN(m[s]))+'</span><div><b>'+esc(m.name)+'</b>'+(m.form?'<span class="for">'+esc(d.mode==='letter'?toEn(m.form):m.form)+'</span>':'')+(m.note?'<br><span class="flag">'+esc(d.mode==='letter'?toEn(m.note):m.note)+'</span>':'')+'</div></li>').join('')+'</ul>' : '<p class="emptytab">'+esc(t('nothingNow'))+'</p>';
     });
     $('#medsOther').innerHTML = untimed.length ? '<article class="card" data-read><p class="eyebrow" style="margin-bottom:.4rem">'+esc(t('otherMeds'))+'</p><ul class="iflist">'+untimed.map(m=>'<li><b>'+esc(m.name)+'</b>'+(m.note?' — '+esc(m.note):'')+'</li>').join('')+'</ul></article>' : '';
     if(d.source==='ocr' && meds.length) $('#medsOther').innerHTML+='<p class="notinletter"><svg class="ico"><use href="#i-info"/></svg><span>'+esc(t('medsPhotoNote'))+'</span></p>';
@@ -1368,7 +1442,7 @@ Return ONLY one JSON object, no other text, with exactly this shape:
     $('#detailsEyebrow').textContent = letterMode?t('lettersParts'):t('sideBySide');
     $('#detailsBlock').hidden=!parts.length;
     $('#detailsList').innerHTML = parts.map(p=> letterMode
-      ? '<details><summary><span lang="de">'+esc(p.section)+'</span><svg class="ico chev"><use href="#i-chev"/></svg></summary><div class="dbody"><div class="orig lettertext" lang="de" data-read><span class="lab">'+esc(t('letterSays'))+'</span>'+highlight(p.original)+'</div><p class="hint"><svg class="ico"><use href="#i-info"/></svg><span>'+esc(t('tapYellow'))+'</span></p></div></details>'
+      ? '<details><summary><span>'+esc(headTr(p.section))+'</span><svg class="ico chev"><use href="#i-chev"/></svg></summary><div class="dbody"><div class="orig lettertext" lang="de" data-read><span class="lab">'+esc(t('letterSays'))+'</span>'+highlight(p.original)+'</div><p class="hint"><svg class="ico"><use href="#i-info"/></svg><span>'+esc(t('tapYellow'))+'</span></p></div></details>'
       : '<details><summary><span>'+esc(p.section)+'</span><svg class="ico chev"><use href="#i-chev"/></svg></summary><div class="dbody"><p data-read>'+esc(p.plain)+'</p><button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span>'+esc(t('showOrig'))+'</span></button><div class="orig" lang="de" hidden><span class="lab">'+esc(t('letterSays'))+'</span>'+highlight(p.original)+'</div></div></details>'
     ).join('');
     // full text
@@ -1385,7 +1459,7 @@ Return ONLY one JSON object, no other text, with exactly this shape:
 
   function renderHelp(d){
     const cs=d.contacts||[];
-    $('#contactList').innerHTML = cs.length ? cs.map(c=>'<div class="contact"><span class="ci"><svg class="ico"><use href="#i-phone"/></svg></span><div style="min-width:0"><strong>'+esc(c.who)+'</strong>'+(c.hours?'<br><span class="muted">'+esc(c.hours)+'</span>':'')+'<br><span class="num">'+esc(c.phone)+'</span> <button class="copy" type="button" data-copy="'+esc(c.phone)+'"><svg class="ico"><use href="#i-copy"/></svg><span>'+esc(t('copy'))+'</span></button></div></div>').join('')
+    $('#contactList').innerHTML = cs.length ? cs.map(c=>'<div class="contact"><span class="ci"><svg class="ico"><use href="#i-phone"/></svg></span><div style="min-width:0"><strong>'+esc(c.who)+'</strong>'+(c.hours?'<br><span class="muted">'+esc(d.mode==='letter'?toEn(c.hours):c.hours)+'</span>':'')+'<br><span class="num">'+esc(c.phone)+'</span> <button class="copy" type="button" data-copy="'+esc(c.phone)+'"><svg class="ico"><use href="#i-copy"/></svg><span>'+esc(t('copy'))+'</span></button></div></div>').join('')
       : '<p class="muted">'+esc(t('noContacts'))+'</p>';
     const f=d.if_not;
     $('#ifNotCard').hidden=!(f&&f.points&&f.points.length);
