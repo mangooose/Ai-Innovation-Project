@@ -1,0 +1,121 @@
+{
+ "_note": "Hand-written from the original UI mock for sample_letter_cardiology. Used only when KLARTEXT_FAKE=1 (UI tests without an API key). Not AI output.",
+ "en": {
+  "patient_salutation": "Mr Königsstein",
+  "worry": {"level": "calm", "headline": "No. This is good news.", "reason": "The treatment went well. You went home with no complaints."},
+  "about": "About this letter: your heart blood vessel was widened with a stent on 23 June 2022, and you went home well.",
+  "todos": [
+   {"icon": "pill", "short": "Take both blood thinners", "long": "Take both blood thinners every morning", "sub": "ASS 100 mg and Clopidogrel 75 mg", "when": "Until end of May 2023", "why": "After May 2023, stop only Clopidogrel. Keep taking ASS for the rest of your life.", "warn": "Never stop or change a medicine on your own. Ask your doctor first.", "phone": null, "if_not": {"source": "general", "points": ["If the blood thinners are stopped too early, a blood clot can form in the new stent. That can cause a heart attack."]}},
+   {"icon": "drop", "short": "Drink 1.5 to 2 litres daily", "long": "Drink 1.5 to 2 litres every day", "sub": "About 6 to 8 glasses of water", "when": "Every day", "why": "This protects your kidneys after the contrast dye used in the heart check.", "warn": null, "phone": null, "if_not": {"source": "general", "points": ["Drinking too little can put extra strain on your kidneys."]}},
+   {"icon": "cal", "short": "Book a heart check-up", "long": "Book a check-up with your heart doctor", "sub": "Dr. Martina Mustermann, heart specialist", "when": "In about 6 months", "why": "The letter gives no exact date. Please call the practice to book it. They will also check your blood pressure and other heart risk factors.", "warn": null, "phone": "030 0987654321", "if_not": {"source": "general", "points": ["Without check-ups, changes in your heart may be found too late."]}}
+  ],
+  "medicines": [
+   {"name": "ASS 100 mg", "form": "tablet", "purpose": "blood thinner", "morning": 1, "midday": 0, "evening": 0, "night": 0, "flag": null},
+   {"name": "Clopidogrel 75 mg", "form": "tablet", "purpose": "blood thinner", "morning": 1, "midday": 0, "evening": 0, "night": 0, "flag": "Until end of May 2023"},
+   {"name": "Candesartan 16 mg", "form": "tablet", "purpose": "blood pressure", "morning": 1, "midday": 0, "evening": 0, "night": 0, "flag": null},
+   {"name": "Torasemid 10 mg", "form": "tablet", "purpose": "water tablet", "morning": 1, "midday": 0, "evening": 0, "night": 0, "flag": null},
+   {"name": "Pantoprazol 20 mg", "form": "tablet", "purpose": "protects the stomach", "morning": 1, "midday": 0, "evening": 0, "night": 0, "flag": "Before eating"},
+   {"name": "Relvar Ellipta", "form": "inhaler · 2 puffs", "purpose": "lungs", "morning": 2, "midday": 0, "evening": 0, "night": 0, "flag": null},
+   {"name": "SPIROLTO Respimat", "form": "inhaler · 2 puffs", "purpose": "lungs", "morning": 2, "midday": 0, "evening": 0, "night": 0, "flag": null},
+   {"name": "Atorvastatin 40 mg", "form": "tablet", "purpose": "cholesterol", "morning": 0, "midday": 0, "evening": 1, "night": 0, "flag": null},
+   {"name": "Ezetimib 10 mg", "form": "tablet", "purpose": "cholesterol", "morning": 0, "midday": 0, "evening": 1, "night": 0, "flag": null}
+  ],
+  "summary_paragraphs": [
+   "You were in the heart department of Krankenhaus XYZ in Berlin from 22 to 24 June 2022, for a heart check. Some blood vessels of your heart are narrow ([[khk|KHK]]).",
+   "On 23 June the doctors opened a narrow spot in the [[rca|right heart artery]] and placed one [[stent|stent]]. There were no problems. You went home well.",
+   "Your other illnesses are unchanged: high blood pressure, a lung illness ([[copd|COPD]]) and [[kidney|kidneys that work less well]]. You had a heart attack in May 2022."
+  ],
+  "jargon": {
+   "stent": {"word": "Stent", "also": "German: Stent", "plain": "A tiny tube made of fine metal mesh. It holds a narrow blood vessel open so blood can flow freely again.", "more": "It stays in your body for good. You cannot feel it."},
+   "des": {"word": "DES (Drug-Eluting Stent)", "also": "German: medikamentenbeschichteter Stent", "plain": "A stent with a thin coating of medicine. The medicine stops the vessel from getting narrow again.", "more": "Your letter names the model: Promus ELITE, 2.75 × 12 mm."},
+   "pci": {"word": "PCI", "also": "Perkutane Koronarintervention", "plain": "A treatment where a doctor guides a thin tube through a blood vessel up to the heart, and widens the narrow spot from the inside.", "more": "No open surgery is needed."},
+   "khk": {"word": "KHK", "also": "Koronare Herzkrankheit · coronary heart disease", "plain": "The blood vessels that feed your heart muscle have become narrow. The heart then gets less blood and oxygen.", "more": ""},
+   "rca": {"word": "RCA", "also": "Right coronary artery · rechte Herzkranzarterie", "plain": "One of the main blood vessels that supply the heart muscle with blood. \"Distal\" means the far end of it.", "more": ""},
+   "copd": {"word": "COPD", "also": "Chronisch obstruktive Lungenerkrankung", "plain": "A long-term lung illness. The airways are narrowed, so breathing out is harder.", "more": "Your two inhalers are for this."},
+   "kidney": {"word": "Chronische Niereninsuffizienz", "also": "Chronic kidney disease, stage III", "plain": "Your kidneys clean the blood less well than normal. Stage III is the middle of five stages.", "more": ""},
+   "gfr": {"word": "GFR", "also": "Glomeruläre Filtrationsrate", "plain": "A number that shows how much blood your kidneys clean per minute. Higher is better.", "more": "Your value was 36 ml/min."}
+  },
+  "details": {
+   "reason": {"plain": "Your heart doctor sent you to hospital because some blood vessels of your heart are narrow ([[khk|KHK]]). The stay was planned for a heart catheter check.", "rows": [], "original": "Grund der Einweisung\nkoronare Herzerkrankung (KHK)"},
+   "diagnoses": {"plain": null, "rows": [
+     {"original": "I25.13 Drei-Gefäß-Erkrankung", "plain": "All three main heart arteries have narrow spots."},
+     {"original": "N18.3 chronische Niereninsuffizienz Stadium III", "plain": "Your [[kidney|kidneys work less well]] than normal (middle stage)."}
+    ], "original": "I25.13 Drei-Gefäß-Erkrankung"},
+   "procedures": {"plain": "On 23 June 2022 the doctors widened your [[rca|right heart artery]] through a thin tube ([[pci|PCI]]) and placed one [[des|coated stent]]. After the treatment there were no problems.", "rows": [], "original": ""},
+   "tests": {"plain": null, "rows": [{"original": "", "plain": "A kidney value ([[gfr|GFR]]) was 36 ml/min on 22 June 2022."}], "original": ""},
+   "next": {"plain": "Take both blood thinners (ASS and Clopidogrel) up to and including May 2023. After that, take only ASS, for life. Drink 1.5 to 2 litres a day. Next check-up in about 6 months.", "rows": [], "original": ""}
+  },
+  "faq": [
+   {"q": "Can I stop Clopidogrel if I feel fine?", "a": "Your letter says to take it **until the end of May 2023**, even if you feel well. Please do not stop earlier on your own.", "source": "letter"},
+   {"q": "Why should I drink so much?", "a": "During the heart check you got a contrast dye. Your kidneys need to wash it out, and they already work less well.", "source": "letter"},
+   {"q": "Is my heart now healed?", "a": "The narrow spot that was treated is open again. But all three main heart arteries are affected, so your heart still needs care.", "source": "letter"},
+   {"q": "When is my next check-up?", "a": "In about 6 months. The letter gives no exact date.", "source": "letter"},
+   {"q": "Who can I call with questions?", "a": "Your heart doctor's practice, or the hospital's discharge team. You find the numbers under Help.", "source": "letter"}
+  ],
+  "contacts": [
+   {"icon": "heart", "role": "Your heart doctor", "detail": "Dr. Martina Mustermann · Straße 3, 10103 Berlin", "phone": "030 0987654321"},
+   {"icon": "file", "role": "Hospital discharge team", "detail": "Mon–Fri 09:00–19:00 · Sat and Sun 10:00–14:00", "phone": "1234566"},
+   {"icon": "heart", "role": "Treating doctor at the hospital", "detail": "Dr. Ludger Ober, senior doctor", "phone": "654321434"}
+  ],
+  "chips": ["When can I stop Clopidogrel?", "When is my next appointment?", "Is it serious?", "Can I drive a car?"]
+ },
+ "de": {
+  "patient_salutation": "Herr Königsstein",
+  "worry": {"level": "calm", "headline": "Nein. Das ist eine gute Nachricht.", "reason": "Die Behandlung verlief gut. Sie sind ohne Beschwerden nach Hause gegangen."},
+  "about": "Um diesen Brief geht es: Ihr Herzkranzgefäß wurde am 23. Juni 2022 mit einem Stent erweitert, und Sie konnten gesund nach Hause gehen.",
+  "todos": [
+   {"icon": "pill", "short": "Beide Blutverdünner nehmen", "long": "Beide Blutverdünner jeden Morgen nehmen", "sub": "ASS 100 mg und Clopidogrel 75 mg", "when": "Bis Ende Mai 2023", "why": "Nach Mai 2023 nur Clopidogrel absetzen. ASS nehmen Sie lebenslang weiter.", "warn": "Setzen Sie niemals von selbst ein Medikament ab. Fragen Sie zuerst Ihre Ärztin oder Ihren Arzt.", "phone": null, "if_not": {"source": "general", "points": ["Werden die Blutverdünner zu früh abgesetzt, kann sich im neuen Stent ein Blutgerinnsel bilden."]}},
+   {"icon": "drop", "short": "1,5 bis 2 Liter täglich trinken", "long": "Trinken Sie täglich 1,5 bis 2 Liter", "sub": "Etwa 6 bis 8 Gläser Wasser", "when": "Jeden Tag", "why": "Das schützt Ihre Nieren nach dem Kontrastmittel aus der Herzuntersuchung.", "warn": null, "phone": null, "if_not": {"source": "general", "points": ["Zu wenig Trinken kann Ihre Nieren zusätzlich belasten."]}},
+   {"icon": "cal", "short": "Herz-Kontrolle vereinbaren", "long": "Kontrolltermin bei Ihrer Kardiologin vereinbaren", "sub": "Dr. Martina Mustermann, Kardiologin", "when": "In etwa 6 Monaten", "why": "Der Brief nennt kein genaues Datum. Bitte rufen Sie in der Praxis an.", "warn": null, "phone": "030 0987654321", "if_not": {"source": "general", "points": ["Ohne Kontrollen können Veränderungen am Herzen zu spät erkannt werden."]}}
+  ],
+  "medicines": [
+   {"name": "ASS 100 mg", "form": "Tablette", "purpose": "Blutverdünner", "morning": 1, "midday": 0, "evening": 0, "night": 0, "flag": null},
+   {"name": "Clopidogrel 75 mg", "form": "Tablette", "purpose": "Blutverdünner", "morning": 1, "midday": 0, "evening": 0, "night": 0, "flag": "Bis Ende Mai 2023"},
+   {"name": "Candesartan 16 mg", "form": "Tablette", "purpose": "Blutdruck", "morning": 1, "midday": 0, "evening": 0, "night": 0, "flag": null},
+   {"name": "Torasemid 10 mg", "form": "Tablette", "purpose": "Wassertablette", "morning": 1, "midday": 0, "evening": 0, "night": 0, "flag": null},
+   {"name": "Pantoprazol 20 mg", "form": "Tablette", "purpose": "schützt den Magen", "morning": 1, "midday": 0, "evening": 0, "night": 0, "flag": "Vor dem Essen"},
+   {"name": "Relvar Ellipta", "form": "Inhalator · 2 Hübe", "purpose": "Lunge", "morning": 2, "midday": 0, "evening": 0, "night": 0, "flag": null},
+   {"name": "SPIROLTO Respimat", "form": "Inhalator · 2 Hübe", "purpose": "Lunge", "morning": 2, "midday": 0, "evening": 0, "night": 0, "flag": null},
+   {"name": "Atorvastatin 40 mg", "form": "Tablette", "purpose": "Cholesterin", "morning": 0, "midday": 0, "evening": 1, "night": 0, "flag": null},
+   {"name": "Ezetimib 10 mg", "form": "Tablette", "purpose": "Cholesterin", "morning": 0, "midday": 0, "evening": 1, "night": 0, "flag": null}
+  ],
+  "summary_paragraphs": [
+   "Sie waren vom 22. bis 24. Juni 2022 in der Kardiologie des Krankenhauses XYZ in Berlin, für eine Herzuntersuchung. Einige Herzgefäße sind verengt ([[khk|KHK]]).",
+   "Am 23. Juni wurde eine Engstelle in der [[rca|rechten Herzarterie]] geöffnet und ein [[stent|Stent]] eingesetzt. Es gab keine Probleme.",
+   "Ihre anderen Erkrankungen sind unverändert: Bluthochdruck, eine Lungenerkrankung ([[copd|COPD]]) und [[kidney|schwächere Nieren]]."
+  ],
+  "jargon": {
+   "stent": {"word": "Stent", "also": "Gefäßstütze", "plain": "Ein winziges Röhrchen aus feinem Metallgitter. Es hält ein enges Blutgefäß offen.", "more": "Er bleibt für immer im Körper. Sie spüren ihn nicht."},
+   "des": {"word": "DES (Drug-Eluting Stent)", "also": "medikamentenbeschichteter Stent", "plain": "Ein Stent mit einer dünnen Medikamentenschicht. Sie verhindert, dass das Gefäß wieder eng wird.", "more": "Ihr Brief nennt das Modell: Promus ELITE, 2,75 × 12 mm."},
+   "pci": {"word": "PCI", "also": "Perkutane Koronarintervention", "plain": "Eine Behandlung mit einem dünnen Schlauch, der durch ein Blutgefäß bis zum Herzen geführt wird.", "more": "Eine offene Operation ist nicht nötig."},
+   "khk": {"word": "KHK", "also": "Koronare Herzkrankheit", "plain": "Die Blutgefäße, die den Herzmuskel versorgen, sind verengt.", "more": ""},
+   "rca": {"word": "RCA", "also": "rechte Herzkranzarterie", "plain": "Eines der großen Blutgefäße, die den Herzmuskel versorgen.", "more": ""},
+   "copd": {"word": "COPD", "also": "Chronisch obstruktive Lungenerkrankung", "plain": "Eine dauerhafte Lungenerkrankung. Das Ausatmen fällt schwerer.", "more": "Ihre zwei Inhalatoren sind dafür."},
+   "kidney": {"word": "Chronische Niereninsuffizienz", "also": "Stadium III", "plain": "Ihre Nieren reinigen das Blut schlechter als normal. Stadium III ist die Mitte von fünf Stufen.", "more": ""},
+   "gfr": {"word": "GFR", "also": "Glomeruläre Filtrationsrate", "plain": "Ein Wert dafür, wie viel Blut Ihre Nieren pro Minute reinigen. Höher ist besser.", "more": "Ihr Wert lag bei 36 ml/min."}
+  },
+  "details": {
+   "reason": {"plain": "Ihre Kardiologin hat Sie eingewiesen, weil einige Herzgefäße verengt sind ([[khk|KHK]]). Der Aufenthalt war für eine Herzkatheter-Untersuchung geplant.", "rows": [], "original": "Grund der Einweisung\nkoronare Herzerkrankung (KHK)"},
+   "diagnoses": {"plain": null, "rows": [
+     {"original": "I25.13 Drei-Gefäß-Erkrankung", "plain": "Alle drei großen Herzarterien haben Engstellen."},
+     {"original": "N18.3 chronische Niereninsuffizienz Stadium III", "plain": "Ihre [[kidney|Nieren arbeiten schwächer]] als normal (mittleres Stadium)."}
+    ], "original": "I25.13 Drei-Gefäß-Erkrankung"},
+   "procedures": {"plain": "Am 23. Juni 2022 wurde Ihre [[rca|rechte Herzarterie]] über einen dünnen Schlauch ([[pci|PCI]]) erweitert und ein [[des|beschichteter Stent]] eingesetzt.", "rows": [], "original": ""},
+   "tests": {"plain": null, "rows": [{"original": "", "plain": "Ein Nierenwert ([[gfr|GFR]]) lag am 22. Juni 2022 bei 36 ml/min."}], "original": ""},
+   "next": {"plain": "Nehmen Sie beide Blutverdünner bis einschließlich Mai 2023. Danach nur noch ASS, lebenslang. Trinken Sie 1,5 bis 2 Liter am Tag. Nächste Kontrolle in etwa 6 Monaten.", "rows": [], "original": ""}
+  },
+  "faq": [
+   {"q": "Kann ich Clopidogrel absetzen, wenn ich mich gut fühle?", "a": "Ihr Brief sagt: **bis Ende Mai 2023** nehmen, auch wenn Sie sich gut fühlen.", "source": "letter"},
+   {"q": "Warum soll ich so viel trinken?", "a": "Bei der Herzuntersuchung bekamen Sie Kontrastmittel. Ihre Nieren müssen es ausscheiden.", "source": "letter"},
+   {"q": "Ist mein Herz jetzt geheilt?", "a": "Die behandelte Engstelle ist wieder offen. Aber alle drei Herzarterien sind betroffen.", "source": "letter"},
+   {"q": "Wann ist meine nächste Kontrolle?", "a": "In etwa 6 Monaten. Der Brief nennt kein genaues Datum.", "source": "letter"},
+   {"q": "Wen kann ich bei Fragen anrufen?", "a": "Ihre kardiologische Praxis oder das Entlassungsteam des Krankenhauses. Die Nummern finden Sie unter Hilfe.", "source": "letter"}
+  ],
+  "contacts": [
+   {"icon": "heart", "role": "Ihre Kardiologin", "detail": "Dr. Martina Mustermann · Straße 3, 10103 Berlin", "phone": "030 0987654321"},
+   {"icon": "file", "role": "Entlassungsteam des Krankenhauses", "detail": "Mo–Fr 09:00–19:00 · Sa und So 10:00–14:00", "phone": "1234566"},
+   {"icon": "heart", "role": "Behandelnder Arzt im Krankenhaus", "detail": "Dr. Ludger Ober, Oberarzt", "phone": "654321434"}
+  ],
+  "chips": ["Wann kann ich Clopidogrel absetzen?", "Wann ist mein nächster Termin?", "Ist es ernst?", "Darf ich Auto fahren?"]
+ }
+}

@@ -1,13 +1,14 @@
 # Letter explainer pipeline (Trusted Tokens)
 
-Turns a German doctor's letter into the JSON the Klartext mockup shows.
+Turns a German doctor's letter into the JSON the Klartext UI shows.
 
-- `run.py` sends the letter to Trusted Tokens (`zai-org/GLM-5.3`, OpenAI-compatible, streaming, `reasoning_effort: low`) with a strict "only facts from the letter" prompt, and saves JSON.
+- `prompt.py` holds the system prompt and JSON shape, shared with `server/app.py`.
+- `run.py` sends the letter to Trusted Tokens (OpenAI-compatible, streaming) with that prompt and saves JSON. `KLARTEXT_LANG=de` for German.
 - `check.py` flags any number or date in the output that is not in the letter.
-- `sample_output_cardiology.json` is the real GLM-5.3 output for `sample_letter_cardiology.txt` (about 67 s, ~7.4k tokens). Claude Opus fact-checked it against the letter: all dates, doses and phone numbers match.
+- `sample_output_cardiology.json` is an earlier real GLM-5.3 output, in the previous JSON shape, for `sample_letter_cardiology.txt` (about 67 s, ~7.4k tokens). Claude Opus fact-checked it against the letter: all dates, doses and phone numbers match.
 
 ```
-python3 run.py sample_letter_cardiology.txt zai-org/GLM-5.3 out.json
+python3 run.py sample_letter_cardiology.txt claude-opus-5-5 out.json
 python3 check.py sample_letter_cardiology.txt out.json
 ```
 

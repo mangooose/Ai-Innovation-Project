@@ -772,7 +772,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     $$('[data-i18n-aria]').forEach(el=>{ const k=el.dataset.i18nAria; if(I18N[lang][k]!==undefined) el.setAttribute('aria-label',I18N[lang][k]); });
     $$('[data-i18n-ph]').forEach(el=>{ const k=el.dataset.i18nPh; if(I18N[lang][k]!==undefined) el.setAttribute('placeholder',I18N[lang][k]); });
     $$('[data-lang]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.lang===lang));
-    applySize(); render();
+    applySize(); renderLetter(); render();
   }
 
   /* ---------- toast ---------- */
@@ -813,6 +813,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   function render(){
     let r=(location.hash||'').slice(1);
     if(!routes.includes(r)) r = letterDone?'overview':'upload';
+    if(!LETTER && !DEMO && !['upload','reading'].includes(r)) r='upload'; // no letter read yet: never show the sample as theirs
     if(!['upload','reading'].includes(r)) letterDone=true;
     const desk=deskMQ.matches;
     const simple=['upload','reading'].includes(r);
@@ -854,6 +855,12 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   let thumbURL=null;
   function gotFile(input){
     const f=input.files && input.files[0]; if(!f) return;
+    if(!DEMO){
+      input.value='';
+      if(!(f.type==='application/pdf' || /\.pdf$/i.test(f.name))){ toast(t('pdfOnly')); return; }
+      pending=fetch('/api/explain',{method:'POST',headers:{'content-type':'application/pdf'},body:f})
+        .then(r=>r.json().then(j=>{ if(!r.ok) throw new Error(j.error||'server'); return j; }));
+    }
     if(thumbURL){ try{URL.revokeObjectURL(thumbURL);}catch(e){} thumbURL=null; }
     const isImg=/^image\//.test(f.type);
     if(isImg){ thumbURL=URL.createObjectURL(f); $('#readThumb').src=thumbURL; }
@@ -865,10 +872,24 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   $('#fileInput').addEventListener('change',e=>gotFile(e.target));
   $('#backBtn').onclick=()=>go(letterDone?'overview':'upload');
   $('#brandHome').onclick=()=>go('overview');
-  $('#newLetter').onclick=()=>{ letterDone=false; go('upload'); };
+  $('#newLetter').onclick=()=>{ letterDone=false; pending=null; go('upload'); };
 
   /* ---------- reading ---------- */
+  let pending=null, readingFor=null;
   function runReading(){
+    if(!DEMO){
+      if(!pending){ setTimeout(()=>go('upload')); return; }
+      if(readingFor===pending) return; // render() runs again on resize or language switch
+      const p=readingFor=pending;
+      readingTimer.forEach(clearTimeout); clearInterval(readingTimer.iv); readingTimer=[];
+      let w=5; $('#progress').style.width=w+'%';
+      readingTimer.iv=setInterval(()=>{ w+=(95-w)*.04; $('#progress').style.width=w+'%'; },1000); // the AI takes about a minute
+      p.then(data=>{ if(p!==pending) return; clearInterval(readingTimer.iv); $('#progress').style.width='100%';
+          applyLetter(data); pending=null; setTimeout(()=>{ letterDone=true; go('overview'); },400); },
+        err=>{ if(p!==pending) return; clearInterval(readingTimer.iv); pending=null; letterDone=false;
+          toast(t(err.message==='no_text'?'noText':err.message==='pdf_only'?'pdfOnly':'readFail')); go('upload'); });
+      return;
+    }
     readingTimer.forEach(clearTimeout); readingTimer=[];
     $('#progress').style.width='0';
     [40,75,100].forEach((w,i)=>readingTimer.push(setTimeout(()=>$('#progress').style.width=w+'%',150+i*550)));
@@ -1017,7 +1038,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     openSheet('#termScrim');
   });
   $('#termListen').onclick=()=>curTerm&&speakParts([{text:curTerm.w+'. '+curTerm.p+' '+curTerm.m}]);
-  $('#termAsk').onclick=()=>{ closeSheets(); openChat(); setTimeout(()=>ask('What does '+curTerm.w+' mean?'),250); };
+  $('#termAsk').onclick=()=>{ closeSheets(); openChat(); setTimeout(()=>ask((lang==='de'?'Was bedeutet ':'What does ')+curTerm.w+(lang==='de'?'?':' mean?')),250); };
 
   /* ---------- chat (mock) ---------- */
   const FROM='<span class="pill src-letter"><svg class="ico"><use href="#i-file"/></svg>'+t('fromLetter')+'</span>';
@@ -1038,6 +1059,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     q=q.trim(); if(!q) return;
     add(q.replace(/</g,'&lt;'),'me'); $('#chips').hidden=true;
     const typing=add('<span class="typing"><span></span><span></span><span></span></span>','ai');
+    if(!DEMO){ askAI(q,typing); return; }
     setTimeout(()=>{
       typing.remove();
       let ans=null;
@@ -1052,6 +1074,118 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   $('#chips').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(c) ask(c.textContent); });
   $('#chatForm').addEventListener('submit',e=>{ e.preventDefault(); const i=$('#chatInput'); ask(i.value); i.value=''; });
   $('#micBtn').onclick=()=>toast(t('micMock'));
+
+  /* ---------- letter data from the AI (server/app.py) ----------
+     The markup above is the design; for a real letter these functions rewrite the letter-specific parts
+     with the same elements and classes. Opened as a file (no server), the page keeps the built-in sample. */
+  Object.assign(I18N.en,{pdfOnly:'For now, please choose a PDF of your letter.',noText:'This PDF has no readable text (it may be a scan). Please choose a PDF with text.',readFail:'Sorry, we could not read your letter. Please try again.',notInLetter:'Not in your letter',chatHelloName:'Hello {n}. What would you like to know about your letter? You can type, or tap one of the questions below.',chatHelloAnon:'Hello. What would you like to know about your letter? You can type, or tap one of the questions below.',chatFail:'Sorry, I could not answer just now. Please try again.',uploadAgain:'Please open your letter again to ask questions.'});
+  Object.assign(I18N.de,{pdfOnly:'Bitte wählen Sie vorerst ein PDF Ihres Briefes.',noText:'Dieses PDF enthält keinen lesbaren Text (vielleicht ein Scan). Bitte wählen Sie ein PDF mit Text.',readFail:'Leider konnten wir Ihren Brief nicht lesen. Bitte versuchen Sie es noch einmal.',notInLetter:'Nicht aus Ihrem Brief',chatHelloName:'Hallo {n}. Was möchten Sie über Ihren Brief wissen? Sie können tippen oder eine der Fragen unten antippen.',chatHelloAnon:'Hallo. Was möchten Sie über Ihren Brief wissen? Sie können tippen oder eine der Fragen unten antippen.',chatFail:'Leider konnte ich gerade nicht antworten. Bitte versuchen Sie es noch einmal.',uploadAgain:'Bitte öffnen Sie Ihren Brief noch einmal, um Fragen zu stellen.'});
+  const DEMO = location.protocol==='file:';
+  let LETTER=null, chatHist=[];
+  try{ const s=sessionStorage.getItem('k-letter'); if(s&&!DEMO) LETTER=JSON.parse(s); }catch(e){}
+  const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const ic=(name,extra)=>'<svg class="ico"'+(extra||'')+'><use href="#i-'+name+'"/></svg>';
+  function rich(s,jargon){ // **bold** and [[term|words]] -> the existing yellow tap-word buttons
+    return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\[\[([a-z0-9]+)\|(.+?)\]\]/g,(m,id,w)=>jargon&&jargon[id]?'<button class="term" data-term="'+id+'">'+w+'</button>':w);
+  }
+  const srcPill=s=>s==='letter'
+    ? '<span class="pill src-letter">'+ic('file')+'<span>'+esc(t('fromLetter'))+'</span></span>'
+    : '<span class="pill src-general">'+ic('info')+'<span>'+esc(t('notInLetter'))+'</span></span>';
+  const copyBtn=n=>'<button class="copy" type="button" data-copy="'+esc(n)+'">'+ic('copy')+'<span data-i18n="copy">'+esc(t('copy'))+'</span></button>';
+
+  function applyLetter(data){
+    LETTER={id:data.id,en:data.en,de:data.de};
+    try{ sessionStorage.setItem('k-letter',JSON.stringify(LETTER)); }catch(e){}
+    [1,2,3].forEach(n=>store.set('k-done'+n,'0'));
+    chatHist=[]; $('#chatlog').innerHTML='';
+    renderLetter(); refreshDone();
+  }
+
+  function renderLetter(){
+    if(!LETTER) return;
+    const D=LETTER[lang]||LETTER.en, J=D.jargon||{}, R=s=>rich(s,J);
+    // jargon sheet
+    Object.keys(T).forEach(k=>delete T[k]);
+    Object.keys(J).forEach(k=>{ const j=J[k]; T[k]={w:j.word,a:j.also,p:j.plain,m:j.more||''}; });
+
+    // overview: verdict
+    const v=$('#screen-overview .verdict'), lvl=D.worry.level;
+    v.style.cssText = lvl==='urgent' ? '--calm:var(--alert);--calm-bg:var(--alert-bg)' : lvl==='act_soon' ? '--calm:var(--act);--calm-bg:var(--act-bg)' : '';
+    $('.verdict-badge use',v).setAttribute('href',lvl==='calm'?'#i-check':'#i-alert');
+    $('h1',v).textContent=D.worry.headline; $('h1 + p',v).textContent=D.worry.reason;
+    $('#screen-overview .aboutline').textContent=D.about;
+    $('#screen-overview [data-i18n="yourTodos"]').textContent=t('yourTodos').replace('3',D.todos.length);
+
+    // to-dos: overview rows and detail screens
+    [1,2,3].forEach(n=>{
+      const td=D.todos[n-1], row=$('#rowTodo'+n), scr=$('#screen-todo'+n);
+      row.hidden=!td; if(!td) return;
+      row.innerHTML='<span class="ti" aria-hidden="true">'+ic(td.icon)+'</span><span><span class="act">'+esc(td.short)+'</span><br><span class="when">'+ic('cal')+'<span>'+esc(td.when)+'</span></span></span><svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg>';
+      let h='<div class="pagetop"><h2>'+ic(td.icon)+'<span>'+esc(td.short)+'</span></h2><button class="say" type="button" data-readpage="screen-todo'+n+'" aria-pressed="false">'+ic('vol')+'<span data-i18n="readPage">'+esc(t('readPage'))+'</span></button></div>';
+      h+='<article class="card" data-read><div class="todohead"><span class="ti" aria-hidden="true">'+ic(td.icon)+'</span><div style="min-width:0"><h1>'+esc(td.long)+'</h1>'
+        +(td.sub?'<p class="muted" style="font-size:.9rem">'+esc(td.sub)+'</p>':'')
+        +'<p style="margin-top:.4rem"><span class="when">'+ic('cal')+'<span>'+esc(td.when)+'</span></span></p></div></div>'
+        +'<p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">'+esc(t('whyLabel'))+'</strong> <span>'+R(td.why)+'</span></p>'
+        +(td.warn?'<p class="warn" style="display:flex;gap:.4rem;align-items:flex-start;color:var(--act);font-weight:600;font-size:.88rem;margin-top:.5rem">'+ic('alert',' style="margin-top:.15rem"')+'<span>'+esc(td.warn)+'</span></p>':'')
+        +(td.phone?'<div style="display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.8rem"><span class="numrow">'+esc(td.phone)+'</span>'+copyBtn(td.phone)+'</div>':'')
+        +'</article>';
+      if(td.if_not.points.length) h+='<article class="card" data-read>'
+        +(td.if_not.source==='letter'?'<p>'+srcPill('letter')+'</p>':'<p class="notinletter">'+ic('info')+'<span><span data-i18n="generalInfo">'+esc(t('generalInfo'))+'</span></span></p>')
+        +'<p style="font-weight:700;margin-top:.5rem" data-i18n="ifYouDont">'+esc(t('ifYouDont'))+'</p><ul class="iflist">'
+        +td.if_not.points.map(p=>'<li>'+esc(p)+'</li>').join('')+'</ul></article>';
+      h+='<div class="actions"><button class="btn" type="button" data-done="'+n+'">'+ic('check')+'<span data-i18n="done">'+esc(t('done'))+'</span></button><button class="btn ghost" type="button" data-remind>'+ic('bell')+'<span data-i18n="addReminder">'+esc(t('addReminder'))+'</span></button></div>';
+      scr.innerHTML=h;
+    });
+
+    // medicines by time of day
+    ['morning','midday','evening','night'].forEach(k=>{
+      const items=(D.medicines||[]).filter(m=>m[k]&&m[k]!=='0');
+      $('#panel-'+k).innerHTML = items.length
+        ? '<ul>'+items.map(m=>'<li><span class="dose">'+esc(m[k])+'</span><div><b>'+esc(m.name)+'</b><span class="for">'+esc([m.form,m.purpose].filter(Boolean).join(' · '))+'</span>'+(m.flag?'<br><span class="flag">'+esc(m.flag)+'</span>':'')+'</div></li>').join('')+'</ul>'
+        : '<p class="emptytab" data-i18n="nothingNow">'+esc(t('nothingNow'))+'</p>';
+    });
+
+    // report: summary and the five side-by-side sections
+    $('#screen-explain .summary').innerHTML=(D.summary_paragraphs||[]).map(p=>'<p>'+R(p)+'</p>').join('')
+      +'<p class="hint">'+ic('info')+'<span data-i18n="tapYellow">'+esc(t('tapYellow'))+'</span></p>';
+    const secs=['reason','diagnoses','procedures','tests','next'];
+    $$('#screen-explain details').forEach((d,i)=>{
+      const s=(D.details||{})[secs[i]]||{rows:[]};
+      let b = s.rows&&s.rows.length
+        ? s.rows.map(r=>'<div class="dxrow" data-read>'+(r.original?'<span class="o">'+esc(r.original)+'</span>':'')+'<span>'+R(r.plain)+'</span></div>').join('')
+        : '<p data-read>'+R(s.plain||'')+'</p>';
+      if(s.original) b+='<button class="say origtoggle" type="button" data-orig aria-pressed="false">'+ic('eye')+'<span data-i18n="showOrig">'+esc(t('showOrig'))+'</span></button><div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">'+esc(t('letterSays'))+'</span>'+esc(s.original)+'</div>';
+      $('.dbody',d).innerHTML=b;
+      d.hidden=!(s.plain||(s.rows&&s.rows.length));
+    });
+
+    // questions
+    $('#screen-questions .faq').innerHTML=(D.faq||[]).map(f=>'<details><summary>'+ic('help')+'<span>'+esc(f.q)+'</span><svg class="ico chev"><use href="#i-chev"/></svg></summary><div class="dbody" data-read><p>'+R(f.a)+'</p><p>'+srcPill(f.source)+'</p></div></details>').join('');
+
+    // help: who to call
+    $('#screen-help .contacts').innerHTML=(D.contacts||[]).map(c=>'<div class="contact"><span class="ci">'+ic(c.icon)+'</span><div style="min-width:0"><strong>'+esc(c.role)+'</strong>'+(c.detail?'<br><span class="muted">'+esc(c.detail)+'</span>':'')+'<br><span class="num">'+esc(c.phone)+'</span> '+copyBtn(c.phone)+'</div></div>').join('');
+
+    // chat greeting and suggestion chips (only before the first question)
+    if(!chatHist.length && $$('#chatlog .msg').length<=1){
+      $('#chatlog').innerHTML='<div class="msg ai">'+esc(D.patient_salutation?t('chatHelloName').replace('{n}',D.patient_salutation):t('chatHelloAnon'))+'</div>';
+      $('#chips').innerHTML=(D.chips||[]).map(c=>'<button class="chip" type="button">'+esc(c)+'</button>').join('');
+      $('#chips').hidden=false;
+    }
+  }
+
+  function askAI(q,typing){
+    const done=(html,src)=>{
+      typing.remove();
+      const m=add(html+(src?'<br>'+srcPill(src==='letter'?'letter':'general'):'')+'<br><button class="say" type="button">'+ic('vol')+esc(t('readAloud'))+'</button>','ai');
+      m.querySelector('.say').onclick=()=>{ const c=m.cloneNode(true); $$('.say,.pill',c).forEach(n=>n.remove()); speakParts([{text:c.innerText}]); };
+    };
+    if(!LETTER){ done(esc(t('uploadAgain'))); return; }
+    fetch('/api/ask',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id:LETTER.id,lang,question:q,history:chatHist})})
+      .then(r=>r.json().then(j=>{ if(!r.ok) throw new Error(j.error||'server'); return j; }))
+      .then(j=>{ chatHist.push({q,a:j.answer}); done(rich(j.answer),j.source); },
+            e=>done(esc(t(e.message==='unknown_letter'?'uploadAgain':'chatFail'))));
+  }
 
   /* ---------- init ---------- */
   applyLang(); refreshDone(); render();

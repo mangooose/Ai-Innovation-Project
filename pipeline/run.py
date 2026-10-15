@@ -1,25 +1,10 @@
 import json, os, sys, urllib.request, time
-# Usage: python3 run.py letter.txt zai-org/GLM-5.3 out.json   (needs TRUSTEDTOKENS_API_KEY outside the Claude cloud env)
+# Usage: python3 run.py letter.txt claude-opus-5-5 out.json   (needs TRUSTEDTOKENS_API_KEY; KLARTEXT_LANG=de for German)
 letter = open(sys.argv[1]).read()
-SYSTEM = """You explain German doctor's letters (Arztbriefe) to elderly patients in plain, warm, simple English (short sentences, max ~15 words, no jargon unless explained).
-Rules:
-- Use ONLY facts in the letter. Never invent dates, doses, phone numbers or advice. Copy every date, dose and number exactly.
-- If the letter does not say something (e.g. consequences, exact appointment date), say so explicitly and set source to "general" or "not_in_letter".
-- This is not medical advice; tell the patient to ask their doctor before changing anything.
-Return ONLY JSON with this shape:
-{
- "worry": {"level": "calm|act_soon|urgent", "headline": str, "reason": str},
- "about_one_sentence": str,
- "todos": [{"action": str, "detail": str, "when": str, "then": str|null, "source": "letter"}],
- "if_not": {"source": "letter|general", "points": [str]},
- "summary_paragraphs": [str],
- "medicines": [{"name": str, "dose": str, "form": str, "morning": num, "midday": num, "evening": num, "night": num, "note": str|null}],
- "jargon": [{"term": str, "plain": str}],
- "details_1to1": [{"section": str, "original": str, "plain": str}],
- "faq": [{"q": str, "a": str, "source": "letter|general"}],
- "contacts": [{"who": str, "phone": str, "hours": str|null}]
-}"""
-body = {"model": sys.argv[2], "temperature": 0.1, "max_tokens": 12000, "stream": True, "reasoning_effort": "low",
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from prompt import system_prompt
+SYSTEM = system_prompt(os.environ.get("KLARTEXT_LANG", "en"))
+body = {"model": sys.argv[2], "max_tokens": 16000, "stream": True,
         "messages": [{"role":"system","content":SYSTEM},{"role":"user","content":"Letter:\n\n"+letter}]}
 req = urllib.request.Request("https://api.trustedtokens.eu/v1/chat/completions", data=json.dumps(body).encode(), headers={"content-type":"application/json", **({"authorization":"Bearer "+os.environ["TRUSTEDTOKENS_API_KEY"]} if os.environ.get("TRUSTEDTOKENS_API_KEY") else {})})
 t=time.time()
