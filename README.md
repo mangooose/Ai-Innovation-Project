@@ -5,7 +5,7 @@ Explains German doctor's letters (Arztbriefe) in plain words for older people.
 ## What's here
 
 - `web/index.html`: the app UI as one self-contained file. Open it in a browser; no build step. All letter content is mock data (a sample cardiology discharge letter) until the backend is connected.
-- `pipeline/`: a script that turns a letter into the structured explanation via Trusted Tokens (GLM-5.3), plus a checker that flags any number not found in the letter. See `pipeline/README.md`.
+- `pipeline/`: a script that turns a letter into the structured explanation via Trusted Tokens (GLM-5.3), plus a checker that compares every number, date, phone number and medicine schedule with the letter and sends mistakes back to the model to fix. See `pipeline/README.md`.
 
 ## The app
 

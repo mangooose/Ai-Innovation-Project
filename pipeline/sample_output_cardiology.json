@@ -44,7 +44,8 @@
   ]
  },
  "summary_paragraphs": [
-  "You were in the heart hospital (Klinik für Kardiologie, Krankenhaus XYZ) from 22.06.2022 until 24.06.2022. The reason was your known coronary heart disease. This means the arteries of your heart are narrowed.",
+  "You were in the heart department (Klinik für Kardiologie) of Krankenhaus XYZ from 22.06.2022 until 24.06.2022. The stay was planned, for a heart catheter test. The reason was your known coronary heart disease. This means the arteries of your heart are narrowed.",
+  "You were already treated in this hospital in May 2022. The week after, you had a heart attack and were treated in another hospital (Klinikum UVW). The doctors did not have that report yet. Your other known illnesses are high blood pressure, a long-term lung illness (COPD) and weaker kidneys (stage III).",
   "On 23.06.2022 the doctors did a heart catheter test. They found narrowing in three heart arteries. They widened one artery on the right side of your heart and put in a small metal tube called a stent (Promus ELITE 2.75 x 12 mm). The blood flow after the procedure was good.",
   "The letter says the recovery after the procedure was without problems. At discharge you had no complaints. The doctors ask you to keep taking ASS and Clopidogrel together until May 2023. After that, take ASS alone for life.",
   "Because of the contrast dye used in the test and your weak kidneys, the doctors ask you to drink 1.5 to 2 litres of fluid each day. Your kidney test showed GFR 36 ml/min, which means your kidneys work less well than normal. Your heart rhythm test (EKG) on 22.06.2022 was normal."
@@ -58,7 +59,7 @@
    "midday": 0,
    "evening": 0,
    "night": 0,
-   "note": "Blood thinner. To be taken for life."
+   "note": "Take for life (letter). Usually: a blood thinner that stops clots in the stent."
   },
   {
    "name": "Clopidogrel Zentiva 75 mg",
@@ -68,7 +69,7 @@
    "midday": 0,
    "evening": 0,
    "night": 0,
-   "note": "Second blood thinner. Only until 05/2023, then stop (as per letter)."
+   "note": "Only until 05/2023 (to the end of May), then stop; ASS continues (letter). Usually: a second blood thinner."
   },
   {
    "name": "Atorvastatin HEXAL 40 mg",
@@ -78,7 +79,7 @@
    "midday": 0,
    "evening": 1,
    "night": 0,
-   "note": "Lowers cholesterol."
+   "note": "Usually: lowers cholesterol."
   },
   {
    "name": "Ezetimib STADA 10 mg",
@@ -88,7 +89,7 @@
    "midday": 0,
    "evening": 1,
    "night": 0,
-   "note": "Also lowers cholesterol."
+   "note": "Usually: also lowers cholesterol."
   },
   {
    "name": "Candesartan Zentiva 16 mg",
@@ -98,7 +99,7 @@
    "midday": 0,
    "evening": 0,
    "night": 0,
-   "note": "Lowers blood pressure."
+   "note": "Usually: lowers blood pressure."
   },
   {
    "name": "Torasemid HEXAL 10 mg",
@@ -108,7 +109,7 @@
    "midday": 0,
    "evening": 0,
    "night": 0,
-   "note": "Water tablet, removes excess fluid."
+   "note": "Usually: a water tablet that removes extra fluid."
   },
   {
    "name": "Pantoprazol PUREN 20 mg",
@@ -118,7 +119,7 @@
    "midday": 0,
    "evening": 0,
    "night": 0,
-   "note": "Protects the stomach. Take before meals."
+   "note": "Take before meals (letter). Usually: protects the stomach."
   },
   {
    "name": "Relvar Ellipta 92/22 micrograms",
@@ -128,7 +129,7 @@
    "midday": 0,
    "evening": 0,
    "night": 0,
-   "note": "Inhaler for your lungs."
+   "note": "2 puffs in the morning. Usually: an inhaler for the lungs."
   },
   {
    "name": "SPIROLTO Respimat 2.5/2.5 micrograms",
@@ -138,10 +139,14 @@
    "midday": 0,
    "evening": 0,
    "night": 0,
-   "note": "Inhaler for your lungs."
+   "note": "2 puffs in the morning. Usually: an inhaler for the lungs."
   }
  ],
  "jargon": [
+  {
+   "term": "Alter Myokardinfarkt",
+   "plain": "A heart attack you had before. The letter says this was in 05/2022."
+  },
   {
    "term": "Koronare Herzerkrankung (KHK)",
    "plain": "The arteries that feed the heart muscle are narrowed."
@@ -172,7 +177,7 @@
   },
   {
    "term": "Belastungsdyspnoe NYHA II",
-   "plain": "Getting short of breath when doing bigger physical effort."
+   "plain": "Getting short of breath with normal everyday effort, like climbing stairs. No problems at rest."
   },
   {
    "term": "Chronische obstruktive Lungenkrankheit",
@@ -180,7 +185,7 @@
   },
   {
    "term": "Maligne essentielle Hypertonie",
-   "plain": "High blood pressure that needs treatment."
+   "plain": "A severe form of high blood pressure. The letter says there was no dangerous blood pressure crisis."
   },
   {
    "term": "Sinusrhythmus, 71/min",
@@ -189,13 +194,22 @@
   {
    "term": "TIMI III Fluss",
    "plain": "Blood flows fully through the artery again. This is the best result."
+  },
+  {
+   "term": "Kontrastmittel (KM)",
+   "plain": "A dye used during the heart catheter test so the arteries show up on X-ray. It can strain weak kidneys."
   }
  ],
  "details_1to1": [
   {
    "section": "Reason for admission",
-   "original": "Grund der Einweisung: koronare Herzerkrankung (KHK)",
-   "plain": "You were sent to the hospital because of narrowed heart arteries."
+   "original": "Grund der Einweisung: koronare Herzerkrankung (KHK) … Die stationäre Aufnahme des Patienten erfolgte geplant zur Herzkatheteruntersuchung.",
+   "plain": "Your heart doctor sent you to hospital because of narrowed heart arteries. The stay was planned, for a heart catheter test."
+  },
+  {
+   "section": "Diagnoses at admission",
+   "original": "I25.20 Alter Myokardinfarkt 05/2022 … I25.13 Drei-Gefäß-Erkrankung … I10.00 Maligne essentielle Hypertonie … J44.89 Sonstige näher bezeichnete chronische obstruktive Lungenkrankheit … N18.3 chronische Niereninsuffizienz Stadium III",
+   "plain": "Your known illnesses: a heart attack in 05/2022, narrowing in all three heart arteries, severe high blood pressure, a long-term lung illness (COPD), and weaker kidneys (stage III)."
   },
   {
    "section": "Stay",
@@ -275,6 +289,11 @@
    "source": "letter"
   },
   {
+   "q": "Can I drive a car?",
+   "a": "The letter does not say anything about driving. Please ask your heart doctor.",
+   "source": "not_in_letter"
+  },
+  {
    "q": "What if I feel unwell at home?",
    "a": "The letter does not give special warning signs. In general, get help quickly for chest pain or strong breathlessness.",
    "source": "general"
@@ -285,6 +304,11 @@
    "who": "Hospital XYZ, heart clinic (discharge management)",
    "phone": "1234566",
    "hours": "Mon-Fri 09:00-19:00, Sat and Sun 10:00-14:00"
+  },
+  {
+   "who": "Krankenhaus XYZ, heart department (main number)",
+   "phone": "030 987654321",
+   "hours": null
   },
   {
    "who": "Dr. Ludger Ober, senior doctor at the hospital",
