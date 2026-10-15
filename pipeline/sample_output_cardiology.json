@@ -1,0 +1,300 @@
+{
+ "worry": {
+  "level": "calm",
+  "headline": "Your heart procedure went well. You went home without problems.",
+  "reason": "The letter says the hospital stay was complication-free and you were free of symptoms at discharge."
+ },
+ "about_one_sentence": "You were in the heart hospital from 22.06.2022 to 24.06.2022 to have a narrowed heart artery widened with a small tube (stent), and it went well.",
+ "todos": [
+  {
+   "action": "Keep taking your two blood thinners together",
+   "detail": "ASS 100 mg and Clopidogrel 75 mg, one tablet each in the morning, until the end of May 2023.",
+   "when": "Every morning until 05/2023",
+   "then": "After May 2023, continue ASS alone for life. Ask your doctor before changing anything.",
+   "source": "letter"
+  },
+  {
+   "action": "Drink enough water",
+   "detail": "The doctors advise 1.5 to 2 litres per day, because of the contrast dye and your weak kidneys.",
+   "when": "Every day",
+   "then": null,
+   "source": "letter"
+  },
+  {
+   "action": "Go to your heart doctor for follow-up",
+   "detail": "The letter says you should keep seeing a heart doctor. The next check-up is in about 6 months.",
+   "when": "In about 6 months",
+   "then": null,
+   "source": "letter"
+  },
+  {
+   "action": "Have your heart risk factors checked",
+   "detail": "The letter recommends regular control of cardiovascular risk factors.",
+   "when": "At your follow-up visits",
+   "then": null,
+   "source": "letter"
+  }
+ ],
+ "if_not": {
+  "source": "general",
+  "points": [
+   "If you have chest pain, strong shortness of breath, dizziness, or fainting, get medical help quickly.",
+   "Do not stop your blood thinners on your own. Always ask your doctor first.",
+   "This summary is not medical advice. Please ask your doctor before changing anything."
+  ]
+ },
+ "summary_paragraphs": [
+  "You were in the heart hospital (Klinik für Kardiologie, Krankenhaus XYZ) from 22.06.2022 until 24.06.2022. The reason was your known coronary heart disease. This means the arteries of your heart are narrowed.",
+  "On 23.06.2022 the doctors did a heart catheter test. They found narrowing in three heart arteries. They widened one artery on the right side of your heart and put in a small metal tube called a stent (Promus ELITE 2.75 x 12 mm). The blood flow after the procedure was good.",
+  "The letter says the recovery after the procedure was without problems. At discharge you had no complaints. The doctors ask you to keep taking ASS and Clopidogrel together until May 2023. After that, take ASS alone for life.",
+  "Because of the contrast dye used in the test and your weak kidneys, the doctors ask you to drink 1.5 to 2 litres of fluid each day. Your kidney test showed GFR 36 ml/min, which means your kidneys work less well than normal. Your heart rhythm test (EKG) on 22.06.2022 was normal."
+ ],
+ "medicines": [
+  {
+   "name": "ASS STADA 100 mg",
+   "dose": "100 mg",
+   "form": "tablet (stomach-resistant)",
+   "morning": 1,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Blood thinner. To be taken for life."
+  },
+  {
+   "name": "Clopidogrel Zentiva 75 mg",
+   "dose": "75 mg",
+   "form": "film-coated tablet",
+   "morning": 1,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Second blood thinner. Only until 05/2023, then stop (as per letter)."
+  },
+  {
+   "name": "Atorvastatin HEXAL 40 mg",
+   "dose": "40 mg",
+   "form": "film-coated tablet",
+   "morning": 0,
+   "midday": 0,
+   "evening": 1,
+   "night": 0,
+   "note": "Lowers cholesterol."
+  },
+  {
+   "name": "Ezetimib STADA 10 mg",
+   "dose": "10 mg",
+   "form": "tablet",
+   "morning": 0,
+   "midday": 0,
+   "evening": 1,
+   "night": 0,
+   "note": "Also lowers cholesterol."
+  },
+  {
+   "name": "Candesartan Zentiva 16 mg",
+   "dose": "16 mg",
+   "form": "tablet",
+   "morning": 1,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Lowers blood pressure."
+  },
+  {
+   "name": "Torasemid HEXAL 10 mg",
+   "dose": "10 mg",
+   "form": "tablet",
+   "morning": 1,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Water tablet, removes excess fluid."
+  },
+  {
+   "name": "Pantoprazol PUREN 20 mg",
+   "dose": "20 mg",
+   "form": "tablet (stomach-resistant)",
+   "morning": 1,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Protects the stomach. Take before meals."
+  },
+  {
+   "name": "Relvar Ellipta 92/22 micrograms",
+   "dose": "92 mcg / 22 mcg",
+   "form": "inhaler puff",
+   "morning": 2,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Inhaler for your lungs."
+  },
+  {
+   "name": "SPIROLTO Respimat 2.5/2.5 micrograms",
+   "dose": "2.5 mcg / 2.5 mcg",
+   "form": "inhaler puff",
+   "morning": 2,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Inhaler for your lungs."
+  }
+ ],
+ "jargon": [
+  {
+   "term": "Koronare Herzerkrankung (KHK)",
+   "plain": "The arteries that feed the heart muscle are narrowed."
+  },
+  {
+   "term": "Herzkatheteruntersuchung / PCI",
+   "plain": "A test where a thin tube goes into the heart arteries. Narrowed parts can be widened, often with a small metal tube (stent)."
+  },
+  {
+   "term": "Stent (DES, Drug-Eluting Stent)",
+   "plain": "A small metal mesh tube placed in an artery to keep it open. It slowly gives off medicine."
+  },
+  {
+   "term": "Dreigefäßerkrankung",
+   "plain": "Narrowing in three of the heart arteries."
+  },
+  {
+   "term": "Duale Plättchenaggregationshemmung",
+   "plain": "Taking two blood thinners together (here ASS and Clopidogrel) to prevent blood clots in the stent."
+  },
+  {
+   "term": "Chronische Niereninsuffizienz Stadium III",
+   "plain": "The kidneys work less well than normal, medium stage."
+  },
+  {
+   "term": "GFR 36 ml/min",
+   "plain": "A kidney test number. Lower numbers mean weaker kidneys."
+  },
+  {
+   "term": "Belastungsdyspnoe NYHA II",
+   "plain": "Getting short of breath when doing bigger physical effort."
+  },
+  {
+   "term": "Chronische obstruktive Lungenkrankheit",
+   "plain": "A long-term lung illness that makes breathing harder."
+  },
+  {
+   "term": "Maligne essentielle Hypertonie",
+   "plain": "High blood pressure that needs treatment."
+  },
+  {
+   "term": "Sinusrhythmus, 71/min",
+   "plain": "Normal, regular heartbeat at 71 beats per minute."
+  },
+  {
+   "term": "TIMI III Fluss",
+   "plain": "Blood flows fully through the artery again. This is the best result."
+  }
+ ],
+ "details_1to1": [
+  {
+   "section": "Reason for admission",
+   "original": "Grund der Einweisung: koronare Herzerkrankung (KHK)",
+   "plain": "You were sent to the hospital because of narrowed heart arteries."
+  },
+  {
+   "section": "Stay",
+   "original": "Aufnahmedatum 22.06.2022, Entlassdatum 24.06.2022",
+   "plain": "You were in hospital from 22.06.2022 to 24.06.2022."
+  },
+  {
+   "section": "Procedure",
+   "original": "PCI der distalen RCA mit 1 DES-Implantation, Zeitpunkt: 23.06.2022",
+   "plain": "On 23.06.2022 the doctors widened a narrowed heart artery and placed one stent."
+  },
+  {
+   "section": "Implant",
+   "original": "Drug-Eluting Stent (DES), Promus ELITE 2,75 x 12mm, Hersteller: Boston Scientific",
+   "plain": "The stent is called Promus ELITE, size 2.75 x 12 mm, made by Boston Scientific."
+  },
+  {
+   "section": "Course",
+   "original": "Der postinterventionelle Verlauf gestaltete sich komplikationslos. Der Patient ist beschwerdefrei.",
+   "plain": "Recovery went smoothly, with no problems. You had no complaints when you left."
+  },
+  {
+   "section": "Blood thinners",
+   "original": "Wir bitten um Fortführung der Plättchenaggregationshemmung mit ASS und Clopidogrel bis einschließlich Mai 2023, anschließend ASS-Mono-Therapie lebenslang.",
+   "plain": "Keep taking ASS and Clopidogrel together until the end of May 2023. After that, take ASS alone for life."
+  },
+  {
+   "section": "Drinking",
+   "original": "Einhaltung einer ausreichenden Trinkmenge (1,5-2 Liter/d) bei Z.n. KM-Exposition und bekannter chronischer Niereninsuffizienz.",
+   "plain": "Drink 1.5 to 2 litres each day. This helps your kidneys after the contrast dye."
+  },
+  {
+   "section": "Follow-up",
+   "original": "Ambulant kardiologische Weiterbetreuung, nächste Verlaufskontrolle in ca. 6 Monaten",
+   "plain": "Keep seeing a heart doctor. The next check-up is in about 6 months. The exact date is not in the letter."
+  },
+  {
+   "section": "Kidney test",
+   "original": "Labor: GFR 36 ml/min, Datum: 22.06.2022",
+   "plain": "A blood test on 22.06.2022 showed your kidneys are working at a reduced level."
+  },
+  {
+   "section": "Heart rhythm test",
+   "original": "EKG: Sinusrhythmus, 71/min., keine relevanten Erregungsausbreitungs- oder –rückbildungsstörungen",
+   "plain": "Your heart rhythm test on 22.06.2022 was normal. Heartbeat 71 per minute."
+  },
+  {
+   "section": "Past procedures",
+   "original": "distale RCX- und RM1-PCI (2 DES) + Implantation eines gecoverten Stents bei Koronarperforation, 05/2022; Hauptstamm-PCI (Impella-Schutz), 07/2019; RCA-PCI, 02/2019; LCX- und RD1-PCI, 01/2019",
+   "plain": "You had heart artery treatments before: in 05/2022, 07/2019, 02/2019 and 01/2019."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Why did I get a stent?",
+   "a": "Because one of your heart arteries was narrowed. The stent keeps it open so blood can flow.",
+   "source": "letter"
+  },
+  {
+   "q": "How long must I take Clopidogrel?",
+   "a": "Until the end of May 2023. After that, ASS alone for life. Do not stop earlier without asking your doctor.",
+   "source": "letter"
+  },
+  {
+   "q": "Why should I drink 1.5 to 2 litres a day?",
+   "a": "Because of the contrast dye from the procedure and your weak kidneys. It helps protect the kidneys.",
+   "source": "letter"
+  },
+  {
+   "q": "When is my next check-up?",
+   "a": "In about 6 months. The exact date is not in the letter. Ask your heart doctor's office.",
+   "source": "letter"
+  },
+  {
+   "q": "Was everything okay when I left?",
+   "a": "Yes. The letter says the recovery had no problems and you were free of complaints.",
+   "source": "letter"
+  },
+  {
+   "q": "What if I feel unwell at home?",
+   "a": "The letter does not give special warning signs. In general, get help quickly for chest pain or strong breathlessness.",
+   "source": "general"
+  }
+ ],
+ "contacts": [
+  {
+   "who": "Hospital XYZ, heart clinic (discharge management)",
+   "phone": "1234566",
+   "hours": "Mon-Fri 09:00-19:00, Sat and Sun 10:00-14:00"
+  },
+  {
+   "who": "Dr. Ludger Ober, senior doctor at the hospital",
+   "phone": "654321434",
+   "hours": null
+  },
+  {
+   "who": "Dr. Martina Mustermann, your heart doctor for follow-up",
+   "phone": "030 0987654321",
+   "hours": null
+  }
+ ]
+}

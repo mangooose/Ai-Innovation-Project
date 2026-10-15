@@ -1,0 +1,491 @@
+Krankenhausentlassbrief
+Entlassende Einrichtung
+[Elemente fett-unterstrichen = mandatory / unterstrichen = optional]
+PatientIn
+Name: Krankenhaus XYZ, Klinik für Kardiologie
+Anschrift: Straße 2, 10102 Berlin
+Kontaktinformation: Telefon 030 987654321
+Verantwortliche Person:
+Hr. Armin Schäfer; Stationsarzt
+Nachname, Vorname
+Königsstein, Ludger
+Geburtsdatum
+Administratives Geschlecht
+03.03.1941
+Männlich
+Dr. Ludger Ober; Oberarzt; Telefon 654321434
+Anschrift
+Kontaktdaten
+Prof. Dr. Paul Claus; Chefarzt
+Behandelnde Person:
+Dr. Ludger Ober
+Straße 1, 10101 Berlin
+Telefon 030 123456789
+Kontaktinformation: Telefon 654321434
+Aufnahmedatum
+Entlassdatum
+22.06.2022
+24.06.2022
+Zustimmung Entlassmanagement
+Einwilligung Unterstützung durch die
+Kranken-/Pflegekasse
+ja
+ja
+Aufnahmeanlass
+Fachabteilungsschlüssel
+E Einweisung durch den Arzt
+0300 Kardiologie
+Falldaten
+Kontakt Entlassmanagement
+Kontaktinformation: Telefon 1234566
+Kontaktzeiten: Montag bis Freitag in der Zeit
+von 09:00 bis 19:00, Samstag 10:00 bis 14:00,
+Sonntag 10:00 bis 14:00 Uhr
+Entlassgrund
+Empfangende Person
+01 Behandlung regulär beendet
+Name: Dr. Martina Mustermann
+Funktionsbezeichnung: FA Innere Medizin und
+Kardiologie
+Rolle: Weiterbehandelnder
+Arzt/Weiterbehandelnde Ärztin
+Anschrift: Straße 3, 10103 Berlin
+Kontaktinformation: Telefon 030 0987654321
+Metadaten
+Kennzeichnung Entlassbrief
+Erstellungszeitpunkt
+endgültig
+24.06.2022
+Signatur/Zeitstempel
+2022-06-24T16:55:05+02:00
+Einweisung
+Einweisende Person/Einrichtung
+Person: Dr. Martina Mustermann; FA Innere Medizin und Kardiologie
+Einrichtung: Kardiologische Praxis am Stern
+Grund der Einweisung
+koronare Herzerkrankung (KHK)
+Aufnahme
+Aufnahmediagnosen
+I25.20 Alter Myokardinfarkt
+05/2022 (Krankenhaus UVW, Befund aktuell nicht vorliegend)
+I25.13 Drei-Gefäß-Erkrankung
+I10.00 Maligne essentielle Hypertonie : Ohne Angabe einer hypertensiven Krise
+J44.89 Sonstige näher bezeichnete chronische obstruktive Lungenkrankheit : FEV1 nicht
+näher bezeichnet
+N18.3 chronische Niereninsuffizienz Stadium III
+Aufnahmebefund
+81-jähriger Patient in stabilem Allgemeinzustand. Bewusstsein: wach, kooperativ, zu allen
+Qualitäten orientiert. Haut: warm und trocken, sichtbare Schleimhäute feucht und rosig.
+Kopf/Hals: unauffällig. Cor-Aktion: Herztöne rein, Herzaktionen rhythmisch, normofrequent,
+keine Strömungsgeräusche. Pulmo: reines, vesikuläres Atmen bds. sonorer Klopfschall über
+allen Lungenabschnitten, keine Neben- oder Rasselgeräusche. Atemfrequenz: 14/min.
+seitengleiche Atemexkursion. Abdomen: Bauchdecke weich, kein Druckschmerz, keine
+Abwehrspannung, keine pathologischen Resistenzen, regelrechte Darmgeräusche über
+allen Quadranten, Hepar et Splen nicht palpabel. Nierenlager: bds. klopf- und druckindolent.
+Wirbelsäule: nicht klopfschmerzhaft. Extremitäten: altersentsprechend beweglich, keine
+Umfangsdifferenzen, keine Ödeme. ZNS: orientierend neurologisch unauffällig.
+Medikation Aufnahme
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: ASS STADA 100 mg
+magensaftresistente Tabl.
+o
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 1 – 0 – 0 – 0; Tablette
+Medikations-Information
+o
+o
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Clopidogrel Zentiva 75 mg
+Filmtabletten
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 1 – 0 – 0 – 0; Tablette
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Atorvastatin HEXAL 40 mg
+Filmtabletten
+o
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 0 – 0 – 1 – 0; Tablette
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Ezetimib STADA 10 mg
+o
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 0 – 0 – 1 – 0; Tablette
+Medikations-Information
+o
+o
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Candesartan Zentiva 16 mg
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 1 – 0 – 0 – 0; Tablette
+Medikations-Information
+o
+o
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Torasemid HEXAL 10 mg
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 1 – 0 – 0 – 0; Tablette
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Pantoprazol PUREN 20 mg
+magensaftresist. Tabletten
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 1 – 0 – 0 – 0; Tablette; vor den Mahlzeiten
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Relvar Ellipta 92 Mikrogramm /
+o
+o
+22 Mikrogramm
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 2 – 0 – 0 – 0; Hub
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: SPIROLTO Respimat 2,5 µg / 2,5
+µg Hub wiederverwen…
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 2 – 0 – 0 – 0; Hub
+Anamnese
+Abschnitt
+Überschrift: Anamnese
+Inhalt:
+Die stationäre Aufnahme des Patienten erfolgte geplant zur Herzkatheteruntersuchung.
+Zum Vorstellungszeitpunkt gibt der Patient ein stabiles Allgemeinbefinden an, es bestünde
+eine vorbekannte Belastungsdyspnoe NYHA II. Pektanginöse Beschwerden, Schwindel,
+Herzrasen und Synkopen werden negiert. Der Patient befand sich zuletzt im Mai 2022 in
+unserer stationären Behandlung bei akutem Koronarsyndrom. Es erfolgte eine LCX und
+PM1-PCI. Bereits in der darauffolgenden Woche habe sich der Patient in Klinikum UVW mit
+akutem Herzinfarkt vorgestellt. Es sei ein Herzkatheter erfolgt, der Befund liegt uns aktuell
+nicht vor.
+Vorherige Prozeduren
+Bezeichnung: distale RCX- und RM1-PCI (2 DES) + Implantation eines gecoverten Stents
+bei Koronarperforation
+Zeitpunkt: 05/2022
+Bezeichnung: Hauptstamm-PCI (Impella-Schutz)
+Zeitpunkt: 07/2019
+Bezeichnung: RCA-PCI
+Zeitpunkt: 02/2019
+Bezeichnung: LCX- und RD1-PCI
+Zeitpunkt: 01/2019
+Diagnosen und Infektionen/Besiedelungen durch multiresistente Erreger
+Infektion oder Besiedelung durch multiresistente
+Nein
+Erreger
+Prozeduren
+Prozedur
+Code/Bezeichnung: PCI der distalen RCA mit 1 DES-Implantation
+Zeitpunkt: 23.06.2022
+Implantate
+Implantat-Informationen
+Spezifischer Typ/Bezeichnung: Drug-Eluting Stent (DES)
+Name des Geräts: Promus ELITE 2,75 x 12mm
+Hersteller: Boston Scientific
+Verlauf
+Abschnitt
+Die stationäre Aufnahme des Patienten erfolgte bei oben genannter Anamnese. Nach
+entsprechender Aufklärung und Vorbereitung konnte die Herzkatheteruntersuchung am
+23.06.2022 realisiert werden. Es gelang erfolgreich eine distale RCA-PCI mit Implantation
+eines DES. Wir bitten um Fortführung der Plättchenaggregationshemmung mit ASS und
+Clopidogrel bis einschließlich Mai 2023, anschließend ASS-Mono-Therapie lebenslang.
+Der postinterventionelle Verlauf gestaltete sich komplikationslos. Bei chronischer
+Niereninsuffizienz und Z.n. KM-Exposition wiesen wir den Patienten auf die Einhaltung
+einer ausreichenden Trinkmenge (1,5-2 Liter/d) hin.
+Entlassungsbefund
+[Freitext]
+Der Patient ist beschwerdefrei.
+Weiteres Prozedere und Empfehlungen
+[Freitext]
+Kontrolle der kardiovaskulären Risikofaktoren. Fortführung der dualen
+Plättchenaggregationshemmung mit ASS und Clopidogrel bis einschließlich 05/2023,
+anschließend ASS-Mono-Therapie lebenslang. Einhaltung einer ausreichenden Trinkmenge
+(1,5-2 Liter/d) bei Z.n. KM-Exposition und bekannter chronischer Niereninsuffizienz.
+Ambulant kardiologische Weiterbetreuung, nächste Verlaufskontrolle in ca. 6 Monaten
+Medikation Entlassung
+Medikationseintrag
+Medikations-Information
+o
+o
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: ASS STADA 100 mg
+magensaftresistente Tabl.
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+o
+Dosierschema Freitext: 1 – 0 – 0 – 0; Tablette
+Verlaufsmedikation: Ja
+Medikations-Information
+o
+o
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Clopidogrel Zentiva 75 mg
+Filmtabletten
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 1 – 0 – 0 – 0; Tablette; bis 05/2023
+o
+Verlaufsmedikation: Ja
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Atorvastatin HEXAL 40 mg
+Filmtabletten
+o
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 0 – 0 – 1 – 0; Tablette
+o
+Verlaufsmedikation: Ja
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Ezetimib STADA 10 mg
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 0 – 0 – 1 – 0; Tablette
+o
+Verlaufsmedikation: Ja
+Medikations-Information
+o
+o
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Candesartan Zentiva 16 mg
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+o
+Dosierschema Freitext: 1 – 0 – 0 – 0; Tablette
+Verlaufsmedikation: Ja
+Medikations-Information
+o
+o
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Torasemid HEXAL 10 mg
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 1 – 0 – 0 – 0; Tablette
+o
+Verlaufsmedikation: Ja
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Pantoprazol PUREN 20 mg
+o
+o
+magensaftresist. Tabletten
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+Dosierschema Freitext: 1 – 0 – 0 – 0; Tablette; vor den Mahlzeiten
+o
+Verlaufsmedikation: Ja
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: Relvar Ellipta 92 Mikrogramm /
+o
+o
+22 Mikrogramm
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+o
+Dosierschema:
+o
+o
+Dosierschema Freitext: 2 – 0 – 0 – 0; Hub
+Verlaufsmedikation: Ja
+Medikations-Information
+o
+o
+Arzneimittel/Rezeptur: Code/Bezeichnung: SPIROLTO Respimat 2,5 µg / 2,5
+µg Hub wiederverwen…
+o
+o
+o
+o
+Dosierschema:
+o
+o
+Dosierschema Freitext: 2 – 0 – 0 – 0; Hub
+Verlaufsmedikation: Ja
+Dokumentation
+Dokumentationseintrag:
+Anzeigename: Labor
+Text: GFR 36 ml/min
+Datum: 22.06.2022
+Hinweis: Ja
+Anzeigename: EKG
+Text: Sinusrhythmus, 71/min., Indifferenz- bis Linkstyp, keine relevanten
+Erregungsausbreitungs- oder –rückbildungsstörungen
+Datum: 22.06.2022
+Hinweis: Nein
+Anzeigename: Herzkatheteruntersuchung
+Text:
+Diagnose: Koronare 3-Gefäßerkrankung. Therapie: Erfolgreiche PCI der distalen RCA mit
+einem Drug Eluting Stent (Promus ELITE 2,75 x 12mm). Details: Elektive PCI der distalen
+RCA: FK AL 1,0 SH 6 F; 1 Asahi sion blue Drahtplatzierung im Gefäß; Dehnung mit
+Pantera Pro Balloon 2,0 x 20 mm und Pantera Pro Balloon 2,5 x 20 mm; Stentimplantation
+Promus ELITE 2,75 x 12 mm; TIMI III Fluss
+Datum: 23.06.2022
+Hinweis: Nein
