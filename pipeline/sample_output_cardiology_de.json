@@ -1,0 +1,324 @@
+{
+ "worry": {
+  "level": "calm",
+  "headline": "Ihr Herz-Eingriff ist gut verlaufen. Sie sind ohne Probleme nach Hause gegangen.",
+  "reason": "Der Brief sagt: Nach dem Eingriff gab es keine Komplikationen, und bei der Entlassung hatten Sie keine Beschwerden."
+ },
+ "about_one_sentence": "Sie waren vom 22.06.2022 bis 24.06.2022 im Krankenhaus. Eine verengte Herzarterie wurde geweitet und ein Stent eingesetzt. Das ist gut gelungen.",
+ "todos": [
+  {
+   "action": "Beide Blutverdünner zusammen weiter nehmen",
+   "detail": "ASS 100 mg und Clopidogrel 75 mg, jeweils eine Tablette am Morgen, bis Ende Mai 2023.",
+   "when": "Jeden Morgen bis 05/2023",
+   "then": "Nach Mai 2023 nur noch ASS, lebenslang. Fragen Sie Ihre Ärztin, bevor Sie etwas ändern.",
+   "source": "letter"
+  },
+  {
+   "action": "Genug trinken",
+   "detail": "Die Ärzte raten zu 1,5 bis 2 Litern am Tag, wegen des Kontrastmittels und weil Ihre Nieren schwächer arbeiten.",
+   "when": "Jeden Tag",
+   "then": null,
+   "source": "letter"
+  },
+  {
+   "action": "Zur Kontrolle bei Ihrer Kardiologin gehen",
+   "detail": "Der Brief sagt: Sie sollen weiter zu einer Herzärztin gehen. Die nächste Kontrolle ist in etwa 6 Monaten.",
+   "when": "In etwa 6 Monaten",
+   "then": null,
+   "source": "letter"
+  },
+  {
+   "action": "Herz-Risikofaktoren prüfen lassen",
+   "detail": "Der Brief bittet darum, Ihre Herz-Risikofaktoren regelmäßig zu kontrollieren.",
+   "when": "Bei Ihren Kontrollterminen",
+   "then": null,
+   "source": "letter"
+  }
+ ],
+ "if_not": {
+  "source": "general",
+  "points": [
+   "Bei Brustschmerzen, starker Atemnot, Schwindel oder Ohnmacht holen Sie schnell ärztliche Hilfe.",
+   "Setzen Sie Ihre Blutverdünner nicht selbst ab. Fragen Sie immer zuerst Ihre Ärztin oder Ihren Arzt.",
+   "Diese Zusammenfassung ist kein medizinischer Rat. Fragen Sie Ihre Ärztin oder Ihren Arzt, bevor Sie etwas ändern."
+  ]
+ },
+ "summary_paragraphs": [
+  "Sie waren vom 22.06.2022 bis 24.06.2022 in der Klinik für Kardiologie des Krankenhauses XYZ. Der Aufenthalt war geplant, für eine Herzkatheter-Untersuchung. Grund war Ihre bekannte koronare Herzkrankheit. Das heißt: Die Herzarterien sind verengt.",
+  "Sie waren schon im Mai 2022 in diesem Krankenhaus. In der Woche danach hatten Sie einen Herzinfarkt und wurden in einem anderen Krankenhaus (Klinikum UVW) behandelt. Der Bericht dazu lag noch nicht vor. Weitere bekannte Erkrankungen: hoher Blutdruck, eine Lungenerkrankung (COPD) und schwächere Nieren (Stadium III).",
+  "Am 23.06.2022 machten die Ärzte eine Herzkatheter-Untersuchung. Alle drei Herzarterien haben Engstellen. Eine Arterie auf der rechten Seite wurde geweitet, und ein kleines Röhrchen (Stent, Promus ELITE 2,75 x 12 mm) wurde eingesetzt. Danach floss das Blut wieder gut.",
+  "Nach dem Eingriff gab es keine Probleme. Bei der Entlassung hatten Sie keine Beschwerden. Nehmen Sie ASS und Clopidogrel zusammen bis Mai 2023. Danach nur noch ASS, lebenslang.",
+  "Wegen des Kontrastmittels und Ihrer schwächeren Nieren sollen Sie 1,5 bis 2 Liter am Tag trinken. Ihr Nierenwert war GFR 36 ml/min. Das heißt: Die Nieren arbeiten schwächer als normal. Ihr EKG am 22.06.2022 zeigte einen normalen Herzrhythmus."
+ ],
+ "medicines": [
+  {
+   "name": "ASS STADA 100 mg",
+   "dose": "100 mg",
+   "form": "Tablette (magensaftresistent)",
+   "morning": 1,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Lebenslang nehmen (Brief). Meist: ein Blutverdünner, der Gerinnsel im Stent verhindert."
+  },
+  {
+   "name": "Clopidogrel Zentiva 75 mg",
+   "dose": "75 mg",
+   "form": "Filmtablette",
+   "morning": 1,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Nur bis 05/2023 (bis Ende Mai), dann absetzen; ASS geht weiter (Brief). Meist: ein zweiter Blutverdünner."
+  },
+  {
+   "name": "Atorvastatin HEXAL 40 mg",
+   "dose": "40 mg",
+   "form": "Filmtablette",
+   "morning": 0,
+   "midday": 0,
+   "evening": 1,
+   "night": 0,
+   "note": "Meist: senkt das Cholesterin."
+  },
+  {
+   "name": "Ezetimib STADA 10 mg",
+   "dose": "10 mg",
+   "form": "Tablette",
+   "morning": 0,
+   "midday": 0,
+   "evening": 1,
+   "night": 0,
+   "note": "Meist: senkt ebenfalls das Cholesterin."
+  },
+  {
+   "name": "Candesartan Zentiva 16 mg",
+   "dose": "16 mg",
+   "form": "Tablette",
+   "morning": 1,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Meist: senkt den Blutdruck."
+  },
+  {
+   "name": "Torasemid HEXAL 10 mg",
+   "dose": "10 mg",
+   "form": "Tablette",
+   "morning": 1,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Meist: eine Wassertablette, die überschüssige Flüssigkeit ausschwemmt."
+  },
+  {
+   "name": "Pantoprazol PUREN 20 mg",
+   "dose": "20 mg",
+   "form": "Tablette (magensaftresistent)",
+   "morning": 1,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "Vor den Mahlzeiten nehmen (Brief). Meist: schützt den Magen."
+  },
+  {
+   "name": "Relvar Ellipta 92/22 Mikrogramm",
+   "dose": "92 µg / 22 µg",
+   "form": "Inhalator, Hub",
+   "morning": 2,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "2 Hübe am Morgen. Meist: ein Inhalator für die Lunge."
+  },
+  {
+   "name": "SPIROLTO Respimat 2,5/2,5 Mikrogramm",
+   "dose": "2,5 µg / 2,5 µg",
+   "form": "Inhalator, Hub",
+   "morning": 2,
+   "midday": 0,
+   "evening": 0,
+   "night": 0,
+   "note": "2 Hübe am Morgen. Meist: ein Inhalator für die Lunge."
+  }
+ ],
+ "jargon": [
+  {
+   "term": "Alter Myokardinfarkt",
+   "plain": "Ein Herzinfarkt, den Sie früher hatten. Laut Brief war das im 05/2022."
+  },
+  {
+   "term": "Koronare Herzerkrankung (KHK)",
+   "plain": "Die Arterien, die den Herzmuskel versorgen, sind verengt."
+  },
+  {
+   "term": "Herzkatheteruntersuchung / PCI",
+   "plain": "Ein dünner Schlauch wird bis in die Herzarterien geschoben. Verengte Stellen können so geweitet werden, oft mit einem Stent."
+  },
+  {
+   "term": "Stent (DES, Drug-Eluting Stent)",
+   "plain": "Ein kleines Röhrchen aus Metallgitter, das eine Arterie offen hält. Es gibt langsam ein Medikament ab."
+  },
+  {
+   "term": "Dreigefäßerkrankung",
+   "plain": "Alle drei großen Herzarterien haben Engstellen."
+  },
+  {
+   "term": "Duale Plättchenaggregationshemmung",
+   "plain": "Zwei Blutverdünner zusammen (hier ASS und Clopidogrel), damit sich im Stent kein Gerinnsel bildet."
+  },
+  {
+   "term": "Chronische Niereninsuffizienz Stadium III",
+   "plain": "Die Nieren arbeiten schwächer als normal, mittleres Stadium."
+  },
+  {
+   "term": "GFR 36 ml/min",
+   "plain": "Ein Nierenwert. Je niedriger, desto schwächer arbeiten die Nieren."
+  },
+  {
+   "term": "Belastungsdyspnoe NYHA II",
+   "plain": "Atemnot bei normaler Alltagsbelastung, zum Beispiel beim Treppensteigen. In Ruhe keine Beschwerden."
+  },
+  {
+   "term": "Chronische obstruktive Lungenkrankheit",
+   "plain": "Eine langfristige Lungenerkrankung (COPD), die das Atmen erschwert."
+  },
+  {
+   "term": "Maligne essentielle Hypertonie",
+   "plain": "Eine schwere Form von Bluthochdruck. „Maligne“ heißt hier nicht Krebs. Laut Brief gab es keine Blutdruck-Krise."
+  },
+  {
+   "term": "Sinusrhythmus, 71/min",
+   "plain": "Normaler, regelmäßiger Herzschlag mit 71 Schlägen pro Minute."
+  },
+  {
+   "term": "TIMI III Fluss",
+   "plain": "Das Blut fließt wieder vollständig durch die Arterie. Das ist das beste Ergebnis."
+  },
+  {
+   "term": "Kontrastmittel (KM)",
+   "plain": "Ein Mittel, das bei der Herzkatheter-Untersuchung die Gefäße im Röntgenbild sichtbar macht. Es kann schwache Nieren belasten."
+  }
+ ],
+ "details_1to1": [
+  {
+   "section": "Grund der Aufnahme",
+   "original": "Grund der Einweisung: koronare Herzerkrankung (KHK) … Die stationäre Aufnahme des Patienten erfolgte geplant zur Herzkatheteruntersuchung.",
+   "plain": "Ihre Herzärztin hat Sie wegen verengter Herzarterien eingewiesen. Der Aufenthalt war geplant, für eine Herzkatheter-Untersuchung."
+  },
+  {
+   "section": "Diagnosen bei Aufnahme",
+   "original": "I25.20 Alter Myokardinfarkt 05/2022 … I25.13 Drei-Gefäß-Erkrankung … I10.00 Maligne essentielle Hypertonie … J44.89 Sonstige näher bezeichnete chronische obstruktive Lungenkrankheit … N18.3 chronische Niereninsuffizienz Stadium III",
+   "plain": "Ihre bekannten Erkrankungen: Herzinfarkt im 05/2022, Engstellen in allen drei Herzarterien, schwerer Bluthochdruck, Lungenerkrankung (COPD) und schwächere Nieren (Stadium III)."
+  },
+  {
+   "section": "Aufenthalt",
+   "original": "Aufnahmedatum 22.06.2022, Entlassdatum 24.06.2022",
+   "plain": "Sie waren vom 22.06.2022 bis 24.06.2022 im Krankenhaus."
+  },
+  {
+   "section": "Eingriff",
+   "original": "PCI der distalen RCA mit 1 DES-Implantation, Zeitpunkt: 23.06.2022",
+   "plain": "Am 23.06.2022 wurde eine verengte Herzarterie geweitet und ein Stent eingesetzt."
+  },
+  {
+   "section": "Implantat",
+   "original": "Drug-Eluting Stent (DES), Promus ELITE 2,75 x 12mm, Hersteller: Boston Scientific",
+   "plain": "Der Stent heißt Promus ELITE, Größe 2,75 x 12 mm, Hersteller Boston Scientific."
+  },
+  {
+   "section": "Verlauf",
+   "original": "Der postinterventionelle Verlauf gestaltete sich komplikationslos. Der Patient ist beschwerdefrei.",
+   "plain": "Die Erholung verlief ohne Probleme. Bei der Entlassung hatten Sie keine Beschwerden."
+  },
+  {
+   "section": "Blutverdünner",
+   "original": "Wir bitten um Fortführung der Plättchenaggregationshemmung mit ASS und Clopidogrel bis einschließlich Mai 2023, anschließend ASS-Mono-Therapie lebenslang.",
+   "plain": "ASS und Clopidogrel zusammen bis Ende Mai 2023 nehmen. Danach nur noch ASS, lebenslang."
+  },
+  {
+   "section": "Trinken",
+   "original": "Einhaltung einer ausreichenden Trinkmenge (1,5-2 Liter/d) bei Z.n. KM-Exposition und bekannter chronischer Niereninsuffizienz.",
+   "plain": "Trinken Sie 1,5 bis 2 Liter am Tag. Das schützt Ihre Nieren nach dem Kontrastmittel."
+  },
+  {
+   "section": "Wie es weitergeht",
+   "original": "Ambulant kardiologische Weiterbetreuung, nächste Verlaufskontrolle in ca. 6 Monaten",
+   "plain": "Weiter in Behandlung bei einer Herzärztin. Die nächste Kontrolle ist in etwa 6 Monaten. Ein genaues Datum steht nicht im Brief."
+  },
+  {
+   "section": "Nierenwert",
+   "original": "Labor: GFR 36 ml/min, Datum: 22.06.2022",
+   "plain": "Ein Bluttest am 22.06.2022 zeigte: Ihre Nieren arbeiten eingeschränkt."
+  },
+  {
+   "section": "EKG",
+   "original": "EKG: Sinusrhythmus, 71/min., keine relevanten Erregungsausbreitungs- oder –rückbildungsstörungen",
+   "plain": "Ihr EKG am 22.06.2022 war normal. Herzschlag 71 pro Minute."
+  },
+  {
+   "section": "Frühere Eingriffe",
+   "original": "distale RCX- und RM1-PCI (2 DES) + Implantation eines gecoverten Stents bei Koronarperforation, 05/2022; Hauptstamm-PCI (Impella-Schutz), 07/2019; RCA-PCI, 02/2019; LCX- und RD1-PCI, 01/2019",
+   "plain": "Sie hatten schon früher Behandlungen an den Herzarterien: im 05/2022, 07/2019, 02/2019 und 01/2019."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Warum habe ich einen Stent bekommen?",
+   "a": "Weil eine Ihrer Herzarterien verengt war. Der Stent hält sie offen, damit das Blut fließen kann.",
+   "source": "letter"
+  },
+  {
+   "q": "Wie lange muss ich Clopidogrel nehmen?",
+   "a": "Bis Ende Mai 2023. Danach nur noch ASS, lebenslang. Setzen Sie es nicht früher ab, ohne Ihre Ärztin zu fragen.",
+   "source": "letter"
+  },
+  {
+   "q": "Warum soll ich 1,5 bis 2 Liter am Tag trinken?",
+   "a": "Wegen des Kontrastmittels aus der Untersuchung und weil Ihre Nieren schwächer arbeiten. Das schützt die Nieren.",
+   "source": "letter"
+  },
+  {
+   "q": "Wann ist meine nächste Kontrolle?",
+   "a": "In etwa 6 Monaten. Ein genaues Datum steht nicht im Brief. Fragen Sie in der Praxis Ihrer Herzärztin nach.",
+   "source": "letter"
+  },
+  {
+   "q": "War bei der Entlassung alles in Ordnung?",
+   "a": "Ja. Laut Brief verlief die Erholung ohne Probleme, und Sie hatten keine Beschwerden.",
+   "source": "letter"
+  },
+  {
+   "q": "Darf ich Auto fahren?",
+   "a": "Dazu steht nichts im Brief. Bitte fragen Sie Ihre Herzärztin.",
+   "source": "not_in_letter"
+  },
+  {
+   "q": "Was, wenn es mir zu Hause schlecht geht?",
+   "a": "Der Brief nennt keine besonderen Warnzeichen. Allgemein gilt: Bei Brustschmerzen oder starker Atemnot schnell Hilfe holen.",
+   "source": "general"
+  }
+ ],
+ "contacts": [
+  {
+   "who": "Krankenhaus XYZ, Kardiologie (Entlassmanagement)",
+   "phone": "1234566",
+   "hours": "Mo–Fr 09:00–19:00, Sa und So 10:00–14:00"
+  },
+  {
+   "who": "Krankenhaus XYZ, Kardiologie (Zentrale)",
+   "phone": "030 987654321",
+   "hours": null
+  },
+  {
+   "who": "Dr. Ludger Ober, Oberarzt im Krankenhaus",
+   "phone": "654321434",
+   "hours": null
+  },
+  {
+   "who": "Dr. Martina Mustermann, Ihre Herzärztin für die Weiterbehandlung",
+   "phone": "030 0987654321",
+   "hours": null
+  }
+ ]
+}

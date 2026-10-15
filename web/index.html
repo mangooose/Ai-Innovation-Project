@@ -274,6 +274,36 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 .anotherbtn{align-self:center;display:inline-flex;align-items:center;gap:.5rem;border:0;background:transparent;color:var(--accent);font-weight:700;text-decoration:underline;min-height:var(--tap);padding:.3rem .8rem;cursor:pointer}
 #readThumb{width:8rem;height:10rem;object-fit:cover;border-radius:12px;border:1.5px solid var(--line);box-shadow:var(--shadow);animation:breathe 1.6s ease-in-out infinite}
 .hero-btn{box-shadow:0 8px 24px color-mix(in srgb,var(--accent) 25%,transparent)!important}
+/* States added for real letters */
+.verdict.lv-act_soon{background:var(--act-bg);border-color:color-mix(in srgb,var(--act) 40%,transparent)}
+.verdict.lv-act_soon .verdict-badge{background:var(--act)}
+.verdict.lv-act_soon .eyebrow{color:var(--act)}
+.verdict.lv-urgent{background:var(--alert-bg);border-color:var(--alert)}
+.verdict.lv-urgent .verdict-badge{background:var(--alert)}
+.verdict.lv-urgent .eyebrow{color:var(--alert)}
+.verdict.lv-info{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+.verdict.lv-info .verdict-badge{background:var(--accent)}
+.verdict.lv-calm .eyebrow{color:var(--calm)}
+#ovBanners:empty{display:none}
+#ovBanners{display:flex;flex-direction:column;gap:.6rem}
+.banner{display:flex;gap:.6rem;align-items:flex-start;border-radius:12px;padding:.65rem .85rem;font-size:.88rem;font-weight:600}
+.banner .ico{flex:none;margin-top:.15rem}
+.banner.info{background:var(--accent-soft);color:var(--accent)}
+.banner.warn{background:var(--act-bg);color:var(--act);border:1.5px solid color-mix(in srgb,var(--act) 35%,transparent)}
+.banner .iflist{font-weight:400;font-size:.82rem;color:var(--ink)}
+.lettertext{white-space:pre-wrap;overflow-wrap:anywhere}
+#letterTextBox{max-height:60vh;overflow:auto}
+.privacy{font-size:.85rem;max-width:24rem}
+.hero-btn.small{aspect-ratio:auto;min-height:4rem;font-size:1.15rem;max-width:18rem}
+.errdoc{animation:none;background:var(--act-bg);color:var(--act)}
+.fld{display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:700}
+.fld input{font-weight:400;border:1.5px solid var(--line);border-radius:12px;padding:.55rem .75rem;background:var(--sunk);min-height:var(--tap);font-family:var(--f-mono);font-size:.85rem}
+.aistate{font-size:.85rem;font-weight:700;border-radius:10px;padding:.45rem .7rem}
+.aistate.on{background:var(--calm-bg);color:var(--calm)}
+.aistate.off{background:var(--sunk);color:var(--ink-2)}
+.aimore summary{min-height:2.6rem;padding:.5rem .8rem;font-size:.85rem}
+#medsOther{display:flex;flex-direction:column;gap:.7rem}
+#medsOther:empty{display:none}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -342,43 +372,28 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 
 <!-- ============ OVERVIEW ============ -->
 <section class="screen" id="screen-overview">
-  <article class="card verdict" data-read>
+  <div id="ovBanners"></div>
+  <article class="card verdict" id="verdict" data-read>
     <div class="verdict-top">
-      <span class="verdict-badge" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
+      <span class="verdict-badge" aria-hidden="true"><svg class="ico"><use id="verdictIco" href="#i-check"/></svg></span>
       <div style="min-width:0">
-        <p class="eyebrow" style="color:var(--calm)" data-i18n="worryQ">In short</p>
-        <h1 data-i18n="goodNews">The treatment was successful.</h1>
-        <p style="margin-top:.3rem" data-i18n="verdictReason">Your letter says: no complications, and no complaints when you went home.</p>
+        <p class="eyebrow" id="verdictEyebrow" data-i18n="worryQ">In short</p>
+        <h1 id="verdictHead"></h1>
+        <p style="margin-top:.3rem" id="verdictReason"></p>
       </div>
     </div>
   </article>
 
-  <p class="aboutline" data-read data-i18n="aboutLine">About this letter: on 23 June 2022 a narrow heart artery was widened and a stent was placed.</p>
+  <p class="aboutline" id="aboutLine" data-read></p>
 
-  <div>
-    <p class="eyebrow" style="margin-bottom:.5rem" data-i18n="yourTodos" data-read>Your 3 to-dos</p>
-    <div style="display:flex;flex-direction:column;gap:.6rem">
-      <button class="todorow" data-read type="button" data-nav="todo1" id="rowTodo1">
-        <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-pill"/></svg></span>
-        <span><span class="act" data-i18n="todo1Short">Take both blood thinners</span><br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="untilMay">Until end of May 2023</span></span></span>
-        <svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg>
-      </button>
-      <button class="todorow" data-read type="button" data-nav="todo2" id="rowTodo2">
-        <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-drop"/></svg></span>
-        <span><span class="act" data-i18n="todo2Short">Drink 1.5 to 2 litres daily</span><br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="everyDay">Every day</span></span></span>
-        <svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg>
-      </button>
-      <button class="todorow" data-read type="button" data-nav="todo3" id="rowTodo3">
-        <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-cal"/></svg></span>
-        <span><span class="act" data-i18n="todo3Short">Heart check-up</span><br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="in6mo">In about 6 months</span></span></span>
-        <svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg>
-      </button>
-    </div>
+  <div id="todoBlock">
+    <p class="eyebrow" style="margin-bottom:.5rem" id="todoEyebrow" data-read></p>
+    <div style="display:flex;flex-direction:column;gap:.6rem" id="todoList"></div>
   </div>
 
   <div class="tilegrid" data-read>
     <button class="tile" type="button" data-nav="meds" id="tileMeds"><span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-pill"/></svg></span><span data-i18n="medicines">Medicines</span></button>
-    <button class="tile" type="button" data-nav="explain" id="tileExplain"><span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-book"/></svg></span><span data-i18n="explain">Explain</span></button>
+    <button class="tile" type="button" data-nav="explain" id="tileExplain"><span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-book"/></svg></span><span data-i18n="explain">Report</span></button>
     <button class="tile" type="button" data-nav="questions" id="tileQuestions"><span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-help"/></svg></span><span data-i18n="questions">Questions</span></button>
     <button class="tile" type="button" data-nav="help" id="tileHelp"><span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-phone"/></svg></span><span data-i18n="help">Help</span></button>
   </div>
@@ -393,7 +408,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   <div class="upmark" aria-hidden="true"><svg class="mk" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="mkg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5FA39A"/><stop offset="1" stop-color="#2F6A63"/></linearGradient></defs><rect width="48" height="48" rx="14" fill="url(#mkg2)"/><path d="M13 10h15l8 8v16a3 3 0 0 1-3 3H20l-6 5v-5h-1a3 3 0 0 1-3-3V13a3 3 0 0 1 3-3z" fill="#FFFFFF"/><path d="M28 10v6a2 2 0 0 0 2 2h6" fill="#D6EAE6"/><path d="M19.5 18.5v8M15.5 22.5h8" stroke="#3F7D76" stroke-width="3" stroke-linecap="round"/><path d="M27 25h5M15.5 31h16.5" stroke="#9CC4BD" stroke-width="2.4" stroke-linecap="round"/><path d="M40 4.5l1.3 3.2 3.2 1.3-3.2 1.3L40 13.5l-1.3-3.2-3.2-1.3 3.2-1.3z" fill="#F2C46D"/></svg><span class="wm">Medi<b>Klar</b></span><span class="tag" data-i18n="tagline">Your letter, in plain words</span></div>
   <h1 data-i18n="yourLetter">Your doctor’s letter</h1>
   <input type="file" id="camInput" accept="image/*" capture="environment" hidden>
-  <input type="file" id="fileInput" accept="image/*,application/pdf" hidden>
+  <input type="file" id="fileInput" accept="image/*,application/pdf,.pdf,text/plain,.txt" hidden>
   <button class="hero-btn" type="button" id="camBtn">
     <span class="hero-ic"><svg class="ico"><use href="#i-camera"/></svg></span>
     <span data-i18n="takePhoto">Take a photo</span>
@@ -401,82 +416,47 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   <button class="plain-btn" type="button" id="fileBtn">
     <svg class="ico"><use href="#i-upload"/></svg><span data-i18n="chooseFile">Choose a file instead</span>
   </button>
+  <p class="muted privacy" id="privacyLine"></p>
+  <button class="anotherbtn" type="button" id="exampleBtn"><svg class="ico"><use href="#i-file"/></svg><span data-i18n="tryExample">Try with an example letter</span></button>
 </section>
 
 <!-- ============ READING ============ -->
 <section class="screen simple" id="screen-reading" hidden>
-  <img id="readThumb" alt="" hidden>
-  <span class="calm-doc" id="readIcon" aria-hidden="true"><svg class="ico"><use href="#i-file"/></svg></span>
-  <p class="muted" id="readName" hidden></p>
-  <h1 data-i18n="reading">One moment…</h1>
-  <p class="muted" data-i18n="readingSub">We’re reading your letter for you.</p>
-  <div class="bar" aria-hidden="true" style="width:100%;max-width:16rem"><i id="progress"></i></div>
-</section>
-
-<!-- ============ TODO 1 ============ -->
-<section class="screen" id="screen-todo1" hidden>
-  <div class="pagetop">
-    <h2><svg class="ico"><use href="#i-pill"/></svg><span data-i18n="todo1Short">Take both blood thinners</span></h2>
+  <div id="readBusy" style="display:contents">
+    <img id="readThumb" alt="" hidden>
+    <span class="calm-doc" id="readIcon" aria-hidden="true"><svg class="ico"><use href="#i-file"/></svg></span>
+    <p class="muted" id="readName" hidden></p>
+    <h1 data-i18n="reading">One moment…</h1>
+    <p class="muted" id="readStep" aria-live="polite" data-i18n="readingSub">We’re reading your letter for you.</p>
+    <div class="bar" aria-hidden="true" style="width:100%;max-width:16rem"><i id="progress"></i></div>
+    <button class="anotherbtn" type="button" id="cancelRead" data-i18n="cancel">Cancel</button>
   </div>
-  <article class="card" data-read>
-    <div class="todohead">
-      <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-pill"/></svg></span>
-      <div style="min-width:0">
-        <h1 data-i18n="todo1Long">Take both blood thinners every morning</h1>
-        <p class="muted" style="font-size:.9rem">ASS 100 mg and Clopidogrel 75 mg</p>
-        <p style="margin-top:.4rem"><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="untilMay">Until end of May 2023</span></span></p>
-      </div>
-    </div>
-    <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo1Why">After May 2023, stop only Clopidogrel. Keep taking ASS for the rest of your life.</span></p>
-  </article>
-  <div class="actions">
-    <button class="btn ghost" type="button" data-remind><svg class="ico"><use href="#i-bell"/></svg><span data-i18n="addReminder">Add reminder</span></button>
+  <div id="readErr" style="display:contents" hidden>
+    <span class="calm-doc errdoc" aria-hidden="true"><svg class="ico"><use href="#i-info"/></svg></span>
+    <h1 id="readErrHead"></h1>
+    <p class="muted" id="readErrSub" style="max-width:26rem"></p>
+    <button class="hero-btn small" type="button" data-nav="upload"><span data-i18n="tryAgain">Try again</span></button>
   </div>
 </section>
 
-<!-- ============ TODO 2 ============ -->
-<section class="screen" id="screen-todo2" hidden>
+<!-- ============ TODO ============ -->
+<section class="screen" id="screen-todo" hidden>
   <div class="pagetop">
-    <h2><svg class="ico"><use href="#i-drop"/></svg><span data-i18n="todo2Short">Drink 1.5 to 2 litres daily</span></h2>
+    <h2><svg class="ico"><use class="todoIcoUse" href="#i-check"/></svg><span id="todoTitle"></span></h2>
   </div>
   <article class="card" data-read>
     <div class="todohead">
-      <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-drop"/></svg></span>
+      <span class="ti" aria-hidden="true"><svg class="ico"><use class="todoIcoUse" href="#i-check"/></svg></span>
       <div style="min-width:0">
-        <h1 data-i18n="todo2Long">Drink 1.5 to 2 litres every day</h1>
-        <p style="margin-top:.4rem"><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="everyDay">Every day</span></span></p>
+        <h1 id="todoAction"></h1>
+        <p style="margin-top:.4rem" id="todoWhenWrap"><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span id="todoWhen"></span></span></p>
       </div>
     </div>
-    <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo2Why">Because of the contrast dye from the heart check and because your kidneys work less well.</span></p>
+    <p class="why" style="margin-top:.8rem" id="todoDetail"></p>
+    <p class="why" style="margin-top:.6rem" id="todoThen"></p>
+    <p style="margin-top:.7rem" id="todoSrc"></p>
   </article>
-  <div class="actions">
-    <button class="btn ghost" type="button" data-remind><svg class="ico"><use href="#i-bell"/></svg><span data-i18n="addReminder">Add reminder</span></button>
-  </div>
-</section>
-
-<!-- ============ TODO 3 ============ -->
-<section class="screen" id="screen-todo3" hidden>
-  <div class="pagetop">
-    <h2><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="todo3Short">Heart check-up</span></h2>
-  </div>
-  <article class="card" data-read>
-    <div class="todohead">
-      <span class="ti" aria-hidden="true"><svg class="ico"><use href="#i-cal"/></svg></span>
-      <div style="min-width:0">
-        <h1 data-i18n="todo3Long">Next check-up with your heart doctor</h1>
-        <p class="muted" style="font-size:.9rem">Dr. Martina Mustermann, <span data-i18n="heartSpec">heart specialist</span></p>
-        <p style="margin-top:.4rem"><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span data-i18n="in6mo">In about 6 months</span></span></p>
-      </div>
-    </div>
-    <p class="why" style="margin-top:.8rem"><strong data-i18n="whyLabel">Why (from your letter):</strong> <span data-i18n="todo3Why">In about 6 months. The letter gives no exact date. It also asks for your heart risk factors to be checked.</span></p>
-    <div style="display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.8rem">
-      <span class="numrow">030 0987654321</span>
-      <button class="copy" type="button" data-copy="030 0987654321"><svg class="ico"><use href="#i-copy"/></svg><span data-i18n="copy">Copy</span></button>
-    </div>
-  </article>
-  <div class="actions">
-    <button class="btn ghost" type="button" data-remind><svg class="ico"><use href="#i-bell"/></svg><span data-i18n="addReminder">Add reminder</span></button>
-  </div>
+  <div class="actions" id="todoNav"></div>
 </section>
 
 <!-- ============ MEDICINES ============ -->
@@ -484,39 +464,24 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   <div class="pagetop">
     <h2><svg class="ico"><use href="#i-pill"/></svg><span data-i18n="medicines">Medicines</span></h2>
   </div>
-  <div class="tabs" role="tablist" aria-label="Times of day" id="medTabs">
-    <button type="button" role="tab" id="tab-morning" aria-controls="panel-morning" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-sunrise"/></svg><span data-i18n="morning">Morning</span></button>
-    <button type="button" role="tab" id="tab-midday" aria-controls="panel-midday" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-sun"/></svg><span data-i18n="midday">Midday</span></button>
-    <button type="button" role="tab" id="tab-evening" aria-controls="panel-evening" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-sunset"/></svg><span data-i18n="evening">Evening</span></button>
-    <button type="button" role="tab" id="tab-night" aria-controls="panel-night" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-moon"/></svg><span data-i18n="night">Night</span></button>
+  <div id="medsBody">
+    <div class="tabs" role="tablist" aria-label="Times of day" id="medTabs">
+      <button type="button" role="tab" id="tab-morning" aria-controls="panel-morning" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-sunrise"/></svg><span data-i18n="morning">Morning</span></button>
+      <button type="button" role="tab" id="tab-midday" aria-controls="panel-midday" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-sun"/></svg><span data-i18n="midday">Midday</span></button>
+      <button type="button" role="tab" id="tab-evening" aria-controls="panel-evening" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-sunset"/></svg><span data-i18n="evening">Evening</span></button>
+      <button type="button" role="tab" id="tab-night" aria-controls="panel-night" aria-selected="false" tabindex="-1"><svg class="ico"><use href="#i-moon"/></svg><span data-i18n="night">Night</span></button>
+    </div>
+    <div role="tabpanel" id="panel-morning" aria-labelledby="tab-morning" tabindex="0" data-read hidden></div>
+    <div role="tabpanel" id="panel-midday" aria-labelledby="tab-midday" tabindex="0" data-read hidden></div>
+    <div role="tabpanel" id="panel-evening" aria-labelledby="tab-evening" tabindex="0" data-read hidden></div>
+    <div role="tabpanel" id="panel-night" aria-labelledby="tab-night" tabindex="0" data-read hidden></div>
   </div>
-  <div role="tabpanel" id="panel-morning" aria-labelledby="tab-morning" tabindex="0" hidden>
-    <ul>
-      <li><span class="dose">1</span><div><b>ASS 100 mg</b><span class="for">tablet</span></div></li>
-      <li><span class="dose">1</span><div><b>Clopidogrel 75 mg</b><span class="for">tablet</span><br><span class="flag" data-i18n="untilMay">Until end of May 2023</span></div></li>
-      <li><span class="dose">1</span><div><b>Candesartan 16 mg</b><span class="for">tablet</span></div></li>
-      <li><span class="dose">1</span><div><b>Torasemid 10 mg</b><span class="for">tablet</span></div></li>
-      <li><span class="dose">1</span><div><b>Pantoprazol 20 mg</b><span class="for">tablet</span><br><span class="flag" data-i18n="beforeEat">Before eating</span></div></li>
-      <li><span class="dose">2</span><div><b>Relvar Ellipta</b><span class="for">inhaler · 2 <button class="term" data-term="hub">puffs</button></span></div></li>
-      <li><span class="dose">2</span><div><b>SPIROLTO Respimat</b><span class="for">inhaler · 2 puffs</span></div></li>
-    </ul>
-  </div>
-  <div role="tabpanel" id="panel-midday" aria-labelledby="tab-midday" tabindex="0" hidden>
-    <p class="emptytab" data-i18n="nothingNow">Nothing at this time.</p>
-  </div>
-  <div role="tabpanel" id="panel-evening" aria-labelledby="tab-evening" tabindex="0" hidden>
-    <ul>
-      <li><span class="dose">1</span><div><b>Atorvastatin 40 mg</b><span class="for">tablet</span></div></li>
-      <li><span class="dose">1</span><div><b>Ezetimib 10 mg</b><span class="for">tablet</span></div></li>
-    </ul>
-  </div>
-  <div role="tabpanel" id="panel-night" aria-labelledby="tab-night" tabindex="0" hidden>
-    <p class="emptytab" data-i18n="nothingNow">Nothing at this time.</p>
-  </div>
+  <p class="card emptytab" id="medsEmpty" data-read hidden></p>
+  <div id="medsOther"></div>
   <details>
     <summary><svg class="ico"><use href="#i-info"/></svg><span data-i18n="schemaQ">What does 1 – 0 – 1 – 0 mean?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
     <div class="dbody">
-      <p data-i18n="schemaA">The four numbers are morning – midday – evening – night. “1 – 0 – 1 – 0” means one in the morning and one in the evening. “2 – 0 – 0 – 0” means two in the morning.</p>
+      <p data-i18n="schemaA">The four numbers are morning – midday – evening – night.</p>
       <p class="muted" style="font-size:.82rem" data-i18n="medsNote">Names, amounts and times are copied from your letter.</p>
     </div>
   </details>
@@ -525,61 +490,22 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 <!-- ============ EXPLAIN ============ -->
 <section class="screen" id="screen-explain" hidden>
   <div class="pagetop">
-    <h2><svg class="ico"><use href="#i-book"/></svg><span data-i18n="explain">Explain</span></h2>
+    <h2><svg class="ico"><use href="#i-book"/></svg><span data-i18n="explain">Report</span></h2>
   </div>
-  <article class="card summary" data-read>
-    <p>You were in the heart department of Krankenhaus XYZ in Berlin from <strong>22 to 24 June 2022</strong>, for a heart check. Some blood vessels of your heart are narrow (<button class="term" data-term="khk">KHK</button>).</p>
-    <p>On 23 June the doctors opened a narrow spot in the <button class="term" data-term="rca">right heart artery</button> and placed one <button class="term" data-term="stent">stent</button>. There were no complications. When you went home you had no complaints.</p>
-    <p>Your letter also lists: high blood pressure, a lung illness (<button class="term" data-term="copd">COPD</button>) and <button class="term" data-term="kidney">kidneys that work less well</button>. You had a heart attack in May 2022.</p>
-    <p class="hint"><svg class="ico"><use href="#i-info"/></svg><span data-i18n="tapYellow">Tap a yellow word to see what it means.</span></p>
-  </article>
-  <p class="eyebrow" data-i18n="sideBySide">Every part, side by side</p>
-  <details>
-    <summary><span data-i18n="d1">Why you went to hospital</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+  <article class="card summary" id="summaryCard" data-read></article>
+  <div id="wordsBlock">
+    <p class="eyebrow" data-i18n="wordsExplained">Words from your letter, explained</p>
+    <div class="wordlist" id="wordList" style="margin-top:.5rem"></div>
+  </div>
+  <div id="detailsBlock">
+    <p class="eyebrow" id="detailsEyebrow" data-i18n="sideBySide">Every part, side by side</p>
+    <div id="detailsList" style="margin-top:.5rem"></div>
+  </div>
+  <details id="fullLetter">
+    <summary><svg class="ico"><use href="#i-file"/></svg><span data-i18n="letterText">The full text we read</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
     <div class="dbody">
-      <p data-read>Your heart doctor sent you to hospital because some blood vessels of your heart are narrow. The stay was planned for a heart catheter check. You already knew that you get <button class="term" data-term="nyha">short of breath when you exert yourself</button>.</p>
-      <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
-      <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>Grund der Einweisung: koronare Herzerkrankung (KHK). Die stationäre Aufnahme des Patienten erfolgte geplant zur Herzkatheteruntersuchung. […] es bestände eine vorbekannte Belastungsdyspnoe NYHA II.</div>
-    </div>
-  </details>
-  <details>
-    <summary><span data-i18n="d2">Your illnesses (diagnoses)</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-    <div class="dbody">
-      <div class="dxrow" data-read><span class="o">I25.20 Alter Myokardinfarkt 05/2022</span><span>A heart attack you had in May 2022.</span></div>
-      <div class="dxrow" data-read><span class="o">I25.13 Drei-Gefäß-Erkrankung</span><span>All <button class="term" data-term="dreigefaess">three main heart arteries</button> have narrow spots.</span></div>
-      <div class="dxrow" data-read><span class="o">I10.00 Maligne essentielle Hypertonie</span><span>A severe form of high blood pressure. <button class="term" data-term="maligne">“Maligne” does not mean cancer here.</button></span></div>
-      <div class="dxrow" data-read><span class="o">J44.89 Chronische obstruktive Lungenkrankheit</span><span>A long-term lung illness that makes breathing harder (<button class="term" data-term="copd">COPD</button>).</span></div>
-      <div class="dxrow" data-read><span class="o">N18.3 Chronische Niereninsuffizienz Stadium III</span><span>Your <button class="term" data-term="kidney">kidneys work less well</button> than normal (middle stage).</span></div>
-      <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
-      <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>I25.20 Alter Myokardinfarkt 05/2022 · I25.13 Drei-Gefäß-Erkrankung · I10.00 Maligne essentielle Hypertonie: Ohne Angabe einer hypertensiven Krise · J44.89 Sonstige näher bezeichnete chronische obstruktive Lungenkrankheit · N18.3 chronische Niereninsuffizienz Stadium III</div>
-    </div>
-  </details>
-  <details>
-    <summary><span data-i18n="d3">What the doctors did</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-    <div class="dbody">
-      <p data-read>On 23 June 2022 the doctors widened the end of your <button class="term" data-term="rca">right heart artery</button> through a thin tube (<button class="term" data-term="pci">PCI</button>) and placed one <button class="term" data-term="des">coated stent</button>, 2.75 mm wide and 12 mm long. You had treatments like this before: in May 2022, July 2019, February 2019 and January 2019. After the treatment there were no complications.</p>
-      <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
-      <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>PCI der distalen RCA mit 1 DES-Implantation · 23.06.2022 · Promus ELITE 2,75 x 12mm. Vorherige Prozeduren: 05/2022, 07/2019, 02/2019, 01/2019 (PCI). Der postinterventionelle Verlauf gestaltete sich komplikationslos.</div>
-    </div>
-  </details>
-  <details>
-    <summary><span data-i18n="d4">Tests and results</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-    <div class="dbody">
-      <div class="dxrow" data-read><span class="o">Labor: GFR 36 ml/min (22.06.2022)</span><span>A kidney value. It shows how well your kidneys clean the blood. <button class="term" data-term="gfr">What is GFR?</button></span></div>
-      <div class="dxrow" data-read><span class="o">EKG: Sinusrhythmus, 71/min</span><span>Your heart beats in a <button class="term" data-term="sinus">normal rhythm</button>, 71 times a minute.</span></div>
-      <div class="dxrow" data-read><span class="o">Herzkatheter 23.06.2022: TIMI III Fluss</span><span>After the stent, <button class="term" data-term="timi">blood flows fully</button> through the artery again.</span></div>
-      <div class="dxrow" data-read><span class="o">Entlassungsbefund: Der Patient ist beschwerdefrei.</span><span>When you went home you had no complaints.</span></div>
-      <div class="dxrow" data-read><span class="o">Multiresistente Erreger: Nein</span><span>No hospital germs that are hard to treat were found.</span></div>
-      <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
-      <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>Labor: GFR 36 ml/min (22.06.2022) · EKG: Sinusrhythmus, 71/min · Herzkatheter 23.06.2022: Promus ELITE 2,75 x 12 mm; TIMI III Fluss · Entlassungsbefund: Der Patient ist beschwerdefrei. · Multiresistente Erreger: Nein</div>
-    </div>
-  </details>
-  <details>
-    <summary><span data-i18n="d5">What happens next</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-    <div class="dbody">
-      <p data-read>Take both blood thinners (ASS and Clopidogrel) up to and including May 2023. After that, take only ASS, for life. Drink 1.5 to 2 litres a day, because you had contrast dye and your kidneys are weaker. Your heart doctor’s practice continues your care. Next check-up in about 6 months. Your heart risk factors should be checked.</p>
-      <button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span data-i18n="showOrig">Show original German</span></button>
-      <div class="orig" lang="de" hidden><span class="lab" data-i18n="letterSays">Letter says</span>Fortführung der dualen Plättchenaggregationshemmung mit ASS und Clopidogrel bis einschließlich 05/2023, anschließend ASS-Mono-Therapie lebenslang. Einhaltung einer ausreichenden Trinkmenge (1,5-2 Liter/d) bei Z.n. KM-Exposition und bekannter chronischer Niereninsuffizienz. Ambulant kardiologische Weiterbetreuung, nächste Verlaufskontrolle in ca. 6 Monaten.</div>
+      <p class="notinletter" id="ocrNote" hidden><svg class="ico"><use href="#i-info"/></svg><span data-i18n="ocrNote">Read from a photo. Some words may be read wrongly — compare with your paper letter.</span></p>
+      <div class="orig lettertext" lang="de" id="letterTextBox"></div>
     </div>
   </details>
 </section>
@@ -589,28 +515,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   <div class="pagetop">
     <h2><svg class="ico"><use href="#i-help"/></svg><span data-i18n="questions">Questions</span></h2>
   </div>
-  <article class="card faq">
-    <details>
-      <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q1">Can I stop Clopidogrel if I feel fine?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-      <div class="dbody" data-read><p>Your letter says to take it <strong>until the end of May 2023</strong>. After that, take only ASS, for life.</p><p><span class="pill src-letter"><svg class="ico"><use href="#i-file"/></svg><span data-i18n="fromLetter">From your letter</span></span></p></div>
-    </details>
-    <details>
-      <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q2">What does “1 – 0 – 1 – 0” mean?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-      <div class="dbody" data-read><p>The four numbers are <strong>morning – midday – evening – night</strong>. “1 – 0 – 1 – 0” means one in the morning and one in the evening. “2 – 0 – 0 – 0” means two in the morning.</p></div>
-    </details>
-    <details>
-      <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q3">Why should I drink so much?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-      <div class="dbody" data-read><p>During the heart check you got a contrast dye so the doctors could see your blood vessels. Your letter asks you to drink 1.5 to 2 litres a day because of this dye and because your kidneys work less well.</p></div>
-    </details>
-    <details>
-      <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q4">Is my heart now healed?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-      <div class="dbody" data-read><p>The narrow spot that was treated is open again. But the letter says that all three main heart arteries are affected, and asks for regular heart check-ups, the next one in about 6 months.</p></div>
-    </details>
-    <details>
-      <summary><svg class="ico"><use href="#i-help"/></svg><span data-i18n="q5">Who can I call with questions?</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
-      <div class="dbody" data-read><p>Your heart doctor’s practice, or the hospital’s discharge team. You find the numbers under Help.</p></div>
-    </details>
-  </article>
+  <article class="card faq" id="faqCard"></article>
   <button class="btn" type="button" id="askOwn" style="min-height:3.4rem"><svg class="ico"><use href="#i-chat"/></svg><span data-i18n="askOwnQ">Ask Klara your own question</span></button>
 </section>
 
@@ -621,27 +526,17 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   </div>
   <article class="card" data-read>
     <p class="eyebrow" style="margin-bottom:.6rem" data-i18n="whoToCall">Who to call</p>
-    <div class="contacts">
-      <div class="contact">
-        <span class="ci"><svg class="ico"><use href="#i-heart"/></svg></span>
-        <div style="min-width:0"><strong data-i18n="c1">Your heart doctor</strong><br><span class="muted">Dr. Martina Mustermann · Straße 3, 10103 Berlin</span><br>
-          <span class="num">030 0987654321</span> <button class="copy" type="button" data-copy="030 0987654321"><svg class="ico"><use href="#i-copy"/></svg><span data-i18n="copy">Copy</span></button></div>
-      </div>
-      <div class="contact">
-        <span class="ci"><svg class="ico"><use href="#i-file"/></svg></span>
-        <div style="min-width:0"><strong data-i18n="c2">Hospital discharge team</strong><br><span class="muted">Mon–Fri 9:00–19:00 · Sat and Sun 10:00–14:00</span><br>
-          <span class="num">1234566</span> <button class="copy" type="button" data-copy="1234566"><svg class="ico"><use href="#i-copy"/></svg><span data-i18n="copy">Copy</span></button></div>
-      </div>
-      <div class="contact">
-        <span class="ci"><svg class="ico"><use href="#i-heart"/></svg></span>
-        <div style="min-width:0"><strong data-i18n="c3">Treating doctor at the hospital</strong><br><span class="muted">Dr. Ludger Ober, <span data-i18n="seniorDoc">senior doctor</span></span><br>
-          <span class="num">654321434</span> <button class="copy" type="button" data-copy="654321434"><svg class="ico"><use href="#i-copy"/></svg><span data-i18n="copy">Copy</span></button></div>
-      </div>
-    </div>
+    <div class="contacts" id="contactList"></div>
   </article>
+  <article class="card" id="ifNotCard" data-read hidden>
+    <p class="eyebrow" style="margin-bottom:.4rem" data-i18n="ifUnwell">If you feel unwell</p>
+    <ul class="iflist" id="ifNotList"></ul>
+    <p style="margin-top:.6rem" id="ifNotSrc"></p>
+  </article>
+  <p class="quiet112" data-read><svg class="ico"><use href="#i-phone"/></svg><span data-i18n="emergency">In an emergency, call 112.</span></p>
   <div class="disclaimer" role="note" data-read>
     <svg class="ico"><use href="#i-shield"/></svg>
-    <p><strong data-i18n="notAdvice">This is an explanation, not medical advice.</strong> <span data-i18n="notAdvice2">It only repeats what your letter says, in simpler words. Always talk to your doctor before you change anything. Where the letter says nothing, we tell you so and do not guess.</span></p>
+    <p><strong data-i18n="notAdvice">This is an explanation, not medical advice.</strong> <span data-i18n="notAdvice2">It only repeats what your letter says, in simpler words.</span></p>
   </div>
 </section>
 
@@ -679,15 +574,8 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
       <button class="x" type="button" data-close data-i18n-aria="close" aria-label="Close"><svg class="ico"><use href="#i-x"/></svg></button>
     </div>
     <div class="sheet-body" id="chatBody" style="flex:1">
-      <div class="chatlog" id="chatlog" aria-live="polite">
-        <div class="msg ai" data-i18n="chatHello">Hello Mr Königsstein. What would you like to know about your letter? You can type, or tap one of the questions below.</div>
-      </div>
-      <div class="chips" id="chips">
-        <button class="chip" type="button" data-i18n="chip1">When can I stop Clopidogrel?</button>
-        <button class="chip" type="button" data-i18n="chip2">When is my next appointment?</button>
-        <button class="chip" type="button" data-i18n="chip3">Is it serious?</button>
-        <button class="chip" type="button" data-i18n="chip4">Can I drive a car?</button>
-      </div>
+      <div class="chatlog" id="chatlog" aria-live="polite"></div>
+      <div class="chips" id="chips"></div>
     </div>
     <form class="chatform" id="chatForm" autocomplete="off">
       <button class="mic" type="button" id="micBtn" data-i18n-aria="speakQ" aria-label="Speak your question"><svg class="ico"><use href="#i-mic"/></svg></button>
@@ -729,11 +617,32 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
           <button class="opt" type="button" data-speed="normal" aria-pressed="true"><span data-i18n="normal">Normal</span></button>
         </div>
       </div>
+      <div class="setrow airow">
+        <span class="setlab" data-i18n="aiTitle">AI explanation</span>
+        <p class="muted" style="font-size:.85rem" data-i18n="aiDesc">Optional.</p>
+        <p class="aistate" id="aiState"></p>
+        <label class="fld"><span data-i18n="aiKey">API key</span><input type="password" id="aiKey" autocomplete="off" spellcheck="false"></label>
+        <details class="aimore">
+          <summary><span data-i18n="aiAdvanced">Service and model</span><svg class="ico chev"><use href="#i-chev"/></svg></summary>
+          <div class="dbody">
+            <label class="fld"><span data-i18n="aiUrl">Service address</span><input type="url" id="aiUrl" spellcheck="false"></label>
+            <label class="fld"><span data-i18n="aiModel">Model</span><input type="text" id="aiModel" spellcheck="false"></label>
+          </div>
+        </details>
+        <div class="optrow">
+          <button class="opt" type="button" id="aiSave"><span data-i18n="save">Save</span></button>
+          <button class="opt" type="button" id="aiRemove"><span data-i18n="remove">Remove key</span></button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast" role="status" hidden></div>
+
+<script type="application/json" id="sample-letter">"Krankenhausentlassbrief\nEntlassende Einrichtung\n[Elemente fett-unterstrichen = mandatory / unterstrichen = optional]\nPatientIn\nName: Krankenhaus XYZ, Klinik für Kardiologie\nAnschrift: Straße 2, 10102 Berlin\nKontaktinformation: Telefon 030 987654321\nVerantwortliche Person:\nHr. Armin Schäfer; Stationsarzt\nNachname, Vorname\nKönigsstein, Ludger\nGeburtsdatum\nAdministratives Geschlecht\n03.03.1941\nMännlich\nDr. Ludger Ober; Oberarzt; Telefon 654321434\nAnschrift\nKontaktdaten\nProf. Dr. Paul Claus; Chefarzt\nBehandelnde Person:\nDr. Ludger Ober\nStraße 1, 10101 Berlin\nTelefon 030 123456789\nKontaktinformation: Telefon 654321434\nAufnahmedatum\nEntlassdatum\n22.06.2022\n24.06.2022\nZustimmung Entlassmanagement\nEinwilligung Unterstützung durch die\nKranken-/Pflegekasse\nja\nja\nAufnahmeanlass\nFachabteilungsschlüssel\nE Einweisung durch den Arzt\n0300 Kardiologie\nFalldaten\nKontakt Entlassmanagement\nKontaktinformation: Telefon 1234566\nKontaktzeiten: Montag bis Freitag in der Zeit\nvon 09:00 bis 19:00, Samstag 10:00 bis 14:00,\nSonntag 10:00 bis 14:00 Uhr\nEntlassgrund\nEmpfangende Person\n01 Behandlung regulär beendet\nName: Dr. Martina Mustermann\nFunktionsbezeichnung: FA Innere Medizin und\nKardiologie\nRolle: Weiterbehandelnder\nArzt/Weiterbehandelnde Ärztin\nAnschrift: Straße 3, 10103 Berlin\nKontaktinformation: Telefon 030 0987654321\nMetadaten\nKennzeichnung Entlassbrief\nErstellungszeitpunkt\nendgültig\n24.06.2022\nSignatur/Zeitstempel\n2022-06-24T16:55:05+02:00\nEinweisung\nEinweisende Person/Einrichtung\nPerson: Dr. Martina Mustermann; FA Innere Medizin und Kardiologie\nEinrichtung: Kardiologische Praxis am Stern\nGrund der Einweisung\nkoronare Herzerkrankung (KHK)\nAufnahme\nAufnahmediagnosen\nI25.20 Alter Myokardinfarkt\n05/2022 (Krankenhaus UVW, Befund aktuell nicht vorliegend)\nI25.13 Drei-Gefäß-Erkrankung\nI10.00 Maligne essentielle Hypertonie : Ohne Angabe einer hypertensiven Krise\nJ44.89 Sonstige näher bezeichnete chronische obstruktive Lungenkrankheit : FEV1 nicht\nnäher bezeichnet\nN18.3 chronische Niereninsuffizienz Stadium III\nAufnahmebefund\n81-jähriger Patient in stabilem Allgemeinzustand. Bewusstsein: wach, kooperativ, zu allen\nQualitäten orientiert. Haut: warm und trocken, sichtbare Schleimhäute feucht und rosig.\nKopf/Hals: unauffällig. Cor-Aktion: Herztöne rein, Herzaktionen rhythmisch, normofrequent,\nkeine Strömungsgeräusche. Pulmo: reines, vesikuläres Atmen bds. sonorer Klopfschall über\nallen Lungenabschnitten, keine Neben- oder Rasselgeräusche. Atemfrequenz: 14/min.\nseitengleiche Atemexkursion. Abdomen: Bauchdecke weich, kein Druckschmerz, keine\nAbwehrspannung, keine pathologischen Resistenzen, regelrechte Darmgeräusche über\nallen Quadranten, Hepar et Splen nicht palpabel. Nierenlager: bds. klopf- und druckindolent.\nWirbelsäule: nicht klopfschmerzhaft. Extremitäten: altersentsprechend beweglich, keine\nUmfangsdifferenzen, keine Ödeme. ZNS: orientierend neurologisch unauffällig.\n\fMedikation Aufnahme\nMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: ASS STADA 100 mg\nmagensaftresistente Tabl.\no\no\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 1 – 0 – 0 – 0; Tablette\nMedikations-Information\no\no\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Clopidogrel Zentiva 75 mg\nFilmtabletten\no\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 1 – 0 – 0 – 0; Tablette\nMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Atorvastatin HEXAL 40 mg\nFilmtabletten\no\no\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 0 – 0 – 1 – 0; Tablette\nMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Ezetimib STADA 10 mg\no\no\no\no\no\no\no\n\fo\no\nDosierschema:\no\nDosierschema Freitext: 0 – 0 – 1 – 0; Tablette\nMedikations-Information\no\no\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Candesartan Zentiva 16 mg\no\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 1 – 0 – 0 – 0; Tablette\nMedikations-Information\no\no\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Torasemid HEXAL 10 mg\no\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 1 – 0 – 0 – 0; Tablette\nMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Pantoprazol PUREN 20 mg\nmagensaftresist. Tabletten\no\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 1 – 0 – 0 – 0; Tablette; vor den Mahlzeiten\nMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Relvar Ellipta 92 Mikrogramm /\no\no\n22 Mikrogramm\no\no\no\n\fo\no\no\no\no\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 2 – 0 – 0 – 0; Hub\nMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: SPIROLTO Respimat 2,5 µg / 2,5\nµg Hub wiederverwen…\no\no\no\nDosierschema:\no\nDosierschema Freitext: 2 – 0 – 0 – 0; Hub\nAnamnese\nAbschnitt\nÜberschrift: Anamnese\nInhalt:\nDie stationäre Aufnahme des Patienten erfolgte geplant zur Herzkatheteruntersuchung.\nZum Vorstellungszeitpunkt gibt der Patient ein stabiles Allgemeinbefinden an, es bestünde\neine vorbekannte Belastungsdyspnoe NYHA II. Pektanginöse Beschwerden, Schwindel,\nHerzrasen und Synkopen werden negiert. Der Patient befand sich zuletzt im Mai 2022 in\nunserer stationären Behandlung bei akutem Koronarsyndrom. Es erfolgte eine LCX und\nPM1-PCI. Bereits in der darauffolgenden Woche habe sich der Patient in Klinikum UVW mit\nakutem Herzinfarkt vorgestellt. Es sei ein Herzkatheter erfolgt, der Befund liegt uns aktuell\nnicht vor.\nVorherige Prozeduren\nBezeichnung: distale RCX- und RM1-PCI (2 DES) + Implantation eines gecoverten Stents\nbei Koronarperforation\nZeitpunkt: 05/2022\nBezeichnung: Hauptstamm-PCI (Impella-Schutz)\nZeitpunkt: 07/2019\nBezeichnung: RCA-PCI\nZeitpunkt: 02/2019\nBezeichnung: LCX- und RD1-PCI\nZeitpunkt: 01/2019\nDiagnosen und Infektionen/Besiedelungen durch multiresistente Erreger\nInfektion oder Besiedelung durch multiresistente\nNein\nErreger\nProzeduren\nProzedur\nCode/Bezeichnung: PCI der distalen RCA mit 1 DES-Implantation\nZeitpunkt: 23.06.2022\n\fImplantate\nImplantat-Informationen\nSpezifischer Typ/Bezeichnung: Drug-Eluting Stent (DES)\nName des Geräts: Promus ELITE 2,75 x 12mm\nHersteller: Boston Scientific\nVerlauf\nAbschnitt\nDie stationäre Aufnahme des Patienten erfolgte bei oben genannter Anamnese. Nach\nentsprechender Aufklärung und Vorbereitung konnte die Herzkatheteruntersuchung am\n23.06.2022 realisiert werden. Es gelang erfolgreich eine distale RCA-PCI mit Implantation\neines DES. Wir bitten um Fortführung der Plättchenaggregationshemmung mit ASS und\nClopidogrel bis einschließlich Mai 2023, anschließend ASS-Mono-Therapie lebenslang.\nDer postinterventionelle Verlauf gestaltete sich komplikationslos. Bei chronischer\nNiereninsuffizienz und Z.n. KM-Exposition wiesen wir den Patienten auf die Einhaltung\neiner ausreichenden Trinkmenge (1,5-2 Liter/d) hin.\nEntlassungsbefund\n[Freitext]\nDer Patient ist beschwerdefrei.\nWeiteres Prozedere und Empfehlungen\n[Freitext]\nKontrolle der kardiovaskulären Risikofaktoren. Fortführung der dualen\nPlättchenaggregationshemmung mit ASS und Clopidogrel bis einschließlich 05/2023,\nanschließend ASS-Mono-Therapie lebenslang. Einhaltung einer ausreichenden Trinkmenge\n(1,5-2 Liter/d) bei Z.n. KM-Exposition und bekannter chronischer Niereninsuffizienz.\nAmbulant kardiologische Weiterbetreuung, nächste Verlaufskontrolle in ca. 6 Monaten\nMedikation Entlassung\nMedikationseintrag\nMedikations-Information\no\no\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: ASS STADA 100 mg\nmagensaftresistente Tabl.\no\no\no\no\no\no\no\no\nDosierschema:\no\no\nDosierschema Freitext: 1 – 0 – 0 – 0; Tablette\nVerlaufsmedikation: Ja\nMedikations-Information\no\no\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Clopidogrel Zentiva 75 mg\nFilmtabletten\no\no\no\no\no\no\no\n\fo\nDosierschema:\no\nDosierschema Freitext: 1 – 0 – 0 – 0; Tablette; bis 05/2023\no\nVerlaufsmedikation: Ja\nMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Atorvastatin HEXAL 40 mg\nFilmtabletten\no\no\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 0 – 0 – 1 – 0; Tablette\no\nVerlaufsmedikation: Ja\nMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Ezetimib STADA 10 mg\no\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 0 – 0 – 1 – 0; Tablette\no\nVerlaufsmedikation: Ja\nMedikations-Information\no\no\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Candesartan Zentiva 16 mg\no\no\no\no\no\no\no\no\nDosierschema:\no\no\nDosierschema Freitext: 1 – 0 – 0 – 0; Tablette\nVerlaufsmedikation: Ja\nMedikations-Information\no\n\fo\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Torasemid HEXAL 10 mg\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 1 – 0 – 0 – 0; Tablette\no\nVerlaufsmedikation: Ja\nMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Pantoprazol PUREN 20 mg\no\no\nmagensaftresist. Tabletten\no\no\no\no\no\no\no\nDosierschema:\no\nDosierschema Freitext: 1 – 0 – 0 – 0; Tablette; vor den Mahlzeiten\no\nVerlaufsmedikation: Ja\nMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: Relvar Ellipta 92 Mikrogramm /\no\no\n22 Mikrogramm\no\no\no\no\no\no\no\no\no\no\no\no\no\no\no\nDosierschema:\no\no\nDosierschema Freitext: 2 – 0 – 0 – 0; Hub\nVerlaufsmedikation: Ja\n\fMedikations-Information\no\no\nArzneimittel/Rezeptur: Code/Bezeichnung: SPIROLTO Respimat 2,5 µg / 2,5\nµg Hub wiederverwen…\no\no\no\no\nDosierschema:\no\no\nDosierschema Freitext: 2 – 0 – 0 – 0; Hub\nVerlaufsmedikation: Ja\nDokumentation\nDokumentationseintrag:\nAnzeigename: Labor\nText: GFR 36 ml/min\nDatum: 22.06.2022\nHinweis: Ja\nAnzeigename: EKG\nText: Sinusrhythmus, 71/min., Indifferenz- bis Linkstyp, keine relevanten\nErregungsausbreitungs- oder –rückbildungsstörungen\nDatum: 22.06.2022\nHinweis: Nein\nAnzeigename: Herzkatheteruntersuchung\nText:\nDiagnose: Koronare 3-Gefäßerkrankung. Therapie: Erfolgreiche PCI der distalen RCA mit\neinem Drug Eluting Stent (Promus ELITE 2,75 x 12mm). Details: Elektive PCI der distalen\nRCA: FK AL 1,0 SH 6 F; 1 Asahi sion blue Drahtplatzierung im Gefäß; Dehnung mit\nPantera Pro Balloon 2,0 x 20 mm und Pantera Pro Balloon 2,5 x 20 mm; Stentimplantation\nPromus ELITE 2,75 x 12 mm; TIMI III Fluss\nDatum: 23.06.2022\nHinweis: Nein\n"</script>
+<script type="application/json" id="sample-en">{"worry": {"level": "calm", "headline": "Your heart procedure went well. You went home without problems.", "reason": "The letter says the hospital stay was complication-free and you were free of symptoms at discharge."}, "about_one_sentence": "You were in the heart hospital from 22.06.2022 to 24.06.2022 to have a narrowed heart artery widened with a small tube (stent), and it went well.", "todos": [{"action": "Keep taking your two blood thinners together", "detail": "ASS 100 mg and Clopidogrel 75 mg, one tablet each in the morning, until the end of May 2023.", "when": "Every morning until 05/2023", "then": "After May 2023, continue ASS alone for life. Ask your doctor before changing anything.", "source": "letter"}, {"action": "Drink enough water", "detail": "The doctors advise 1.5 to 2 litres per day, because of the contrast dye and your weak kidneys.", "when": "Every day", "then": null, "source": "letter"}, {"action": "Go to your heart doctor for follow-up", "detail": "The letter says you should keep seeing a heart doctor. The next check-up is in about 6 months.", "when": "In about 6 months", "then": null, "source": "letter"}, {"action": "Have your heart risk factors checked", "detail": "The letter recommends regular control of cardiovascular risk factors.", "when": "At your follow-up visits", "then": null, "source": "letter"}], "if_not": {"source": "general", "points": ["If you have chest pain, strong shortness of breath, dizziness, or fainting, get medical help quickly.", "Do not stop your blood thinners on your own. Always ask your doctor first.", "This summary is not medical advice. Please ask your doctor before changing anything."]}, "summary_paragraphs": ["You were in the heart department (Klinik für Kardiologie) of Krankenhaus XYZ from 22.06.2022 until 24.06.2022. The stay was planned, for a heart catheter test. The reason was your known coronary heart disease. This means the arteries of your heart are narrowed.", "You were already treated in this hospital in May 2022. The week after, you had a heart attack and were treated in another hospital (Klinikum UVW). The doctors did not have that report yet. Your other known illnesses are high blood pressure, a long-term lung illness (COPD) and weaker kidneys (stage III).", "On 23.06.2022 the doctors did a heart catheter test. They found narrowing in three heart arteries. They widened one artery on the right side of your heart and put in a small metal tube called a stent (Promus ELITE 2.75 x 12 mm). The blood flow after the procedure was good.", "The letter says the recovery after the procedure was without problems. At discharge you had no complaints. The doctors ask you to keep taking ASS and Clopidogrel together until May 2023. After that, take ASS alone for life.", "Because of the contrast dye used in the test and your weak kidneys, the doctors ask you to drink 1.5 to 2 litres of fluid each day. Your kidney test showed GFR 36 ml/min, which means your kidneys work less well than normal. Your heart rhythm test (EKG) on 22.06.2022 was normal."], "medicines": [{"name": "ASS STADA 100 mg", "dose": "100 mg", "form": "tablet (stomach-resistant)", "morning": 1, "midday": 0, "evening": 0, "night": 0, "note": "Take for life (letter). Usually: a blood thinner that stops clots in the stent."}, {"name": "Clopidogrel Zentiva 75 mg", "dose": "75 mg", "form": "film-coated tablet", "morning": 1, "midday": 0, "evening": 0, "night": 0, "note": "Only until 05/2023 (to the end of May), then stop; ASS continues (letter). Usually: a second blood thinner."}, {"name": "Atorvastatin HEXAL 40 mg", "dose": "40 mg", "form": "film-coated tablet", "morning": 0, "midday": 0, "evening": 1, "night": 0, "note": "Usually: lowers cholesterol."}, {"name": "Ezetimib STADA 10 mg", "dose": "10 mg", "form": "tablet", "morning": 0, "midday": 0, "evening": 1, "night": 0, "note": "Usually: also lowers cholesterol."}, {"name": "Candesartan Zentiva 16 mg", "dose": "16 mg", "form": "tablet", "morning": 1, "midday": 0, "evening": 0, "night": 0, "note": "Usually: lowers blood pressure."}, {"name": "Torasemid HEXAL 10 mg", "dose": "10 mg", "form": "tablet", "morning": 1, "midday": 0, "evening": 0, "night": 0, "note": "Usually: a water tablet that removes extra fluid."}, {"name": "Pantoprazol PUREN 20 mg", "dose": "20 mg", "form": "tablet (stomach-resistant)", "morning": 1, "midday": 0, "evening": 0, "night": 0, "note": "Take before meals (letter). Usually: protects the stomach."}, {"name": "Relvar Ellipta 92/22 micrograms", "dose": "92 mcg / 22 mcg", "form": "inhaler puff", "morning": 2, "midday": 0, "evening": 0, "night": 0, "note": "2 puffs in the morning. Usually: an inhaler for the lungs."}, {"name": "SPIROLTO Respimat 2.5/2.5 micrograms", "dose": "2.5 mcg / 2.5 mcg", "form": "inhaler puff", "morning": 2, "midday": 0, "evening": 0, "night": 0, "note": "2 puffs in the morning. Usually: an inhaler for the lungs."}], "jargon": [{"term": "Alter Myokardinfarkt", "plain": "A heart attack you had before. The letter says this was in 05/2022."}, {"term": "Koronare Herzerkrankung (KHK)", "plain": "The arteries that feed the heart muscle are narrowed."}, {"term": "Herzkatheteruntersuchung / PCI", "plain": "A test where a thin tube goes into the heart arteries. Narrowed parts can be widened, often with a small metal tube (stent)."}, {"term": "Stent (DES, Drug-Eluting Stent)", "plain": "A small metal mesh tube placed in an artery to keep it open. It slowly gives off medicine."}, {"term": "Dreigefäßerkrankung", "plain": "Narrowing in three of the heart arteries."}, {"term": "Duale Plättchenaggregationshemmung", "plain": "Taking two blood thinners together (here ASS and Clopidogrel) to prevent blood clots in the stent."}, {"term": "Chronische Niereninsuffizienz Stadium III", "plain": "The kidneys work less well than normal, medium stage."}, {"term": "GFR 36 ml/min", "plain": "A kidney test number. Lower numbers mean weaker kidneys."}, {"term": "Belastungsdyspnoe NYHA II", "plain": "Getting short of breath with normal everyday effort, like climbing stairs. No problems at rest."}, {"term": "Chronische obstruktive Lungenkrankheit", "plain": "A long-term lung illness that makes breathing harder."}, {"term": "Maligne essentielle Hypertonie", "plain": "A severe form of high blood pressure. The letter says there was no dangerous blood pressure crisis."}, {"term": "Sinusrhythmus, 71/min", "plain": "Normal, regular heartbeat at 71 beats per minute."}, {"term": "TIMI III Fluss", "plain": "Blood flows fully through the artery again. This is the best result."}, {"term": "Kontrastmittel (KM)", "plain": "A dye used during the heart catheter test so the arteries show up on X-ray. It can strain weak kidneys."}], "details_1to1": [{"section": "Reason for admission", "original": "Grund der Einweisung: koronare Herzerkrankung (KHK) … Die stationäre Aufnahme des Patienten erfolgte geplant zur Herzkatheteruntersuchung.", "plain": "Your heart doctor sent you to hospital because of narrowed heart arteries. The stay was planned, for a heart catheter test."}, {"section": "Diagnoses at admission", "original": "I25.20 Alter Myokardinfarkt 05/2022 … I25.13 Drei-Gefäß-Erkrankung … I10.00 Maligne essentielle Hypertonie … J44.89 Sonstige näher bezeichnete chronische obstruktive Lungenkrankheit … N18.3 chronische Niereninsuffizienz Stadium III", "plain": "Your known illnesses: a heart attack in 05/2022, narrowing in all three heart arteries, severe high blood pressure, a long-term lung illness (COPD), and weaker kidneys (stage III)."}, {"section": "Stay", "original": "Aufnahmedatum 22.06.2022, Entlassdatum 24.06.2022", "plain": "You were in hospital from 22.06.2022 to 24.06.2022."}, {"section": "Procedure", "original": "PCI der distalen RCA mit 1 DES-Implantation, Zeitpunkt: 23.06.2022", "plain": "On 23.06.2022 the doctors widened a narrowed heart artery and placed one stent."}, {"section": "Implant", "original": "Drug-Eluting Stent (DES), Promus ELITE 2,75 x 12mm, Hersteller: Boston Scientific", "plain": "The stent is called Promus ELITE, size 2.75 x 12 mm, made by Boston Scientific."}, {"section": "Course", "original": "Der postinterventionelle Verlauf gestaltete sich komplikationslos. Der Patient ist beschwerdefrei.", "plain": "Recovery went smoothly, with no problems. You had no complaints when you left."}, {"section": "Blood thinners", "original": "Wir bitten um Fortführung der Plättchenaggregationshemmung mit ASS und Clopidogrel bis einschließlich Mai 2023, anschließend ASS-Mono-Therapie lebenslang.", "plain": "Keep taking ASS and Clopidogrel together until the end of May 2023. After that, take ASS alone for life."}, {"section": "Drinking", "original": "Einhaltung einer ausreichenden Trinkmenge (1,5-2 Liter/d) bei Z.n. KM-Exposition und bekannter chronischer Niereninsuffizienz.", "plain": "Drink 1.5 to 2 litres each day. This helps your kidneys after the contrast dye."}, {"section": "Follow-up", "original": "Ambulant kardiologische Weiterbetreuung, nächste Verlaufskontrolle in ca. 6 Monaten", "plain": "Keep seeing a heart doctor. The next check-up is in about 6 months. The exact date is not in the letter."}, {"section": "Kidney test", "original": "Labor: GFR 36 ml/min, Datum: 22.06.2022", "plain": "A blood test on 22.06.2022 showed your kidneys are working at a reduced level."}, {"section": "Heart rhythm test", "original": "EKG: Sinusrhythmus, 71/min., keine relevanten Erregungsausbreitungs- oder –rückbildungsstörungen", "plain": "Your heart rhythm test on 22.06.2022 was normal. Heartbeat 71 per minute."}, {"section": "Past procedures", "original": "distale RCX- und RM1-PCI (2 DES) + Implantation eines gecoverten Stents bei Koronarperforation, 05/2022; Hauptstamm-PCI (Impella-Schutz), 07/2019; RCA-PCI, 02/2019; LCX- und RD1-PCI, 01/2019", "plain": "You had heart artery treatments before: in 05/2022, 07/2019, 02/2019 and 01/2019."}], "faq": [{"q": "Why did I get a stent?", "a": "Because one of your heart arteries was narrowed. The stent keeps it open so blood can flow.", "source": "letter"}, {"q": "How long must I take Clopidogrel?", "a": "Until the end of May 2023. After that, ASS alone for life. Do not stop earlier without asking your doctor.", "source": "letter"}, {"q": "Why should I drink 1.5 to 2 litres a day?", "a": "Because of the contrast dye from the procedure and your weak kidneys. It helps protect the kidneys.", "source": "letter"}, {"q": "When is my next check-up?", "a": "In about 6 months. The exact date is not in the letter. Ask your heart doctor's office.", "source": "letter"}, {"q": "Was everything okay when I left?", "a": "Yes. The letter says the recovery had no problems and you were free of complaints.", "source": "letter"}, {"q": "Can I drive a car?", "a": "The letter does not say anything about driving. Please ask your heart doctor.", "source": "not_in_letter"}, {"q": "What if I feel unwell at home?", "a": "The letter does not give special warning signs. In general, get help quickly for chest pain or strong breathlessness.", "source": "general"}], "contacts": [{"who": "Hospital XYZ, heart clinic (discharge management)", "phone": "1234566", "hours": "Mon-Fri 09:00-19:00, Sat and Sun 10:00-14:00"}, {"who": "Krankenhaus XYZ, heart department (main number)", "phone": "030 987654321", "hours": null}, {"who": "Dr. Ludger Ober, senior doctor at the hospital", "phone": "654321434", "hours": null}, {"who": "Dr. Martina Mustermann, your heart doctor for follow-up", "phone": "030 0987654321", "hours": null}]}</script>
+<script type="application/json" id="sample-de">{"worry": {"level": "calm", "headline": "Ihr Herz-Eingriff ist gut verlaufen. Sie sind ohne Probleme nach Hause gegangen.", "reason": "Der Brief sagt: Nach dem Eingriff gab es keine Komplikationen, und bei der Entlassung hatten Sie keine Beschwerden."}, "about_one_sentence": "Sie waren vom 22.06.2022 bis 24.06.2022 im Krankenhaus. Eine verengte Herzarterie wurde geweitet und ein Stent eingesetzt. Das ist gut gelungen.", "todos": [{"action": "Beide Blutverdünner zusammen weiter nehmen", "detail": "ASS 100 mg und Clopidogrel 75 mg, jeweils eine Tablette am Morgen, bis Ende Mai 2023.", "when": "Jeden Morgen bis 05/2023", "then": "Nach Mai 2023 nur noch ASS, lebenslang. Fragen Sie Ihre Ärztin, bevor Sie etwas ändern.", "source": "letter"}, {"action": "Genug trinken", "detail": "Die Ärzte raten zu 1,5 bis 2 Litern am Tag, wegen des Kontrastmittels und weil Ihre Nieren schwächer arbeiten.", "when": "Jeden Tag", "then": null, "source": "letter"}, {"action": "Zur Kontrolle bei Ihrer Kardiologin gehen", "detail": "Der Brief sagt: Sie sollen weiter zu einer Herzärztin gehen. Die nächste Kontrolle ist in etwa 6 Monaten.", "when": "In etwa 6 Monaten", "then": null, "source": "letter"}, {"action": "Herz-Risikofaktoren prüfen lassen", "detail": "Der Brief bittet darum, Ihre Herz-Risikofaktoren regelmäßig zu kontrollieren.", "when": "Bei Ihren Kontrollterminen", "then": null, "source": "letter"}], "if_not": {"source": "general", "points": ["Bei Brustschmerzen, starker Atemnot, Schwindel oder Ohnmacht holen Sie schnell ärztliche Hilfe.", "Setzen Sie Ihre Blutverdünner nicht selbst ab. Fragen Sie immer zuerst Ihre Ärztin oder Ihren Arzt.", "Diese Zusammenfassung ist kein medizinischer Rat. Fragen Sie Ihre Ärztin oder Ihren Arzt, bevor Sie etwas ändern."]}, "summary_paragraphs": ["Sie waren vom 22.06.2022 bis 24.06.2022 in der Klinik für Kardiologie des Krankenhauses XYZ. Der Aufenthalt war geplant, für eine Herzkatheter-Untersuchung. Grund war Ihre bekannte koronare Herzkrankheit. Das heißt: Die Herzarterien sind verengt.", "Sie waren schon im Mai 2022 in diesem Krankenhaus. In der Woche danach hatten Sie einen Herzinfarkt und wurden in einem anderen Krankenhaus (Klinikum UVW) behandelt. Der Bericht dazu lag noch nicht vor. Weitere bekannte Erkrankungen: hoher Blutdruck, eine Lungenerkrankung (COPD) und schwächere Nieren (Stadium III).", "Am 23.06.2022 machten die Ärzte eine Herzkatheter-Untersuchung. Alle drei Herzarterien haben Engstellen. Eine Arterie auf der rechten Seite wurde geweitet, und ein kleines Röhrchen (Stent, Promus ELITE 2,75 x 12 mm) wurde eingesetzt. Danach floss das Blut wieder gut.", "Nach dem Eingriff gab es keine Probleme. Bei der Entlassung hatten Sie keine Beschwerden. Nehmen Sie ASS und Clopidogrel zusammen bis Mai 2023. Danach nur noch ASS, lebenslang.", "Wegen des Kontrastmittels und Ihrer schwächeren Nieren sollen Sie 1,5 bis 2 Liter am Tag trinken. Ihr Nierenwert war GFR 36 ml/min. Das heißt: Die Nieren arbeiten schwächer als normal. Ihr EKG am 22.06.2022 zeigte einen normalen Herzrhythmus."], "medicines": [{"name": "ASS STADA 100 mg", "dose": "100 mg", "form": "Tablette (magensaftresistent)", "morning": 1, "midday": 0, "evening": 0, "night": 0, "note": "Lebenslang nehmen (Brief). Meist: ein Blutverdünner, der Gerinnsel im Stent verhindert."}, {"name": "Clopidogrel Zentiva 75 mg", "dose": "75 mg", "form": "Filmtablette", "morning": 1, "midday": 0, "evening": 0, "night": 0, "note": "Nur bis 05/2023 (bis Ende Mai), dann absetzen; ASS geht weiter (Brief). Meist: ein zweiter Blutverdünner."}, {"name": "Atorvastatin HEXAL 40 mg", "dose": "40 mg", "form": "Filmtablette", "morning": 0, "midday": 0, "evening": 1, "night": 0, "note": "Meist: senkt das Cholesterin."}, {"name": "Ezetimib STADA 10 mg", "dose": "10 mg", "form": "Tablette", "morning": 0, "midday": 0, "evening": 1, "night": 0, "note": "Meist: senkt ebenfalls das Cholesterin."}, {"name": "Candesartan Zentiva 16 mg", "dose": "16 mg", "form": "Tablette", "morning": 1, "midday": 0, "evening": 0, "night": 0, "note": "Meist: senkt den Blutdruck."}, {"name": "Torasemid HEXAL 10 mg", "dose": "10 mg", "form": "Tablette", "morning": 1, "midday": 0, "evening": 0, "night": 0, "note": "Meist: eine Wassertablette, die überschüssige Flüssigkeit ausschwemmt."}, {"name": "Pantoprazol PUREN 20 mg", "dose": "20 mg", "form": "Tablette (magensaftresistent)", "morning": 1, "midday": 0, "evening": 0, "night": 0, "note": "Vor den Mahlzeiten nehmen (Brief). Meist: schützt den Magen."}, {"name": "Relvar Ellipta 92/22 Mikrogramm", "dose": "92 µg / 22 µg", "form": "Inhalator, Hub", "morning": 2, "midday": 0, "evening": 0, "night": 0, "note": "2 Hübe am Morgen. Meist: ein Inhalator für die Lunge."}, {"name": "SPIROLTO Respimat 2,5/2,5 Mikrogramm", "dose": "2,5 µg / 2,5 µg", "form": "Inhalator, Hub", "morning": 2, "midday": 0, "evening": 0, "night": 0, "note": "2 Hübe am Morgen. Meist: ein Inhalator für die Lunge."}], "jargon": [{"term": "Alter Myokardinfarkt", "plain": "Ein Herzinfarkt, den Sie früher hatten. Laut Brief war das im 05/2022."}, {"term": "Koronare Herzerkrankung (KHK)", "plain": "Die Arterien, die den Herzmuskel versorgen, sind verengt."}, {"term": "Herzkatheteruntersuchung / PCI", "plain": "Ein dünner Schlauch wird bis in die Herzarterien geschoben. Verengte Stellen können so geweitet werden, oft mit einem Stent."}, {"term": "Stent (DES, Drug-Eluting Stent)", "plain": "Ein kleines Röhrchen aus Metallgitter, das eine Arterie offen hält. Es gibt langsam ein Medikament ab."}, {"term": "Dreigefäßerkrankung", "plain": "Alle drei großen Herzarterien haben Engstellen."}, {"term": "Duale Plättchenaggregationshemmung", "plain": "Zwei Blutverdünner zusammen (hier ASS und Clopidogrel), damit sich im Stent kein Gerinnsel bildet."}, {"term": "Chronische Niereninsuffizienz Stadium III", "plain": "Die Nieren arbeiten schwächer als normal, mittleres Stadium."}, {"term": "GFR 36 ml/min", "plain": "Ein Nierenwert. Je niedriger, desto schwächer arbeiten die Nieren."}, {"term": "Belastungsdyspnoe NYHA II", "plain": "Atemnot bei normaler Alltagsbelastung, zum Beispiel beim Treppensteigen. In Ruhe keine Beschwerden."}, {"term": "Chronische obstruktive Lungenkrankheit", "plain": "Eine langfristige Lungenerkrankung (COPD), die das Atmen erschwert."}, {"term": "Maligne essentielle Hypertonie", "plain": "Eine schwere Form von Bluthochdruck. „Maligne“ heißt hier nicht Krebs. Laut Brief gab es keine Blutdruck-Krise."}, {"term": "Sinusrhythmus, 71/min", "plain": "Normaler, regelmäßiger Herzschlag mit 71 Schlägen pro Minute."}, {"term": "TIMI III Fluss", "plain": "Das Blut fließt wieder vollständig durch die Arterie. Das ist das beste Ergebnis."}, {"term": "Kontrastmittel (KM)", "plain": "Ein Mittel, das bei der Herzkatheter-Untersuchung die Gefäße im Röntgenbild sichtbar macht. Es kann schwache Nieren belasten."}], "details_1to1": [{"section": "Grund der Aufnahme", "original": "Grund der Einweisung: koronare Herzerkrankung (KHK) … Die stationäre Aufnahme des Patienten erfolgte geplant zur Herzkatheteruntersuchung.", "plain": "Ihre Herzärztin hat Sie wegen verengter Herzarterien eingewiesen. Der Aufenthalt war geplant, für eine Herzkatheter-Untersuchung."}, {"section": "Diagnosen bei Aufnahme", "original": "I25.20 Alter Myokardinfarkt 05/2022 … I25.13 Drei-Gefäß-Erkrankung … I10.00 Maligne essentielle Hypertonie … J44.89 Sonstige näher bezeichnete chronische obstruktive Lungenkrankheit … N18.3 chronische Niereninsuffizienz Stadium III", "plain": "Ihre bekannten Erkrankungen: Herzinfarkt im 05/2022, Engstellen in allen drei Herzarterien, schwerer Bluthochdruck, Lungenerkrankung (COPD) und schwächere Nieren (Stadium III)."}, {"section": "Aufenthalt", "original": "Aufnahmedatum 22.06.2022, Entlassdatum 24.06.2022", "plain": "Sie waren vom 22.06.2022 bis 24.06.2022 im Krankenhaus."}, {"section": "Eingriff", "original": "PCI der distalen RCA mit 1 DES-Implantation, Zeitpunkt: 23.06.2022", "plain": "Am 23.06.2022 wurde eine verengte Herzarterie geweitet und ein Stent eingesetzt."}, {"section": "Implantat", "original": "Drug-Eluting Stent (DES), Promus ELITE 2,75 x 12mm, Hersteller: Boston Scientific", "plain": "Der Stent heißt Promus ELITE, Größe 2,75 x 12 mm, Hersteller Boston Scientific."}, {"section": "Verlauf", "original": "Der postinterventionelle Verlauf gestaltete sich komplikationslos. Der Patient ist beschwerdefrei.", "plain": "Die Erholung verlief ohne Probleme. Bei der Entlassung hatten Sie keine Beschwerden."}, {"section": "Blutverdünner", "original": "Wir bitten um Fortführung der Plättchenaggregationshemmung mit ASS und Clopidogrel bis einschließlich Mai 2023, anschließend ASS-Mono-Therapie lebenslang.", "plain": "ASS und Clopidogrel zusammen bis Ende Mai 2023 nehmen. Danach nur noch ASS, lebenslang."}, {"section": "Trinken", "original": "Einhaltung einer ausreichenden Trinkmenge (1,5-2 Liter/d) bei Z.n. KM-Exposition und bekannter chronischer Niereninsuffizienz.", "plain": "Trinken Sie 1,5 bis 2 Liter am Tag. Das schützt Ihre Nieren nach dem Kontrastmittel."}, {"section": "Wie es weitergeht", "original": "Ambulant kardiologische Weiterbetreuung, nächste Verlaufskontrolle in ca. 6 Monaten", "plain": "Weiter in Behandlung bei einer Herzärztin. Die nächste Kontrolle ist in etwa 6 Monaten. Ein genaues Datum steht nicht im Brief."}, {"section": "Nierenwert", "original": "Labor: GFR 36 ml/min, Datum: 22.06.2022", "plain": "Ein Bluttest am 22.06.2022 zeigte: Ihre Nieren arbeiten eingeschränkt."}, {"section": "EKG", "original": "EKG: Sinusrhythmus, 71/min., keine relevanten Erregungsausbreitungs- oder –rückbildungsstörungen", "plain": "Ihr EKG am 22.06.2022 war normal. Herzschlag 71 pro Minute."}, {"section": "Frühere Eingriffe", "original": "distale RCX- und RM1-PCI (2 DES) + Implantation eines gecoverten Stents bei Koronarperforation, 05/2022; Hauptstamm-PCI (Impella-Schutz), 07/2019; RCA-PCI, 02/2019; LCX- und RD1-PCI, 01/2019", "plain": "Sie hatten schon früher Behandlungen an den Herzarterien: im 05/2022, 07/2019, 02/2019 und 01/2019."}], "faq": [{"q": "Warum habe ich einen Stent bekommen?", "a": "Weil eine Ihrer Herzarterien verengt war. Der Stent hält sie offen, damit das Blut fließen kann.", "source": "letter"}, {"q": "Wie lange muss ich Clopidogrel nehmen?", "a": "Bis Ende Mai 2023. Danach nur noch ASS, lebenslang. Setzen Sie es nicht früher ab, ohne Ihre Ärztin zu fragen.", "source": "letter"}, {"q": "Warum soll ich 1,5 bis 2 Liter am Tag trinken?", "a": "Wegen des Kontrastmittels aus der Untersuchung und weil Ihre Nieren schwächer arbeiten. Das schützt die Nieren.", "source": "letter"}, {"q": "Wann ist meine nächste Kontrolle?", "a": "In etwa 6 Monaten. Ein genaues Datum steht nicht im Brief. Fragen Sie in der Praxis Ihrer Herzärztin nach.", "source": "letter"}, {"q": "War bei der Entlassung alles in Ordnung?", "a": "Ja. Laut Brief verlief die Erholung ohne Probleme, und Sie hatten keine Beschwerden.", "source": "letter"}, {"q": "Darf ich Auto fahren?", "a": "Dazu steht nichts im Brief. Bitte fragen Sie Ihre Herzärztin.", "source": "not_in_letter"}, {"q": "Was, wenn es mir zu Hause schlecht geht?", "a": "Der Brief nennt keine besonderen Warnzeichen. Allgemein gilt: Bei Brustschmerzen oder starker Atemnot schnell Hilfe holen.", "source": "general"}], "contacts": [{"who": "Krankenhaus XYZ, Kardiologie (Entlassmanagement)", "phone": "1234566", "hours": "Mo–Fr 09:00–19:00, Sa und So 10:00–14:00"}, {"who": "Krankenhaus XYZ, Kardiologie (Zentrale)", "phone": "030 987654321", "hours": null}, {"who": "Dr. Ludger Ober, Oberarzt im Krankenhaus", "phone": "654321434", "hours": null}, {"who": "Dr. Martina Mustermann, Ihre Herzärztin für die Weiterbehandlung", "phone": "030 0987654321", "hours": null}]}</script>
 
 <script>
 (function(){
@@ -744,11 +653,462 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 
   /* ---------- i18n ---------- */
   const I18N={
-    en:{tagline:'Your letter, in plain words',back:'Back',settings:'Settings',textSize:'Text size',smaller:'Smaller text',bigger:'Bigger text',previewText:'This is how big your text will be.',contrast:'High contrast',on:'On',off:'Off',speed:'Read-aloud speed',slow:'Slow',normal:'Normal',language:'Language',newLetter:'New letter',readPage:'Read this page aloud',stop:'Stop',askQ:'Ask Klara',yourLetter:'Your doctor’s letter',takePhoto:'Take a photo',chooseFile:'Choose a file instead',reading:'One moment…',readingSub:'We’re reading your letter for you.',worryQ:'In short',goodNews:'The treatment was successful.',verdictReason:'Your letter says: no complications, and no complaints when you went home.',aboutLine:'About this letter: on 23 June 2022 a narrow heart artery was widened and a stent was placed.',yourTodos:'Your 3 to-dos',todo1Short:'Take both blood thinners',todo2Short:'Drink 1.5 to 2 litres daily',todo3Short:'Heart check-up',untilMay:'Until end of May 2023',everyDay:'Every day',in6mo:'In about 6 months',medicines:'Medicines',explain:'Report',questions:'Questions',help:'Help',todo1Long:'Take both blood thinners every morning',todo1Why:'After May 2023, stop only Clopidogrel. Keep taking ASS for the rest of your life.',addReminder:'Add reminder',todo2Long:'Drink 1.5 to 2 litres every day',todo2Why:'Because of the contrast dye from the heart check and because your kidneys work less well.',todo3Long:'Next check-up with your heart doctor',heartSpec:'heart specialist',todo3Why:'In about 6 months. The letter gives no exact date. It also asks for your heart risk factors to be checked.',copy:'Copy',morning:'Morning',midday:'Midday',evening:'Evening',night:'Night',beforeEat:'Before eating',nothingNow:'Nothing at this time.',schemaQ:'What does 1 – 0 – 1 – 0 mean?',schemaA:'The four numbers are morning – midday – evening – night. “1 – 0 – 1 – 0” means one in the morning and one in the evening. “2 – 0 – 0 – 0” means two in the morning.',medsNote:'Names, amounts and times are copied from your letter.',tapYellow:'Tap a yellow word to see what it means.',sideBySide:'Every part, side by side',d1:'Why you went to hospital',d2:'Your illnesses (diagnoses)',d3:'What the doctors did',d4:'Tests and results',d5:'What happens next',showOrig:'Show original German',hideOrig:'Hide original German',letterSays:'Letter says',q1:'Can I stop Clopidogrel if I feel fine?',q2:'What does “1 – 0 – 1 – 0” mean?',q3:'Why should I drink so much?',q4:'Is my heart now healed?',q5:'Who can I call with questions?',fromLetter:'From your letter',askOwnQ:'Ask Klara your own question',whoToCall:'Who to call',c1:'Your heart doctor',c2:'Hospital discharge team',c3:'Treating doctor at the hospital',seniorDoc:'senior doctor',notAdvice:'This is an explanation, not medical advice.',notAdvice2:'It only repeats what your letter says, in simpler words. Always talk to your doctor before you change anything. Where the letter says nothing, we tell you so and do not guess.',termTitle:'What does this word mean?',readAloud:'Read aloud',askMore:'Ask Klara about this',chatTitle:'Ask Klara',chatSub:'Klara only answers from your letter. She doesn’t give medical advice.',chatHello:'Hello Mr Königsstein, I’m Klara. What would you like to know about your letter? You can type, or tap one of the questions below.',chip1:'When can I stop Clopidogrel?',chip2:'When is my next appointment?',chip3:'Is it serious?',chip4:'Can I drive a car?',typeQ:'Type your question…',speakQ:'Speak your question',close:'Close',whyLabel:'Why (from your letter):',tOverview:'Overview',tTodo:'To-do',tMeds:'Medicines',tExplain:'Report',tQuestions:'Questions',tHelp:'Help',tUpload:'Your doctor’s letter',tReading:'Reading…',reminderSet:'Reminder set. (In the app this goes to your calendar.)',copied:'Copied: ',noVoice:'Read aloud is not available on this device.',micMock:'In the app you can speak your question instead of typing.',sizeNames:['Normal','Large','Larger','Very large','Huge']},
-    de:{tagline:'Ihr Brief, in einfachen Worten',back:'Zurück',settings:'Einstellungen',textSize:'Schriftgröße',smaller:'Kleinere Schrift',bigger:'Größere Schrift',previewText:'So groß wird Ihr Text erscheinen.',contrast:'Hoher Kontrast',on:'Ein',off:'Aus',speed:'Vorlese-Tempo',slow:'Langsam',normal:'Normal',language:'Sprache',newLetter:'Neuer Brief',readPage:'Diese Seite vorlesen',stop:'Stopp',askQ:'Klara fragen',yourLetter:'Ihr Arztbrief',takePhoto:'Foto machen',chooseFile:'Stattdessen Datei wählen',reading:'Einen Moment…',readingSub:'Wir lesen Ihren Brief für Sie.',worryQ:'Kurz gesagt',goodNews:'Die Behandlung war erfolgreich.',verdictReason:'Ihr Brief sagt: keine Komplikationen und keine Beschwerden bei der Entlassung.',aboutLine:'Um diesen Brief geht es: Am 23. Juni 2022 wurde eine verengte Herzarterie erweitert und ein Stent eingesetzt.',yourTodos:'Ihre 3 Aufgaben',todo1Short:'Beide Blutverdünner nehmen',todo2Short:'1,5 bis 2 Liter täglich trinken',todo3Short:'Herz-Kontrolle',untilMay:'Bis Ende Mai 2023',everyDay:'Jeden Tag',in6mo:'In etwa 6 Monaten',medicines:'Medikamente',explain:'Bericht',questions:'Fragen',help:'Hilfe',todo1Long:'Beide Blutverdünner jeden Morgen nehmen',todo1Why:'Nach Mai 2023 nur Clopidogrel absetzen. ASS nehmen Sie lebenslang weiter.',addReminder:'Erinnerung setzen',todo2Long:'Trinken Sie täglich 1,5 bis 2 Liter',todo2Why:'Wegen des Kontrastmittels aus der Herzuntersuchung und weil Ihre Nieren schwächer arbeiten.',todo3Long:'Nächste Kontrolle bei Ihrer Kardiologin',heartSpec:'Kardiologin',todo3Why:'In etwa 6 Monaten. Der Brief nennt kein genaues Datum. Er bittet auch um Kontrolle Ihrer Herz-Risikofaktoren.',copy:'Kopieren',morning:'Morgens',midday:'Mittags',evening:'Abends',night:'Nachts',beforeEat:'Vor dem Essen',nothingNow:'Um diese Zeit nichts.',schemaQ:'Was bedeutet 1 – 0 – 1 – 0?',schemaA:'Die vier Zahlen stehen für morgens – mittags – abends – nachts. „1 – 0 – 1 – 0“ heißt: eine morgens und eine abends. „2 – 0 – 0 – 0“ heißt: zwei morgens.',medsNote:'Namen, Mengen und Zeiten stammen aus Ihrem Brief.',tapYellow:'Tippen Sie auf ein gelbes Wort, um seine Bedeutung zu sehen.',sideBySide:'Jeder Teil, nebeneinander',d1:'Warum Sie ins Krankenhaus kamen',d2:'Ihre Erkrankungen (Diagnosen)',d3:'Was die Ärztinnen und Ärzte taten',d4:'Untersuchungen und Ergebnisse',d5:'Wie es weitergeht',showOrig:'Original auf Deutsch zeigen',hideOrig:'Original ausblenden',letterSays:'Im Brief steht',q1:'Kann ich Clopidogrel absetzen, wenn ich mich gut fühle?',q2:'Was bedeutet „1 – 0 – 1 – 0“?',q3:'Warum soll ich so viel trinken?',q4:'Ist mein Herz jetzt geheilt?',q5:'Wen kann ich bei Fragen anrufen?',fromLetter:'Aus Ihrem Brief',askOwnQ:'Klara eine eigene Frage stellen',whoToCall:'Wen Sie anrufen können',c1:'Ihre Kardiologin',c2:'Entlassungsteam des Krankenhauses',c3:'Behandelnder Arzt im Krankenhaus',seniorDoc:'Oberarzt',notAdvice:'Dies ist eine Erklärung, kein medizinischer Rat.',notAdvice2:'Sie wiederholt nur, was in Ihrem Brief steht, in einfacheren Worten. Sprechen Sie immer mit Ihrer Ärztin oder Ihrem Arzt, bevor Sie etwas ändern. Wo der Brief nichts sagt, sagen wir das und raten nicht.',termTitle:'Was bedeutet dieses Wort?',readAloud:'Vorlesen',askMore:'Klara dazu fragen',chatTitle:'Klara fragen',chatSub:'Klara antwortet nur aus Ihrem Brief. Sie gibt keinen medizinischen Rat.',chatHello:'Hallo Herr Königsstein, ich bin Klara. Was möchten Sie über Ihren Brief wissen? Sie können tippen oder eine der Fragen unten antippen.',chip1:'Wann kann ich Clopidogrel absetzen?',chip2:'Wann ist mein nächster Termin?',chip3:'Ist es ernst?',chip4:'Darf ich Auto fahren?',typeQ:'Ihre Frage eingeben…',speakQ:'Frage sprechen',close:'Schließen',whyLabel:'Warum (aus Ihrem Brief):',tOverview:'Überblick',tTodo:'Aufgabe',tMeds:'Medikamente',tExplain:'Bericht',tQuestions:'Fragen',tHelp:'Hilfe',tUpload:'Ihr Arztbrief',tReading:'Lesevorgang…',reminderSet:'Erinnerung gesetzt. (In der App geht das in Ihren Kalender.)',copied:'Kopiert: ',noVoice:'Das Vorlesen ist auf diesem Gerät nicht verfügbar.',micMock:'In der App können Sie Ihre Frage sprechen statt tippen.',sizeNames:['Normal','Groß','Größer','Sehr groß','Riesig']}
+    en:{tagline:'Your letter, in plain words',back:'Back',settings:'Settings',textSize:'Text size',smaller:'Smaller text',bigger:'Bigger text',previewText:'This is how big your text will be.',contrast:'High contrast',on:'On',off:'Off',speed:'Read-aloud speed',slow:'Slow',normal:'Normal',language:'Language',newLetter:'New letter',readPage:'Read this page aloud',stop:'Stop',askQ:'Ask Klara',yourLetter:'Your doctor’s letter',takePhoto:'Take a photo',chooseFile:'Choose a file instead',reading:'One moment…',readingSub:'We’re reading your letter for you.',worryQ:'In short',medicines:'Medicines',explain:'Report',questions:'Questions',help:'Help',addReminder:'Add reminder',copy:'Copy',morning:'Morning',midday:'Midday',evening:'Evening',night:'Night',nothingNow:'Nothing at this time.',schemaQ:'What does 1 – 0 – 1 – 0 mean?',schemaA:'The four numbers are morning – midday – evening – night. “1 – 0 – 1 – 0” means one in the morning and one in the evening. “2 – 0 – 0 – 0” means two in the morning.',medsNote:'Names, amounts and times are copied from your letter.',tapYellow:'Tap a yellow word to see what it means.',sideBySide:'Every part, side by side',showOrig:'Show original German',hideOrig:'Hide original German',letterSays:'Letter says',fromLetter:'From your letter',general:'General information',notInLetter:'Not in your letter',askOwnQ:'Ask Klara your own question',whoToCall:'Who to call',notAdvice:'This is an explanation, not medical advice.',notAdvice2:'It only repeats what your letter says, in simpler words. Always talk to your doctor before you change anything. Where the letter says nothing, we tell you so and do not guess.',termTitle:'What does this word mean?',readAloud:'Read aloud',askMore:'Ask Klara about this',chatTitle:'Ask Klara',chatSub:'Klara only answers from your letter. She doesn’t give medical advice.',typeQ:'Type your question…',speakQ:'Speak your question',close:'Close',whyLabel:'Why (from your letter):',tOverview:'Overview',tTodo:'To-do',tMeds:'Medicines',tExplain:'Report',tQuestions:'Questions',tHelp:'Help',tUpload:'Your doctor’s letter',tReading:'Reading…',reminderSet:'Reminder noted. (Calendar reminders are not built yet.)',copied:'Copied: ',noVoice:'Read aloud is not available on this device.',micMock:'Please type your question. Speaking is not available yet.',sizeNames:['Normal','Large','Larger','Very large','Huge'],
+      tryExample:'Try with an example letter',exampleBadge:'Example letter',cancel:'Cancel',tryAgain:'Try again',
+      privacyOff:'Your letter is read only on this device. Nothing is uploaded.',privacyOn:'Your letter is read on this device. For the explanation, its text is sent to the AI service you set up.',
+      stepLoad:'Getting the reader ready…',stepPdf:'Reading the PDF…',stepOcr:'Reading the text in your photo…',stepOcrPage:'Reading page {n} of {m}…',stepOcrLoad:'Loading the German text reader (first time only)…',stepFind:'Finding medicines, dates and phone numbers…',stepAi:'Explaining your letter in plain words…',stepCheck:'Checking every number against your letter…',stepFix:'Fixing details that did not match your letter…',
+      readFail:'We could not read text in this file.',readFailSub:'Please take the photo in good light, with the whole page flat and sharp. A PDF from your doctor’s office works best.',libFail:'The reader could not be loaded.',libFailSub:'Please check your internet connection and try again.',typeFail:'This type of file cannot be read.',typeFailSub:'Please choose a photo (JPG or PNG) or a PDF.',
+      lvInfoHead:'Here is what we found in your letter',lvInfoReason:'We read your letter on this device and picked out medicines, dates, phone numbers and medical words. A full explanation in plain words needs the AI explanation (settings, “Aa”).',
+      eyebrowLetter:'From your letter',aboutStay:'Hospital stay: {a} to {b}.',aboutDate:'Letter dated {a}.',aboutFrom:'From: {x}.',
+      yourTodosN:'Your {n} to-dos',yourTodo1:'Your to-do',fromLetterDe:'In your letter (German)',thenLabel:'After that:',todoOf:'To-do {n} of {m}',next:'Next',prev:'Previous',
+      noMeds:'We found no medicine list in your letter.',medsPhotoNote:'Read from a photo: please compare the names and times with your paper letter.',otherMeds:'Medicines without times',
+      summaryNeedsAi:'A plain-words summary needs the AI explanation. You can turn it on in settings.',openSettings:'Open settings',wordsExplained:'Words from your letter, explained',lettersParts:'The parts of your letter',letterText:'The full text we read',ocrNote:'Read from a photo. Some words may be read wrongly — compare with your paper letter.',
+      noFaq:'Ask Klara a question about your letter.',noContacts:'We found no phone numbers in your letter.',ifUnwell:'If you feel unwell',emergency:'In an emergency, call 112.',
+      checkWarn:'Please check these details with your doctor. We could not confirm them against your letter:',
+      aiTitle:'AI explanation',aiDesc:'Optional. Explains your letter in plain words. When it is on, the text of your letter is sent to the AI service below. Your key is saved only on this device.',aiKey:'API key',aiAdvanced:'Service and model',aiUrl:'Service address',aiModel:'Model',save:'Save',remove:'Remove key',aiOn:'AI explanation is on.',aiOff:'AI explanation is off. Letters are only read on this device.',saved:'Saved.',removed:'Key removed.',
+      aiFail:'The AI explanation did not work: {e}. Below is what we read from your letter.',redoLang:'This explanation is in English. Explain again in German?',redoBtn:'Explain again',
+      chatHello:'Hello, I’m Klara. What would you like to know about your letter? You can type, or tap a question below.',chatSays:'Your letter says (in German):',chatNotFound:'I could not find this in your letter. Please ask your doctor or the practice.',chatContacts:'Phone numbers in your letter:',chatMedsIntro:'Medicines in your letter:',chatAiFail:'Sorry, the AI answer did not work. ',
+      chipMeds:'Which medicines do I take?',chipNext:'When is my next appointment?',chipCall:'Who can I call?',chipSerious:'Is it serious?',
+      unitTablet:'tablet',unitPuff:'puff',until:'until',beforeEat:'Before eating'},
+    de:{tagline:'Ihr Brief, in einfachen Worten',back:'Zurück',settings:'Einstellungen',textSize:'Schriftgröße',smaller:'Kleinere Schrift',bigger:'Größere Schrift',previewText:'So groß wird Ihr Text erscheinen.',contrast:'Hoher Kontrast',on:'Ein',off:'Aus',speed:'Vorlese-Tempo',slow:'Langsam',normal:'Normal',language:'Sprache',newLetter:'Neuer Brief',readPage:'Diese Seite vorlesen',stop:'Stopp',askQ:'Klara fragen',yourLetter:'Ihr Arztbrief',takePhoto:'Foto machen',chooseFile:'Stattdessen Datei wählen',reading:'Einen Moment…',readingSub:'Wir lesen Ihren Brief für Sie.',worryQ:'Kurz gesagt',medicines:'Medikamente',explain:'Bericht',questions:'Fragen',help:'Hilfe',addReminder:'Erinnerung setzen',copy:'Kopieren',morning:'Morgens',midday:'Mittags',evening:'Abends',night:'Nachts',nothingNow:'Um diese Zeit nichts.',schemaQ:'Was bedeutet 1 – 0 – 1 – 0?',schemaA:'Die vier Zahlen stehen für morgens – mittags – abends – nachts. „1 – 0 – 1 – 0“ heißt: eine morgens und eine abends. „2 – 0 – 0 – 0“ heißt: zwei morgens.',medsNote:'Namen, Mengen und Zeiten stammen aus Ihrem Brief.',tapYellow:'Tippen Sie auf ein gelbes Wort, um seine Bedeutung zu sehen.',sideBySide:'Jeder Teil, nebeneinander',showOrig:'Original auf Deutsch zeigen',hideOrig:'Original ausblenden',letterSays:'Im Brief steht',fromLetter:'Aus Ihrem Brief',general:'Allgemeine Information',notInLetter:'Steht nicht im Brief',askOwnQ:'Klara eine eigene Frage stellen',whoToCall:'Wen Sie anrufen können',notAdvice:'Dies ist eine Erklärung, kein medizinischer Rat.',notAdvice2:'Sie wiederholt nur, was in Ihrem Brief steht, in einfacheren Worten. Sprechen Sie immer mit Ihrer Ärztin oder Ihrem Arzt, bevor Sie etwas ändern. Wo der Brief nichts sagt, sagen wir das und raten nicht.',termTitle:'Was bedeutet dieses Wort?',readAloud:'Vorlesen',askMore:'Klara dazu fragen',chatTitle:'Klara fragen',chatSub:'Klara antwortet nur aus Ihrem Brief. Sie gibt keinen medizinischen Rat.',typeQ:'Ihre Frage eingeben…',speakQ:'Frage sprechen',close:'Schließen',whyLabel:'Warum (aus Ihrem Brief):',tOverview:'Überblick',tTodo:'Aufgabe',tMeds:'Medikamente',tExplain:'Bericht',tQuestions:'Fragen',tHelp:'Hilfe',tUpload:'Ihr Arztbrief',tReading:'Lesevorgang…',reminderSet:'Erinnerung notiert. (Kalender-Erinnerungen gibt es noch nicht.)',copied:'Kopiert: ',noVoice:'Das Vorlesen ist auf diesem Gerät nicht verfügbar.',micMock:'Bitte tippen Sie Ihre Frage. Sprechen geht noch nicht.',sizeNames:['Normal','Groß','Größer','Sehr groß','Riesig'],
+      tryExample:'Mit einem Beispielbrief ausprobieren',exampleBadge:'Beispielbrief',cancel:'Abbrechen',tryAgain:'Noch einmal versuchen',
+      privacyOff:'Ihr Brief wird nur auf diesem Gerät gelesen. Nichts wird hochgeladen.',privacyOn:'Ihr Brief wird auf diesem Gerät gelesen. Für die Erklärung wird sein Text an den eingestellten KI-Dienst gesendet.',
+      stepLoad:'Der Leser wird vorbereitet…',stepPdf:'Das PDF wird gelesen…',stepOcr:'Der Text auf Ihrem Foto wird gelesen…',stepOcrPage:'Seite {n} von {m} wird gelesen…',stepOcrLoad:'Der deutsche Textleser wird geladen (nur beim ersten Mal)…',stepFind:'Medikamente, Daten und Telefonnummern werden gesucht…',stepAi:'Ihr Brief wird in einfachen Worten erklärt…',stepCheck:'Jede Zahl wird mit Ihrem Brief verglichen…',stepFix:'Angaben, die nicht zum Brief passten, werden korrigiert…',
+      readFail:'Wir konnten in dieser Datei keinen Text lesen.',readFailSub:'Bitte machen Sie das Foto bei gutem Licht, mit der ganzen Seite flach und scharf. Ein PDF aus der Praxis funktioniert am besten.',libFail:'Der Leser konnte nicht geladen werden.',libFailSub:'Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es noch einmal.',typeFail:'Diese Art von Datei kann nicht gelesen werden.',typeFailSub:'Bitte wählen Sie ein Foto (JPG oder PNG) oder ein PDF.',
+      lvInfoHead:'Das haben wir in Ihrem Brief gefunden',lvInfoReason:'Wir haben Ihren Brief auf diesem Gerät gelesen und Medikamente, Daten, Telefonnummern und Fachwörter herausgesucht. Eine vollständige Erklärung in einfachen Worten braucht die KI-Erklärung (Einstellungen, „Aa“).',
+      eyebrowLetter:'Aus Ihrem Brief',aboutStay:'Krankenhausaufenthalt: {a} bis {b}.',aboutDate:'Brief vom {a}.',aboutFrom:'Von: {x}.',
+      yourTodosN:'Ihre {n} Aufgaben',yourTodo1:'Ihre Aufgabe',fromLetterDe:'In Ihrem Brief',thenLabel:'Danach:',todoOf:'Aufgabe {n} von {m}',next:'Weiter',prev:'Zurück',
+      noMeds:'Wir haben in Ihrem Brief keine Medikamentenliste gefunden.',medsPhotoNote:'Von einem Foto gelesen: Bitte vergleichen Sie Namen und Zeiten mit Ihrem Papierbrief.',otherMeds:'Medikamente ohne Uhrzeiten',
+      summaryNeedsAi:'Eine Zusammenfassung in einfachen Worten braucht die KI-Erklärung. Sie können sie in den Einstellungen einschalten.',openSettings:'Einstellungen öffnen',wordsExplained:'Wörter aus Ihrem Brief, erklärt',lettersParts:'Die Teile Ihres Briefes',letterText:'Der ganze gelesene Text',ocrNote:'Von einem Foto gelesen. Manche Wörter können falsch gelesen sein — vergleichen Sie mit Ihrem Papierbrief.',
+      noFaq:'Stellen Sie Klara eine Frage zu Ihrem Brief.',noContacts:'Wir haben in Ihrem Brief keine Telefonnummern gefunden.',ifUnwell:'Wenn es Ihnen schlecht geht',emergency:'Im Notfall rufen Sie 112 an.',
+      checkWarn:'Bitte prüfen Sie diese Angaben mit Ihrer Ärztin oder Ihrem Arzt. Wir konnten sie nicht mit Ihrem Brief bestätigen:',
+      aiTitle:'KI-Erklärung',aiDesc:'Freiwillig. Erklärt Ihren Brief in einfachen Worten. Wenn sie eingeschaltet ist, wird der Text Ihres Briefes an den KI-Dienst unten gesendet. Ihr Schlüssel wird nur auf diesem Gerät gespeichert.',aiKey:'API-Schlüssel',aiAdvanced:'Dienst und Modell',aiUrl:'Adresse des Dienstes',aiModel:'Modell',save:'Speichern',remove:'Schlüssel entfernen',aiOn:'Die KI-Erklärung ist eingeschaltet.',aiOff:'Die KI-Erklärung ist ausgeschaltet. Briefe werden nur auf diesem Gerät gelesen.',saved:'Gespeichert.',removed:'Schlüssel entfernt.',
+      aiFail:'Die KI-Erklärung hat nicht funktioniert: {e}. Unten steht, was wir aus Ihrem Brief gelesen haben.',redoLang:'Diese Erklärung ist auf Englisch. Noch einmal auf Deutsch erklären?',redoBtn:'Neu erklären',
+      chatHello:'Hallo, ich bin Klara. Was möchten Sie über Ihren Brief wissen? Sie können tippen oder unten eine Frage antippen.',chatSays:'In Ihrem Brief steht:',chatNotFound:'Das habe ich in Ihrem Brief nicht gefunden. Bitte fragen Sie Ihre Ärztin, Ihren Arzt oder die Praxis.',chatContacts:'Telefonnummern in Ihrem Brief:',chatMedsIntro:'Medikamente in Ihrem Brief:',chatAiFail:'Entschuldigung, die KI-Antwort hat nicht funktioniert. ',
+      chipMeds:'Welche Medikamente nehme ich?',chipNext:'Wann ist mein nächster Termin?',chipCall:'Wen kann ich anrufen?',chipSerious:'Ist es ernst?',
+      unitTablet:'Tablette',unitPuff:'Hub',until:'bis',beforeEat:'Vor dem Essen'}
   };
+  I18N.de.redoLang='Diese Erklärung ist auf Deutsch. Noch einmal auf Englisch erklären?';
+  I18N.en.redoLang='This explanation is in German. Explain again in English?';
   let lang = store.get('k-lang')==='de' ? 'de' : 'en';
-  const t=k=>I18N[lang][k]||I18N.en[k]||k;
+  const t=(k,vars)=>{ let s=I18N[lang][k]; if(s===undefined) s=I18N.en[k]; if(s===undefined) return k; if(vars) Object.keys(vars).forEach(v=>{ s=s.split('{'+v+'}').join(vars[v]); }); return s; };
+
+  /* ---------- glossary of common German letter words (used for letters read on the device) ---------- */
+  const GLOSS=[
+    {re:/koronare?n?\s+herz(?:erkrankung|krankheit)|\bKHK\b/i,w:'KHK (koronare Herzkrankheit)',en:'The blood vessels that feed the heart muscle have become narrow. The heart then gets less blood and oxygen.',de:'Die Blutgefäße, die den Herzmuskel versorgen, sind verengt. Das Herz bekommt dann weniger Blut und Sauerstoff.'},
+    {re:/myokardinfarkt|herzinfarkt|\bNSTEMI\b|\bSTEMI\b/i,w:'Myokardinfarkt (Herzinfarkt)',en:'A heart attack: part of the heart muscle did not get enough blood.',de:'Ein Herzinfarkt: Ein Teil des Herzmuskels hat nicht genug Blut bekommen.'},
+    {re:/\bPCI\b|[Pp]erkutane\s+[Kk]oronar/,w:'PCI',en:'A treatment through a thin tube in a blood vessel: a narrow spot in a heart artery is widened from the inside.',de:'Eine Behandlung mit einem dünnen Schlauch in einem Blutgefäß: Eine Engstelle in einer Herzarterie wird von innen geweitet.'},
+    {re:/herzkatheter|koronarangiographie/i,w:'Herzkatheter',en:'A test where a thin tube is guided to the heart to look at the heart arteries with X-ray dye.',de:'Eine Untersuchung, bei der ein dünner Schlauch zum Herzen geführt wird, um die Herzarterien mit Kontrastmittel anzusehen.'},
+    {re:/\bDES\b|[Dd]rug[- ][Ee]luting/,w:'DES (Drug-Eluting Stent)',en:'A stent with a thin coat of medicine that helps keep the vessel from getting narrow again.',de:'Ein Stent mit einer dünnen Medikamenten-Schicht, die verhindert, dass das Gefäß wieder eng wird.'},
+    {re:/\bstents?\b|stentimplantation/i,w:'Stent',en:'A tiny tube of fine metal mesh that holds a narrow blood vessel open.',de:'Ein winziges Röhrchen aus feinem Metallgitter, das ein enges Blutgefäß offen hält.'},
+    {re:/drei-?\s?gefäß|3-gefäß/i,w:'Drei-Gefäß-Erkrankung',en:'All three main heart arteries have narrow spots.',de:'Alle drei großen Herzarterien haben Engstellen.'},
+    {re:/hypertonie|bluthochdruck/i,w:'Hypertonie',en:'High blood pressure.',de:'Bluthochdruck.'},
+    {re:/maligne/i,w:'maligne',en:'Here it means “severe”. In a letter about blood pressure it does not mean cancer.',de:'Heißt hier „schwer“. Bei Blutdruck bedeutet es nicht Krebs.'},
+    {re:/\bCOPD\b|obstruktive\s+[Ll]ungen/,w:'COPD',en:'A long-term lung illness. The airways are narrowed, so breathing out is harder.',de:'Eine langfristige Lungenerkrankung. Die Atemwege sind verengt, das Ausatmen fällt schwerer.'},
+    {re:/niereninsuffizienz|nierenschwäche/i,w:'Niereninsuffizienz',en:'The kidneys clean the blood less well than normal.',de:'Die Nieren reinigen das Blut schlechter als normal.'},
+    {re:/\b[e]?GFR\b/,w:'GFR',en:'A kidney value: how much blood the kidneys clean per minute. Higher is better.',de:'Ein Nierenwert: wie viel Blut die Nieren pro Minute reinigen. Höher ist besser.'},
+    {re:/kreatinin/i,w:'Kreatinin',en:'A blood value that shows how well the kidneys work. A high value can mean weaker kidneys.',de:'Ein Blutwert, der zeigt, wie gut die Nieren arbeiten. Ein hoher Wert kann schwächere Nieren bedeuten.'},
+    {re:/sinusrhythmus/i,w:'Sinusrhythmus',en:'The normal, regular heartbeat.',de:'Der normale, regelmäßige Herzschlag.'},
+    {re:/\bEKG\b/,w:'EKG',en:'A recording of the heart’s electrical signals, to check the heartbeat.',de:'Eine Aufzeichnung der elektrischen Signale des Herzens, um den Herzschlag zu prüfen.'},
+    {re:/vorhofflimmern/i,w:'Vorhofflimmern',en:'An irregular heartbeat. It raises the risk of blood clots and stroke.',de:'Ein unregelmäßiger Herzschlag. Er erhöht das Risiko für Blutgerinnsel und Schlaganfall.'},
+    {re:/\bTIMI\b/,w:'TIMI',en:'A score for blood flow in a heart artery. Grade III is the best: blood flows fully.',de:'Ein Maß für den Blutfluss in einer Herzarterie. Grad III ist am besten: Das Blut fließt voll.'},
+    {re:/\bNYHA\b/,w:'NYHA',en:'A scale for heart-related breathlessness, from I (no complaints) to IV (complaints even at rest).',de:'Eine Einteilung der Atemnot bei Herzschwäche, von I (keine Beschwerden) bis IV (Beschwerden schon in Ruhe).'},
+    {re:/dyspnoe/i,w:'Dyspnoe',en:'Shortness of breath. “Belastungsdyspnoe” means short of breath when you exert yourself.',de:'Atemnot. „Belastungsdyspnoe“ heißt Atemnot bei Anstrengung.'},
+    {re:/herzinsuffizienz/i,w:'Herzinsuffizienz',en:'Heart failure: the heart pumps less strongly than normal.',de:'Herzschwäche: Das Herz pumpt schwächer als normal.'},
+    {re:/[Ee]jektionsfraktion|\bLVEF\b|\bEF\b/,w:'Ejektionsfraktion (EF)',en:'How much blood the heart pumps out with each beat, in percent. About 55 % or more is normal.',de:'Wie viel Blut das Herz bei jedem Schlag auspumpt, in Prozent. Etwa 55 % oder mehr ist normal.'},
+    {re:/echokardiograph|\bTTE\b|\bTEE\b/i,w:'Echokardiographie',en:'An ultrasound of the heart.',de:'Ein Ultraschall des Herzens.'},
+    {re:/plättchenaggregation|thrombozytenaggregation/i,w:'Plättchenaggregationshemmung',en:'Blood-thinning medicine that stops blood platelets from sticking together and forming clots.',de:'Blutverdünnende Medikamente, die verhindern, dass Blutplättchen verklumpen und Gerinnsel bilden.'},
+    {re:/antikoagul/i,w:'Antikoagulation',en:'Blood thinning with medicine, to prevent blood clots.',de:'Blutverdünnung mit Medikamenten, um Blutgerinnsel zu verhindern.'},
+    {re:/[Kk]ontrastmittel|\bKM\b/,w:'Kontrastmittel (KM)',en:'A dye that makes blood vessels visible on X-ray images. It can strain weak kidneys.',de:'Ein Mittel, das Blutgefäße im Röntgenbild sichtbar macht. Es kann schwache Nieren belasten.'},
+    {re:/\bZ\.\s?n\./i,w:'Z. n. (Zustand nach)',en:'“Condition after”: something that happened before, e.g. an earlier operation.',de:'„Zustand nach“: etwas, das früher war, zum Beispiel eine frühere Operation.'},
+    {re:/\bV\.\s?a\./i,w:'V. a. (Verdacht auf)',en:'“Suspected”: the doctors think it may be this, but it is not confirmed.',de:'„Verdacht auf“: Die Ärzte vermuten das, es ist aber nicht sicher.'},
+    {re:/\bbds\./i,w:'bds. (beidseits)',en:'On both sides.',de:'Auf beiden Seiten.'},
+    {re:/\bHub\b|\bHübe\b/i,w:'Hub',en:'One press of an inhaler. “2 Hub” means two puffs.',de:'Ein Druck auf das Inhaliergerät. „2 Hub“ heißt zwei Sprühstöße.'},
+    {re:/diabetes/i,w:'Diabetes mellitus',en:'Diabetes: the blood sugar is too high.',de:'Zuckerkrankheit: Der Blutzucker ist zu hoch.'},
+    {re:/\bHbA1c\b/i,w:'HbA1c',en:'A blood value that shows the average blood sugar of the last 2 to 3 months.',de:'Ein Blutwert, der den durchschnittlichen Blutzucker der letzten 2 bis 3 Monate zeigt.'},
+    {re:/hyperlipid|hypercholesterin|\bLDL\b/i,w:'Blutfette (LDL)',en:'Fats in the blood. Too much “bad” LDL cholesterol narrows blood vessels.',de:'Fette im Blut. Zu viel „schlechtes“ LDL-Cholesterin verengt die Blutgefäße.'},
+    {re:/anämie/i,w:'Anämie',en:'Too few red blood cells (“low blood”). It can make you tired.',de:'Zu wenig rote Blutkörperchen („Blutarmut“). Sie kann müde machen.'},
+    {re:/\bCRP\b/,w:'CRP',en:'A blood value that rises with inflammation or infection.',de:'Ein Blutwert, der bei Entzündung oder Infektion steigt.'},
+    {re:/pneumonie/i,w:'Pneumonie',en:'Pneumonia: an infection of the lungs.',de:'Lungenentzündung.'},
+    {re:/thrombose/i,w:'Thrombose',en:'A blood clot in a vein, often in the leg.',de:'Ein Blutgerinnsel in einer Vene, oft im Bein.'},
+    {re:/lungenembolie/i,w:'Lungenembolie',en:'A blood clot that blocks a blood vessel in the lungs.',de:'Ein Blutgerinnsel, das ein Blutgefäß in der Lunge verschließt.'},
+    {re:/apoplex|schlaganfall|hirninfarkt|\binsult\b/i,w:'Schlaganfall',en:'A stroke: part of the brain did not get enough blood.',de:'Ein Teil des Gehirns hat nicht genug Blut bekommen.'},
+    {re:/ödem/i,w:'Ödem',en:'Swelling from water in the tissue, often in the legs.',de:'Eine Schwellung durch Wasser im Gewebe, oft an den Beinen.'},
+    {re:/synkope/i,w:'Synkope',en:'Fainting: a short loss of consciousness.',de:'Ohnmacht: ein kurzer Bewusstseinsverlust.'},
+    {re:/pektangin|angina\s+pectoris/i,w:'Angina pectoris',en:'Chest pain or tightness because the heart gets too little blood.',de:'Brustschmerz oder Engegefühl, weil das Herz zu wenig Blut bekommt.'},
+    {re:/[Ss]onograph|\bSono\b/,w:'Sonographie',en:'An ultrasound examination.',de:'Eine Ultraschall-Untersuchung.'},
+    {re:/\bMRT\b/,w:'MRT',en:'A scan with a strong magnet that makes detailed pictures of the inside of the body.',de:'Eine Untersuchung mit einem starken Magneten, die genaue Bilder vom Körperinneren macht.'},
+    {re:/\bCT\b|[Cc]omputertomograph/,w:'CT',en:'A detailed X-ray scan that shows the body in slices.',de:'Eine genaue Röntgen-Untersuchung, die den Körper in Schichten zeigt.'},
+    {re:/ambulant/i,w:'ambulant',en:'Outpatient: you go to a practice or clinic and go home the same day.',de:'Ohne Übernachtung: Sie gehen in eine Praxis oder Klinik und am selben Tag wieder nach Hause.'},
+    {re:/stationär/i,w:'stationär',en:'Inpatient: you stay in hospital overnight.',de:'Mit Übernachtung im Krankenhaus.'},
+    {re:/anamnese/i,w:'Anamnese',en:'Your medical history: what you told the doctors and what was known before.',de:'Ihre Krankengeschichte: was Sie erzählt haben und was vorher bekannt war.'},
+    {re:/epikrise|beurteilung/i,w:'Epikrise',en:'The doctors’ summary and assessment.',de:'Die Zusammenfassung und Einschätzung der Ärzte.'},
+    {re:/procedere|prozedere/i,w:'Procedere',en:'What should happen next.',de:'Wie es weitergehen soll.'},
+    {re:/wiedervorstellung|verlaufskontrolle/i,w:'Wiedervorstellung',en:'A follow-up visit to the doctor.',de:'Ein Kontrolltermin bei der Ärztin oder dem Arzt.'},
+    {re:/komplikationslos/i,w:'komplikationslos',en:'Without complications: nothing went wrong.',de:'Ohne Komplikationen: Es gab keine Probleme.'},
+    {re:/beschwerdefrei/i,w:'beschwerdefrei',en:'Without complaints: no pain or other symptoms.',de:'Ohne Beschwerden: keine Schmerzen oder anderen Symptome.'},
+    {re:/multiresistente/i,w:'Multiresistente Erreger',en:'Germs that many antibiotics cannot kill.',de:'Keime, gegen die viele Antibiotika nicht wirken.'}
+  ];
+  /* =====================================================================
+     ENGINE: read a file, find facts in the letter, check AI output, call AI
+     ===================================================================== */
+  const LIB={
+    pdf:'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/',
+    tess:'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/',
+    tessCore:'https://cdn.jsdelivr.net/npm/tesseract.js-core@5.1.1',
+    tessLang:'https://cdn.jsdelivr.net/npm/@tesseract.js-data/deu/4.0.0_best_int'
+  };
+  const AI_DEFAULT={url:'https://api.trustedtokens.eu/v1/chat/completions',model:'zai-org/GLM-5.3'};
+  class UserError extends Error{ constructor(head,sub){ super(head); this.head=head; this.sub=sub; } }
+
+  const scriptCache={};
+  function loadScript(src){
+    if(!scriptCache[src]) scriptCache[src]=new Promise((ok,no)=>{ const s=document.createElement('script'); s.src=src; s.async=true; s.onload=ok; s.onerror=()=>{ delete scriptCache[src]; no(new UserError(t('libFail'),t('libFailSub'))); }; document.head.appendChild(s); });
+    return scriptCache[src];
+  }
+
+  /* ---- reading ---- */
+  async function readLetterFile(file, progress, signal){
+    const name=(file.name||'').toLowerCase();
+    const isPdf=file.type==='application/pdf'||name.endsWith('.pdf');
+    const isImg=/^image\//.test(file.type)||/\.(jpe?g|png|webp|gif|bmp|heic|heif)$/.test(name);
+    const isTxt=file.type==='text/plain'||name.endsWith('.txt');
+    if(isTxt) return {text:await file.text(), source:'text'};
+    if(isPdf) return readPdf(file, progress, signal);
+    if(isImg){ progress(t('stepOcr'),.05); const img=await imageToCanvas(file); const r=await ocr([img], progress, signal); return {text:r.text, source:'ocr', conf:r.conf}; }
+    throw new UserError(t('typeFail'),t('typeFailSub'));
+  }
+
+  async function imageToCanvas(fileOrCanvas){
+    if(fileOrCanvas instanceof HTMLCanvasElement) return fileOrCanvas;
+    let bmp;
+    try{ bmp=await createImageBitmap(fileOrCanvas,{imageOrientation:'from-image'}); }
+    catch(e){ bmp=await new Promise((ok,no)=>{ const im=new Image(); im.onload=()=>ok(im); im.onerror=()=>no(new UserError(t('typeFail'),t('typeFailSub'))); im.src=URL.createObjectURL(fileOrCanvas); }); }
+    const max=2600, w=bmp.width, h=bmp.height, k=Math.min(1, max/Math.max(w,h));
+    const c=document.createElement('canvas'); c.width=Math.round(w*k); c.height=Math.round(h*k);
+    const g=c.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,c.width,c.height); g.drawImage(bmp,0,0,c.width,c.height);
+    return c;
+  }
+
+  async function readPdf(file, progress, signal){
+    progress(t('stepLoad'),.03);
+    await loadScript(LIB.pdf+'pdf.min.js');
+    const lib=window.pdfjsLib;
+    if(!lib.GlobalWorkerOptions.workerSrc){
+      // cross-origin workers are not allowed, so start the worker from a small same-origin blob
+      const blob=new Blob(['importScripts("'+LIB.pdf+'pdf.worker.min.js");'],{type:'application/javascript'});
+      lib.GlobalWorkerOptions.workerSrc=URL.createObjectURL(blob);
+    }
+    progress(t('stepPdf'),.1);
+    const doc=await lib.getDocument({data:new Uint8Array(await file.arrayBuffer()), isEvalSupported:false}).promise;
+    const pages=[];
+    for(let p=1;p<=doc.numPages;p++){
+      if(signal.aborted) throw new DOMException('aborted','AbortError');
+      const page=await doc.getPage(p);
+      const tc=await page.getTextContent();
+      pages.push(pdfItemsToText(tc.items));
+      progress(t('stepPdf'), .1+.3*p/doc.numPages);
+    }
+    const text=pages.join('\n\n');
+    // a scanned PDF has (almost) no text layer: read the page images instead
+    if(text.replace(/\s/g,'').length >= 40*doc.numPages) return {text, source:'pdf'};
+    const canvases=[];
+    for(let p=1;p<=Math.min(doc.numPages,6);p++){
+      const page=await doc.getPage(p); const vp=page.getViewport({scale:2.2});
+      const c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+      const g=c.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,c.width,c.height);
+      await page.render({canvasContext:g, viewport:vp}).promise; canvases.push(c);
+    }
+    const r=await ocr(canvases, progress, signal);
+    return {text:r.text, source:'ocr', conf:r.conf};
+  }
+
+  function pdfItemsToText(items){
+    // group text pieces into lines by their vertical position, then sort left to right
+    const rows=[];
+    items.forEach(it=>{ if(!it.str||!it.str.trim()) { return; } const y=it.transform[5], x=it.transform[4];
+      let row=rows.find(r=>Math.abs(r.y-y)<=Math.max(2,(it.height||10)*.35)); if(!row){ row={y,parts:[]}; rows.push(row); } row.parts.push({x,s:it.str,w:it.width||0}); });
+    rows.sort((a,b)=>b.y-a.y);
+    return rows.map(r=>{ r.parts.sort((a,b)=>a.x-b.x); let out='', end=null;
+      r.parts.forEach(p=>{ if(end!==null && p.x-end>1.5 && !/\s$/.test(out) && !/^\s/.test(p.s)) out+=' '; out+=p.s; end=p.x+p.w; });
+      return out.replace(/[ \t]+/g,' ').trim(); }).join('\n');
+  }
+
+  async function ocr(images, progress, signal){
+    progress(t('stepOcrLoad'),.12);
+    await loadScript(LIB.tess+'tesseract.min.js');
+    let cur=0;
+    const worker=await window.Tesseract.createWorker('deu',1,{
+      workerPath:LIB.tess+'worker.min.js', corePath:LIB.tessCore, langPath:LIB.tessLang,
+      logger:m=>{ if(m.status==='recognizing text') progress(images.length>1?t('stepOcrPage',{n:cur+1,m:images.length}):t('stepOcr'), .2+.65*((cur+(m.progress||0))/images.length)); }
+    });
+    const abort=()=>{ try{ worker.terminate(); }catch(e){} };
+    signal.addEventListener('abort',abort);
+    try{
+      const texts=[], confs=[];
+      for(cur=0;cur<images.length;cur++){
+        const {data}=await worker.recognize(images[cur]);
+        texts.push(data.text||''); confs.push(data.confidence||0);
+      }
+      return {text:texts.join('\n\n'), conf:Math.round(confs.reduce((a,b)=>a+b,0)/confs.length)};
+    } finally { signal.removeEventListener('abort',abort); abort(); }
+  }
+
+  /* ---- shared helpers ---- */
+  const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const MONTHS={january:1,february:2,march:3,april:4,may:5,june:6,july:7,august:8,september:9,october:10,november:11,december:12,januar:1,'jänner':1,februar:2,'märz':3,maerz:3,mai:5,juni:6,juli:7,oktober:10,dezember:12};
+  const MONTH_RE=Object.keys(MONTHS).sort((a,b)=>b.length-a.length).join('|');
+  const TOKEN_RE=/\d{1,2}\.\d{1,2}\.\d{2,4}|\d{1,2}\/\d{4}|\d{1,2}:\d{2}|\d+(?:[.,]\d+)?/g;
+  const pad=n=>String(n).padStart(2,'0');
+  function normTok(t){
+    if(/^\d+,\d+$/.test(t)) t=t.replace(',','.');
+    let m;
+    if((m=t.match(/^(\d{1,2})\/(\d{4})$/))) t=pad(+m[1])+'/'+m[2];
+    if((m=t.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/))) t=pad(+m[1])+'.'+pad(+m[2])+'.'+m[3];
+    return t;
+  }
+  const tokens=s=>(String(s).match(TOKEN_RE)||[]).map(normTok);
+  function letterIndex(letter){
+    const toks=new Set(tokens(letter)); let m;
+    const r1=/\d{1,2}\.(\d{1,2})\.(\d{4})/g; while((m=r1.exec(letter))) toks.add(pad(+m[1])+'/'+m[2]);
+    const r2=new RegExp('\\b('+MONTH_RE+')\\s+(\\d{4})\\b','gi'); while((m=r2.exec(letter))) toks.add(pad(MONTHS[m[1].toLowerCase()])+'/'+m[2]);
+    const phones=new Set();
+    letter.split('\n').forEach(line=>{ (line.match(/\+?\d[\d\s\/()-]{4,}\d/g)||[]).forEach(r=>phones.add(r.replace(/\D/g,''))); });
+    return {toks,phones};
+  }
+  function* strings(o,path=''){
+    if(Array.isArray(o)) { for(let i=0;i<o.length;i++) yield* strings(o[i],path+'['+i+']'); }
+    else if(o&&typeof o==='object'){ for(const k of Object.keys(o)) yield* strings(o[k],path?path+'.'+k:k); }
+    else if(typeof o==='string') yield [path,o];
+  }
+
+  /* ---- medicines (eArztbrief "Dosierschema" and plain "Name 10 mg 1-0-1-0" lines) ---- */
+  const NUMQ='(\\d+(?:[.,]\\d+)?|½|1/2)';
+  const SCHED_RE=new RegExp(NUMQ+'\\s*[–-]\\s*'+NUMQ+'\\s*[–-]\\s*'+NUMQ+'(?:\\s*[–-]\\s*'+NUMQ+')?');
+  const num=x=>x==null?0:(x==='½'||x==='1/2')?.5:parseFloat(String(x).replace(',','.'));
+  function letterMedicines(letter){
+    const m=letter.match(/Medikation\s+(?:bei\s+)?Entlassung([\s\S]*)/i) || letter.match(/Entlass(?:ungs)?medikation([\s\S]*)/i);
+    const text=m?m[1]:letter; const out=[];
+    const blocks=text.split(/Code\/Bezeichnung:/).slice(1);
+    blocks.forEach(b=>{
+      const lines=b.trim().split('\n').filter(l=>!/^[o•▪\-–]?$/.test(l.trim())); let name=(lines[0]||'').trim(); if(!name) return;
+      if(/[\/,]$/.test(name) && lines[1] && !/^Dosierschema/i.test(lines[1])) name=name+' '+lines[1].trim();
+      name=name.replace(/\s*…$/,'');
+      const sm=b.match(/Dosierschema\s+Freitext:\s*([^\n]*)/); if(!sm) return;
+      const s=sm[1].match(SCHED_RE); if(!s) return;
+      const st=name.match(/(\d+(?:[.,]\d+)?)\s*(mg|µg|mcg|mikrogramm|g|ml|ie|i\.e\.)(?![a-zäöü])/i);
+      const rest=sm[1].slice(sm[1].indexOf(s[0])+s[0].length).split(';').map(x=>x.trim()).filter(Boolean);
+      out.push({key:name.split(/\s+/)[0].toLowerCase(), name, strength:st?normTok(st[1]):null,
+        schedule:[num(s[1]),num(s[2]),num(s[3]),num(s[4])], unit:rest[0]||'', notes:rest.slice(1)});
+    });
+    if(out.length) return out;
+    // plain lines: "Ramipril 5 mg 1-0-0" / "Metformin 1000 mg  1 - 0 - 1 - 0  nach dem Essen"
+    letter.split('\n').forEach(line=>{
+      const l=line.replace(/\s+/g,' ').trim();
+      const sm=l.match(SCHED_RE); if(!sm) return;
+      const before=l.slice(0,l.indexOf(sm[0])).replace(/^[-•·*o]\s+/,'').trim();
+      if(!/[A-Za-zÄÖÜäöü]{3,}/.test(before)) return;
+      if(/\d{1,2}\.\d{1,2}\.\d{2,4}/.test(sm[0])) return;           // a date range, not a schedule
+      const st=before.match(/(\d+(?:[.,]\d+)?)\s*(mg|µg|mcg|mikrogramm|g|ml|ie|i\.e\.)(?![a-zäöü])/i);
+      if(!st && !/(tabl|kaps|hub|tropf|inhal|spray|retard)/i.test(l)) return; // needs a strength or a drug form
+      const after=l.slice(l.indexOf(sm[0])+sm[0].length).replace(/^[;,:\s]+/,'');
+      const sched=[num(sm[1]),num(sm[2]),num(sm[3]),sm[4]!==undefined?num(sm[4]):0];
+      if(sched.some(x=>x>10)) return;
+      out.push({key:before.split(/\s+/)[0].toLowerCase(), name:before, strength:st?normTok(st[1]):null, schedule:sched, unit:'', notes:after?[after]:[]});
+    });
+    return out;
+  }
+
+  /* ---- checker (JavaScript version of pipeline/check.py) ---- */
+  const UNITS={volume:'litres?|liters?|liter|l(?=/|\\b)',mass:'mg|µg|mcg|micrograms?|mikrogramm|milligrams?|milligramm',gfr:'ml/min',
+    rate:'/\\s*min\\b|beats? per minute|per minute|pro minute|schläge pro minute',length:'mm\\b|millimet(?:re|er)s?',months:'months?|monate?n?',weeks:'weeks?|wochen?',days:'days?|tagen?|tage',age:'-?\\s*years?[- ]old|-?jährige?[rn]?'};
+  const NUMS='(\\d+(?:[.,]\\d+)?)';
+  const RANGE_UNIT_RE=new RegExp(NUMS+'(?:\\s*(?:-|–|to|bis|and|und)\\s*'+NUMS+')?\\s*(?:x\\s*'+NUMS+'\\s*)?('+Object.values(UNITS).map(u=>'(?:'+u+')').join('|')+')','gi');
+  function unitKind(u){ u=u.trim(); for(const [k,p] of Object.entries(UNITS)) if(new RegExp('^(?:'+p+')$','i').test(u)) return k; for(const [k,p] of Object.entries(UNITS)) if(new RegExp('^(?:'+p+')','i').test(u)) return k; return null; }
+  function unitPairs(text){ const out=new Set(); let m; RANGE_UNIT_RE.lastIndex=0; while((m=RANGE_UNIT_RE.exec(text))){ const k=unitKind(m[4]); [m[1],m[2],m[3]].forEach(n=>{ if(n) out.add(normTok(n)+'|'+k); }); } return out; }
+  const WRITTEN_DATE=()=>new RegExp('(?:(\\d{1,2})\\.?\\s+)?\\b('+MONTH_RE+')\\b\\s+(\\d{4})','gi');
+  const SLOTS=['morning','midday','evening','night'];
+
+  function checkOutput(letter,out){
+    const issues=[];
+    if(!out||typeof out!=='object') return ['the reply was not a JSON object'];
+    if(!out.worry||!['calm','act_soon','urgent'].includes(out.worry.level)) issues.push('worry.level must be calm, act_soon or urgent');
+    ['todos','summary_paragraphs','medicines','jargon','details_1to1','faq','contacts'].forEach(k=>{ if(!Array.isArray(out[k])) issues.push('missing list: '+k); });
+    (out.medicines||[]).forEach((m,i)=>SLOTS.forEach(s=>{ if(typeof m[s]!=='number') issues.push('medicines['+i+'].'+s+' must be a number'); }));
+    const {toks,phones}=letterIndex(letter); const have=unitPairs(letter);
+    for(const [path,s] of strings(out)){
+      if(/^contacts.*\.phone$/.test(path)) continue;
+      let m; const wd=WRITTEN_DATE();
+      while((m=wd.exec(s))){ const mm=pad(MONTHS[m[2].toLowerCase()]); const want=m[1]?pad(+m[1])+'.'+mm+'.'+m[3]:mm+'/'+m[3]; if(!toks.has(want)) issues.push('date not in letter: "'+m[0].trim()+'" at '+path); }
+      tokens(s.replace(WRITTEN_DATE(),' ')).forEach(tk=>{ if(!toks.has(tk)) issues.push('number not in letter: "'+tk+'" at '+path); });
+      if(!/^contacts/.test(path)) unitPairs(s).forEach(p=>{ const [n,k]=p.split('|'); if(k!=='null'&&!have.has(p)) issues.push('amount not in letter: "'+n+'" ('+k+') at '+path); });
+    }
+    (out.contacts||[]).forEach((c,i)=>{ const d=String(c.phone||'').replace(/\D/g,''); if(d&&!phones.has(d)) issues.push('phone not in letter: "'+c.phone+'" at contacts['+i+']'); });
+    const want=letterMedicines(letter);
+    if(want.length){
+      const seen=new Set(); const fmt=a=>a.map(x=>String(+x)).join(' – ');
+      (out.medicines||[]).forEach((m,i)=>{
+        const name=String(m.name||''); const w=want.find(x=>new RegExp('(^|[^\\wäöü])'+x.key.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'($|[^\\wäöü])','i').test(name));
+        if(!w){ issues.push('medicine not on the letter’s list: "'+name+'" at medicines['+i+']'); return; }
+        seen.add(w.key); const got=SLOTS.map(s=>typeof m[s]==='number'?m[s]:-1);
+        if(got.join()!==w.schedule.join()) issues.push('schedule wrong for '+name+': '+fmt(got)+' but the letter says '+fmt(w.schedule));
+        if(w.strength && !tokens(name+' '+(m.dose||'')).includes(w.strength)) issues.push('strength wrong for '+name+': the letter says '+w.strength);
+      });
+      want.forEach(w=>{ if(!seen.has(w.key)) issues.push('medicine left out: "'+w.name+'"'); });
+    }
+    return [...new Set(issues)];
+  }
+
+  /* ---- offline reading of the letter: only facts, copied as written ---- */
+  const HEADINGS=['Diagnosen?','Aufnahmediagnosen?','Entlassungsdiagnosen?','Hauptdiagnose','Nebendiagnosen?','Anamnese','Aufnahmebefund','Befunde?','Untersuchungsbefunde?','Labor','Verlauf','Therapie','Prozeduren','Epikrise','Beurteilung','Zusammenfassung','Entlassungsbefund','Procedere','Prozedere','Weiteres Prozedere(?: und Empfehlungen)?','Weiteres Procedere','Empfehlungen?','Therapieempfehlungen?','Medikation(?: (?:bei )?(?:Aufnahme|Entlassung))?','Entlassmedikation','Aktuelle Medikation','Dokumentation','Vorherige Prozeduren','Grund der Einweisung','Kontrolltermine?','Wiedervorstellung'];
+  const HEAD_RE=new RegExp('^\\s*(?:\\d+\\.?\\s*)?('+HEADINGS.join('|')+')\\s*:?\\s*$','i');
+  const HEAD_INLINE_RE=new RegExp('^\\s*('+HEADINGS.join('|')+')\\s*:\\s*(.+)$','i');
+  const RECO_RE=/procedere|prozedere|empfehlung|weiteres|kontroll|wiedervorstellung/i;
+
+  function cleanLetter(text){
+    return text.replace(/\r/g,'').split('\n').map(l=>l.replace(/[ \t]+/g,' ').trim())
+      .map(l=>l.replace(/^\[(?:Freitext|Text|[^\]]{0,30}optional[^\]]*)\]\s*/i,''))
+      .filter(l=>!/^[o•▪\-–]$/.test(l) && !/^\[[^\]]*\]$/.test(l)).join('\n').replace(/\n{3,}/g,'\n\n').trim();
+  }
+
+  function letterSections(text){
+    const lines=text.split('\n'); const secs=[]; let cur=null;
+    lines.forEach(l=>{
+      let m;
+      if(/^(Mit (freundlichen|kollegialen|besten) Grüßen|Hochachtungsvoll|MfG\b)/i.test(l)){ cur=null; return; }
+      if((m=l.match(HEAD_RE))){ cur={head:m[1],lines:[]}; secs.push(cur); return; }
+      if((m=l.match(HEAD_INLINE_RE))&&m[2].length<300){ cur={head:m[1],lines:[m[2]]}; secs.push(cur); return; }
+      if(cur) cur.lines.push(l);
+    });
+    return secs.map(s=>({head:s.head, text:s.lines.join('\n').replace(/\n{2,}/g,'\n').trim()}))
+      .filter(s=>s.text.replace(/\s/g,'').length>10 && !/^(Medikation|Entlassmedikation|Aktuelle Medikation|Dokumentation)/i.test(s.head));
+  }
+
+  const ABBR=/\b(Z\.\s?n|V\.\s?a|z\.\s?B|d\.\s?h|u\.\s?a|o\.\s?g|i\.\s?v|p\.\s?o|s\.\s?c|Dr|Prof|med|ca|bzw|ggf|inkl|evtl|Nr|Tbl|Kps|bds|li|re|mind|max|sog|vs|St|Std|Min|Mo|Di|Mi|Do|Fr|Sa|So)\./g;
+  function sentences(text){
+    const prot=text.replace(/\s*\n\s*/g,' ').replace(ABBR,m=>m.replace(/\./g,'\u2024'));
+    return prot.split(/(?<=[.!?])\s+(?=[A-ZÄÖÜ])/).map(x=>x.replace(/\u2024/g,'.').trim()).filter(x=>x.length>12);
+  }
+
+  function findContacts(text){
+    const lines=text.split('\n'); const out=[]; const seen=new Set();
+    lines.forEach((l,i)=>{
+      const m=l.match(/(?:Tel(?:efon)?\.?|Fon|Telefonnummer|☎)\s*:?\s*(\+?\d[\d\s\/()-]{4,}\d)/i); if(!m) return;
+      const digits=m[1].replace(/\D/g,''); if(digits.length<5||seen.has(digits)) return; seen.add(digits);
+      let who=l.slice(0,m.index).replace(/Kontaktinformation:?/i,'').replace(/[;,:\s]+$/,'').trim();
+      if(!who){ for(let j=i-1;j>=Math.max(0,i-6);j--){ const p=lines[j]; if(/^Name:\s*(.+)/i.test(p)){ who=p.replace(/^Name:\s*/i,''); break; } if(/\b(Dr\.|Prof\.|Hr\.|Fr\.|Praxis|Klinik|Krankenhaus)/.test(p)&&p.length<90){ who=p; break; } } }
+      if(!who) for(let j=i-1;j>=Math.max(0,i-2);j--){ if(lines[j]&&!/^(Anschrift|Straße|Kontaktinformation)/i.test(lines[j])){ who=lines[j]; break; } }
+      let hours=null; const near=lines.slice(i+1,i+4).join(' ');
+      const hm=near.match(/(?:Kontakt|Sprech|Öffnungs)zeiten:?\s*(.{5,160}?Uhr|.{5,120})/i); if(hm) hours=hm[1].trim();
+      out.push({who:who||'—', phone:m[1].trim(), hours});
+    });
+    return out;
+  }
+
+  function findStay(text){
+    const D='(\\d{1,2}\\.\\d{1,2}\\.\\d{4})'; let m;
+    if((m=text.match(new RegExp('Aufnahme(?:datum)?\\s*\\n\\s*Entlass(?:ungs)?datum\\s*\\n\\s*'+D+'\\s*\\n\\s*'+D,'i')))) return [m[1],m[2]];
+    if((m=text.match(new RegExp('vom\\s+'+D+'\\s+bis\\s+(?:zum\\s+)?'+D,'i')))) return [m[1],m[2]];
+    const a=text.match(new RegExp('Aufnahme(?:datum|\\s+am)?:?\\s*'+D,'i')), b=text.match(new RegExp('Entlass(?:ungs)?(?:datum|\\s+am)?:?\\s*'+D,'i'));
+    return (a&&b)?[a[1],b[1]]:null;
+  }
+
+  function findTodos(secs, text){
+    const reco=secs.filter(s=>RECO_RE.test(s.head)).map(s=>s.text).join('\n');
+    const src=reco||'';
+    const out=[];
+    sentences(src).forEach(s=>{
+      if(out.length>=5) return;
+      let when='';
+      const m=s.match(/bis (?:einschließlich |zum |Ende )?(?:\d{1,2}\/\d{4}|\d{1,2}\.\d{1,2}\.\d{4}|(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember) \d{4})|in (?:ca\.|etwa)?\s*\d+\s*(?:Tagen|Wochen|Monaten|Jahren)|lebenslang|täglich|dauerhaft|am \d{1,2}\.\d{1,2}\.\d{4}/i);
+      if(m) when=m[0];
+      out.push({action:s, detail:'', when, then:null, source:'letter', german:true});
+    });
+    return out;
+  }
+
+  function analyzeOffline(letter, source, conf){
+    const text=cleanLetter(letter);
+    const secs=letterSections(text);
+    const meds=letterMedicines(text).map(m=>({name:m.name, dose:'', form:m.unit, morning:m.schedule[0], midday:m.schedule[1], evening:m.schedule[2], night:m.schedule[3], note:m.notes.join('; ')||null}));
+    const stay=findStay(text);
+    const dateM=text.match(/(?:Datum|Erstellungszeitpunkt|den)\s*:?\s*\n?\s*(\d{1,2}\.\d{1,2}\.\d{4})/i);
+    const fromM=text.match(/^(?:Name:\s*)?((?:Klinik|Krankenhaus|Klinikum|Praxis|Universitätsklinikum|MVZ|Gemeinschaftspraxis)(?=[\s,])[^\n]{3,80})$/im);
+    const words=[]; GLOSS.forEach(g=>{ if(g.re.test(text)) words.push({term:g.w, plain:g[lang]||g.en, g}); });
+    const dx=[]; text.split('\n').forEach(l=>{ if(/^(?:[A-Z]\d{2}(?:\.\d{1,2})?[A-Z]?|Diagnose:)\s+\S/.test(l) && dx.length<15) dx.push(l); });
+    return {
+      mode:'letter', lang, source, conf,
+      worry:{level:'info', headline:t('lvInfoHead'), reason:t('lvInfoReason')},
+      about:{stay, date:dateM?dateM[1]:null, from:fromM?fromM[1].trim():null},
+      todos:findTodos(secs,text), if_not:null, summary_paragraphs:[],
+      medicines:meds, jargon:words,
+      details_1to1:secs.map(s=>({section:s.head, original:s.text, plain:''})),
+      diagnoses:dx, faq:[], contacts:findContacts(text)
+    };
+  }
+
+  /* ---- AI explanation (OpenAI-compatible chat API, key saved on this device) ---- */
+  function aiConf(){ const key=store.get('k-ai-key'); return key?{key, url:store.get('k-ai-url')||AI_DEFAULT.url, model:store.get('k-ai-model')||AI_DEFAULT.model}:null; }
+  const AI_SYSTEM=L=>`You explain German doctor's letters (Arztbriefe) to elderly patients in ${L==='de'?'einfachem, warmem Deutsch (Leichte Sprache)':'plain, warm, simple English'}.
+Use short sentences (about 15 words at most). Avoid medical words; if you must use one, explain it.
+Rules:
+- Use ONLY facts in the letter. Never invent dates, doses, amounts, phone numbers or advice.
+- Copy every date, dose, amount and phone number exactly as written in the letter.
+- Medicines: use the DISCHARGE list ("Medikation Entlassung") if there is one, not the admission list. List every one. The schedule "a – b – c – d" means morning – midday – evening – night; copy those numbers exactly. Put stop dates and notes such as "vor den Mahlzeiten" in "note".
+- "bis einschließlich 05/2023" means up to and including May 2023.
+- If the letter does not say something (warning signs, exact appointment date, what a medicine is for), say so. Use source "general" for general knowledge and "not_in_letter" when the letter is silent.
+- If you explain what a medicine is for and the letter does not say it, start the note with "${L==='de'?'Meist:':'Usually:'}".
+- worry.level: "calm" if the letter reports success / no complications; "act_soon" if it asks for prompt action; "urgent" only if the letter itself says something is urgent.
+- todos: the concrete things the letter asks the patient to do, most important first.
+- details_1to1: one entry per important part of the letter; "original" copied word for word from the letter (you may shorten with "…").
+- contacts: every phone number in the letter a patient might call.
+- This is not medical advice; tell the patient to ask their doctor before changing anything.
+Return ONLY one JSON object, no other text, with exactly this shape:
+{"worry":{"level":"calm|act_soon|urgent","headline":str,"reason":str},"about_one_sentence":str,"todos":[{"action":str,"detail":str,"when":str,"then":str|null,"source":"letter|general"}],"if_not":{"source":"letter|general|not_in_letter","points":[str]},"summary_paragraphs":[str],"medicines":[{"name":str,"dose":str,"form":str,"morning":num,"midday":num,"evening":num,"night":num,"note":str|null}],"jargon":[{"term":str,"plain":str}],"details_1to1":[{"section":str,"original":str,"plain":str}],"faq":[{"q":str,"a":str,"source":"letter|general|not_in_letter"}],"contacts":[{"who":str,"phone":str,"hours":str|null}]}`;
+
+  async function chatCall(cfg, messages, signal, json){
+    const body={model:cfg.model, temperature:.1, max_tokens:12000, stream:true, messages};
+    if(json) body.response_format={type:'json_object'};
+    let res=await fetch(cfg.url,{method:'POST',signal,headers:{'content-type':'application/json',authorization:'Bearer '+cfg.key},body:JSON.stringify(body)});
+    if(res.status===400&&json){ delete body.response_format; res=await fetch(cfg.url,{method:'POST',signal,headers:{'content-type':'application/json',authorization:'Bearer '+cfg.key},body:JSON.stringify(body)}); }
+    if(!res.ok){ let msg=''; try{ msg=(await res.text()).slice(0,160); }catch(e){} throw new Error('HTTP '+res.status+(res.status===401?' (key not accepted)':'')+(msg?' – '+msg:'')); }
+    const ct=res.headers.get('content-type')||'';
+    if(!ct.includes('event-stream')){ const j=await res.json(); return (j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content)||''; }
+    const reader=res.body.getReader(), dec=new TextDecoder(); let buf='', text='';
+    for(;;){ const {done,value}=await reader.read(); if(done) break; buf+=dec.decode(value,{stream:true});
+      let i; while((i=buf.indexOf('\n'))>=0){ const line=buf.slice(0,i).trim(); buf=buf.slice(i+1);
+        if(!line.startsWith('data:')) continue; const d=line.slice(5).trim(); if(d==='[DONE]') return text;
+        try{ const j=JSON.parse(d); const c=j.choices&&j.choices[0]; if(c&&c.delta&&c.delta.content) text+=c.delta.content; }catch(e){} } }
+    return text;
+  }
+  function extractJson(text){
+    text=text.replace(/<think>[\s\S]*?<\/think>/g,'').trim();
+    const f=text.match(/```(?:json)?\s*(\{[\s\S]*\})\s*```/); if(f) text=f[1];
+    const s=text.indexOf('{'); if(s<0) throw new Error('no JSON in the reply');
+    // find the matching closing brace (strings may contain braces)
+    let depth=0, inStr=false, escp=false;
+    for(let i=s;i<text.length;i++){ const c=text[i];
+      if(inStr){ if(escp) escp=false; else if(c==='\\') escp=true; else if(c==='"') inStr=false; continue; }
+      if(c==='"') inStr=true; else if(c==='{') depth++; else if(c==='}'){ depth--; if(depth===0) return JSON.parse(text.slice(s,i+1)); } }
+    throw new Error('the reply was cut off');
+  }
+  async function analyzeAI(letter, cfg, L, progress, signal){
+    const messages=[{role:'system',content:AI_SYSTEM(L)},{role:'user',content:'Letter:\n\n'+cleanLetter(letter)}];
+    let out=null, issues=['no reply'];
+    for(let round=0; round<2; round++){
+      progress(round?t('stepFix'):t('stepAi'), round?.85:.55);
+      const text=await chatCall(cfg, messages, signal, true);
+      progress(t('stepCheck'), round?.95:.8);
+      try{ out=extractJson(text); issues=checkOutput(letter,out); }catch(e){ out=null; issues=['reply was not valid JSON: '+e.message]; }
+      if(!issues.length) break;
+      messages.push({role:'assistant',content:text},{role:'user',content:'An automatic check compared your JSON with the letter and found these problems:\n'+issues.map(i=>'- '+i).join('\n')+'\n\nFix every problem using only the letter. Return the complete corrected JSON object only.'});
+    }
+    if(!out) throw new Error(issues[0]);
+    return Object.assign(out,{mode:'ai', lang:L, issues});
+  }
+  /* =====================================================================
+     UI
+     ===================================================================== */
   function applyLang(){
     document.documentElement.lang = lang==='de'?'de':'en';
     $$('[data-i18n]').forEach(el=>{ const k=el.dataset.i18n; if(I18N[lang][k]!==undefined) el.textContent=I18N[lang][k]; });
@@ -756,12 +1116,13 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     $$('[data-i18n-ph]').forEach(el=>{ const k=el.dataset.i18nPh; if(I18N[lang][k]!==undefined) el.setAttribute('placeholder',I18N[lang][k]); });
     $$('[data-lang]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.lang===lang));
     const cur=document.getElementById('langDdCur'); if(cur) cur.textContent=lang.toUpperCase();
-    applySize(); render();
+    if(DATA && DATA.mode==='sample') DATA=sampleData();
+    applySize(); renderData(); renderAiState(); render();
   }
 
   /* ---------- toast ---------- */
   let tT;
-  function toast(msg){const el=$('#toast');el.textContent=msg;el.hidden=false;clearTimeout(tT);tT=setTimeout(()=>el.hidden=true,3200)}
+  function toast(msg){const el=$('#toast');el.textContent=msg;el.hidden=false;clearTimeout(tT);tT=setTimeout(()=>el.hidden=true,3600)}
 
   /* ---------- text size ---------- */
   const sizes=[{px:17},{px:20},{px:23},{px:27},{px:31}];
@@ -792,47 +1153,53 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   document.addEventListener('click',e=>{ if(!ddMenu.hidden && !e.target.closest('.langdd')) closeLangMenu(); });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !ddMenu.hidden){ closeLangMenu(); ddBtn.focus(); } });
 
+  /* ---------- state ---------- */
+  let DATA=null, LETTER=null;   // DATA: explanation shown; LETTER: {text, source, conf}
+  const SAMPLE={letter:JSON.parse($('#sample-letter').textContent), en:JSON.parse($('#sample-en').textContent), de:JSON.parse($('#sample-de').textContent)};
+  function sampleData(){ return Object.assign(JSON.parse(JSON.stringify(SAMPLE[lang])),{mode:'sample',lang}); }
+
   /* ---------- router ---------- */
-  const routes=['upload','reading','overview','todo1','todo2','todo3','meds','explain','questions','help'];
-  let letterDone=false, readingTimer=[];
+  const routes=['upload','reading','overview','todo','meds','explain','questions','help'];
+  let todoIdx=0;
   const deskMQ=matchMedia('(min-width:1024px)');
   function titleFor(r){
-    return {overview:t('tOverview'),todo1:t('tTodo'),todo2:t('tTodo'),todo3:t('tTodo'),meds:t('tMeds'),explain:t('tExplain'),questions:t('tQuestions'),help:t('tHelp'),upload:t('tUpload'),reading:t('tReading')}[r]||'';
+    return {overview:t('tOverview'),todo:t('tTodo'),meds:t('tMeds'),explain:t('tExplain'),questions:t('tQuestions'),help:t('tHelp'),upload:t('tUpload'),reading:t('tReading')}[r]||'';
   }
+  function parseHash(){ let h=(location.hash||'').slice(1); let m=h.match(/^todo-(\d+)$/); if(m){ todoIdx=+m[1]; return 'todo'; } return h; }
   function render(){
-    let r=(location.hash||'').slice(1);
-    if(!routes.includes(r)) r = letterDone?'overview':'upload';
-    if(!['upload','reading'].includes(r)) letterDone=true;
+    let r=parseHash();
+    const haveData=!!DATA;
+    if(!routes.includes(r) || (!haveData && !['upload','reading'].includes(r))) r = haveData?'overview':'upload';
+    if(r==='reading' && !reading.active && !reading.error) r = haveData?'overview':'upload';
     const desk=deskMQ.matches;
     const simple=['upload','reading'].includes(r);
+    const nTodos=haveData?(DATA.todos||[]).length:0;
     document.body.classList.toggle('simple-route',simple);
-    if(typeof stopSpeaking==='function' && render._last && render._last!==r) try{stopSpeaking()}catch(e){}
+    if(render._last && render._last!==r) try{stopSpeaking()}catch(e){}
     render._last=r;
-    const showOv = letterDone && !simple && (r==='overview'||desk);
+    const showOv = haveData && !simple && (r==='overview'||desk);
+    const deskTodo = desk && r==='overview' && nTodos>0;
+    if(r==='overview' && desk) todoIdx=0;
+    if(r==='todo' || deskTodo) renderTodo();
     $('#paneOverview').hidden=!showOv;
     $('#layout').classList.toggle('two', showOv && desk);
     routes.forEach(n=>{
       const el=$('#screen-'+n); let show=false;
       if(n==='overview') show=showOv;
       else if(n==='upload'||n==='reading') show=(r===n);
-      else show=(r===n)||(desk && r==='overview' && n==='todo1');
+      else show=(r===n)||(n==='todo'&&deskTodo);
       if(show && !el.hidden && n===r){ el.classList.remove('enter'); void el.offsetWidth; el.classList.add('enter'); }
       el.hidden=!show;
     });
-    // app bar
     $('#brandHome').hidden = r!=='overview' && !simple;
-    $('#newLetter').hidden = !(letterDone && !simple && (r==='overview'||desk));
+    $('#newLetter').hidden = !(haveData && !simple && (r==='overview'||desk));
     document.body.classList.toggle('on-overview', r==='overview');
-    $('#backBtn').hidden = r==='overview' || simple;
+    $('#backBtn').hidden = r==='overview' || r==='upload' || (r==='reading' && !haveData);
     $('#appTitle').textContent = (r==='overview'||simple)?'':titleFor(r);
     $('#appTitle').hidden = !$('#appTitle').textContent;
-    // fab
-    $('#fab').hidden = simple || !letterDone;
-    // left-pane highlight
-    [['todo1','#rowTodo1'],['todo2','#rowTodo2'],['todo3','#rowTodo3'],['meds','#tileMeds'],['explain','#tileExplain'],['questions','#tileQuestions'],['help','#tileHelp']].forEach(([n,sel])=>{
-      const active = (r===n)||(desk&&r==='overview'&&n==='todo1');
-      $(sel).classList.toggle('sel',active);
-    });
+    $('#fab').hidden = simple || !haveData;
+    $$('#todoList .todorow').forEach((row,i)=>row.classList.toggle('sel',(r==='todo'&&i===todoIdx)||(deskTodo&&i===0)));
+    [['meds','#tileMeds'],['explain','#tileExplain'],['questions','#tileQuestions'],['help','#tileHelp']].forEach(([n,sel])=>$(sel).classList.toggle('sel',r===n));
     stopSpeaking();
     window.scrollTo({top:0});
   }
@@ -843,37 +1210,192 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     if(e.target.closest('#camBtn')) $('#camInput').click();
     if(e.target.closest('#fileBtn')) $('#fileInput').click();
   });
+  $('#backBtn').onclick=()=>go(DATA?'overview':'upload');
+  $('#brandHome').onclick=()=>go(DATA?'overview':'upload');
+  $('#newLetter').onclick=()=>go('upload');
+  $('#exampleBtn').onclick=()=>{ DATA=sampleData(); LETTER={text:SAMPLE.letter, source:'sample'}; renderData(); go('overview'); };
+
+  /* ---------- reading flow ---------- */
+  const reading={active:false, error:null, ctrl:null};
   let thumbURL=null;
-  function gotFile(input){
+  function progress(step, frac){ $('#readStep').textContent=step; if(frac!=null) $('#progress').style.width=Math.round(Math.min(1,frac)*100)+'%'; }
+  function showReadError(head, sub){ reading.error={head,sub}; $('#readBusy').hidden=true; $('#readErr').hidden=false; $('#readErrHead').textContent=head; $('#readErrSub').textContent=sub||''; }
+  async function gotFile(input){
     const f=input.files && input.files[0]; if(!f) return;
+    input.value='';
     if(thumbURL){ try{URL.revokeObjectURL(thumbURL);}catch(e){} thumbURL=null; }
     const isImg=/^image\//.test(f.type);
     if(isImg){ thumbURL=URL.createObjectURL(f); $('#readThumb').src=thumbURL; }
     $('#readThumb').hidden=!isImg; $('#readIcon').hidden=isImg;
     $('#readName').textContent=isImg?'':f.name; $('#readName').hidden=isImg;
-    input.value=''; letterDone=false; go('reading');
+    if(reading.ctrl) reading.ctrl.abort();
+    const ctrl=new AbortController(); reading.ctrl=ctrl; reading.active=true; reading.error=null;
+    $('#readBusy').hidden=false; $('#readErr').hidden=true; progress(t('readingSub'),.02);
+    go('reading');
+    try{
+      const r=await readLetterFile(f, progress, ctrl.signal);
+      if(ctrl.signal.aborted) return;
+      const text=cleanLetter(r.text||'');
+      if(text.replace(/\s/g,'').length<60) throw new UserError(t('readFail'),t('readFailSub'));
+      progress(t('stepFind'),.5);
+      let data=analyzeOffline(text, r.source, r.conf);
+      const cfg=aiConf();
+      if(cfg){
+        try{ data=await analyzeAI(text, cfg, lang, progress, ctrl.signal); data.source=r.source; data.conf=r.conf; }
+        catch(e){ if(ctrl.signal.aborted) return; data.aiError=String(e.message||e).slice(0,200); }
+      }
+      if(ctrl.signal.aborted) return;
+      progress(t('stepCheck'),1);
+      LETTER={text, source:r.source, conf:r.conf}; DATA=data;
+      reading.active=false; renderData(); go('overview');
+    }catch(e){
+      if(ctrl.signal.aborted || (e&&e.name==='AbortError')) return;
+      reading.active=false; console.error(e);
+      if(e instanceof UserError) showReadError(e.head,e.sub); else showReadError(t('readFail'), t('readFailSub'));
+    }
   }
   $('#camInput').addEventListener('change',e=>gotFile(e.target));
   $('#fileInput').addEventListener('change',e=>gotFile(e.target));
-  $('#backBtn').onclick=()=>go(letterDone?'overview':'upload');
-  $('#brandHome').onclick=()=>go('overview');
-  $('#newLetter').onclick=()=>{ letterDone=false; go('upload'); };
+  $('#cancelRead').onclick=()=>{ if(reading.ctrl) reading.ctrl.abort(); reading.active=false; go(DATA?'overview':'upload'); };
 
-  /* ---------- reading ---------- */
-  function runReading(){
-    readingTimer.forEach(clearTimeout); readingTimer=[];
-    $('#progress').style.width='0';
-    [40,75,100].forEach((w,i)=>readingTimer.push(setTimeout(()=>$('#progress').style.width=w+'%',150+i*550)));
-    readingTimer.push(setTimeout(()=>{ letterDone=true; go('overview'); },2000));
+  async function redoInLang(){
+    if(!LETTER||!aiConf()) return;
+    const ctrl=new AbortController(); reading.ctrl=ctrl; reading.active=true; reading.error=null;
+    $('#readThumb').hidden=true; $('#readIcon').hidden=false; $('#readName').hidden=true;
+    $('#readBusy').hidden=false; $('#readErr').hidden=true; go('reading');
+    try{ const d=await analyzeAI(LETTER.text, aiConf(), lang, progress, ctrl.signal); d.source=LETTER.source; d.conf=LETTER.conf; DATA=d; }
+    catch(e){ if(ctrl.signal.aborted) return; toast(t('aiFail',{e:String(e.message||e).slice(0,120)})); }
+    reading.active=false; renderData(); go('overview');
   }
-  const origRender=render;
-  render=function(){ const h=(location.hash||'').slice(1); if(h==='reading') runReading(); origRender(); };
+
+  /* ---------- rendering from data ---------- */
+  const srcPill=s=> s==='letter' ? '<span class="pill src-letter"><svg class="ico"><use href="#i-file"/></svg>'+esc(t('fromLetter'))+'</span>'
+    : s==='not_in_letter' ? '<span class="pill src-general"><svg class="ico"><use href="#i-info"/></svg>'+esc(t('notInLetter'))+'</span>'
+    : s==='general' ? '<span class="pill src-general"><svg class="ico"><use href="#i-info"/></svg>'+esc(t('general'))+'</span>' : '';
+  function todoIcon(td){ const s=(td.action+' '+(td.detail||'')).toLowerCase();
+    if(/trink|drink|liter|litre|wasser|water/.test(s)) return '#i-drop';
+    if(/tablet|medik|medic|blood thin|blutverd|nehmen|take|einnahme|ass\b|inhal|pill/.test(s)) return '#i-pill';
+    if(/kontroll|check|termin|appoint|wiedervorstell|follow|arzt|doctor|ärztin/.test(s)) return '#i-cal';
+    return '#i-check'; }
+  // mark glossary words inside German letter text so they can be tapped
+  let TERMS=[];
+  function highlight(text){
+    let html=esc(text);
+    TERMS.forEach((g,i)=>{ const re=new RegExp(g.re.source, g.re.flags.includes('g')?g.re.flags:g.re.flags+'g'); let n=0;
+      html=html.replace(re, m=> (n++<2 && !/[<>&]/.test(m)) ? '<button class="term" type="button" data-term="'+i+'">'+m+'</button>' : m); });
+    return html;
+  }
+
+  function renderData(){
+    const d=DATA; if(!d) return;
+    const letter=LETTER&&LETTER.text||'';
+    TERMS = (d.mode==='letter') ? GLOSS.filter(g=>g.re.test(letter)) : GLOSS.filter(g=>g.re.test(letter)).slice(0,40);
+    // banners
+    const b=[];
+    if(d.mode==='sample') b.push('<p class="banner info"><svg class="ico"><use href="#i-file"/></svg><span>'+esc(t('exampleBadge'))+'</span></p>');
+    if(d.aiError) b.push('<p class="banner warn"><svg class="ico"><use href="#i-info"/></svg><span>'+esc(t('aiFail',{e:d.aiError}))+'</span></p>');
+    if(d.mode==='ai' && d.issues && d.issues.length) b.push('<div class="banner warn"><svg class="ico"><use href="#i-info"/></svg><div><p>'+esc(t('checkWarn'))+'</p><ul class="iflist">'+d.issues.slice(0,6).map(i=>'<li>'+esc(i)+'</li>').join('')+'</ul></div></div>');
+    if(d.mode==='ai' && d.lang!==lang && aiConf()) b.push('<div class="banner info"><svg class="ico"><use href="#i-text"/></svg><div><p>'+esc(t('redoLang'))+'</p><button class="btn ghost" type="button" id="redoBtn" style="margin-top:.5rem;flex:none">'+esc(t('redoBtn'))+'</button></div></div>');
+    $('#ovBanners').innerHTML=b.join(''); const rb=$('#redoBtn'); if(rb) rb.onclick=redoInLang;
+    // verdict
+    const lv=(d.worry&&d.worry.level)||'info';
+    $('#verdict').className='card verdict lv-'+lv;
+    $('#verdictIco').setAttribute('href',{calm:'#i-check',act_soon:'#i-bell',urgent:'#i-info',info:'#i-file'}[lv]||'#i-file');
+    $('#verdictEyebrow').textContent = lv==='info'?t('eyebrowLetter'):t('worryQ');
+    $('#verdictHead').textContent=d.worry?d.worry.headline:'';
+    $('#verdictReason').textContent=d.worry?d.worry.reason:'';
+    // about line
+    let about=d.about_one_sentence||'';
+    if(d.about){ const p=[]; if(d.about.stay) p.push(t('aboutStay',{a:d.about.stay[0],b:d.about.stay[1]})); else if(d.about.date) p.push(t('aboutDate',{a:d.about.date})); if(d.about.from) p.push(t('aboutFrom',{x:d.about.from})); about=p.join(' '); }
+    $('#aboutLine').textContent=about; $('#aboutLine').hidden=!about;
+    // todos
+    const todos=d.todos||[];
+    $('#todoBlock').hidden=!todos.length;
+    $('#todoEyebrow').textContent = todos.length===1?t('yourTodo1'):t('yourTodosN',{n:todos.length});
+    $('#todoList').innerHTML=todos.map((td,i)=>'<button class="todorow" data-read type="button" data-nav="todo-'+i+'"><span class="ti" aria-hidden="true"><svg class="ico"><use href="'+todoIcon(td)+'"/></svg></span><span><span class="act"'+(td.german?' lang="de"':'')+'>'+esc(td.german?clip(td.action,110):td.action)+'</span>'+(td.when?'<br><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span>'+esc(td.when)+'</span></span>':'')+'</span><svg class="ico chev" aria-hidden="true"><use href="#i-chev"/></svg></button>').join('');
+    renderMeds(d); renderExplain(d); renderFaq(d); renderHelp(d); resetChat();
+  }
+  const clip=(s,n)=>s.length>n?s.slice(0,n-1).replace(/\s+\S*$/,'')+' …':s;
+
+  function renderTodo(){
+    const todos=(DATA&&DATA.todos)||[]; if(!todos.length) return;
+    if(todoIdx>=todos.length) todoIdx=0;
+    const td=todos[todoIdx];
+    $$('.todoIcoUse').forEach(u=>u.setAttribute('href',todoIcon(td)));
+    $('#todoTitle').textContent=t('todoOf',{n:todoIdx+1,m:todos.length});
+    $('#todoAction').innerHTML = td.german ? highlight(td.action) : esc(td.action);
+    $('#todoAction').lang = td.german?'de':'';
+    $('#todoWhenWrap').hidden=!td.when; $('#todoWhen').textContent=td.when||'';
+    $('#todoDetail').innerHTML = td.detail ? '<strong>'+esc(t('whyLabel'))+'</strong> '+esc(td.detail) : (td.german?'<span class="muted">'+esc(t('fromLetterDe'))+'</span>':'');
+    $('#todoThen').hidden=!td.then; $('#todoThen').innerHTML = td.then?'<strong>'+esc(t('thenLabel'))+'</strong> '+esc(td.then):'';
+    $('#todoSrc').innerHTML=srcPill(td.source||'letter');
+    const nav=[];
+    if(todoIdx>0) nav.push('<button class="btn ghost" type="button" data-nav="todo-'+(todoIdx-1)+'"><svg class="ico" style="transform:rotate(90deg)"><use href="#i-chev"/></svg>'+esc(t('prev'))+'</button>');
+    if(todoIdx<todos.length-1) nav.push('<button class="btn ghost" type="button" data-nav="todo-'+(todoIdx+1)+'">'+esc(t('next'))+'<svg class="ico" style="transform:rotate(-90deg)"><use href="#i-chev"/></svg></button>');
+    $('#todoNav').innerHTML=nav.join('');
+  }
+
+  const fmtN=x=>String(x).replace('.',lang==='de'?',':'.').replace(/^0[.,]5$/,'½');
+  function renderMeds(d){
+    const meds=d.medicines||[];
+    const timed=meds.filter(m=>SLOTS.some(s=>m[s]>0)), untimed=meds.filter(m=>!SLOTS.some(s=>m[s]>0));
+    $('#medsBody').hidden=!timed.length; $('#medsEmpty').hidden=!!meds.length; $('#medsEmpty').textContent=t('noMeds');
+    SLOTS.forEach(s=>{
+      const list=timed.filter(m=>m[s]>0);
+      $('#panel-'+s).innerHTML = list.length ? '<ul>'+list.map(m=>'<li><span class="dose">'+esc(fmtN(m[s]))+'</span><div><b>'+esc(m.name)+'</b>'+(m.form?'<span class="for">'+esc(m.form)+'</span>':'')+(m.note?'<br><span class="flag">'+esc(m.note)+'</span>':'')+'</div></li>').join('')+'</ul>' : '<p class="emptytab">'+esc(t('nothingNow'))+'</p>';
+    });
+    $('#medsOther').innerHTML = untimed.length ? '<article class="card" data-read><p class="eyebrow" style="margin-bottom:.4rem">'+esc(t('otherMeds'))+'</p><ul class="iflist">'+untimed.map(m=>'<li><b>'+esc(m.name)+'</b>'+(m.note?' — '+esc(m.note):'')+'</li>').join('')+'</ul></article>' : '';
+    if(d.source==='ocr' && meds.length) $('#medsOther').innerHTML+='<p class="notinletter"><svg class="ico"><use href="#i-info"/></svg><span>'+esc(t('medsPhotoNote'))+'</span></p>';
+    // open the current time of day, or the first one that has medicines
+    const h=new Date().getHours(); const now=h<11?'morning':h<14?'midday':h<20?'evening':'night';
+    const first=[now,...SLOTS].find(s=>timed.some(m=>m[s]>0))||'morning';
+    selectTab($('#tab-'+first));
+  }
+
+  function renderExplain(d){
+    const letterMode=d.mode==='letter';
+    const paras=d.summary_paragraphs||[];
+    $('#summaryCard').innerHTML = paras.length
+      ? paras.map(p=>'<p>'+esc(p)+'</p>').join('')
+      : '<p>'+esc(t('summaryNeedsAi'))+'</p><button class="btn ghost" type="button" id="openSet2" style="margin-top:.7rem;flex:none">'+esc(t('openSettings'))+'</button>';
+    const os=$('#openSet2'); if(os) os.onclick=()=>openSheet('#setScrim');
+    // words
+    const words = letterMode ? TERMS.map((g,i)=>({i, term:g.w, plain:g[lang]||g.en})) : (d.jargon||[]).map(j=>({term:j.term, plain:j.plain}));
+    $('#wordsBlock').hidden=!words.length;
+    $('#wordList').innerHTML = words.map(w=>'<div class="dxrow" data-read><span class="o" lang="de">'+esc(w.term)+'</span><span>'+esc(w.plain)+'</span></div>').join('');
+    // parts of the letter
+    const parts=d.details_1to1||[];
+    $('#detailsEyebrow').textContent = letterMode?t('lettersParts'):t('sideBySide');
+    $('#detailsBlock').hidden=!parts.length;
+    $('#detailsList').innerHTML = parts.map(p=> letterMode
+      ? '<details><summary><span lang="de">'+esc(p.section)+'</span><svg class="ico chev"><use href="#i-chev"/></svg></summary><div class="dbody"><div class="orig lettertext" lang="de" data-read><span class="lab">'+esc(t('letterSays'))+'</span>'+highlight(p.original)+'</div><p class="hint"><svg class="ico"><use href="#i-info"/></svg><span>'+esc(t('tapYellow'))+'</span></p></div></details>'
+      : '<details><summary><span>'+esc(p.section)+'</span><svg class="ico chev"><use href="#i-chev"/></svg></summary><div class="dbody"><p data-read>'+esc(p.plain)+'</p><button class="say origtoggle" type="button" data-orig aria-pressed="false"><svg class="ico"><use href="#i-eye"/></svg><span>'+esc(t('showOrig'))+'</span></button><div class="orig" lang="de" hidden><span class="lab">'+esc(t('letterSays'))+'</span>'+highlight(p.original)+'</div></div></details>'
+    ).join('');
+    // full text
+    const lt=LETTER&&LETTER.text;
+    $('#fullLetter').hidden=!lt; $('#letterTextBox').innerHTML=lt?highlight(lt):'';
+    $('#ocrNote').hidden=!(d.source==='ocr');
+  }
+
+  function renderFaq(d){
+    const faq=d.faq||[];
+    $('#faqCard').innerHTML = faq.length ? faq.map(q=>'<details><summary><svg class="ico"><use href="#i-help"/></svg><span>'+esc(q.q)+'</span><svg class="ico chev"><use href="#i-chev"/></svg></summary><div class="dbody" data-read><p>'+esc(q.a)+'</p><p>'+srcPill(q.source)+'</p></div></details>').join('')
+      : '<p data-read>'+esc(t('noFaq'))+'</p>';
+  }
+
+  function renderHelp(d){
+    const cs=d.contacts||[];
+    $('#contactList').innerHTML = cs.length ? cs.map(c=>'<div class="contact"><span class="ci"><svg class="ico"><use href="#i-phone"/></svg></span><div style="min-width:0"><strong>'+esc(c.who)+'</strong>'+(c.hours?'<br><span class="muted">'+esc(c.hours)+'</span>':'')+'<br><span class="num">'+esc(c.phone)+'</span> <button class="copy" type="button" data-copy="'+esc(c.phone)+'"><svg class="ico"><use href="#i-copy"/></svg><span>'+esc(t('copy'))+'</span></button></div></div>').join('')
+      : '<p class="muted">'+esc(t('noContacts'))+'</p>';
+    const f=d.if_not;
+    $('#ifNotCard').hidden=!(f&&f.points&&f.points.length);
+    if(f&&f.points){ $('#ifNotList').innerHTML=f.points.map(p=>'<li>'+esc(p)+'</li>').join(''); $('#ifNotSrc').innerHTML=srcPill(f.source); }
+  }
 
   /* ---------- reminder / copy ---------- */
-  function refreshDone(){}
   document.addEventListener('click',e=>{
     if(e.target.closest('[data-remind]')){ toast(t('reminderSet')); return; }
-    const c=e.target.closest('[data-copy]'); if(c){ const v=c.dataset.copy; const ok=()=>toast(t('copied')+v); try{ navigator.clipboard.writeText(v).then(ok,()=>toast(t('copied')+v)); }catch(err){ toast(t('copied')+v); } }
+    const c=e.target.closest('[data-copy]'); if(c){ const v=c.dataset.copy; const ok=()=>toast(t('copied')+v); try{ navigator.clipboard.writeText(v).then(ok,ok); }catch(err){ ok(); } }
   });
 
   /* ---------- read aloud (per screen) ---------- */
@@ -882,7 +1404,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   function textOf(el){ if(el.closest('[hidden]')) return ''; const c=el.cloneNode(true); $$('[hidden]',c).forEach(n=>n.remove()); $$('details:not([open]) > :not(summary)',c).forEach(n=>n.remove()); $$('.no-read, svg, .chev, .say, .copy, .origtoggle',c).forEach(n=>n.remove()); return c.innerText.replace(/\s+/g,' ').trim(); }
   function clearMarks(){ $$('.reading-now').forEach(n=>n.classList.remove('reading-now')); }
   function stopSpeaking(){ try{synth&&synth.cancel();}catch(e){} if(typeof endSpeaking==='function') endSpeaking(); }
-  function setReadBtn(btn,on){ btn.setAttribute('aria-pressed',on); if(btn.title!==undefined&&btn.id==='readBtn') btn.title=on?t('stop'):t('readPage'); btn.querySelector('use').setAttribute('href',on?'#i-stop':'#i-vol'); btn.querySelector('span').textContent = on? t('stop') : t('readPage'); }
+  function setReadBtn(btn,on){ btn.setAttribute('aria-pressed',on); if(btn.id==='readBtn') btn.title=on?t('stop'):t('readPage'); const u=btn.querySelector('use'); if(u) u.setAttribute('href',on?'#i-stop':'#i-vol'); const sp=btn.querySelector('span'); if(sp) sp.textContent = on? t('stop') : (btn.id==='readBtn'?t('readPage'):t('readAloud')); }
   let keepAlive=null, startCheck=null;
   function pickVoice(code){
     try{ const vs=synth.getVoices()||[]; const base=code.slice(0,2);
@@ -899,7 +1421,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
     if(!synth||typeof SpeechSynthesisUtterance==='undefined'){ toast(t('noVoice')); return; }
     try{ if(synth.speaking||synth.pending) synth.cancel(); synth.resume(); }catch(e){}
     clearMarks(); if(curBtn&&curBtn!==btn) setReadBtn(curBtn,false);
-    speaking=true; curBtn=btn; setReadBtn(btn,true);
+    speaking=true; curBtn=btn||null; if(btn) setReadBtn(btn,true);
     const code=lang==='de'?'de-DE':'en-GB'; let started=false;
     const queue=[]; parts.forEach(p=>chunks(p.text).forEach(c=>queue.push({text:c,el:p.el,lang:p.lang})));
     if(!queue.length){ endSpeaking(); return; }
@@ -917,10 +1439,10 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   document.addEventListener('click',e=>{
     const b=e.target.closest('[data-readpage]'); if(!b) return;
     if(speaking&&curBtn===b){ stopSpeaking(); return; }
-    const cur=(location.hash||'').slice(1);
+    const cur=parseHash();
     const scr=document.getElementById(b.dataset.readpage||('screen-'+(routes.includes(cur)&&!['upload','reading'].includes(cur)?cur:'overview')));
-    const blocks=$$('[data-read]',scr);
-    const parts=(blocks.length?blocks:[scr]).map(el=>({text:textOf(el),el}));
+    const blocks=$$('[data-read]',scr).filter(el=>!el.closest('[hidden]'));
+    const parts=(blocks.length?blocks:[scr]).map(el=>({text:textOf(el),el,lang:el.closest('[lang="de"]')&&lang!=='de'?'de-DE':undefined}));
     speakParts(parts,b);
   });
 
@@ -936,6 +1458,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   /* ---------- sheets (dialog, focus trap) ---------- */
   let lastFocus=null, openEl=null;
   function openSheet(sel){
+    if(openEl) closeSheets();
     lastFocus=document.activeElement; openEl=$(sel); openEl.hidden=false;
     const f=openEl.querySelector('.x, button, input'); f&&f.focus();
   }
@@ -948,7 +1471,7 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
   document.addEventListener('keydown',e=>{
     if(e.key==='Escape'){ closeSheets(); return; }
     if(e.key==='Tab'&&openEl){
-      const f=$$('button, input, [href], [tabindex]:not([tabindex="-1"])',openEl).filter(el=>!el.disabled&&el.offsetParent!==null);
+      const f=$$('button, input, summary, [href], [tabindex]:not([tabindex="-1"])',openEl).filter(el=>!el.disabled&&el.offsetParent!==null);
       if(!f.length) return;
       const first=f[0], last=f[f.length-1];
       if(e.shiftKey&&document.activeElement===first){ e.preventDefault(); last.focus(); }
@@ -959,10 +1482,9 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
 
   /* ---------- meds tabs ---------- */
   const tabs=$$('#medTabs [role="tab"]');
-  const panels={morning:'#panel-morning',midday:'#panel-midday',evening:'#panel-evening',night:'#panel-night'};
   function selectTab(tab){
     tabs.forEach(x=>{ const on=x===tab; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1; });
-    Object.keys(panels).forEach(k=>{ $(panels[k]).hidden = tabs.findIndex(x=>x.id==='tab-'+k)!==tabs.indexOf(tab); });
+    SLOTS.forEach(k=>{ $('#panel-'+k).hidden = ('tab-'+k)!==tab.id; });
   }
   tabs.forEach((tab,i)=>{
     tab.addEventListener('click',()=>selectTab(tab));
@@ -974,73 +1496,99 @@ details[open] summary{border-bottom:1.5px solid var(--line)}
       if(j!==null){ e.preventDefault(); selectTab(tabs[j]); tabs[j].focus(); }
     });
   });
-  (function(){ const h=new Date().getHours(); const k=(h>=4&&h<11)?'morning':h<20&&h>=4?'evening':'morning'; /* skip empty midday/night: show the next time with medicines */ selectTab($('#tab-'+k)); })();
 
-  /* ---------- jargon ---------- */
-  const T={
-    stent:{w:'Stent',a:'German: Stent',p:'A tiny tube made of fine metal mesh. It holds a narrow blood vessel open so blood can flow freely again.',m:''},
-    des:{w:'DES (Drug-Eluting Stent)',a:'German: medikamentenbeschichteter Stent',p:'A stent with a thin coating of medicine. The medicine stops the vessel from getting narrow again.',m:'Your letter names the model: Promus ELITE, 2.75 × 12 mm.'},
-    pci:{w:'PCI',a:'Perkutane Koronarintervention',p:'A treatment where a doctor guides a thin tube through a blood vessel in the wrist or groin up to the heart, and widens the narrow spot from the inside.',m:''},
-    khk:{w:'KHK',a:'Koronare Herzkrankheit · coronary heart disease',p:'The blood vessels that feed your heart muscle have become narrow. The heart then gets less blood and oxygen.',m:''},
-    rca:{w:'RCA',a:'Right coronary artery · rechte Herzkranzarterie',p:'One of the main blood vessels that supply the heart muscle with blood. "Distal" means the far end of it.',m:''},
-    dreigefaess:{w:'Drei-Gefäß-Erkrankung',a:'Three-vessel disease',p:'The heart has three main arteries. In your case, all three have narrow spots.',m:''},
-    kidney:{w:'Chronische Niereninsuffizienz',a:'Chronic kidney disease, stage III',p:'Your kidneys clean the blood less well than normal. Stage III is the middle of five stages.',m:''},
-    maligne:{w:'Maligne essentielle Hypertonie',a:'"Maligne" = severe',p:'Here "maligne" does NOT mean cancer. It means the high blood pressure is a severe form.',m:'Your letter adds: no blood pressure crisis was noted ("ohne Angabe einer hypertensiven Krise").'},
-    copd:{w:'COPD',a:'Chronisch obstruktive Lungenerkrankung',p:'A long-term lung illness. The airways are narrowed, so breathing out is harder.',m:''},
-    nyha:{w:'Belastungsdyspnoe NYHA II',a:'Shortness of breath on exertion, level 2 of 4',p:'You get out of breath with more effort, such as climbing stairs, but not when resting.',m:'NYHA is a scale from I (no complaints) to IV (complaints even at rest).'},
-    gfr:{w:'GFR',a:'Glomeruläre Filtrationsrate',p:'A number that shows how much blood your kidneys clean per minute. Higher is better.',m:'Your value was 36 ml/min on 22 June 2022.'},
-    sinus:{w:'Sinusrhythmus',a:'Sinus rhythm',p:'The normal, regular heartbeat, started by the heart’s own natural pacemaker.',m:''},
-    timi:{w:'TIMI III Fluss',a:'TIMI flow grade 3',p:'A score for blood flow in a heart artery. Grade III is the best: blood flows fully again.',m:''},
-    hub:{w:'Hub',a:'Puff',p:'One press of the inhaler. "2 Hub" means two puffs.',m:''}
-  };
+  /* ---------- word sheet ---------- */
   let curTerm=null;
   document.addEventListener('click',e=>{
     const b=e.target.closest('button.term'); if(!b) return;
-    const d=T[b.dataset.term]; if(!d) return; curTerm=d;
-    $('#termWord').textContent=d.w; $('#termAlso').textContent=d.a; $('#termPlain').textContent=d.p;
-    $('#termMore').textContent=d.m; $('#termMore').hidden=!d.m;
+    const g=TERMS[+b.dataset.term]; if(!g) return;
+    curTerm={w:g.w, p:g[lang]||g.en};
+    const j=(DATA&&DATA.jargon||[]).find(x=>x.term&&g.re.test(x.term)&&x.plain);
+    $('#termWord').textContent=g.w; $('#termAlso').textContent=b.textContent!==g.w?b.textContent:'';
+    $('#termPlain').textContent=curTerm.p;
+    const more=(j&&DATA.mode!=='letter')?j.plain:''; $('#termMore').textContent=more; $('#termMore').hidden=!more;
     openSheet('#termScrim');
   });
-  $('#termListen').onclick=()=>curTerm&&speakParts([{text:curTerm.w+'. '+curTerm.p+' '+curTerm.m}]);
-  $('#termAsk').onclick=()=>{ closeSheets(); openChat(); setTimeout(()=>ask('What does '+curTerm.w+' mean?'),250); };
+  $('#termListen').onclick=()=>curTerm&&speakParts([{text:curTerm.w+'. '+curTerm.p}]);
+  $('#termAsk').onclick=()=>{ const w=curTerm&&curTerm.w; closeSheets(); openChat(); if(w) setTimeout(()=>ask((lang==='de'?'Was bedeutet ':'What does ')+w+(lang==='de'?'?':' mean?')),250); };
 
-  /* ---------- chat (mock) ---------- */
-  const FROM='<span class="pill src-letter"><svg class="ico"><use href="#i-file"/></svg>'+t('fromLetter')+'</span>';
-  const NOT='<span class="pill src-general"><svg class="ico"><use href="#i-info"/></svg>Not in your letter</span>';
-  const A=[
-    {k:/clopidogrel|stop|blood thin|blutverd/i,a:'Your letter says: take Clopidogrel <strong>until the end of May 2023</strong>. After that, only ASS, for life.',s:FROM},
-    {k:/appoint|check.?up|termin|next|doctor visit/i,a:'Your letter says the next check-up is <strong>in about 6 months</strong>. It gives no exact date. Your heart doctor, Dr. Mustermann: <strong>030 0987654321</strong>.',s:FROM},
-    {k:/serious|worry|bad|dangerous|schlimm/i,a:'The letter says the treatment was successful and there were no complications afterwards. When you went home you had no complaints.',s:FROM},
-    {k:/drink|water|litre|liter|trink/i,a:'Your letter says to drink <strong>1.5 to 2 litres a day</strong>, because of the contrast dye and your weaker kidneys.',s:FROM},
-    {k:/stent/i,a:'A stent is a tiny mesh tube that holds a blood vessel open. You got one coated stent (Promus ELITE, 2.75 × 12 mm) on 23 June 2022.',s:FROM},
-    {k:/kidney|niere|gfr/i,a:'Your letter says your kidneys work less well (stage III) and the kidney value GFR was 36 ml/min on 22 June 2022.',s:FROM},
-    {k:/medic|pill|tablet|morning|evening/i,a:'In the morning: ASS, Clopidogrel, Candesartan, Torasemid, Pantoprazol and 2 puffs of each inhaler. In the evening: Atorvastatin and Ezetimib. Nothing at midday or night.',s:FROM}
-  ];
+  /* ---------- chat ---------- */
   function openChat(){ openSheet('#chatScrim'); setTimeout(()=>$('#chatInput').focus(),50); }
   $('#fab').onclick=openChat; $('#askOwn').onclick=openChat;
   function add(html,who){ const m=document.createElement('div'); m.className='msg '+who; m.innerHTML=html; $('#chatlog').appendChild(m); $('#chatBody').scrollTop=1e6; return m; }
-  function ask(q){
+  function resetChat(){
+    $('#chatlog').innerHTML=''; add(esc(t('chatHello')),'ai');
+    const chips=(DATA&&DATA.faq||[]).slice(0,3).map(q=>q.q);
+    [t('chipMeds'),t('chipNext'),t('chipCall')].forEach(c=>{ if(chips.length<5) chips.push(c); });
+    $('#chips').innerHTML=chips.map(c=>'<button class="chip" type="button">'+esc(c)+'</button>').join(''); $('#chips').hidden=false;
+  }
+  const STOP=new Set('the a an is are was were do does did i my me you your what when how why who which can could should will would to of in on for and or it this that be with about from have has much many after before take taking please mean means der die das ist sind war ich mein meine meinen sie ihr ihre was wann wie warum wer welche welcher kann darf soll muss wird zu von im in am an für und oder es dies dass mit über nach vor nehmen bitte bedeutet heißt ein eine einen'.split(' '));
+  const KEYMAP={medicine:'medikation|tabl|mg',medicines:'medikation|tabl|mg',pill:'tabl',appointment:'kontroll|termin|wiedervorstell',check:'kontroll',next:'nächste|kontroll|termin',drink:'trink',water:'trink|flüssig',kidney:'niere',kidneys:'niere',heart:'herz|kard',stop:'bis|absetz|beend',drive:'auto|fahr',sport:'sport|belast',eat:'mahlzeit|essen|diät|kost',operation:'op|operation|eingriff|prozedur',blood:'blut',pressure:'blutdruck|hypertonie',sugar:'zucker|diabet',lung:'lunge|copd',pain:'schmerz',serious:'komplikation|beschwerde|befund',call:'telefon',phone:'telefon',doctor:'dr\\.|arzt|ärztin|praxis'};
+  function words(q){ return q.toLowerCase().replace(/[^a-zäöüß0-9\s]/g,' ').split(/\s+/).filter(w=>w.length>2&&!STOP.has(w)); }
+  function localAnswer(q){
+    const d=DATA||{}; const ws=words(q); const ql=q.toLowerCase();
+    // 1. word meaning
+    const tm=q.match(/(?:what does|was bedeutet|was heißt|what is|was ist)\s+(.+?)\s*(?:mean)?\??$/i);
+    if(tm){ const k=tm[1].toLowerCase(); const g=GLOSS.find(g=>g.re.test(tm[1])||g.w.toLowerCase().includes(k)); if(g) return {a:esc(g[lang]||g.en), s:'general'}; const j=(d.jargon||[]).find(j=>j.term.toLowerCase().includes(k)); if(j) return {a:esc(j.plain), s:'letter'}; }
+    // 2. prepared questions
+    let best=null, bs=0; (d.faq||[]).forEach(f=>{ const fw=new Set(words(f.q)); const sc=ws.filter(w=>fw.has(w)).length/Math.max(2,ws.length); if(sc>bs){ bs=sc; best=f; } });
+    if(best&&bs>=.5) return {a:esc(best.a), s:best.source};
+    // 3. appointments, medicines, phone numbers
+    if(/appoint|termin|check.?up|kontroll|next visit|nächste|wiedervorstell|follow/.test(ql)){
+      if(d.mode!=='letter'){ const td=(d.todos||[]).filter(x=>/kontroll|check|termin|appoint|follow|doctor|ärztin|arzt/i.test(x.action+' '+x.detail)); if(td.length) return {a:td.map(x=>esc(x.action)+(x.when?' — <strong>'+esc(x.when)+'</strong>':'')+(x.detail?'. '+esc(x.detail):'')).join('<br>'), s:'letter'}; }
+      const hits=[...new Set(sentences(LETTER&&LETTER.text||'').filter(x=>/kontroll|termin|wiedervorstell|vorstellung|nachsorge/i.test(x)))].slice(0,3);
+      if(hits.length) return {a:esc(t('chatSays'))+hits.map(x=>'<span class="orig lettertext" lang="de" style="display:block;margin-top:.4rem">'+highlight(clip(x,300))+'</span>').join(''), s:'letter'};
+    }
+    if(/medic|medik|tablet|pill|inhal|morning|evening|morgens|abends/.test(ql) && (d.medicines||[]).length)
+      return {a:esc(t('chatMedsIntro'))+'<ul class="iflist">'+d.medicines.map(m=>'<li>'+esc(m.name)+' — '+SLOTS.map(s=>fmtN(m[s])).join(' – ')+(m.note?' ('+esc(m.note)+')':'')+'</li>').join('')+'</ul>', s:'letter'};
+    if(/call|phone|number|anruf|telefon|nummer|contact|kontakt/.test(ql) && (d.contacts||[]).length)
+      return {a:esc(t('chatContacts'))+'<ul class="iflist">'+d.contacts.map(c=>'<li>'+esc(c.who)+': <strong>'+esc(c.phone)+'</strong></li>').join('')+'</ul>', s:'letter'};
+    // 4. search the letter itself
+    const L=LETTER&&LETTER.text||''; if(L){
+      const pats=ws.map(w=>KEYMAP[w]||w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).filter(Boolean);
+      const sents=sentences(L.replace(/\n(?=[A-ZÄÖÜ])/g,'\n')).concat(L.split('\n').filter(l=>l.length>20));
+      const scored=sents.map(s=>({s,sc:pats.filter(p=>new RegExp(p,'i').test(s)).length})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc);
+      if(scored.length && scored[0].sc>=Math.min(2,pats.length)){ const top=[]; scored.forEach(x=>{ if(top.length<2 && !top.some(y=>y.includes(x.s)||x.s.includes(y))) top.push(x.s); });
+        return {a:esc(t('chatSays'))+top.map(s=>'<span class="orig lettertext" lang="de" style="display:block;margin-top:.4rem">'+highlight(clip(s,300))+'</span>').join(''), s:'letter'}; }
+    }
+    return {a:esc(t('chatNotFound')), s:'not_in_letter'};
+  }
+  async function ask(q){
     q=q.trim(); if(!q) return;
-    add(q.replace(/</g,'&lt;'),'me'); $('#chips').hidden=true;
+    add(esc(q),'me'); $('#chips').hidden=true;
     const typing=add('<span class="typing"><span></span><span></span><span></span></span>','ai');
-    setTimeout(()=>{
-      typing.remove();
-      let ans=null;
-      const tm=q.match(/what does (.+) mean/i);
-      if(tm){ const key=Object.keys(T).find(k=>T[k].w.toLowerCase()===tm[1].toLowerCase()); if(key) ans={a:T[key].p+(T[key].m?' '+T[key].m:''),s:FROM}; }
-      if(!ans) ans=A.find(x=>x.k.test(q));
-      if(!ans) ans={a:'Your letter does not say anything about this, so I can’t answer it. Contacts in your letter: Dr. Mustermann <strong>030 0987654321</strong>, hospital discharge team <strong>1234566</strong>.',s:NOT};
-      const m=add(ans.a+'<br>'+ans.s+'<br><button class="say" type="button"><svg class="ico"><use href="#i-vol"/></svg>'+t('readAloud')+'</button>','ai');
-      m.querySelector('.say').onclick=()=>{ const c=m.cloneNode(true); $$('.say,.pill',c).forEach(n=>n.remove()); speakParts([{text:c.innerText}]); };
-    },900);
+    let ans=null; const cfg=aiConf();
+    if(cfg && LETTER && LETTER.source!=='sample'){
+      try{
+        const sys='You answer an elderly patient\'s questions about their doctor\'s letter, in '+(lang==='de'?'simple German':'simple English')+'. Use ONLY the letter. If the letter does not say it, say so and suggest asking their doctor. At most 4 short sentences. Copy numbers exactly. This is not medical advice.';
+        const a=await chatCall(cfg,[{role:'system',content:sys},{role:'user',content:'Letter:\n\n'+LETTER.text+'\n\nQuestion: '+q}],undefined,false);
+        if(a.trim()) ans={a:esc(a.replace(/<think>[\s\S]*?<\/think>/g,'').trim()).replace(/\n/g,'<br>'), s:'letter'};
+      }catch(e){ ans=localAnswer(q); ans.a=esc(t('chatAiFail'))+ans.a; }
+    }
+    if(!ans){ await new Promise(r=>setTimeout(r,450)); ans=localAnswer(q); }
+    typing.remove();
+    const m=add(ans.a+'<br>'+srcPill(ans.s)+'<br><button class="say" type="button"><svg class="ico"><use href="#i-vol"/></svg><span>'+esc(t('readAloud'))+'</span></button>','ai');
+    m.querySelector('.say').onclick=ev=>{ const c=m.cloneNode(true); $$('.say,.pill',c).forEach(n=>n.remove()); speakParts([{text:c.innerText}],ev.currentTarget); };
   }
   $('#chips').addEventListener('click',e=>{ const c=e.target.closest('.chip'); if(c) ask(c.textContent); });
   $('#chatForm').addEventListener('submit',e=>{ e.preventDefault(); const i=$('#chatInput'); ask(i.value); i.value=''; });
   $('#micBtn').onclick=()=>toast(t('micMock'));
 
+  /* ---------- AI settings ---------- */
+  function renderAiState(){
+    const on=!!aiConf();
+    $('#aiState').textContent=on?t('aiOn'):t('aiOff'); $('#aiState').className='aistate '+(on?'on':'off');
+    $('#aiKey').value=store.get('k-ai-key')||''; $('#aiUrl').value=store.get('k-ai-url')||AI_DEFAULT.url; $('#aiModel').value=store.get('k-ai-model')||AI_DEFAULT.model;
+    $('#aiRemove').hidden=!on; $('#privacyLine').textContent=on?t('privacyOn'):t('privacyOff');
+  }
+  $('#aiSave').onclick=()=>{ const k=$('#aiKey').value.trim(); if(!k){ toast(t('aiKey')+'?'); return; }
+    store.set('k-ai-key',k); store.set('k-ai-url',$('#aiUrl').value.trim()||AI_DEFAULT.url); store.set('k-ai-model',$('#aiModel').value.trim()||AI_DEFAULT.model); renderAiState(); toast(t('saved')); };
+  $('#aiRemove').onclick=()=>{ try{ localStorage.removeItem('k-ai-key'); }catch(e){} renderAiState(); toast(t('removed')); };
+
   /* ---------- init ---------- */
-  applyLang(); refreshDone(); render();
+  applyLang();
   deskMQ.addEventListener && deskMQ.addEventListener('change',()=>render());
+  window.MediKlar={analyzeOffline, checkOutput, letterMedicines, findContacts, cleanLetter, pdfItemsToText, _state:()=>({DATA,LETTER})};
 })();
 </script>
 </body>
